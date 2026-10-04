@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>밴드 동아리 울림</title>
+<meta name="description" content="신입 부원 모집 Q&amp;A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="밴드 동아리 울림">
+<meta property="og:description" content="신입 부원 모집 Q&amp;A">
+<meta name="theme-color" content="#6b2fb3">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 100 100&#39;&gt;&lt;text y=&#39;.9em&#39; font-size=&#39;90&#39;&gt;🎸&lt;/text&gt;&lt;/svg&gt;">
+<style>
+:root{--pri:#6b2fb3;--pri-ink:#ffffff;--pri-text:#6b2fb3;--acc:#ffcc00;--acc-ink:#16181d;--bg:#f5f0fb;--card:#ffffff;--ink:#1b1f27;--mut:#5d6676;--soft:#f0eaf7;--line:#e7def3}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;
+  background:var(--bg);color:var(--ink);word-break:keep-all;overflow-wrap:break-word;-webkit-text-size-adjust:100%}
+.app{max-width:720px;margin:0 auto;height:100vh;height:100dvh;display:flex;flex-direction:column;background:var(--bg);
+  box-shadow:0 0 40px rgba(0,0,0,.08)}
+.hd{background:var(--pri);color:var(--pri-ink);padding:14px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.hd .av{width:44px;height:44px;border-radius:50%;background:var(--card);color:var(--ink);display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;overflow:hidden;flex-shrink:0}
+.hd .av img,.msg .ic img{width:100%;height:100%;object-fit:cover}
+.hd h1{font-size:1.08rem;font-weight:800;line-height:1.3}
+.hd p{font-size:.8rem;opacity:.85;margin-top:2px}
+.chat{flex:1;overflow-y:auto;padding:18px 14px 8px;display:flex;flex-direction:column;gap:12px;-webkit-overflow-scrolling:touch}
+.msg{display:flex;gap:9px;max-width:94%;animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.msg{animation:none}}
+.msg .b{padding:11px 14px;border-radius:16px;font-size:.94rem;line-height:1.62}
+.msg.bot{align-self:flex-start}
+.msg.bot .ic{width:32px;height:32px;border-radius:50%;background:var(--card);color:var(--ink);border:1.5px solid var(--line);display:flex;
+  align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;font-size:1.05rem}
+.msg.bot .b{background:var(--card);border:1px solid var(--line);border-top-left-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.msg.user{align-self:flex-end;flex-direction:row-reverse}
+.msg.user .b{background:var(--pri);color:var(--pri-ink);border-top-right-radius:4px}
+.b .q{font-weight:800;color:var(--pri-text);margin-bottom:4px}
+.b .a a,.greet a{color:var(--pri-text);text-decoration:underline}
+.b .note{font-size:.8rem;color:var(--mut);background:var(--soft);border-radius:8px;padding:4px 9px;margin-bottom:7px;display:inline-block}
+.hint{font-size:.78rem;color:var(--mut);margin:10px 0 2px;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:7px}
+.chips.col{flex-direction:column;align-items:flex-start}
+.chip{font:inherit;font-size:.84rem;font-weight:600;background:var(--soft);color:var(--pri-text);border:1px solid var(--line);
+  padding:7px 13px;border-radius:20px;cursor:pointer;text-align:left;line-height:1.4;transition:background .15s,color .15s}
+.chip:hover,.chip:focus-visible{background:var(--pri);color:var(--pri-ink);border-color:var(--pri)}
+.chip:focus-visible,.lnk:focus-visible,.composer input:focus-visible,.composer button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.chip.cat{background:var(--pri);color:var(--pri-ink);border-color:var(--pri)}
+.chip.cat:hover{filter:brightness(1.12)}
+.chip.contact{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+.links{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.lnk{display:inline-flex;align-items:center;gap:4px;font-size:.84rem;font-weight:700;text-decoration:none;background:var(--acc);
+  color:var(--acc-ink);padding:8px 14px;border-radius:10px}
+.lnk:hover{filter:brightness(1.06)}
+.all details{border:1px solid var(--line);border-radius:10px;margin-top:8px;background:var(--card)}
+.all summary{cursor:pointer;padding:9px 12px;font-weight:700;font-size:.88rem;list-style:none;display:flex;align-items:center;gap:6px}
+.all summary::-webkit-details-marker{display:none}
+.all summary::before{content:'▸';color:var(--mut);transition:transform .15s}
+.all details[open] summary::before{transform:rotate(90deg)}
+.all .cnt{margin-left:auto;font-size:.74rem;color:var(--mut);background:var(--soft);border-radius:10px;padding:1px 8px}
+.all details .chips{padding:0 10px 10px}
+.typing{display:flex;gap:4px;padding:4px 2px}
+.typing span{width:7px;height:7px;border-radius:50%;background:var(--mut);opacity:.5;animation:blink 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,100%{opacity:.25}50%{opacity:.9}}
+.quick{display:flex;gap:7px;overflow-x:auto;padding:9px 28px 9px 12px;background:var(--card);border-top:1px solid var(--line);
+  flex-shrink:0;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent);
+  mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent)}
+.quick::-webkit-scrollbar{display:none}
+.quick .chip{white-space:nowrap;flex-shrink:0}
+.composer{flex-shrink:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--card);border-top:1px solid var(--line);
+  display:flex;gap:8px;align-items:center}
+.composer input{flex:1;min-width:0;padding:12px 16px;border:2px solid var(--line);border-radius:24px;font:inherit;font-size:16px;
+  background:var(--card);color:var(--ink)}
+.composer input:focus{outline:none;border-color:var(--pri)}
+.composer button{width:46px;height:46px;border-radius:50%;border:0;background:var(--pri);color:var(--pri-ink);font-size:1.15rem;
+  cursor:pointer;flex-shrink:0}
+.ft{flex-shrink:0;text-align:center;font-size:.72rem;color:var(--mut);background:var(--card);padding:0 12px 8px;display:flex;
+  flex-wrap:wrap;justify-content:center;gap:4px 10px}
+.ft a{color:var(--mut)}
+.greet{font-weight:400}
+html.embed .app{box-shadow:none;max-width:none}
+html.embed .hd{padding:10px 14px}
+html.embed .hd .av{width:36px;height:36px;font-size:1.25rem}
+html.embed .hd h1{font-size:.98rem}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hd">
+    <div class="av" id="hdav"></div>
+    <div><h1 id="bname"></h1><p id="btag"></p></div>
+  </header>
+  <main class="chat" id="chat" role="log" aria-live="polite" aria-label="대화 내용"></main>
+  <nav class="quick" id="quick" aria-label="빠른 메뉴"></nav>
+  <form class="composer" id="form" autocomplete="off">
+    <input id="inp" maxlength="200" placeholder="궁금한 것을 입력하세요" aria-label="질문 입력" enterkeyhint="send">
+    <button id="send" type="submit" aria-label="보내기">➤</button>
+  </form>
+  <footer class="ft" id="ft"></footer>
+</div>
+<noscript><p style="padding:20px">이 챗봇은 자바스크립트가 켜져 있어야 동작합니다.</p></noscript>
+<script>window.BOT={"config":{"name":"밴드 동아리 울림","tagline":"신입 부원 모집 Q&A","avatar":"🎸","theme":{"primary":"#6b2fb3","accent":"#ffcc00","bg":"#f5f0fb"},"greeting":"안녕하세요! **밴드 동아리 울림** 신입 모집 챗봇이에요 🎸\n지원 방법, 활동, 회비처럼 궁금한 점을 물어보세요.","placeholder":"예: 악기를 못 쳐도 돼요?","examples":["악기를 못 쳐도 들어갈 수 있나요?","지원 마감이 언제예요?","회비는 얼마예요?"],"noMatch":"그 질문은 아직 준비가 안 됐어요. 오픈채팅으로 물어보면 운영진이 바로 답해 줄 거예요!","contacts":[{"label":"💬 오픈채팅 문의","url":"https://open.kakao.com/"},{"label":"📷 인스타그램","url":"https://www.instagram.com/"},{"label":"📝 지원서 쓰기","url":"https://forms.gle/"}],"footer":"※ 데모용 가상 동아리입니다","widgetLabel":"신입 모집 Q&A"},"items":[{"cat":"지원","q":"지원 기간이 언제예요?","a":"1학기는 3월 2일~3월 14일, 2학기는 9월 1일~9월 12일에 신입 부원을 모집해요.","kw":["지원기간","모집기간","마감","지원마감","모집","신입모집","언제까지"],"links":[]},{"cat":"지원","q":"어떻게 지원하나요?","a":"구글 폼 지원서를 내면 3일 안에 면접 일정을 문자로 알려 드려요.","kw":["지원","지원방법","지원서","구글폼","신청","가입","가입방법","들어가려면"],"links":[{"label":"지원서 쓰기","url":"https://forms.gle/"}]},{"cat":"지원","q":"악기를 못 쳐도 들어갈 수 있나요?","a":"물론이에요! 신입 부원의 절반 넘게 초보자예요. 첫 학기에 선배들이 파트별로 기초부터 알려 줘요.","kw":["초보","초보자","왕초보","악기 못쳐도","처음","처음인데","괜찮","할줄 몰라도","경험없어도","실력","입문"],"links":[]},{"cat":"지원","q":"오디션이 있나요?","a":"실력을 보는 오디션은 없어요. 10분 정도 가볍게 이야기하는 면접만 봐요. 보컬 지원자는 원하면 한 소절 불러 봐도 돼요.","kw":["오디션","면접","실기","테스트","실력테스트"],"links":[]},{"cat":"지원","q":"다른 학교 학생이나 졸업생도 지원할 수 있나요?","a":"재학생과 휴학생만 정회원으로 지원할 수 있어요. 졸업생은 OB 회원으로 공연에 함께할 수 있어요.","kw":["타학교","다른학교","졸업생","휴학생","대학원생","지원자격","자격"],"links":[]},{"cat":"활동","q":"어떤 파트가 있나요?","a":"보컬, 기타, 베이스, 드럼, 키보드 다섯 파트가 있어요. 지원서에 1·2지망 파트를 적어 주세요.","kw":["파트","보컬","기타","베이스","드럼","키보드","건반","세션"],"links":[]},{"cat":"활동","q":"정기 모임은 언제 하나요?","a":"매주 수요일 저녁 7시에 전체 모임을 하고, 팀 합주는 팀끼리 시간을 정해서 해요.","kw":["정기모임","모임","요일","합주","연습","연습시간","모임시간"],"links":[]},{"cat":"활동","q":"공연은 몇 번 하나요?","a":"학기마다 정기공연 1번, 축제 공연 1번을 해요. 버스킹이나 연합 공연은 원하는 팀만 나가요.","kw":["공연","정기공연","축제","버스킹","무대","연합공연"],"links":[]},{"cat":"활동","q":"활동을 꼭 매주 나가야 하나요?","a":"정기 모임은 한 달에 2번 이상 나오는 걸 권해요. 시험 기간에는 모임을 쉬어요.","kw":["출석","필수","의무","빠지면","시험기간","바쁘면","활동량","매주"],"links":[]},{"cat":"활동","q":"동아리방은 어디에 있나요?","a":"학생회관 3층 312호예요. 예약표에 이름을 적으면 부원 누구나 연습실로 쓸 수 있어요.","kw":["동아리방","동방","위치","어디","연습실","학생회관"],"links":[]},{"cat":"활동","q":"뒤풀이에 꼭 가야 하나요?","a":"아니요, 뒤풀이는 자유 참여예요. 술을 마시지 않아도 전혀 문제없어요.","kw":["뒤풀이","회식","술","음주","강제","술자리"],"links":[]},{"cat":"활동","q":"MT도 가나요?","a":"학기마다 1박 2일로 MT를 가요(참가비 따로, 자유 참여).","kw":["엠티","mt","여행","1박2일","수련회"],"links":[]},{"cat":"회비·장비","q":"회비는 얼마예요?","a":"한 학기 회비는 3만 원이에요. 동아리방 장비 관리와 공연장 대관비로 써요.","kw":["회비","비용","돈","얼마","가입비","학기회비"],"links":[]},{"cat":"회비·장비","q":"악기가 없어도 되나요?","a":"동아리방에 드럼, 앰프, 키보드, 연습용 기타·베이스가 있어서 개인 악기가 없어도 연습할 수 있어요.","kw":["악기","장비","악기없어도","없는데","없어요","앰프","대여","빌려","악기대여"],"links":[]}]};</script>
+<script>/*!
+ * FAQ 챗봇 키트 — 검색 엔진 (외부 라이브러리 없음)
+ * 핀로그(FinLog) 금융 챗봇의 검색 엔진을 범용 FAQ용으로 넓힌 버전입니다.
+ * 답을 지어내지 않고, 사람이 써 둔 답 중에서 가장 알맞은 것을 찾아 돌려줍니다.
+ */
+(function (root, factory) {
+  var api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else root.BotEngine = api;
+})(typeof self !== 'undefined' ? self : this, function () {
+  'use strict';
+
+  // 검색에 도움이 안 되는 말(군말·어미)
+  var STOP = new Set(['뭐', '뭐야', '뭔가요', '뭐예요', '뭐에요', '무엇', '무엇인가요', '알려줘', '알려주세요', '알려줘요',
+    '궁금해요', '궁금합니다', '궁금', '문의', '문의드려요', '질문', '혹시', '좀', '그', '저', '제가', '저희', '이거', '이건',
+    '이게', '그거', '그럼', '그리고', '근데', '또', '해', '해요', '하나요', '하는', '되나요', '돼요', '되요', '되는', '있나요',
+    '있어요', '있는', '없나요', '없어요', '인가요', '인가', '이야', '이에요', '예요', '에요', '한가요', '어떻게', '어때',
+    '어때요', '대해', '대해서', '관련', '관해', '있을까요', '할까요', '될까요', '가능', '가능한가요', '가능해요', '가능할까요',
+    '하고', '싶어요', '싶은데', '합니다', '입니다', '나요', '까요', '주세요', '해주세요', '알고', '싶습니다']);
+
+  // 낱말 끝에 붙는 조사·어미(긴 것부터 검사)
+  var SUFFIX = ['가능한가요', '가능할까요', '가능해요', '되나요', '될까요', '되는지', '있나요', '있어요', '있을까요', '없나요',
+    '없어요', '인가요', '한가요', '하나요', '할까요', '하면요', '해요', '에서는', '에서', '으로는', '으로', '에게', '한테', '까지',
+    '부터', '이랑', '이란', '이라는', '라는', '에대해', '에대한', '에관해', '이에요', '예요', '에요', '이요', '은요', '는요', '나요',
+    '까요', '가요', '하면', '되면', '해도', '돼도', '되도', '인데', '이나', '하고', '처럼', '보다', '마다', '도', '은', '는', '이',
+    '가', '을', '를', '에', '와', '과', '로', '만', '랑', '나', '요'];
+  var PARTICLE1 = '은는이가을를도만로랑와과나요에';
+
+  // 질문 끝에 흔한 두 글자(어미)는 유사도 계산에서 뺀다
+  var END_BI = new Set(['나요', '해요', '어요', '가요', '까요', '예요', '에요', '되나', '하나', '인가', '한가', '있어', '없어',
+    '세요', '니다', '습니', '합니', '는데', '은데', '할까', '될까', '있나', '없나', '주세', '돼요', '되요']);
+
+  var PUNCT = /[\s()[\]{}<>·•,.\-_/\\?!~'"“”‘’:;…|+*=#@^`]/g;
+  var SPLIT = /[\s()[\]{}<>·•,.\-_/\\?!~'"“”‘’:;…|+*=#@^`]+/;
+
+  // 숫자 + 명/인(사람 수)은 '몇명'으로 맞춰 "6명이 가도 돼요?"도 인원 질문으로 찾는다
+  function canon(s) {
+    return String(s == null ? '' : s).normalize('NFC').toLowerCase()
+      .replace(/몇\s+(?=[가-힣])/g, '몇') // "몇 시" → "몇시"
+      .replace(/\d+\s*(명|인)(?![가-힣])|\d+\s*(명|인)(?=[이가은는도을를에])/g, '몇명');
+  }
+
+  // 질문의 '종류'만 말해 주는 낱말. 이것만 맞고 모르는 낱말이 섞이면(예: "화장실 어디예요") 확신하지 않는다
+  var GENERIC = new Set(['어디', '언제', '얼마', '몇시', '몇명', '몇번', '몇개', '몇분', '무슨', '어떤', '어느', '누구', '가격',
+    '비용', '요금', '시간', '방법', '가능', '여부', '정보', '문의', '안내']);
+
+  function norm(s) {
+    return canon(s).replace(PUNCT, '');
+  }
+
+  function stripJosa(w) {
+    for (var pass = 0; pass < 2; pass++) {
+      var hit = false;
+      for (var i = 0; i < SUFFIX.length; i++) {
+        var s = SUFFIX[i];
+        if (w.length - s.length >= 2 && w.slice(-s.length) === s) { w = w.slice(0, -s.length); hit = true; break; }
+      }
+      if (!hit) break;
+    }
+    return w;
+  }
+
+  function toks(s) {
+    var out = [];
+    canon(s).split(SPLIT).forEach(function (w) {
+      if (!w) return;
+      var b = stripJosa(w);
+      if (b.length >= 2 && !STOP.has(b) && !STOP.has(w)) out.push(b);
+    });
+    return out;
+  }
+
+  // 한 글자 낱말(숯, 술, 차 …). 데이터에 한 글자 키워드가 있을 때만 쓰인다
+  function words1(s) {
+    var out = [];
+    canon(s).split(SPLIT).forEach(function (w) {
+      if (w.length === 1) out.push(w);
+      else if (w.length === 2 && PARTICLE1.indexOf(w[1]) >= 0) out.push(w[0]);
+    });
+    return out.filter(function (w) { return /[가-힣a-z0-9]/.test(w) && !STOP.has(w); });
+  }
+
+  // 한글 음절을 자모로 풀어 오타를 잡는다(예: 주처 → 주차)
+  function jamo(s) {
+    var out = [];
+    for (var i = 0; i < s.length; i++) {
+      var c = s.charCodeAt(i);
+      if (c >= 0xac00 && c <= 0xd7a3) {
+        var x = c - 0xac00;
+        out.push('i' + Math.floor(x / 588), 'm' + Math.floor((x % 588) / 28));
+        if (x % 28) out.push('f' + (x % 28));
+      } else out.push(s[i]);
+    }
+    return out;
+  }
+
+  function lev(a, b, max) {
+    if (max == null) max = Infinity;
+    var m = a.length, n = b.length;
+    if (Math.abs(m - n) > max) return max + 1;
+    var prev = [], cur, i, j;
+    for (j = 0; j <= n; j++) prev[j] = j;
+    for (i = 1; i <= m; i++) {
+      cur = [i];
+      var rowMin = i;
+      for (j = 1; j <= n; j++) {
+        cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+        if (cur[j] < rowMin) rowMin = cur[j];
+      }
+      if (rowMin > max) return max + 1;
+      prev = cur;
+    }
+    return prev[n];
+  }
+
+  function bigrams(ns) {
+    var set = new Set();
+    for (var i = 0; i < ns.length - 1; i++) {
+      var b = ns.slice(i, i + 2);
+      if (!END_BI.has(b)) set.add(b);
+    }
+    return set;
+  }
+
+  function dice(a, b) {
+    if (!a.size || !b.size) return 0;
+    var n = 0;
+    a.forEach(function (x) { if (b.has(x)) n++; });
+    return (2 * n) / (a.size + b.size);
+  }
+
+  function uniq(arr) { return Array.from(new Set(arr)); }
+
+  /** 검색용 색인을 만든다. items: [{cat, q, a, kw:[], links:[]}] */
+  function prepare(items) {
+    return (items || []).map(function (e, i) {
+      var kw = uniq((e.kw || []).map(norm).filter(Boolean));
+      var nq = norm(e.q);
+      // 오타 교정은 사람이 고른 키워드 기준으로만(질문 속 '날이' 같은 조각은 제외)
+      var vocab = kw.slice();
+      (e.kw || []).forEach(function (k) { vocab = vocab.concat(toks(k)); });
+      if (!kw.length) vocab = toks(e.q);
+      return Object.assign({}, e, {
+        _i: i,
+        _nq: nq,
+        _qt: uniq(toks(e.q)),
+        _nkw: kw,
+        _na: norm(e.a),
+        _ncat: norm(e.cat),
+        _bis: [nq].concat(kw).map(bigrams),
+        _vocab: uniq(vocab.map(norm).filter(function (w) { return w.length >= 2; }))
+      });
+    });
+  }
+
+  function score(e, nq, tk, qbi, w1, wt, unk) {
+    var s = 0, ev = [];
+    if (e._nq === nq) s += 120;
+    else if (nq.length >= 4 && (e._nq.indexOf(nq) >= 0 || (e._nq.length >= 4 && nq.indexOf(e._nq) >= 0))) s += 48;
+
+    // 키워드: 겹치는(다른 키워드에 포함되는) 짧은 키워드는 한 번만 센다
+    var hits = [];
+    e._nkw.forEach(function (k) {
+      if (k === nq) hits.push({ k: k, v: 90 });
+      else if (k.length >= 2 && nq.indexOf(k) >= 0) hits.push({ k: k, v: 34 + Math.min(16, (k.length - 2) * 4) });
+      else if (nq.length >= 2 && k.indexOf(nq) >= 0) hits.push({ k: k, v: 16 });
+    });
+    hits.forEach(function (h) {
+      var covered = hits.some(function (o) { return o !== h && o.k.length > h.k.length && o.k.indexOf(h.k) >= 0; });
+      if (!covered) { s += h.v; ev.push(h.k); }
+    });
+    // 한 글자 키워드는 질문에 따로 떨어진 낱말로 나올 때만 인정
+    (w1 || []).forEach(function (c) { if (e._nkw.indexOf(c) >= 0) { s += 72; ev.push(c); } });
+
+    tk.forEach(function (w) {
+      var v = 0;
+      if (e._nq.indexOf(w) >= 0) v += 16;
+      else if (e._qt.some(function (t) { return t.indexOf(w) >= 0 || (t.length >= 2 && w.indexOf(t) >= 0); })) v += 12;
+      if (e._nkw.some(function (k) { return k.indexOf(w) >= 0 || (k.length >= 2 && w.indexOf(k) >= 0); })) v += 18;
+      if (e._nkw.indexOf(w) >= 0) v += 20; // 키워드와 낱말이 정확히 같음
+      if (e._ncat && e._ncat.indexOf(w) >= 0) v += 6;
+      if (e._na.indexOf(w) >= 0) v += 4;
+      s += v * (wt && wt[w] != null ? wt[w] : 1);
+      if (v) ev.push(w);
+    });
+
+    var d = 0;
+    e._bis.forEach(function (b) { var v = dice(qbi, b); if (v > d) d = v; });
+    s += d * 50;
+
+    // 챗봇이 전혀 모르는 낱말이 질문에 있으면 덜 확신한다
+    if (unk > 0) {
+      s *= Math.pow(0.85, Math.min(unk, 2));
+      if (ev.length && ev.every(function (w) { return GENERIC.has(w); })) s *= 0.4;
+    }
+    return Math.round(s);
+  }
+
+  function knownAnywhere(index, w) {
+    return index.some(function (e) {
+      return e._nq.indexOf(w) >= 0 || e._na.indexOf(w) >= 0 || (e._ncat && e._ncat.indexOf(w) >= 0) ||
+        e._nkw.some(function (k) { return k.indexOf(w) >= 0 || (k.length >= 2 && w.indexOf(k) >= 0); });
+    });
+  }
+
+  // 여러 항목에 두루 나오는 낱말(예: 학원 챗봇의 '학원')은 덜 중요하게 본다
+  function weights(index, tk) {
+    var wt = {};
+    tk.forEach(function (w) {
+      var df = 0;
+      index.forEach(function (e) {
+        if (e._nq.indexOf(w) >= 0 || e._nkw.some(function (k) { return k.indexOf(w) >= 0; })) df++;
+      });
+      wt[w] = df <= 1 ? 1 : df === 2 ? 0.85 : df <= 4 ? 0.6 : 0.4;
+    });
+    return wt;
+  }
+
+  /** 질문과 가장 잘 맞는 항목들을 점수순으로 돌려준다 */
+  function search(index, q) {
+    var nq = norm(q);
+    if (!nq) return [];
+    var tk = uniq(toks(q).map(norm));
+    var qbi = bigrams(nq);
+    var w1 = uniq(words1(q));
+    var wt = weights(index, tk);
+    var unk = tk.filter(function (w) { return !knownAnywhere(index, w); }).length;
+    var out = [];
+    index.forEach(function (e) {
+      var s = score(e, nq, tk, qbi, w1, wt, unk);
+      if (s > 0) out.push({ e: e, s: s });
+    });
+    out.sort(function (a, b) { return b.s - a.s || a.e._i - b.e._i; });
+    return out;
+  }
+
+  /** 오타 교정용 단어장 */
+  function vocab(index) {
+    var v = new Map();
+    index.forEach(function (e) { e._vocab.forEach(function (w) { if (!v.has(w)) v.set(w, jamo(w)); }); });
+    return v;
+  }
+
+  function known(w, voc) {
+    if (voc.has(w)) return true;
+    var ok = false;
+    voc.forEach(function (_, v) { if (!ok && (v.indexOf(w) >= 0 || (v.length >= 2 && w.indexOf(v) >= 0))) ok = true; });
+    return ok;
+  }
+
+  /** 모르는 낱말을 자모 거리로 가장 가까운 아는 낱말로 바꾼다. 바뀐 게 없으면 null */
+  function correct(q, voc) {
+    var changed = [];
+    var fixed = toks(q).map(norm).map(function (w) {
+      if (w.length < 2 || known(w, voc)) return w;
+      var jw = jamo(w);
+      if (jw.length < 4) return w;
+      var maxD = jw.length >= 8 ? 2 : 1;
+      var best = null, bd = maxD + 1;
+      voc.forEach(function (jv, v) {
+        if (bd === 0 || Math.abs(jv.length - jw.length) > maxD) return;
+        var d = lev(jw, jv, bd - 1);
+        if (d < bd) { bd = d; best = v; }
+      });
+      if (best && bd <= maxD) { changed.push({ from: w, to: best }); return best; }
+      return w;
+    });
+    return changed.length ? { query: fixed.join(' '), changes: changed } : null;
+  }
+
+  /** 같은 분류이거나 키워드가 겹치는 항목 */
+  function related(index, e, n) {
+    var kw = new Set(e._nkw);
+    return index.filter(function (o) { return o !== e; }).map(function (o) {
+      var s = 0;
+      if (o.cat && o.cat === e.cat) s += 2;
+      if (o._nkw.some(function (k) { return kw.has(k); })) s += 3;
+      return { o: o, s: s };
+    }).filter(function (x) { return x.s > 0; })
+      .sort(function (a, b) { return b.s - a.s || a.o._i - b.o._i; })
+      .slice(0, n || 3).map(function (x) { return x.o; });
+  }
+
+  // 인사·감사·상담원 연결 같은 기본 대화
+  var INTENTS = {
+    greet: ['안녕', '안녕하세요', '안녕하십니까', '하이', 'hi', 'hello', 'ㅎㅇ', '반가워', '반가워요', '반갑습니다'],
+    thanks: ['고마워', '고마워요', '고맙습니다', '감사', '감사해요', '감사합니다', '땡큐', 'thanks', 'thankyou', 'ㄳ', 'ㄱㅅ', '좋아요', '알겠어요', '알겠습니다'],
+    human: ['상담원', '상담사', '직원', '사장님', '사람이랑', '사람과', '사람연결', '연결해', '연결해주세요', '통화', '전화번호', '연락처', '문의처'],
+    help: ['처음', '처음으로', '메뉴', '도움말', 'help', '시작', '목록', '전체']
+  };
+
+  function intent(q) {
+    var nq = norm(q);
+    if (!nq) return null;
+    var found = null;
+    Object.keys(INTENTS).some(function (k) {
+      return INTENTS[k].some(function (w) {
+        var nw = norm(w);
+        var hit = k === 'human' ? nq.indexOf(nw) >= 0 : (nq === nw || (nq.indexOf(nw) === 0 && nq.length <= nw.length + 3));
+        if (hit) found = k;
+        return hit;
+      });
+    });
+    return found;
+  }
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  /** 답변 글을 안전한 HTML로: 줄바꿈, **굵게**, 주소 자동 링크 */
+  function fmt(text) {
+    var h = esc(text);
+    h = h.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
+    h = h.replace(/(https?:\/\/[^\s<]+[^\s<.,;:!?)\]'"])/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+    return h.replace(/\r?\n/g, '<br>');
+  }
+
+  /** 버튼 링크는 웹·전화·문자·메일 주소만 허용 */
+  function safeUrl(u) {
+    u = String(u == null ? '' : u).trim();
+    if (/^(https?:|tel:|mailto:|sms:)/i.test(u)) return u;
+    if (/^[\w-]+(\.[\w-]+)+(\/\S*)?$/i.test(u) && !/^javascript/i.test(u)) return 'https://' + u;
+    return null;
+  }
+
+  // 답하지 못한 질문을 보고할 때 개인정보로 보이는 부분을 가린다
+  function scrub(q) {
+    return String(q || '')
+      .replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, '***')
+      .replace(/\d[\d\s-]{4,}\d/g, '***')
+      .slice(0, 200);
+  }
+
+  var CONFIDENT = 45, CANDIDATE = 22;
+
+  /**
+   * 질문 하나에 대한 챗봇의 판단. 화면(ui.js)과 테스트가 함께 쓴다.
+   * answer: 바로 답 / category: 분류 목록 / intent: 인사·감사·상담원 / suggest: 오타 교정 후 "혹시 ○○?" /
+   * candidates: 비슷한 질문 후보 / none: 못 찾음
+   */
+  function decide(index, voc, q, cats) {
+    var nq = norm(q);
+    var cat = (cats || []).filter(function (c) { return norm(c) === nq; })[0];
+    if (cat) return { type: 'category', cat: cat };
+    var res = search(index, q);
+    if (res.length && res[0].s >= CONFIDENT) return { type: 'answer', item: res[0].e, score: res[0].s, results: res };
+    var it = intent(q);
+    if (it) return { type: 'intent', intent: it, results: res };
+    var fix = correct(q, voc);
+    if (fix) {
+      var r2 = search(index, fix.query);
+      if (r2.length && r2[0].s >= CONFIDENT) {
+        // 원래 질문으로도 그럴듯한 후보가 있었다면 둘 다 보여 준다(진짜 낱말을 오타로 오해했을 수 있으므로)
+        if (res.length && res[0].s >= CANDIDATE && res[0].e !== r2[0].e) {
+          return { type: 'candidates', items: [res[0].e, r2[0].e], fix: fix, results: res };
+        }
+        return { type: 'suggest', item: r2[0].e, fix: fix, score: r2[0].s, results: res };
+      }
+    }
+    var c = res.filter(function (x) { return x.s >= CANDIDATE; }).slice(0, 3);
+    if (c.length) return { type: 'candidates', items: c.map(function (x) { return x.e; }), results: res };
+    return { type: 'none', results: res };
+  }
+
+  return {
+    decide: decide,
+    canon: canon, norm: norm, toks: toks, words1: words1, stripJosa: stripJosa, jamo: jamo, lev: lev, bigrams: bigrams, dice: dice,
+    prepare: prepare, search: search, vocab: vocab, correct: correct, related: related, intent: intent,
+    esc: esc, fmt: fmt, safeUrl: safeUrl, scrub: scrub,
+    CONFIDENT: CONFIDENT, CANDIDATE: CANDIDATE
+  };
+});
+</script>
+<script>/*!
+ * FAQ 챗봇 키트 — 화면(대화창) 스크립트
+ * window.BOT = { config: {...}, items: [...] } 와 BotEngine 을 사용합니다.
+ */
+(function () {
+  'use strict';
+  var BOT = window.BOT || { config: {}, items: [] };
+  var C = BOT.config || {};
+  var E = window.BotEngine;
+  var INDEX = E.prepare(BOT.items || []);
+  var VOCAB = E.vocab(INDEX);
+  var CATS = [];
+  INDEX.forEach(function (e) { if (e.cat && CATS.indexOf(e.cat) < 0) CATS.push(e.cat); });
+
+  var chat = document.getElementById('chat');
+  var inp = document.getElementById('inp');
+  var quick = document.getElementById('quick');
+  var form = document.getElementById('form');
+
+  var embedded = false;
+  try { embedded = new URLSearchParams(location.search).get('embed') === '1'; } catch (err) { /* 오래된 브라우저 */ }
+  if (embedded) {
+    document.documentElement.classList.add('embed');
+    // 홈페이지 위젯 안에서 Esc 를 누르면 위젯을 닫도록 알린다
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && window.parent !== window) window.parent.postMessage({ type: 'faqbot:close' }, '*');
+    });
+  }
+
+  function el(tag, cls, html) {
+    var d = document.createElement(tag);
+    if (cls) d.className = cls;
+    if (html != null) d.innerHTML = html;
+    return d;
+  }
+  function scroll() { chat.scrollTop = chat.scrollHeight; }
+
+  function avatar() {
+    if (C.avatarImg) return '<img src="' + E.esc(C.avatarImg) + '" alt="">';
+    return '<span aria-hidden="true">' + E.esc(C.avatar || '💬') + '</span>';
+  }
+
+  function addUser(t) {
+    var m = el('div', 'msg user');
+    m.appendChild(el('div', 'b', E.esc(t)));
+    chat.appendChild(m);
+    scroll();
+  }
+
+  function botMsg() {
+    var m = el('div', 'msg bot');
+    m.appendChild(el('div', 'ic', avatar()));
+    var b = el('div', 'b');
+    m.appendChild(b);
+    chat.appendChild(m);
+    scroll();
+    return b;
+  }
+
+  function typing(on) {
+    var t = document.getElementById('typing');
+    if (!on) { if (t) t.remove(); return; }
+    if (t) return;
+    var m = el('div', 'msg bot');
+    m.id = 'typing';
+    m.setAttribute('aria-hidden', 'true');
+    m.appendChild(el('div', 'ic', avatar()));
+    var b = el('div', 'b');
+    b.appendChild(el('div', 'typing', '<span></span><span></span><span></span>'));
+    m.appendChild(b);
+    chat.appendChild(m);
+    scroll();
+  }
+
+  /** 누르면 질문을 보내는 버튼 묶음 */
+  function chips(parent, list, label, cls) {
+    if (!list.length) return;
+    if (label) parent.appendChild(el('div', 'hint', E.esc(label)));
+    var wrap = el('div', 'chips' + (cls ? ' ' + cls : ''));
+    list.forEach(function (x) {
+      var btn = el('button', 'chip' + (x.cls ? ' ' + x.cls : ''), E.esc(x.text));
+      btn.type = 'button';
+      btn.onclick = x.onClick || function () { ask(x.ask || x.text); };
+      wrap.appendChild(btn);
+    });
+    parent.appendChild(wrap);
+  }
+
+  function linkButtons(parent, links) {
+    var ok = (links || []).map(function (l) { return { label: l.label, url: E.safeUrl(l.url) }; })
+      .filter(function (l) { return l.url; });
+    if (!ok.length) return;
+    var wrap = el('div', 'links');
+    ok.forEach(function (l) {
+      var a = el('a', 'lnk', E.esc(l.label || '바로가기'));
+      a.href = l.url;
+      if (/^https?:/i.test(l.url)) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+      wrap.appendChild(a);
+    });
+    parent.appendChild(wrap);
+  }
+
+  function contacts(parent, label) {
+    if (!C.contacts || !C.contacts.length) return;
+    if (label) parent.appendChild(el('div', 'hint', E.esc(label)));
+    linkButtons(parent, C.contacts);
+  }
+
+  function answer(e, note) {
+    var b = botMsg();
+    var h = '';
+    if (note) h += '<div class="note">' + note + '</div>';
+    h += '<div class="q">' + E.esc(e.q) + '</div><div class="a">' + E.fmt(e.a) + '</div>';
+    b.innerHTML = h;
+    linkButtons(b, e.links);
+    var rel = E.related(INDEX, e, 3).map(function (o) { return { text: o.q }; });
+    chips(b, rel, '함께 많이 묻는 질문');
+    scroll();
+  }
+
+  function showCategory(cat) {
+    var b = botMsg();
+    b.innerHTML = '<b>' + E.esc(cat) + '</b> 관련 질문이에요. 궁금한 것을 눌러 보세요.';
+    chips(b, INDEX.filter(function (e) { return e.cat === cat; }).map(function (e) { return { text: e.q }; }));
+    scroll();
+  }
+
+  function showAll() {
+    var b = botMsg();
+    b.innerHTML = '자주 묻는 질문 <b>' + INDEX.length + '개</b>를 분류별로 모았어요.';
+    var wrap = el('div', 'all');
+    var groups = CATS.length ? CATS : [''];
+    groups.forEach(function (cat, i) {
+      var list = INDEX.filter(function (e) { return (e.cat || '') === cat; });
+      if (!list.length) return;
+      var det = el('details');
+      if (i === 0) det.open = true;
+      det.appendChild(el('summary', null, E.esc(cat || '전체') + '<span class="cnt">' + list.length + '</span>'));
+      chips(det, list.map(function (e) { return { text: e.q }; }));
+      wrap.appendChild(det);
+    });
+    b.appendChild(wrap);
+    scroll();
+  }
+
+  function catChips(parent, label) {
+    chips(parent, CATS.map(function (c) {
+      return { text: c, cls: 'cat', onClick: function () { addUser(c); showCategory(c); } };
+    }), label);
+  }
+
+  function report(q, kind) {
+    if (!C.reportUrl || !navigator.sendBeacon) return;
+    try {
+      navigator.sendBeacon(C.reportUrl, JSON.stringify({ bot: C.name || '', q: E.scrub(q), kind: kind, t: new Date().toISOString() }));
+    } catch (err) { /* 보고 실패는 무시 */ }
+  }
+
+  function respond(q) {
+    typing(false);
+    var d = E.decide(INDEX, VOCAB, q, CATS);
+
+    if (d.type === 'category') { showCategory(d.cat); return; }
+    if (d.type === 'answer') { answer(d.item); return; }
+
+    var b = botMsg();
+    if (d.type === 'intent') {
+      if (d.intent === 'greet') {
+        b.innerHTML = E.esc(C.greetReply || '안녕하세요! 무엇이 궁금하세요?');
+        chips(b, (C.examples || []).map(function (t) { return { text: t }; }), '이렇게 물어보세요');
+      } else if (d.intent === 'thanks') {
+        b.innerHTML = E.esc(C.thanksReply || '도움이 되었다니 기뻐요. 더 궁금한 게 있으면 언제든 물어보세요!');
+      } else if (d.intent === 'human') {
+        b.innerHTML = E.esc(C.humanReply || '직접 문의하시려면 아래 버튼을 눌러 주세요.');
+        contacts(b);
+      } else {
+        b.innerHTML = '무엇을 도와드릴까요? 분류를 누르거나 질문을 입력해 보세요.';
+        catChips(b);
+      }
+    } else if (d.type === 'suggest') {
+      var words = d.fix.changes.map(function (c) { return '‘' + E.esc(c.to) + '’'; }).join(', ');
+      b.innerHTML = '혹시 ' + words + '에 대해 물어보신 건가요?';
+      chips(b, [{ text: '▶ ' + d.item.q, ask: d.item.q }]);
+      report(q, 'suggest');
+    } else if (d.type === 'candidates') {
+      b.innerHTML = '정확히 맞는 답을 찾지 못했어요. 혹시 이 중에 있나요?';
+      chips(b, d.items.map(function (e) { return { text: e.q }; }));
+      contacts(b, '원하는 답이 없으면 직접 문의해 주세요');
+      report(q, 'candidates');
+    } else {
+      b.innerHTML = E.esc(C.noMatch || '죄송해요, 그 질문은 아직 답을 준비하지 못했어요.');
+      catChips(b, '분류에서 찾아보기');
+      contacts(b, '직접 문의하기');
+      report(q, 'nomatch');
+    }
+    scroll();
+  }
+
+  var lastQ = '', lastT = 0;
+  function ask(q) {
+    q = String(q || '').trim();
+    if (!q) return;
+    var now = Date.now();
+    if (q === lastQ && now - lastT < 600) return; // 한글 입력기 중복 전송 방지
+    lastQ = q; lastT = now;
+    addUser(q);
+    typing(true);
+    setTimeout(function () { respond(q); }, 280);
+  }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var v = inp.value;
+    inp.value = '';
+    ask(v);
+  });
+
+  // 머리말·빠른 메뉴·꼬리말
+  document.getElementById('hdav').innerHTML = avatar();
+  document.getElementById('bname').textContent = C.name || 'FAQ 챗봇';
+  document.getElementById('btag').textContent = C.tagline || '';
+  if (C.placeholder) inp.placeholder = C.placeholder;
+
+  function quickBtn(text, cls, fn) {
+    var b = el('button', 'chip ' + (cls || ''), E.esc(text));
+    b.type = 'button';
+    b.onclick = fn;
+    quick.appendChild(b);
+  }
+  quickBtn('☰ 전체 질문', 'cat', function () { addUser('전체 질문'); showAll(); });
+  CATS.forEach(function (c) { quickBtn(c, 'cat', function () { addUser(c); showCategory(c); }); });
+  if (C.contacts && C.contacts.length) {
+    quickBtn(C.contactLabel || '📞 문의하기', 'contact', function () {
+      addUser(C.contactLabel || '문의하기');
+      var b = botMsg();
+      b.innerHTML = E.esc(C.humanReply || '직접 문의하시려면 아래 버튼을 눌러 주세요.');
+      contacts(b);
+    });
+  }
+
+  var ft = document.getElementById('ft');
+  var fh = '';
+  if (C.footer) fh += '<span>' + E.esc(C.footer) + '</span>';
+  if (C.reportUrl) fh += '<span>더 나은 답변을 위해 답하지 못한 질문만 익명으로 모읍니다.</span>';
+  if (C.credit && C.credit.label) {
+    var cu = E.safeUrl(C.credit.url);
+    fh += cu ? '<a href="' + E.esc(cu) + '" target="_blank" rel="noopener noreferrer">' + E.esc(C.credit.label) + '</a>'
+      : '<span>' + E.esc(C.credit.label) + '</span>';
+  }
+  if (fh) ft.innerHTML = fh; else ft.remove();
+
+  // 첫 인사
+  (function () {
+    var b = botMsg();
+    b.innerHTML = '<div class="greet">' + E.fmt(C.greeting || '안녕하세요! 궁금한 것을 물어보세요.') + '</div>';
+    chips(b, (C.examples || []).map(function (t) { return { text: t }; }), '이렇게 물어보세요', 'col');
+  })();
+
+  // 테스트·관리용으로 엔진을 노출
+  window.FAQBot = { ask: ask, search: function (q) { return E.search(INDEX, q); } };
+})();
+</script>
+</body>
+</html>
