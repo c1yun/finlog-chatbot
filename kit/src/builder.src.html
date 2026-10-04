@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ 챗봇 만들기</title>
+<meta name="description" content="엑셀(CSV)만 있으면 우리 가게 FAQ 챗봇을 바로 만들 수 있는 도구">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>">
+<style>
+  :root{--pri:#1f4e9b;--ink:#1b1f27;--mut:#5d6676;--line:#dfe4ee;--bg:#f3f5f9;--card:#fff;--ok:#1a7f4b;--warn:#a15c00;--err:#b42318}
+  *{box-sizing:border-box;margin:0;padding:0}
+  [hidden]{display:none!important}
+  body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;
+    background:var(--bg);color:var(--ink);word-break:keep-all;line-height:1.5}
+  header{background:#0f2147;color:#fff;padding:16px 20px}
+  header h1{font-size:1.15rem}
+  header p{font-size:.85rem;opacity:.85;margin-top:2px}
+  .wrap{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:18px;padding:18px;max-width:1280px;margin:0 auto}
+  @media (max-width:960px){.wrap{grid-template-columns:1fr}}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+  section h2{font-size:.98rem;margin-bottom:10px}
+  section h2 small{font-weight:500;color:var(--mut);font-size:.8rem;margin-left:6px}
+  label{display:block;font-size:.82rem;font-weight:700;color:var(--mut);margin:10px 0 4px}
+  input[type=text],input[type=url],textarea{width:100%;font:inherit;font-size:.92rem;padding:9px 11px;border:1.5px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}
+  textarea{resize:vertical;min-height:70px}
+  textarea.csv{min-height:220px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.8rem;white-space:pre}
+  input:focus,textarea:focus{outline:none;border-color:var(--pri)}
+  .row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  @media (max-width:560px){.row,.row2{grid-template-columns:1fr}}
+  input[type=color]{width:100%;height:40px;border:1.5px solid var(--line);border-radius:9px;background:#fff;padding:3px;cursor:pointer}
+  .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  button,.btn{font:inherit;font-size:.86rem;font-weight:700;border:1.5px solid var(--line);background:#fff;color:var(--ink);padding:8px 13px;border-radius:9px;cursor:pointer}
+  button:hover{border-color:var(--pri);color:var(--pri)}
+  button.main{background:var(--pri);color:#fff;border-color:var(--pri)}
+  button.main:hover{filter:brightness(1.1);color:#fff}
+  button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
+  .help{font-size:.78rem;color:var(--mut);margin-top:4px}
+  .status{font-size:.86rem;margin-top:10px;padding:9px 12px;border-radius:9px;background:#eef6f1;color:var(--ok);font-weight:700}
+  .status.bad{background:#fdecea;color:var(--err)}
+  .errs{list-style:none;margin-top:6px;max-height:180px;overflow:auto;font-size:.8rem}
+  .errs li{padding:3px 0;color:var(--err)}
+  .errs li.warn{color:var(--warn)}
+  .side{position:sticky;top:12px;align-self:start}
+  @media (max-width:960px){.side{position:static}}
+  .phone{background:#111;border-radius:30px;padding:10px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+  .phone iframe{width:100%;height:640px;border:0;border-radius:22px;background:#fff;display:block}
+  .test{margin-top:14px}
+  .test ol{margin:8px 0 0 18px;font-size:.84rem}
+  .test li{margin:3px 0}
+  .test .sc{color:var(--mut);font-size:.76rem;margin-left:4px}
+  details.adv summary{cursor:pointer;font-weight:700;font-size:.9rem}
+  code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.8rem;background:#f1f3f7;padding:1px 5px;border-radius:5px}
+  .imgprev{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:.8rem;color:var(--mut)}
+  .imgprev img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#16181d;color:#fff;padding:10px 16px;border-radius:10px;font-size:.88rem;opacity:0;transition:opacity .2s;pointer-events:none}
+  .toast.on{opacity:1}
+</style>
+</head>
+<body>
+<header>
+  <h1>💬 FAQ 챗봇 만들기</h1>
+  <p>자주 묻는 질문을 엑셀(CSV)로 정리해 붙여 넣으면, 서버 없이 동작하는 챗봇 파일이 바로 만들어져요. 입력한 내용은 이 브라우저에만 저장돼요.</p>
+</header>
+<div class="wrap">
+  <main>
+    <section>
+      <h2>1. 예시로 시작하기 <small>불러오면 지금 내용은 바뀌어요</small></h2>
+      <div class="btns" id="exBtns"></div>
+    </section>
+
+    <section>
+      <h2>2. 기본 정보</h2>
+      <div class="row2">
+        <div><label for="f-name">챗봇(가게) 이름</label><input type="text" id="f-name"></div>
+        <div><label for="f-tagline">한 줄 소개</label><input type="text" id="f-tagline"></div>
+      </div>
+      <div class="row2">
+        <div><label for="f-avatar">아이콘(이모지)</label><input type="text" id="f-avatar" maxlength="4"></div>
+        <div>
+          <label for="f-logo">또는 로고 이미지 <small>(300KB 이하 권장)</small></label>
+          <input type="file" id="f-logo" accept="image/png,image/jpeg,image/gif,image/webp,image/svg+xml">
+          <div class="imgprev" id="logoPrev" hidden><img alt="로고 미리보기"><button type="button" id="logoDel">로고 지우기</button></div>
+        </div>
+      </div>
+      <div class="row">
+        <div><label for="f-pri">메인 색</label><input type="color" id="f-pri"></div>
+        <div><label for="f-acc">버튼 색</label><input type="color" id="f-acc"></div>
+        <div><label for="f-bg">배경 색</label><input type="color" id="f-bg"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. 대화 문구</h2>
+      <label for="f-greeting">첫 인사 <small>(**굵게** 사용 가능)</small></label><textarea id="f-greeting"></textarea>
+      <label for="f-placeholder">입력창 안내 문구</label><input type="text" id="f-placeholder">
+      <label for="f-examples">예시 질문 <small>(한 줄에 하나, 2~3개 추천)</small></label><textarea id="f-examples"></textarea>
+      <label for="f-nomatch">답을 못 찾았을 때</label><textarea id="f-nomatch"></textarea>
+    </section>
+
+    <section>
+      <h2>4. 문의 버튼 <small>한 줄에 하나씩 "이름 = 주소"</small></h2>
+      <textarea id="f-contacts" placeholder="📞 전화하기 = tel:010-0000-0000&#10;💬 카카오톡 채널 = https://pf.kakao.com/..."></textarea>
+      <p class="help">주소는 <code>https://</code>, <code>tel:</code>(전화), <code>sms:</code>(문자), <code>mailto:</code>(메일)만 쓸 수 있어요.</p>
+    </section>
+
+    <section>
+      <h2>5. 질문·답변 <small>엑셀에서 복사해 붙여 넣어도 돼요</small></h2>
+      <p class="help">첫 줄은 <code>카테고리,질문,답변,키워드,링크</code>입니다. 키워드는 손님이 실제로 쓸 법한 말(줄임말·오타 포함)을 쉼표로 여러 개 넣을수록 잘 찾아요. 링크는 <code>버튼 이름=주소</code> 형식이에요.</p>
+      <div class="btns">
+        <label class="btn" for="f-csvfile" style="margin:0;color:var(--ink)">CSV 파일 열기</label>
+        <input type="file" id="f-csvfile" accept=".csv,text/csv,text/plain" hidden>
+        <button type="button" id="dlTpl">빈 CSV 양식 받기</button>
+        <button type="button" id="dlCsv">지금 내용을 CSV로 받기</button>
+      </div>
+      <label for="f-csv" class="sr">CSV 내용</label>
+      <textarea id="f-csv" class="csv" spellcheck="false"></textarea>
+      <div id="csvStatus" class="status" role="status"></div>
+      <ul class="errs" id="csvErrs"></ul>
+    </section>
+
+    <section>
+      <h2>6. 꼬리말 <small>선택</small></h2>
+      <label for="f-footer">하단 문구</label><input type="text" id="f-footer" placeholder="예: 운영시간 외 문의는 다음 날 답변드려요">
+      <div class="row2">
+        <div><label for="f-credit">제작자 표시</label><input type="text" id="f-credit" placeholder="예: 챗봇 제작 문의"></div>
+        <div><label for="f-crediturl">제작자 링크</label><input type="url" id="f-crediturl" placeholder="https://"></div>
+      </div>
+      <details class="adv" style="margin-top:12px">
+        <summary>고급: 답하지 못한 질문 모으기</summary>
+        <label for="f-report">수집 주소(Google Apps Script 웹앱 등)</label>
+        <input type="url" id="f-report" placeholder="https://script.google.com/macros/s/.../exec">
+        <p class="help">넣으면 챗봇이 답하지 못한 질문만 익명으로 이 주소에 보내요(전화번호·이메일처럼 보이는 부분은 가려서 보내요). 챗봇 아래쪽에 수집 사실이 자동으로 표시돼요.</p>
+      </details>
+    </section>
+
+    <section>
+      <h2>7. 내보내기</h2>
+      <div class="btns">
+        <button type="button" class="main" id="dlHtml">index.html 받기</button>
+        <button type="button" id="dlWidget">widget.js 받기</button>
+        <button type="button" id="saveProj">프로젝트 저장(.json)</button>
+        <label class="btn" for="f-proj" style="margin:0;color:var(--ink)">프로젝트 불러오기</label>
+        <input type="file" id="f-proj" accept=".json,application/json" hidden>
+      </div>
+      <p class="help">받은 <code>index.html</code>과 <code>widget.js</code>를 한 폴더에 넣고 <a href="https://app.netlify.com/drop" target="_blank" rel="noopener">Netlify Drop</a>에 끌어다 놓으면 인터넷 주소가 생겨요.</p>
+      <label for="f-url">올린 챗봇 주소</label><input type="url" id="f-url" placeholder="https://내-챗봇.netlify.app/">
+      <label for="f-embed">홈페이지에 붙일 코드 <small>(&lt;/body&gt; 바로 앞에 붙여 넣기)</small></label>
+      <textarea id="f-embed" readonly></textarea>
+      <div class="btns"><button type="button" id="cpEmbed">코드 복사</button></div>
+    </section>
+  </main>
+
+  <aside class="side">
+    <div class="phone"><iframe id="preview" title="챗봇 미리보기"></iframe></div>
+    <section class="test">
+      <h2>검색 테스트 <small>손님처럼 질문해 보세요</small></h2>
+      <input type="text" id="f-test" placeholder="예: 주차 돼요?">
+      <ol id="testOut"></ol>
+      <p class="help">점수 45점 이상이면 바로 답하고, 22~44점이면 "혹시 이 질문인가요?"로 후보를 보여 줘요. 원하는 답이 1등이 아니면 그 질문에 키워드를 더 넣어 보세요.</p>
+    </section>
+  </aside>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>/*@@BUILDER_ASSEMBLE@@*/</script>
+<script>/*@@BUILDER_ENGINE@@*/</script>
+<script>
+(function () {
+  'use strict';
+  var P = /*@@BUILDER_PAYLOAD@@*/null;
+  var A = window.BotAssemble, E = window.BotEngine;
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = 'faqbot-builder-v1';
+  var logo = null;
+
+  var LABELS = { cafe: '☕ 카페', pension: '🌲 펜션', academy: '📐 학원', club: '🎸 동아리', mureobot: '🙋 서비스 소개' };
+  Object.keys(P.examples).forEach(function (k) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = LABELS[k] || k;
+    b.onclick = function () { load(P.examples[k].config, P.examples[k].csv); toast('예시를 불러왔어요'); };
+    $('exBtns').appendChild(b);
+  });
+  var blank = document.createElement('button');
+  blank.type = 'button';
+  blank.textContent = '빈 양식';
+  blank.onclick = function () {
+    load({ name: '우리 가게', tagline: '자주 묻는 질문에 바로 답해 드려요', avatar: '💬', theme: { primary: '#1f4e9b', accent: '#f2b33d', bg: '#eef2fa' },
+      greeting: '안녕하세요! 궁금한 것을 물어보세요.', placeholder: '궁금한 것을 입력하세요', examples: [], noMatch: '죄송해요, 그 질문은 아직 준비가 안 됐어요. 아래 버튼으로 문의해 주세요.', contacts: [] },
+    A.HEADERS.join(',') + '\n');
+  };
+  $('exBtns').appendChild(blank);
+
+  function lines(s) { return String(s || '').split(/\r?\n/).map(function (x) { return x.trim(); }).filter(Boolean); }
+
+  function collect() {
+    var cfg = {
+      name: $('f-name').value.trim(),
+      tagline: $('f-tagline').value.trim(),
+      avatar: $('f-avatar').value.trim() || '💬',
+      theme: { primary: $('f-pri').value, accent: $('f-acc').value, bg: $('f-bg').value },
+      greeting: $('f-greeting').value,
+      placeholder: $('f-placeholder').value.trim(),
+      examples: lines($('f-examples').value),
+      noMatch: $('f-nomatch').value.trim(),
+      contacts: lines($('f-contacts').value).map(function (l) {
+        var i = l.indexOf('=');
+        return i > 0 ? { label: l.slice(0, i).trim(), url: l.slice(i + 1).trim() } : { label: '문의하기', url: l };
+      }),
+      footer: $('f-footer').value.trim()
+    };
+    if (logo) cfg.avatarImg = logo;
+    if ($('f-credit').value.trim()) cfg.credit = { label: $('f-credit').value.trim(), url: $('f-crediturl').value.trim() };
+    if ($('f-report').value.trim()) cfg.reportUrl = $('f-report').value.trim();
+    if (P.widgetLabel) cfg.widgetLabel = P.widgetLabel;
+    return cfg;
+  }
+
+  function load(cfg, csv) {
+    cfg = cfg || {};
+    var t = cfg.theme || {};
+    $('f-name').value = cfg.name || '';
+    $('f-tagline').value = cfg.tagline || '';
+    $('f-avatar').value = cfg.avatar || '💬';
+    $('f-pri').value = t.primary || '#1f4e9b';
+    $('f-acc').value = t.accent || '#f2b33d';
+    $('f-bg').value = t.bg || '#eef2fa';
+    $('f-greeting').value = cfg.greeting || '';
+    $('f-placeholder').value = cfg.placeholder || '';
+    $('f-examples').value = (cfg.examples || []).join('\n');
+    $('f-nomatch').value = cfg.noMatch || '';
+    $('f-contacts').value = (cfg.contacts || []).map(function (c) { return c.label + ' = ' + c.url; }).join('\n');
+    $('f-footer').value = cfg.footer || '';
+    $('f-credit').value = (cfg.credit && cfg.credit.label) || '';
+    $('f-crediturl').value = (cfg.credit && cfg.credit.url) || '';
+    $('f-report').value = cfg.reportUrl || '';
+    P.widgetLabel = cfg.widgetLabel || '';
+    setLogo(cfg.avatarImg || null);
+    $('f-csv').value = csv || '';
+    refresh();
+  }
+
+  function setLogo(dataUrl) {
+    logo = dataUrl;
+    $('logoPrev').hidden = !logo;
+    if (logo) $('logoPrev').querySelector('img').src = logo;
+  }
+
+  var current = { cfg: null, items: [], errors: [] };
+  function validate() {
+    var r = A.rowsToItems(A.parseCSV($('f-csv').value));
+    current.items = r.items;
+    current.errors = r.errors;
+    var fatal = r.errors.filter(function (e) { return !e.warn; });
+    var st = $('csvStatus');
+    var cats = {};
+    r.items.forEach(function (e) { if (e.cat) cats[e.cat] = 1; });
+    st.className = 'status' + (fatal.length || !r.items.length ? ' bad' : '');
+    st.textContent = fatal.length ? '고쳐야 할 줄이 ' + fatal.length + '개 있어요' :
+      (r.items.length ? '✔ 질문 ' + r.items.length + '개 · 분류 ' + Object.keys(cats).length + '개' : '질문·답변을 넣어 주세요');
+    $('csvErrs').innerHTML = r.errors.map(function (e) {
+      return '<li class="' + (e.warn ? 'warn' : '') + '">' + (e.warn ? '⚠ ' : '✖ ') + e.row + '번째 줄: ' + A.escHtml(e.msg) + '</li>';
+    }).join('');
+  }
+
+  function html() { return A.assemble(P.parts, current.cfg, current.items); }
+
+  var timer = null;
+  function refresh() {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      current.cfg = collect();
+      validate();
+      try { $('preview').srcdoc = html(); } catch (err) { toast(err.message); }
+      $('f-embed').value = A.embedSnippet($('f-url').value.trim(), current.cfg);
+      runTest();
+      save();
+    }, 350);
+  }
+
+  function runTest() {
+    var q = $('f-test').value.trim();
+    var out = $('testOut');
+    if (!q) { out.innerHTML = ''; return; }
+    var idx = E.prepare(current.items);
+    var res = E.search(idx, q).slice(0, 3);
+    var fix = null;
+    if (!res.length || res[0].s < E.CONFIDENT) {
+      fix = E.correct(q, E.vocab(idx));
+      if (fix) res = E.search(idx, fix.query).slice(0, 3);
+    }
+    out.innerHTML = (fix ? '<li style="list-style:none;margin-left:-18px">오타 교정: ' + A.escHtml(fix.query) + '</li>' : '') +
+      (res.length ? res.map(function (x) { return '<li>' + A.escHtml(x.e.q) + '<span class="sc">' + x.s + '점</span></li>'; }).join('')
+        : '<li style="list-style:none;margin-left:-18px">맞는 질문이 없어요 → "답을 못 찾았을 때" 문구가 나가요</li>');
+  }
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify({ cfg: current.cfg, csv: $('f-csv').value, url: $('f-url').value })); } catch (err) { /* 저장 불가 환경 */ }
+  }
+
+  function download(name, text, type) {
+    var blob = new Blob([text], { type: (type || 'text/plain') + ';charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+
+  var tt = null;
+  function toast(msg) {
+    var t = $('toast');
+    t.textContent = msg;
+    t.classList.add('on');
+    clearTimeout(tt);
+    tt = setTimeout(function () { t.classList.remove('on'); }, 2200);
+  }
+
+  document.querySelectorAll('main input, main textarea').forEach(function (n) {
+    if (n.type === 'file' || n.id === 'f-embed') return;
+    n.addEventListener('input', refresh);
+  });
+  $('f-test').addEventListener('input', runTest);
+
+  $('f-logo').onchange = function () {
+    var f = this.files[0];
+    if (!f) return;
+    if (f.size > 300 * 1024) toast('로고가 300KB보다 커요. 챗봇이 느려질 수 있어요.');
+    var r = new FileReader();
+    r.onload = function () { setLogo(r.result); refresh(); };
+    r.readAsDataURL(f);
+    this.value = '';
+  };
+  $('logoDel').onclick = function () { setLogo(null); refresh(); };
+
+  $('f-csvfile').onchange = function () {
+    var f = this.files[0];
+    if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      var text = String(r.result);
+      // 엑셀(한국어 윈도우)이 저장한 EUC-KR 파일이면 글자가 깨지므로 다시 읽는다
+      if (text.indexOf('�') >= 0) {
+        var r2 = new FileReader();
+        r2.onload = function () { $('f-csv').value = String(r2.result); refresh(); toast('EUC-KR 파일로 읽었어요'); };
+        r2.readAsText(f, 'euc-kr');
+        return;
+      }
+      $('f-csv').value = text.replace(/^﻿/, '');
+      refresh();
+    };
+    r.readAsText(f, 'utf-8');
+    this.value = '';
+  };
+
+  $('dlTpl').onclick = function () {
+    download('faq-양식.csv', A.toCSV([A.HEADERS, ['영업', '영업시간이 어떻게 되나요?', '평일 9시~18시예요.', '영업시간, 몇시, 오픈, 마감', ''],
+      ['위치', '주차할 수 있나요?', '건물 뒤에 3대 주차할 수 있어요.', '주차, 주차장, 차', '길찾기=https://map.naver.com/']]), 'text/csv');
+  };
+  $('dlCsv').onclick = function () {
+    var rows = A.parseCSV($('f-csv').value);
+    download((current.cfg.name || 'faq') + '.csv', A.toCSV(rows), 'text/csv');
+  };
+  $('dlHtml').onclick = function () {
+    current.cfg = collect();
+    validate();
+    var fatal = current.errors.filter(function (e) { return !e.warn; });
+    if (fatal.length || !current.items.length) { toast('질문·답변의 빨간 줄을 먼저 고쳐 주세요'); return; }
+    download('index.html', html(), 'text/html');
+  };
+  $('dlWidget').onclick = function () { download('widget.js', P.widget, 'text/javascript'); };
+  $('saveProj').onclick = function () {
+    download((current.cfg.name || 'faq-bot') + '.json', JSON.stringify({ config: collect(), csv: $('f-csv').value }, null, 2), 'application/json');
+  };
+  $('f-proj').onchange = function () {
+    var f = this.files[0];
+    if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      try { var p = JSON.parse(String(r.result)); load(p.config, p.csv); toast('프로젝트를 불러왔어요'); }
+      catch (err) { toast('프로젝트 파일을 읽지 못했어요'); }
+    };
+    r.readAsText(f, 'utf-8');
+    this.value = '';
+  };
+  $('cpEmbed').onclick = function () {
+    var t = $('f-embed');
+    t.select();
+    var done = function () { toast('복사했어요'); };
+    if (navigator.clipboard) navigator.clipboard.writeText(t.value).then(done, function () { document.execCommand('copy'); done(); });
+    else { document.execCommand('copy'); done(); }
+  };
+
+  var saved = null;
+  try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (err) { saved = null; }
+  if (saved && saved.cfg) { load(saved.cfg, saved.csv); $('f-url').value = saved.url || ''; }
+  else load(P.examples.cafe.config, P.examples.cafe.csv);
+})();
+</script>
+</body>
+</html>

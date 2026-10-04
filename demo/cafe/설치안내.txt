@@ -1,0 +1,14 @@
+온기 커피 로스터스 — 설치 안내
+
+1) 챗봇 주소
+   https://c1yun.github.io/mureobot/demo/cafe/
+   이 주소를 인스타그램 프로필, 카카오톡 채널, 네이버 플레이스 소개에 넣으면 됩니다.
+
+2) 홈페이지에 떠 있는 버튼으로 붙이기 (선택)
+   홈페이지의 </body> 바로 앞에 아래 한 줄을 넣어 주세요.
+   <script src="https://c1yun.github.io/mureobot/demo/cafe/widget.js" data-color="#5b3a29" data-label="궁금한 건 챗봇에게!" defer></script>
+
+3) 매장 안내용 QR 코드
+   네이버 QR코드 같은 무료 생성기에 1)의 주소를 넣어 QR 이미지를 만들고, 계산대·테이블에 붙여 두세요.
+
+질문·답변을 고치려면 faq.csv(엑셀로 열림)를 고친 뒤 다시 빌드하세요.

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>물어봇 — 월 이용료 0원 FAQ 챗봇 제작</title>
+<meta name="description" content="가게·학원·펜션에서 매일 받는 같은 질문, 사장님이 확인한 답으로 24시간 대신 안내하는 FAQ 챗봇. 서버비·AI 사용료 0원, 링크·QR·홈페이지 버튼 한 줄로 설치.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="물어봇 — 월 이용료 0원 FAQ 챗봇">
+<meta property="og:description" content="사장님이 확인한 답만 안내하는 FAQ 챗봇. 서버비·AI 사용료 0원.">
+<meta property="og:image" content="img/og.png">
+<meta name="theme-color" content="#2342b8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23ffd23f'/><text x='50' y='72' font-size='64' text-anchor='middle' font-family='sans-serif' font-weight='900' fill='%23141a2a'>?</text></svg>">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root { --brand:#2342b8; --brand2:#172c7a; --acc:#ffd23f; --ink:#141a2a; --mut:#566078; --paper:#f3f5fb; --line:#dde3f0; --ok:#1f8a55; --card:#ffffff; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif; color: var(--ink); background: #fff; line-height: 1.6; word-break: keep-all; overflow-wrap: break-word; -webkit-text-size-adjust: 100%; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; }
+  .nav { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; gap: 18px; height: 60px; }
+  .logo { display: flex; align-items: center; gap: 8px; font-weight: 900; font-size: 1.15rem; text-decoration: none; }
+  .logo i { width: 30px; height: 30px; border-radius: 9px; background: var(--acc); font-style: normal; display: inline-flex; align-items: center; justify-content: center; font-weight: 900; }
+  .nav .links { margin-left: auto; display: flex; gap: 18px; font-size: .92rem; font-weight: 600; color: var(--mut); }
+  .nav .links a { text-decoration: none; }
+  @media (max-width: 640px) { .nav .links a:not(.cta-s) { display: none; } }
+  .cta-s { background: var(--brand); color: #fff !important; padding: 7px 14px; border-radius: 8px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; text-decoration: none; padding: 14px 22px; border-radius: 12px; font-size: 1.02rem; border: 2px solid transparent; }
+  .btn.pri { background: var(--acc); color: var(--ink); }
+  .btn.sec { border-color: rgba(255,255,255,.5); color: #fff; }
+  .btn:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid var(--acc); outline-offset: 3px; }
+
+  .hero { background: var(--brand); color: #fff; padding-block: 64px 72px; }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 40px; align-items: center; }
+  @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .phone { display: none; } }
+  .pill { display: inline-block; background: var(--acc); color: var(--ink); font-weight: 800; font-size: .9rem; padding: 5px 14px; border-radius: 999px; }
+  .hero h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 900; line-height: 1.15; letter-spacing: -1px; margin: 16px 0 14px; }
+  .hero h1 em { font-style: normal; color: var(--acc); }
+  .hero p.lead { font-size: 1.12rem; opacity: .92; max-width: 34em; }
+  .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .hero .mini { margin-top: 18px; font-size: .88rem; opacity: .8; }
+  .mini .m { display: none; }
+  @media (max-width: 860px) { .mini .d { display: none; } .mini .m { display: inline; } }
+  .phone { background: #0d1530; border-radius: 34px; padding: 10px; box-shadow: 0 24px 60px rgba(0,0,0,.35); max-width: 380px; justify-self: center; width: 100%; }
+  .phone iframe { width: 100%; height: 620px; border: 0; border-radius: 26px; display: block; background: #fff; }
+
+  section.s { padding-block: 72px; }
+  section.alt { background: var(--paper); }
+  .kicker { font-weight: 800; color: var(--brand); font-size: .92rem; letter-spacing: .04em; }
+  h2 { font-size: clamp(1.6rem, 4vw, 2.3rem); font-weight: 900; line-height: 1.25; letter-spacing: -.5px; margin: 8px 0 28px; text-wrap: balance; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  @media (max-width: 860px) { .grid4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .demo { background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; text-decoration: none; transition: transform .15s; }
+  .demo:hover { transform: translateY(-3px); }
+  .demo img { width: 100%; aspect-ratio: 390 / 560; object-fit: cover; object-position: top; display: block; border-bottom: 1px solid var(--line); }
+  .demo div { padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; font-weight: 800; }
+  .demo span { font-size: .85rem; color: var(--brand); }
+  .note { font-size: .85rem; color: var(--mut); margin-top: 14px; }
+  .feat { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  @media (max-width: 640px) { .feat { grid-template-columns: 1fr; } }
+  .feat div { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 24px; }
+  .feat b { display: block; font-size: 1.2rem; font-weight: 900; margin-bottom: 6px; }
+  .feat p { color: var(--mut); }
+  .feat small { font-weight: 900; color: var(--brand); }
+  .tbl { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; min-width: 520px; }
+  th, td { text-align: left; padding: 14px 12px; border-bottom: 1px solid var(--line); }
+  th { font-size: .9rem; color: var(--mut); }
+  td.me { color: var(--brand); font-weight: 900; }
+  ol.steps { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; counter-reset: s; }
+  @media (max-width: 760px) { ol.steps { grid-template-columns: 1fr; } }
+  ol.steps li { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px 22px; counter-increment: s; }
+  ol.steps li::before { content: counter(s); display: inline-flex; width: 34px; height: 34px; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 900; align-items: center; justify-content: center; margin-bottom: 10px; }
+  ol.steps b { display: block; font-size: 1.08rem; }
+  ol.steps span { color: var(--mut); font-size: .95rem; }
+  .price { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+  @media (max-width: 860px) { .price { grid-template-columns: 1fr; } }
+  .plan { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 10px; position: relative; }
+  .plan.hot { border: 3px solid var(--brand); }
+  .plan .tag { position: absolute; top: -13px; right: 18px; background: var(--acc); font-weight: 900; font-size: .8rem; padding: 3px 12px; border-radius: 999px; }
+  .plan h3 { font-size: .95rem; color: var(--brand); letter-spacing: .06em; }
+  .plan .p { font-size: 2.1rem; font-weight: 900; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+  .plan .p small { font-size: 1rem; }
+  .plan ul { list-style: none; display: flex; flex-direction: column; gap: 6px; color: var(--mut); }
+  .plan li::before { content: '✓ '; color: var(--ok); font-weight: 900; }
+  .addon { margin-top: 18px; color: var(--mut); }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 20px; }
+  details + details { margin-top: 10px; }
+  summary { cursor: pointer; font-weight: 800; }
+  details p { margin-top: 8px; color: var(--mut); }
+  .cta-band { background: var(--brand2); color: #fff; text-align: center; padding-block: 64px; }
+  .cta-band h2 { color: #fff; margin-bottom: 12px; }
+  .cta-band p { opacity: .85; margin-bottom: 24px; }
+  footer { padding-block: 28px; font-size: .85rem; color: var(--mut); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="주요 메뉴">
+  <div class="wrap">
+    <a class="logo" href="#top"><i>?</i>물어봇</a>
+    <div class="links">
+      <a href="#demo">데모</a><a href="#how">작업 과정</a><a href="#price">가격</a><a href="#faq">자주 묻는 질문</a>
+      <a class="cta-s" href="https://kmong.com/search?keyword=%EB%AC%BC%EC%96%B4%EB%B4%87" target="_blank" rel="noopener">주문하기</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="pill">서버비 · AI 사용료 0원</span>
+      <h1>월 이용료 <em>0원</em>,<br>우리 가게 FAQ 챗봇</h1>
+      <p class="lead">“몇 시까지 해요?” “주차 돼요?” 매일 받는 같은 질문을, 사장님이 확인한 답으로 24시간 대신 안내합니다. 링크 · QR · 홈페이지 버튼 한 줄로 바로 씁니다.</p>
+      <div class="actions">
+        <a class="btn pri" href="#demo">데모 써 보기</a>
+        <a class="btn sec" href="https://kmong.com/search?keyword=%EB%AC%BC%EC%96%B4%EB%B4%87" target="_blank" rel="noopener">크몽에서 주문하기</a>
+      </div>
+      <p class="mini"><span class="d">오른쪽 화면도 물어봇으로 만든 챗봇이에요. 직접 물어보세요.</span><span class="m">오른쪽 아래 말풍선 버튼을 누르면 물어봇에게 직접 물어볼 수 있어요.</span></p>
+    </div>
+    <div class="phone"><iframe src="bot/index.html?embed=1" title="물어봇 소개 챗봇" loading="lazy"></iframe></div>
+  </div>
+</header>
+
+<main>
+  <section class="s" id="demo">
+    <div class="wrap">
+      <div class="kicker">데모</div>
+      <h2>업종에 맞춰 색과 말투까지</h2>
+      <div class="grid4">
+        <a class="demo" href="demo/cafe/"><img src="img/cafe.jpg" alt="카페 챗봇 화면" loading="lazy"><div>카페<span>열어 보기 →</span></div></a>
+        <a class="demo" href="demo/pension/"><img src="img/pension.jpg" alt="펜션 챗봇 화면" loading="lazy"><div>펜션<span>열어 보기 →</span></div></a>
+        <a class="demo" href="demo/academy/"><img src="img/academy.jpg" alt="학원 챗봇 화면" loading="lazy"><div>학원<span>열어 보기 →</span></div></a>
+        <a class="demo" href="demo/club/"><img src="img/club.jpg" alt="동아리 챗봇 화면" loading="lazy"><div>동아리<span>열어 보기 →</span></div></a>
+      </div>
+      <p class="note">데모 업체는 모두 가상입니다. “주처 돼요?”처럼 일부러 틀리게 물어봐도 됩니다.</p>
+    </div>
+  </section>
+
+  <section class="s alt">
+    <div class="wrap">
+      <div class="kicker">특징</div>
+      <h2>사장님이 확인한 답만,<br>24시간 대신 안내합니다</h2>
+      <div class="feat">
+        <div><small>01</small><b>월 이용료 0원</b><p>서버·AI 사용료가 없는 파일 하나짜리 챗봇이에요. 무료 호스팅에 올려 드려요.</p></div>
+        <div><small>02</small><b>엉뚱한 답 없음</b><p>정해진 답만 보여 줘요. 못 알아들으면 “혹시 이 질문인가요?”로 되묻고, 전화·카톡 버튼으로 연결해요.</p></div>
+        <div><small>03</small><b>손님 말투 그대로</b><p>“주차 돼요?”, “와파 비번”, “몇시까지 해요” 같은 구어체·줄임말·오타도 찾아요.</p></div>
+        <div><small>04</small><b>개인정보를 모으지 않음</b><p>손님 질문은 저장되지도, 어디로 보내지지도 않아요. 챗봇 파일과 질문표는 사장님 소유예요.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s">
+    <div class="wrap">
+      <div class="kicker">GPT 챗봇과 무엇이 다른가요?</div>
+      <h2>자유롭게 대화하지 않는 대신,<br>틀린 안내를 하지 않아요</h2>
+      <div class="tbl">
+        <table>
+          <tr><th></th><th>GPT 같은 AI 챗봇</th><th>물어봇</th></tr>
+          <tr><td>매달 비용</td><td>사용료·구독료</td><td class="me">0원</td></tr>
+          <tr><td>지어낸 답(없는 할인 등)</td><td>가끔 생김</td><td class="me">없음</td></tr>
+          <tr><td>손님 질문 저장·전송</td><td>서버로 전송</td><td class="me">하지 않음</td></tr>
+          <tr><td>대화 범위</td><td>무엇이든</td><td class="me">사장님이 정한 질문</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="s alt" id="how">
+    <div class="wrap">
+      <div class="kicker">작업 과정</div>
+      <h2>요청서 10분이면, 나머지는 제가 합니다</h2>
+      <ol class="steps">
+        <li><b>요청서 작성</b><span>자주 받는 질문을 대충 적거나 공지 캡처만 보내 주세요</span></li>
+        <li><b>질문·답변 정리</b><span>손님 말투로 다듬고 비슷한 표현까지 넣어요</span></li>
+        <li><b>사장님 확인</b><span>가격·시간처럼 확인이 필요한 칸만 체크해 주세요</span></li>
+        <li><b>제작·테스트</b><span>손님처럼 질문 30개 이상으로 직접 시험해요</span></li>
+        <li><b>링크·설치 안내</b><span>QR 만드는 법, 홈페이지 코드까지 함께 드려요</span></li>
+        <li><b>수정</b><span>패키지별 횟수 안에서 고쳐 드려요</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="s" id="price">
+    <div class="wrap">
+      <div class="kicker">가격</div>
+      <h2>한 번 만들면 끝, 월 이용료 0원</h2>
+      <div class="price">
+        <div class="plan"><h3>STANDARD</h3><div class="p">39,000<small>원</small></div>
+          <ul><li>질문 15개</li><li>공유 링크로 바로 사용</li><li>수정 1회 · 3일</li></ul></div>
+        <div class="plan hot"><span class="tag">추천</span><h3>DELUXE</h3><div class="p">79,000<small>원</small></div>
+          <ul><li>질문 40개</li><li>로고·브랜드 색상</li><li>홈페이지 버튼 코드</li><li>수정 2회 · 4일</li></ul></div>
+        <div class="plan"><h3>PREMIUM</h3><div class="p">149,000<small>원</small></div>
+          <ul><li>질문 80개</li><li>홈페이지 설치 대행 · QR 안내문</li><li>답하지 못한 질문 리포트</li><li>수정 3회 · 5일</li></ul></div>
+      </div>
+      <p class="addon">선택 옵션: 월 관리 19,900원(매달 답하지 못한 질문 정리 + 답변 10개 추가·수정) · 질문 20개 추가 15,000원</p>
+    </div>
+  </section>
+
+  <section class="s alt" id="faq">
+    <div class="wrap">
+      <div class="kicker">자주 묻는 질문</div>
+      <h2>궁금한 점</h2>
+      <details><summary>매달 내는 돈이 정말 없나요?</summary><p>네. 챗봇이 파일 하나로 동작해서 서버비·AI 사용료가 들지 않아요. 내용을 자주 바꾸고 싶을 때만 월 관리 옵션을 이용하시면 됩니다.</p></details>
+      <details><summary>홈페이지가 없어도 되나요?</summary><p>네. 챗봇 주소를 인스타그램 프로필, 카카오톡 채널, 네이버 플레이스에 넣고, 매장에는 QR 코드를 붙이면 됩니다.</p></details>
+      <details><summary>카카오톡 채널 자동응답이 되나요?</summary><p>카카오톡 채널 안의 챗봇이 아니라, 채널 소개나 자동 메시지에 챗봇 링크를 넣어 연결하는 방식이에요.</p></details>
+      <details><summary>예약이나 결제도 되나요?</summary><p>아니요. 자주 묻는 질문에 답하는 챗봇이에요. 예약·결제는 네이버 예약 같은 기존 링크로 연결해 드려요.</p></details>
+      <details><summary>어떤 업종에 맞나요?</summary><p>카페·음식점, 펜션·숙박, 학원, 미용실·네일, 필라테스·헬스, 쇼핑몰, 동아리·학생회처럼 같은 질문을 자주 받는 곳이면 다 좋아요. 의료·법률·투자 상담용은 만들지 않아요.</p></details>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>같은 질문, 이제 챗봇에게 맡기세요</h2>
+      <p>크몽에서 ‘물어봇’을 검색해 주문하시면 요청서를 받는 대로 시작합니다.</p>
+      <a class="btn pri" href="https://kmong.com/search?keyword=%EB%AC%BC%EC%96%B4%EB%B4%87" target="_blank" rel="noopener">크몽에서 주문하기</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 물어봇 · 이 페이지의 챗봇도 물어봇으로 만들었습니다</span>
+    <a href="builder/">직접 만들어 보기(무료 제작 도구)</a>
+  </div>
+</footer>
+<script src="bot/widget.js" data-color="#2342b8" data-label="물어봇에게 물어보세요" defer></script>
+</body>
+</html>

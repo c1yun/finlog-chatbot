@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ 챗봇 만들기</title>
+<meta name="description" content="엑셀(CSV)만 있으면 우리 가게 FAQ 챗봇을 바로 만들 수 있는 도구">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>">
+<style>
+  :root{--pri:#1f4e9b;--ink:#1b1f27;--mut:#5d6676;--line:#dfe4ee;--bg:#f3f5f9;--card:#fff;--ok:#1a7f4b;--warn:#a15c00;--err:#b42318}
+  *{box-sizing:border-box;margin:0;padding:0}
+  [hidden]{display:none!important}
+  body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;
+    background:var(--bg);color:var(--ink);word-break:keep-all;line-height:1.5}
+  header{background:#0f2147;color:#fff;padding:16px 20px}
+  header h1{font-size:1.15rem}
+  header p{font-size:.85rem;opacity:.85;margin-top:2px}
+  .wrap{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:18px;padding:18px;max-width:1280px;margin:0 auto}
+  @media (max-width:960px){.wrap{grid-template-columns:1fr}}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+  section h2{font-size:.98rem;margin-bottom:10px}
+  section h2 small{font-weight:500;color:var(--mut);font-size:.8rem;margin-left:6px}
+  label{display:block;font-size:.82rem;font-weight:700;color:var(--mut);margin:10px 0 4px}
+  input[type=text],input[type=url],textarea{width:100%;font:inherit;font-size:.92rem;padding:9px 11px;border:1.5px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}
+  textarea{resize:vertical;min-height:70px}
+  textarea.csv{min-height:220px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.8rem;white-space:pre}
+  input:focus,textarea:focus{outline:none;border-color:var(--pri)}
+  .row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  @media (max-width:560px){.row,.row2{grid-template-columns:1fr}}
+  input[type=color]{width:100%;height:40px;border:1.5px solid var(--line);border-radius:9px;background:#fff;padding:3px;cursor:pointer}
+  .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  button,.btn{font:inherit;font-size:.86rem;font-weight:700;border:1.5px solid var(--line);background:#fff;color:var(--ink);padding:8px 13px;border-radius:9px;cursor:pointer}
+  button:hover{border-color:var(--pri);color:var(--pri)}
+  button.main{background:var(--pri);color:#fff;border-color:var(--pri)}
+  button.main:hover{filter:brightness(1.1);color:#fff}
+  button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
+  .help{font-size:.78rem;color:var(--mut);margin-top:4px}
+  .status{font-size:.86rem;margin-top:10px;padding:9px 12px;border-radius:9px;background:#eef6f1;color:var(--ok);font-weight:700}
+  .status.bad{background:#fdecea;color:var(--err)}
+  .errs{list-style:none;margin-top:6px;max-height:180px;overflow:auto;font-size:.8rem}
+  .errs li{padding:3px 0;color:var(--err)}
+  .errs li.warn{color:var(--warn)}
+  .side{position:sticky;top:12px;align-self:start}
+  @media (max-width:960px){.side{position:static}}
+  .phone{background:#111;border-radius:30px;padding:10px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+  .phone iframe{width:100%;height:640px;border:0;border-radius:22px;background:#fff;display:block}
+  .test{margin-top:14px}
+  .test ol{margin:8px 0 0 18px;font-size:.84rem}
+  .test li{margin:3px 0}
+  .test .sc{color:var(--mut);font-size:.76rem;margin-left:4px}
+  details.adv summary{cursor:pointer;font-weight:700;font-size:.9rem}
+  code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.8rem;background:#f1f3f7;padding:1px 5px;border-radius:5px}
+  .imgprev{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:.8rem;color:var(--mut)}
+  .imgprev img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#16181d;color:#fff;padding:10px 16px;border-radius:10px;font-size:.88rem;opacity:0;transition:opacity .2s;pointer-events:none}
+  .toast.on{opacity:1}
+</style>
+</head>
+<body>
+<header>
+  <h1>💬 FAQ 챗봇 만들기</h1>
+  <p>자주 묻는 질문을 엑셀(CSV)로 정리해 붙여 넣으면, 서버 없이 동작하는 챗봇 파일이 바로 만들어져요. 입력한 내용은 이 브라우저에만 저장돼요.</p>
+</header>
+<div class="wrap">
+  <main>
+    <section>
+      <h2>1. 예시로 시작하기 <small>불러오면 지금 내용은 바뀌어요</small></h2>
+      <div class="btns" id="exBtns"></div>
+    </section>
+
+    <section>
+      <h2>2. 기본 정보</h2>
+      <div class="row2">
+        <div><label for="f-name">챗봇(가게) 이름</label><input type="text" id="f-name"></div>
+        <div><label for="f-tagline">한 줄 소개</label><input type="text" id="f-tagline"></div>
+      </div>
+      <div class="row2">
+        <div><label for="f-avatar">아이콘(이모지)</label><input type="text" id="f-avatar" maxlength="4"></div>
+        <div>
+          <label for="f-logo">또는 로고 이미지 <small>(300KB 이하 권장)</small></label>
+          <input type="file" id="f-logo" accept="image/png,image/jpeg,image/gif,image/webp,image/svg+xml">
+          <div class="imgprev" id="logoPrev" hidden><img alt="로고 미리보기"><button type="button" id="logoDel">로고 지우기</button></div>
+        </div>
+      </div>
+      <div class="row">
+        <div><label for="f-pri">메인 색</label><input type="color" id="f-pri"></div>
+        <div><label for="f-acc">버튼 색</label><input type="color" id="f-acc"></div>
+        <div><label for="f-bg">배경 색</label><input type="color" id="f-bg"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. 대화 문구</h2>
+      <label for="f-greeting">첫 인사 <small>(**굵게** 사용 가능)</small></label><textarea id="f-greeting"></textarea>
+      <label for="f-placeholder">입력창 안내 문구</label><input type="text" id="f-placeholder">
+      <label for="f-examples">예시 질문 <small>(한 줄에 하나, 2~3개 추천)</small></label><textarea id="f-examples"></textarea>
+      <label for="f-nomatch">답을 못 찾았을 때</label><textarea id="f-nomatch"></textarea>
+    </section>
+
+    <section>
+      <h2>4. 문의 버튼 <small>한 줄에 하나씩 "이름 = 주소"</small></h2>
+      <textarea id="f-contacts" placeholder="📞 전화하기 = tel:010-0000-0000&#10;💬 카카오톡 채널 = https://pf.kakao.com/..."></textarea>
+      <p class="help">주소는 <code>https://</code>, <code>tel:</code>(전화), <code>sms:</code>(문자), <code>mailto:</code>(메일)만 쓸 수 있어요.</p>
+    </section>
+
+    <section>
+      <h2>5. 질문·답변 <small>엑셀에서 복사해 붙여 넣어도 돼요</small></h2>
+      <p class="help">첫 줄은 <code>카테고리,질문,답변,키워드,링크</code>입니다. 키워드는 손님이 실제로 쓸 법한 말(줄임말·오타 포함)을 쉼표로 여러 개 넣을수록 잘 찾아요. 링크는 <code>버튼 이름=주소</code> 형식이에요.</p>
+      <div class="btns">
+        <label class="btn" for="f-csvfile" style="margin:0;color:var(--ink)">CSV 파일 열기</label>
+        <input type="file" id="f-csvfile" accept=".csv,text/csv,text/plain" hidden>
+        <button type="button" id="dlTpl">빈 CSV 양식 받기</button>
+        <button type="button" id="dlCsv">지금 내용을 CSV로 받기</button>
+      </div>
+      <label for="f-csv" class="sr">CSV 내용</label>
+      <textarea id="f-csv" class="csv" spellcheck="false"></textarea>
+      <div id="csvStatus" class="status" role="status"></div>
+      <ul class="errs" id="csvErrs"></ul>
+    </section>
+
+    <section>
+      <h2>6. 꼬리말 <small>선택</small></h2>
+      <label for="f-footer">하단 문구</label><input type="text" id="f-footer" placeholder="예: 운영시간 외 문의는 다음 날 답변드려요">
+      <div class="row2">
+        <div><label for="f-credit">제작자 표시</label><input type="text" id="f-credit" placeholder="예: 챗봇 제작 문의"></div>
+        <div><label for="f-crediturl">제작자 링크</label><input type="url" id="f-crediturl" placeholder="https://"></div>
+      </div>
+      <details class="adv" style="margin-top:12px">
+        <summary>고급: 답하지 못한 질문 모으기</summary>
+        <label for="f-report">수집 주소(Google Apps Script 웹앱 등)</label>
+        <input type="url" id="f-report" placeholder="https://script.google.com/macros/s/.../exec">
+        <p class="help">넣으면 챗봇이 답하지 못한 질문만 익명으로 이 주소에 보내요(전화번호·이메일처럼 보이는 부분은 가려서 보내요). 챗봇 아래쪽에 수집 사실이 자동으로 표시돼요.</p>
+      </details>
+    </section>
+
+    <section>
+      <h2>7. 내보내기</h2>
+      <div class="btns">
+        <button type="button" class="main" id="dlHtml">index.html 받기</button>
+        <button type="button" id="dlWidget">widget.js 받기</button>
+        <button type="button" id="saveProj">프로젝트 저장(.json)</button>
+        <label class="btn" for="f-proj" style="margin:0;color:var(--ink)">프로젝트 불러오기</label>
+        <input type="file" id="f-proj" accept=".json,application/json" hidden>
+      </div>
+      <p class="help">받은 <code>index.html</code>과 <code>widget.js</code>를 한 폴더에 넣고 <a href="https://app.netlify.com/drop" target="_blank" rel="noopener">Netlify Drop</a>에 끌어다 놓으면 인터넷 주소가 생겨요.</p>
+      <label for="f-url">올린 챗봇 주소</label><input type="url" id="f-url" placeholder="https://내-챗봇.netlify.app/">
+      <label for="f-embed">홈페이지에 붙일 코드 <small>(&lt;/body&gt; 바로 앞에 붙여 넣기)</small></label>
+      <textarea id="f-embed" readonly></textarea>
+      <div class="btns"><button type="button" id="cpEmbed">코드 복사</button></div>
+    </section>
+  </main>
+
+  <aside class="side">
+    <div class="phone"><iframe id="preview" title="챗봇 미리보기"></iframe></div>
+    <section class="test">
+      <h2>검색 테스트 <small>손님처럼 질문해 보세요</small></h2>
+      <input type="text" id="f-test" placeholder="예: 주차 돼요?">
+      <ol id="testOut"></ol>
+      <p class="help">점수 45점 이상이면 바로 답하고, 22~44점이면 "혹시 이 질문인가요?"로 후보를 보여 줘요. 원하는 답이 1등이 아니면 그 질문에 키워드를 더 넣어 보세요.</p>
+    </section>
+  </aside>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>/*!
+ * FAQ 챗봇 키트 — 조립기
+ * CSV(엑셀) + 설정(config) → HTML 파일 하나. build.js(명령줄)와 builder.html(브라우저)이 함께 씁니다.
+ */
+(function (root, factory) {
+  var api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else root.BotAssemble = api;
+})(typeof self !== 'undefined' ? self : this, function () {
+  'use strict';
+
+  /** RFC 4180 CSV 파서: 따옴표, 따옴표 안의 쉼표·줄바꿈, "" 이스케이프, BOM, CRLF 지원 */
+  function parseCSV(text) {
+    text = String(text == null ? '' : text).replace(/^﻿/, '');
+    var delim = ',';
+    var firstLine = text.split(/\r?\n/, 1)[0] || '';
+    if (firstLine.indexOf('\t') >= 0 && firstLine.indexOf(',') < 0) delim = '\t'; // 엑셀에서 복사·붙여넣기한 표
+    var rows = [], row = [], cell = '', q = false;
+    for (var i = 0; i < text.length; i++) {
+      var c = text[i];
+      if (q) {
+        if (c === '"') {
+          if (text[i + 1] === '"') { cell += '"'; i++; } else q = false;
+        } else cell += c;
+      } else if (c === '"' && cell === '') q = true;
+      else if (c === delim) { row.push(cell); cell = ''; }
+      else if (c === '\n' || c === '\r') {
+        if (c === '\r' && text[i + 1] === '\n') i++;
+        row.push(cell); rows.push(row); row = []; cell = '';
+      } else cell += c;
+    }
+    if (cell !== '' || row.length) { row.push(cell); rows.push(row); }
+    return rows.filter(function (r) { return r.some(function (x) { return String(x).trim() !== ''; }); });
+  }
+
+  function toCSV(rows) {
+    return '﻿' + rows.map(function (r) {
+      return r.map(function (v) {
+        v = String(v == null ? '' : v);
+        return /[",\r\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+      }).join(',');
+    }).join('\r\n') + '\r\n';
+  }
+
+  var ALIASES = {
+    cat: ['카테고리', '분류', '구분', 'category', 'cat'],
+    q: ['질문', '대표질문', 'question', 'q', '제목'],
+    a: ['답변', '답', 'answer', 'a', '내용'],
+    kw: ['키워드', '검색어', '동의어', 'keywords', 'keyword', 'kw'],
+    links: ['링크', '버튼', 'links', 'link', 'url']
+  };
+  var HEADERS = ['카테고리', '질문', '답변', '키워드', '링크'];
+
+  function headerMap(head) {
+    var map = {};
+    head.forEach(function (h, i) {
+      var k = String(h).replace(/^﻿/, '').trim().toLowerCase().replace(/\s+/g, '');
+      Object.keys(ALIASES).forEach(function (f) {
+        if (map[f] == null && ALIASES[f].indexOf(k) >= 0) map[f] = i;
+      });
+    });
+    return map;
+  }
+
+  function splitKw(cell) {
+    var seen = {};
+    return String(cell || '').split(/[,|/;\n、，]+/).map(function (s) { return s.trim(); })
+      .filter(function (s) { if (!s || seen[s]) return false; seen[s] = 1; return true; });
+  }
+
+  /** "라벨=주소" 를 ; 또는 줄바꿈으로 여러 개 */
+  function parseLinks(cell) {
+    return String(cell || '').split(/\s*(?:;|\r?\n)\s*/).map(function (s) { return s.trim(); }).filter(Boolean)
+      .map(function (s) {
+        var m = s.match(/^(.*?)\s*=\s*((?:https?:|tel:|mailto:|sms:)\S+|[\w-]+(?:\.[\w-]+)+\S*)$/i);
+        return m ? { label: m[1] || '바로가기', url: m[2] } : { label: '바로가기', url: s };
+      });
+  }
+
+  /** CSV 표 → 챗봇 항목. 문제가 있는 줄은 errors 로 알려 준다 */
+  function rowsToItems(rows) {
+    var errors = [], items = [];
+    if (!rows.length) return { items: items, errors: [{ row: 0, msg: '내용이 비어 있어요.' }] };
+    var map = headerMap(rows[0]);
+    if (map.q == null || map.a == null) {
+      return { items: items, errors: [{ row: 1, msg: '첫 줄(머리글)에 "질문"과 "답변" 칸이 있어야 해요. 예: ' + HEADERS.join(',') }] };
+    }
+    var seen = {};
+    rows.slice(1).forEach(function (r, i) {
+      var line = i + 2;
+      var get = function (f) { return map[f] == null ? '' : String(r[map[f]] == null ? '' : r[map[f]]).trim(); };
+      var q = get('q'), a = get('a');
+      if (!q && !a) return;
+      if (!q) { errors.push({ row: line, msg: '질문이 비어 있어요.' }); return; }
+      if (!a) { errors.push({ row: line, msg: '"' + q + '"의 답변이 비어 있어요.' }); return; }
+      if (seen[q]) errors.push({ row: line, msg: '"' + q + '" 질문이 ' + seen[q] + '번째 줄과 겹쳐요.' });
+      seen[q] = line;
+      var links = parseLinks(get('links'));
+      links.forEach(function (l) {
+        if (!/^(https?:|tel:|mailto:|sms:)/i.test(l.url) && !/^[\w-]+(\.[\w-]+)+/.test(l.url)) {
+          errors.push({ row: line, msg: '링크 주소를 이해하지 못했어요: ' + l.url });
+        }
+      });
+      var kw = splitKw(get('kw'));
+      if (!kw.length) errors.push({ row: line, msg: '"' + q + '"에 키워드가 없어요. 손님이 쓸 법한 말을 3개 이상 넣으면 더 잘 찾아요.', warn: true });
+      items.push({ cat: get('cat'), q: q, a: a, kw: kw, links: links });
+    });
+    return { items: items, errors: errors };
+  }
+
+  // ---- 색상 ----
+  function hex(c, dflt) {
+    c = String(c || '').trim();
+    if (/^#[0-9a-f]{3}$/i.test(c)) c = '#' + c[1] + c[1] + c[2] + c[2] + c[3] + c[3];
+    return /^#[0-9a-f]{6}$/i.test(c) ? c.toLowerCase() : dflt;
+  }
+  function rgb(h) { return [1, 3, 5].map(function (i) { return parseInt(h.slice(i, i + 2), 16); }); }
+  function toHex(a) { return '#' + a.map(function (v) { return ('0' + Math.max(0, Math.min(255, Math.round(v))).toString(16)).slice(-2); }).join(''); }
+  function mix(a, b, t) { var x = rgb(a), y = rgb(b); return toHex(x.map(function (v, i) { return v + (y[i] - v) * t; })); }
+  function lum(h) {
+    return rgb(h).map(function (v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); })
+      .reduce(function (s, v, i) { return s + v * [0.2126, 0.7152, 0.0722][i]; }, 0);
+  }
+  function contrast(a, b) { var x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+  function ink(bg) { return contrast(bg, '#ffffff') >= contrast(bg, '#16181d') ? '#ffffff' : '#16181d'; }
+  function darkEnough(c, bg) {
+    var out = c;
+    for (var i = 0; i < 12 && contrast(out, bg) < 4.5; i++) out = mix(out, '#000000', 0.12);
+    return out;
+  }
+
+  function themeVars(theme) {
+    theme = theme || {};
+    var pri = hex(theme.primary, '#1f4e9b');
+    var acc = hex(theme.accent, '#f2b33d');
+    var bg = hex(theme.bg, mix(pri, '#ffffff', 0.93));
+    var v = {
+      '--pri': pri, '--pri-ink': ink(pri), '--pri-text': darkEnough(pri, '#ffffff'),
+      '--acc': acc, '--acc-ink': ink(acc),
+      '--bg': bg, '--card': '#ffffff', '--ink': '#1b1f27', '--mut': '#5d6676',
+      '--soft': mix(pri, '#ffffff', 0.9), '--line': mix(pri, '#ffffff', 0.84)
+    };
+    return Object.keys(v).map(function (k) { return k + ':' + v[k]; }).join(';');
+  }
+
+  function escHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  // <script> 안에 넣어도 안전한 JSON
+  function safeJson(obj) {
+    return JSON.stringify(obj).replace(/</g, '\\u003c').replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
+  }
+
+  function isImg(s) { return /^data:image\/(png|jpe?g|gif|webp|svg\+xml);base64,[a-z0-9+/=]+$/i.test(String(s || '')); }
+
+  function favicon(cfg) {
+    if (isImg(cfg.avatarImg)) return cfg.avatarImg;
+    var emo = escHtml(String(cfg.avatar || '💬')).replace(/#/g, '%23');
+    return 'data:image/svg+xml,' + "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>" + emo + '</text></svg>';
+  }
+
+  /**
+   * parts: {template, css, engine, ui} 원본 문자열
+   * config: 챗봇 설정, items: rowsToItems 결과
+   */
+  function assemble(parts, config, items) {
+    var cfg = Object.assign({}, config || {});
+    if (cfg.avatarImg && !isImg(cfg.avatarImg)) delete cfg.avatarImg;
+    ['engine', 'ui'].forEach(function (k) {
+      if (/<\/script/i.test(parts[k])) throw new Error(k + ' 코드에 <\/script 가 있으면 안 돼요.');
+    });
+    var title = cfg.title || cfg.name || 'FAQ 챗봇';
+    var desc = cfg.description || cfg.tagline || '자주 묻는 질문에 바로 답해 드려요.';
+    var data = { config: cfg, items: (items || []).map(function (e) { return { cat: e.cat || '', q: e.q, a: e.a, kw: e.kw || [], links: e.links || [] }; }) };
+    var map = {
+      TITLE: escHtml(title),
+      DESC: escHtml(desc),
+      PRIMARY: hex((cfg.theme || {}).primary, '#1f4e9b'),
+      FAVICON: escHtml(favicon(cfg)),
+      THEME_VARS: themeVars(cfg.theme),
+      CSS: parts.css.replace(/<\/style/gi, '<\\/style'),
+      DATA: safeJson(data),
+      ENGINE: parts.engine,
+      UI: parts.ui
+    };
+    // 한 번에 바꿔야 끼워 넣은 내용(손님 데이터 등) 속 {{…}} 가 다시 바뀌지 않는다
+    return parts.template.replace(/\/\*\{\{(CSS|ENGINE|UI)\}\}\*\/|\{\{(TITLE|DESC|PRIMARY|FAVICON|THEME_VARS|DATA)\}\}/g,
+      function (m, a, b) { return map[a || b]; });
+  }
+
+  function slugify(s) {
+    var out = String(s || '').toLowerCase().replace(/[^a-z0-9가-힣]+/g, '-').replace(/^-+|-+$/g, '');
+    return out || 'bot';
+  }
+
+  /** 홈페이지에 붙일 코드 */
+  function embedSnippet(botUrl, cfg) {
+    cfg = cfg || {};
+    var base = String(botUrl || 'https://내-챗봇-주소.netlify.app/').replace(/index\.html?$/, '');
+    if (!/\/$/.test(base)) base += '/';
+    var color = hex((cfg.theme || {}).primary, '#1f4e9b');
+    return '<script src="' + base + 'widget.js" data-color="' + color + '" data-label="' +
+      escHtml(cfg.widgetLabel || '무엇이든 물어보세요') + '" defer><\/script>';
+  }
+
+  return {
+    parseCSV: parseCSV, toCSV: toCSV, rowsToItems: rowsToItems, splitKw: splitKw, parseLinks: parseLinks,
+    assemble: assemble, themeVars: themeVars, contrast: contrast, slugify: slugify, embedSnippet: embedSnippet,
+    safeJson: safeJson, escHtml: escHtml, HEADERS: HEADERS
+  };
+});
+</script>
+<script>/*!
+ * FAQ 챗봇 키트 — 검색 엔진 (외부 라이브러리 없음)
+ * 핀로그(FinLog) 금융 챗봇의 검색 엔진을 범용 FAQ용으로 넓힌 버전입니다.
+ * 답을 지어내지 않고, 사람이 써 둔 답 중에서 가장 알맞은 것을 찾아 돌려줍니다.
+ */
+(function (root, factory) {
+  var api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else root.BotEngine = api;
+})(typeof self !== 'undefined' ? self : this, function () {
+  'use strict';
+
+  // 검색에 도움이 안 되는 말(군말·어미)
+  var STOP = new Set(['뭐', '뭐야', '뭔가요', '뭐예요', '뭐에요', '무엇', '무엇인가요', '알려줘', '알려주세요', '알려줘요',
+    '궁금해요', '궁금합니다', '궁금', '문의', '문의드려요', '질문', '혹시', '좀', '그', '저', '제가', '저희', '이거', '이건',
+    '이게', '그거', '그럼', '그리고', '근데', '또', '해', '해요', '하나요', '하는', '되나요', '돼요', '되요', '되는', '있나요',
+    '있어요', '있는', '없나요', '없어요', '인가요', '인가', '이야', '이에요', '예요', '에요', '한가요', '어떻게', '어때',
+    '어때요', '대해', '대해서', '관련', '관해', '있을까요', '할까요', '될까요', '가능', '가능한가요', '가능해요', '가능할까요',
+    '하고', '싶어요', '싶은데', '합니다', '입니다', '나요', '까요', '주세요', '해주세요', '알고', '싶습니다']);
+
+  // 낱말 끝에 붙는 조사·어미(긴 것부터 검사)
+  var SUFFIX = ['가능한가요', '가능할까요', '가능해요', '되나요', '될까요', '되는지', '있나요', '있어요', '있을까요', '없나요',
+    '없어요', '인가요', '한가요', '하나요', '할까요', '하면요', '해요', '에서는', '에서', '으로는', '으로', '에게', '한테', '까지',
+    '부터', '이랑', '이란', '이라는', '라는', '에대해', '에대한', '에관해', '이에요', '예요', '에요', '이요', '은요', '는요', '나요',
+    '까요', '가요', '하면', '되면', '해도', '돼도', '되도', '인데', '이나', '하고', '처럼', '보다', '마다', '도', '은', '는', '이',
+    '가', '을', '를', '에', '와', '과', '로', '만', '랑', '나', '요'];
+  var PARTICLE1 = '은는이가을를도만로랑와과나요에';
+
+  // 질문 끝에 흔한 두 글자(어미)는 유사도 계산에서 뺀다
+  var END_BI = new Set(['나요', '해요', '어요', '가요', '까요', '예요', '에요', '되나', '하나', '인가', '한가', '있어', '없어',
+    '세요', '니다', '습니', '합니', '는데', '은데', '할까', '될까', '있나', '없나', '주세', '돼요', '되요']);
+
+  var PUNCT = /[\s()[\]{}<>·•,.\-_/\\?!~'"“”‘’:;…|+*=#@^`]/g;
+  var SPLIT = /[\s()[\]{}<>·•,.\-_/\\?!~'"“”‘’:;…|+*=#@^`]+/;
+
+  // 숫자 + 명/인(사람 수)은 '몇명'으로 맞춰 "6명이 가도 돼요?"도 인원 질문으로 찾는다
+  function canon(s) {
+    return String(s == null ? '' : s).normalize('NFC').toLowerCase()
+      .replace(/몇\s+(?=[가-힣])/g, '몇') // "몇 시" → "몇시"
+      .replace(/\d+\s*(명|인)(?![가-힣])|\d+\s*(명|인)(?=[이가은는도을를에])/g, '몇명');
+  }
+
+  // 질문의 '종류'만 말해 주는 낱말. 이것만 맞고 모르는 낱말이 섞이면(예: "화장실 어디예요") 확신하지 않는다
+  var GENERIC = new Set(['어디', '언제', '얼마', '몇시', '몇명', '몇번', '몇개', '몇분', '무슨', '어떤', '어느', '누구', '가격',
+    '비용', '요금', '시간', '방법', '가능', '여부', '정보', '문의', '안내']);
+
+  function norm(s) {
+    return canon(s).replace(PUNCT, '');
+  }
+
+  function stripJosa(w) {
+    for (var pass = 0; pass < 2; pass++) {
+      var hit = false;
+      for (var i = 0; i < SUFFIX.length; i++) {
+        var s = SUFFIX[i];
+        if (w.length - s.length >= 2 && w.slice(-s.length) === s) { w = w.slice(0, -s.length); hit = true; break; }
+      }
+      if (!hit) break;
+    }
+    return w;
+  }
+
+  function toks(s) {
+    var out = [];
+    canon(s).split(SPLIT).forEach(function (w) {
+      if (!w) return;
+      var b = stripJosa(w);
+      if (b.length >= 2 && !STOP.has(b) && !STOP.has(w)) out.push(b);
+    });
+    return out;
+  }
+
+  // 한 글자 낱말(숯, 술, 차 …). 데이터에 한 글자 키워드가 있을 때만 쓰인다
+  function words1(s) {
+    var out = [];
+    canon(s).split(SPLIT).forEach(function (w) {
+      if (w.length === 1) out.push(w);
+      else if (w.length === 2 && PARTICLE1.indexOf(w[1]) >= 0) out.push(w[0]);
+    });
+    return out.filter(function (w) { return /[가-힣a-z0-9]/.test(w) && !STOP.has(w); });
+  }
+
+  // 한글 음절을 자모로 풀어 오타를 잡는다(예: 주처 → 주차)
+  function jamo(s) {
+    var out = [];
+    for (var i = 0; i < s.length; i++) {
+      var c = s.charCodeAt(i);
+      if (c >= 0xac00 && c <= 0xd7a3) {
+        var x = c - 0xac00;
+        out.push('i' + Math.floor(x / 588), 'm' + Math.floor((x % 588) / 28));
+        if (x % 28) out.push('f' + (x % 28));
+      } else out.push(s[i]);
+    }
+    return out;
+  }
+
+  function lev(a, b, max) {
+    if (max == null) max = Infinity;
+    var m = a.length, n = b.length;
+    if (Math.abs(m - n) > max) return max + 1;
+    var prev = [], cur, i, j;
+    for (j = 0; j <= n; j++) prev[j] = j;
+    for (i = 1; i <= m; i++) {
+      cur = [i];
+      var rowMin = i;
+      for (j = 1; j <= n; j++) {
+        cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+        if (cur[j] < rowMin) rowMin = cur[j];
+      }
+      if (rowMin > max) return max + 1;
+      prev = cur;
+    }
+    return prev[n];
+  }
+
+  function bigrams(ns) {
+    var set = new Set();
+    for (var i = 0; i < ns.length - 1; i++) {
+      var b = ns.slice(i, i + 2);
+      if (!END_BI.has(b)) set.add(b);
+    }
+    return set;
+  }
+
+  function dice(a, b) {
+    if (!a.size || !b.size) return 0;
+    var n = 0;
+    a.forEach(function (x) { if (b.has(x)) n++; });
+    return (2 * n) / (a.size + b.size);
+  }
+
+  function uniq(arr) { return Array.from(new Set(arr)); }
+
+  /** 검색용 색인을 만든다. items: [{cat, q, a, kw:[], links:[]}] */
+  function prepare(items) {
+    return (items || []).map(function (e, i) {
+      var kw = uniq((e.kw || []).map(norm).filter(Boolean));
+      var nq = norm(e.q);
+      // 오타 교정은 사람이 고른 키워드 기준으로만(질문 속 '날이' 같은 조각은 제외)
+      var vocab = kw.slice();
+      (e.kw || []).forEach(function (k) { vocab = vocab.concat(toks(k)); });
+      if (!kw.length) vocab = toks(e.q);
+      return Object.assign({}, e, {
+        _i: i,
+        _nq: nq,
+        _qt: uniq(toks(e.q)),
+        _nkw: kw,
+        _na: norm(e.a),
+        _ncat: norm(e.cat),
+        _bis: [nq].concat(kw).map(bigrams),
+        _vocab: uniq(vocab.map(norm).filter(function (w) { return w.length >= 2; }))
+      });
+    });
+  }
+
+  function score(e, nq, tk, qbi, w1, wt, unk) {
+    var s = 0, ev = [];
+    if (e._nq === nq) s += 120;
+    else if (nq.length >= 4 && (e._nq.indexOf(nq) >= 0 || (e._nq.length >= 4 && nq.indexOf(e._nq) >= 0))) s += 48;
+
+    // 키워드: 겹치는(다른 키워드에 포함되는) 짧은 키워드는 한 번만 센다
+    var hits = [];
+    e._nkw.forEach(function (k) {
+      if (k === nq) hits.push({ k: k, v: 90 });
+      else if (k.length >= 2 && nq.indexOf(k) >= 0) hits.push({ k: k, v: 34 + Math.min(16, (k.length - 2) * 4) });
+      else if (nq.length >= 2 && k.indexOf(nq) >= 0) hits.push({ k: k, v: 16 });
+    });
+    hits.forEach(function (h) {
+      var covered = hits.some(function (o) { return o !== h && o.k.length > h.k.length && o.k.indexOf(h.k) >= 0; });
+      if (!covered) { s += h.v; ev.push(h.k); }
+    });
+    // 한 글자 키워드는 질문에 따로 떨어진 낱말로 나올 때만 인정
+    (w1 || []).forEach(function (c) { if (e._nkw.indexOf(c) >= 0) { s += 72; ev.push(c); } });
+
+    tk.forEach(function (w) {
+      var v = 0;
+      if (e._nq.indexOf(w) >= 0) v += 16;
+      else if (e._qt.some(function (t) { return t.indexOf(w) >= 0 || (t.length >= 2 && w.indexOf(t) >= 0); })) v += 12;
+      if (e._nkw.some(function (k) { return k.indexOf(w) >= 0 || (k.length >= 2 && w.indexOf(k) >= 0); })) v += 18;
+      if (e._nkw.indexOf(w) >= 0) v += 20; // 키워드와 낱말이 정확히 같음
+      if (e._ncat && e._ncat.indexOf(w) >= 0) v += 6;
+      if (e._na.indexOf(w) >= 0) v += 4;
+      s += v * (wt && wt[w] != null ? wt[w] : 1);
+      if (v) ev.push(w);
+    });
+
+    var d = 0;
+    e._bis.forEach(function (b) { var v = dice(qbi, b); if (v > d) d = v; });
+    s += d * 50;
+
+    // 챗봇이 전혀 모르는 낱말이 질문에 있으면 덜 확신한다
+    if (unk > 0) {
+      s *= Math.pow(0.85, Math.min(unk, 2));
+      if (ev.length && ev.every(function (w) { return GENERIC.has(w); })) s *= 0.4;
+    }
+    return Math.round(s);
+  }
+
+  function knownAnywhere(index, w) {
+    return index.some(function (e) {
+      return e._nq.indexOf(w) >= 0 || e._na.indexOf(w) >= 0 || (e._ncat && e._ncat.indexOf(w) >= 0) ||
+        e._nkw.some(function (k) { return k.indexOf(w) >= 0 || (k.length >= 2 && w.indexOf(k) >= 0); });
+    });
+  }
+
+  // 여러 항목에 두루 나오는 낱말(예: 학원 챗봇의 '학원')은 덜 중요하게 본다
+  function weights(index, tk) {
+    var wt = {};
+    tk.forEach(function (w) {
+      var df = 0;
+      index.forEach(function (e) {
+        if (e._nq.indexOf(w) >= 0 || e._nkw.some(function (k) { return k.indexOf(w) >= 0; })) df++;
+      });
+      wt[w] = df <= 1 ? 1 : df === 2 ? 0.85 : df <= 4 ? 0.6 : 0.4;
+    });
+    return wt;
+  }
+
+  /** 질문과 가장 잘 맞는 항목들을 점수순으로 돌려준다 */
+  function search(index, q) {
+    var nq = norm(q);
+    if (!nq) return [];
+    var tk = uniq(toks(q).map(norm));
+    var qbi = bigrams(nq);
+    var w1 = uniq(words1(q));
+    var wt = weights(index, tk);
+    var unk = tk.filter(function (w) { return !knownAnywhere(index, w); }).length;
+    var out = [];
+    index.forEach(function (e) {
+      var s = score(e, nq, tk, qbi, w1, wt, unk);
+      if (s > 0) out.push({ e: e, s: s });
+    });
+    out.sort(function (a, b) { return b.s - a.s || a.e._i - b.e._i; });
+    return out;
+  }
+
+  /** 오타 교정용 단어장 */
+  function vocab(index) {
+    var v = new Map();
+    index.forEach(function (e) { e._vocab.forEach(function (w) { if (!v.has(w)) v.set(w, jamo(w)); }); });
+    return v;
+  }
+
+  function known(w, voc) {
+    if (voc.has(w)) return true;
+    var ok = false;
+    voc.forEach(function (_, v) { if (!ok && (v.indexOf(w) >= 0 || (v.length >= 2 && w.indexOf(v) >= 0))) ok = true; });
+    return ok;
+  }
+
+  /** 모르는 낱말을 자모 거리로 가장 가까운 아는 낱말로 바꾼다. 바뀐 게 없으면 null */
+  function correct(q, voc) {
+    var changed = [];
+    var fixed = toks(q).map(norm).map(function (w) {
+      if (w.length < 2 || known(w, voc)) return w;
+      var jw = jamo(w);
+      if (jw.length < 4) return w;
+      var maxD = jw.length >= 8 ? 2 : 1;
+      var best = null, bd = maxD + 1;
+      voc.forEach(function (jv, v) {
+        if (bd === 0 || Math.abs(jv.length - jw.length) > maxD) return;
+        var d = lev(jw, jv, bd - 1);
+        if (d < bd) { bd = d; best = v; }
+      });
+      if (best && bd <= maxD) { changed.push({ from: w, to: best }); return best; }
+      return w;
+    });
+    return changed.length ? { query: fixed.join(' '), changes: changed } : null;
+  }
+
+  /** 같은 분류이거나 키워드가 겹치는 항목 */
+  function related(index, e, n) {
+    var kw = new Set(e._nkw);
+    return index.filter(function (o) { return o !== e; }).map(function (o) {
+      var s = 0;
+      if (o.cat && o.cat === e.cat) s += 2;
+      if (o._nkw.some(function (k) { return kw.has(k); })) s += 3;
+      return { o: o, s: s };
+    }).filter(function (x) { return x.s > 0; })
+      .sort(function (a, b) { return b.s - a.s || a.o._i - b.o._i; })
+      .slice(0, n || 3).map(function (x) { return x.o; });
+  }
+
+  // 인사·감사·상담원 연결 같은 기본 대화
+  var INTENTS = {
+    greet: ['안녕', '안녕하세요', '안녕하십니까', '하이', 'hi', 'hello', 'ㅎㅇ', '반가워', '반가워요', '반갑습니다'],
+    thanks: ['고마워', '고마워요', '고맙습니다', '감사', '감사해요', '감사합니다', '땡큐', 'thanks', 'thankyou', 'ㄳ', 'ㄱㅅ', '좋아요', '알겠어요', '알겠습니다'],
+    human: ['상담원', '상담사', '직원', '사장님', '사람이랑', '사람과', '사람연결', '연결해', '연결해주세요', '통화', '전화번호', '연락처', '문의처'],
+    help: ['처음', '처음으로', '메뉴', '도움말', 'help', '시작', '목록', '전체']
+  };
+
+  function intent(q) {
+    var nq = norm(q);
+    if (!nq) return null;
+    var found = null;
+    Object.keys(INTENTS).some(function (k) {
+      return INTENTS[k].some(function (w) {
+        var nw = norm(w);
+        var hit = k === 'human' ? nq.indexOf(nw) >= 0 : (nq === nw || (nq.indexOf(nw) === 0 && nq.length <= nw.length + 3));
+        if (hit) found = k;
+        return hit;
+      });
+    });
+    return found;
+  }
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  /** 답변 글을 안전한 HTML로: 줄바꿈, **굵게**, 주소 자동 링크 */
+  function fmt(text) {
+    var h = esc(text);
+    h = h.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
+    h = h.replace(/(https?:\/\/[^\s<]+[^\s<.,;:!?)\]'"])/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+    return h.replace(/\r?\n/g, '<br>');
+  }
+
+  /** 버튼 링크는 웹·전화·문자·메일 주소만 허용 */
+  function safeUrl(u) {
+    u = String(u == null ? '' : u).trim();
+    if (/^(https?:|tel:|mailto:|sms:)/i.test(u)) return u;
+    if (/^[\w-]+(\.[\w-]+)+(\/\S*)?$/i.test(u) && !/^javascript/i.test(u)) return 'https://' + u;
+    return null;
+  }
+
+  // 답하지 못한 질문을 보고할 때 개인정보로 보이는 부분을 가린다
+  function scrub(q) {
+    return String(q || '')
+      .replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, '***')
+      .replace(/\d[\d\s-]{4,}\d/g, '***')
+      .slice(0, 200);
+  }
+
+  var CONFIDENT = 45, CANDIDATE = 22;
+
+  /**
+   * 질문 하나에 대한 챗봇의 판단. 화면(ui.js)과 테스트가 함께 쓴다.
+   * answer: 바로 답 / category: 분류 목록 / intent: 인사·감사·상담원 / suggest: 오타 교정 후 "혹시 ○○?" /
+   * candidates: 비슷한 질문 후보 / none: 못 찾음
+   */
+  function decide(index, voc, q, cats) {
+    var nq = norm(q);
+    var cat = (cats || []).filter(function (c) { return norm(c) === nq; })[0];
+    if (cat) return { type: 'category', cat: cat };
+    var res = search(index, q);
+    if (res.length && res[0].s >= CONFIDENT) return { type: 'answer', item: res[0].e, score: res[0].s, results: res };
+    var it = intent(q);
+    if (it) return { type: 'intent', intent: it, results: res };
+    var fix = correct(q, voc);
+    if (fix) {
+      var r2 = search(index, fix.query);
+      if (r2.length && r2[0].s >= CONFIDENT) {
+        // 원래 질문으로도 그럴듯한 후보가 있었다면 둘 다 보여 준다(진짜 낱말을 오타로 오해했을 수 있으므로)
+        if (res.length && res[0].s >= CANDIDATE && res[0].e !== r2[0].e) {
+          return { type: 'candidates', items: [res[0].e, r2[0].e], fix: fix, results: res };
+        }
+        return { type: 'suggest', item: r2[0].e, fix: fix, score: r2[0].s, results: res };
+      }
+    }
+    var c = res.filter(function (x) { return x.s >= CANDIDATE; }).slice(0, 3);
+    if (c.length) return { type: 'candidates', items: c.map(function (x) { return x.e; }), results: res };
+    return { type: 'none', results: res };
+  }
+
+  return {
+    decide: decide,
+    canon: canon, norm: norm, toks: toks, words1: words1, stripJosa: stripJosa, jamo: jamo, lev: lev, bigrams: bigrams, dice: dice,
+    prepare: prepare, search: search, vocab: vocab, correct: correct, related: related, intent: intent,
+    esc: esc, fmt: fmt, safeUrl: safeUrl, scrub: scrub,
+    CONFIDENT: CONFIDENT, CANDIDATE: CANDIDATE
+  };
+});
+</script>
+<script>
+(function () {
+  'use strict';
+  var P = {"parts":{"template":"\u003c!DOCTYPE html>\n\u003chtml lang=\"ko\">\n\u003chead>\n\u003cmeta charset=\"UTF-8\">\n\u003cmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\">\n\u003ctitle>{{TITLE}}\u003c/title>\n\u003cmeta name=\"description\" content=\"{{DESC}}\">\n\u003cmeta property=\"og:type\" content=\"website\">\n\u003cmeta property=\"og:title\" content=\"{{TITLE}}\">\n\u003cmeta property=\"og:description\" content=\"{{DESC}}\">\n\u003cmeta name=\"theme-color\" content=\"{{PRIMARY}}\">\n\u003clink rel=\"icon\" href=\"{{FAVICON}}\">\n\u003cstyle>\n:root{{{THEME_VARS}}}\n/*{{CSS}}*/\n\u003c/style>\n\u003c/head>\n\u003cbody>\n\u003cdiv class=\"app\">\n  \u003cheader class=\"hd\">\n    \u003cdiv class=\"av\" id=\"hdav\">\u003c/div>\n    \u003cdiv>\u003ch1 id=\"bname\">\u003c/h1>\u003cp id=\"btag\">\u003c/p>\u003c/div>\n  \u003c/header>\n  \u003cmain class=\"chat\" id=\"chat\" role=\"log\" aria-live=\"polite\" aria-label=\"대화 내용\">\u003c/main>\n  \u003cnav class=\"quick\" id=\"quick\" aria-label=\"빠른 메뉴\">\u003c/nav>\n  \u003cform class=\"composer\" id=\"form\" autocomplete=\"off\">\n    \u003cinput id=\"inp\" maxlength=\"200\" placeholder=\"궁금한 것을 입력하세요\" aria-label=\"질문 입력\" enterkeyhint=\"send\">\n    \u003cbutton id=\"send\" type=\"submit\" aria-label=\"보내기\">➤\u003c/button>\n  \u003c/form>\n  \u003cfooter class=\"ft\" id=\"ft\">\u003c/footer>\n\u003c/div>\n\u003cnoscript>\u003cp style=\"padding:20px\">이 챗봇은 자바스크립트가 켜져 있어야 동작합니다.\u003c/p>\u003c/noscript>\n\u003cscript>window.BOT={{DATA}};\u003c/script>\n\u003cscript>/*{{ENGINE}}*/\u003c/script>\n\u003cscript>/*{{UI}}*/\u003c/script>\n\u003c/body>\n\u003c/html>\n","css":"*{box-sizing:border-box;margin:0;padding:0}\nhtml,body{height:100%}\nbody{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;\n  background:var(--bg);color:var(--ink);word-break:keep-all;overflow-wrap:break-word;-webkit-text-size-adjust:100%}\n.app{max-width:720px;margin:0 auto;height:100vh;height:100dvh;display:flex;flex-direction:column;background:var(--bg);\n  box-shadow:0 0 40px rgba(0,0,0,.08)}\n.hd{background:var(--pri);color:var(--pri-ink);padding:14px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0}\n.hd .av{width:44px;height:44px;border-radius:50%;background:var(--card);color:var(--ink);display:flex;align-items:center;justify-content:center;\n  font-size:1.5rem;overflow:hidden;flex-shrink:0}\n.hd .av img,.msg .ic img{width:100%;height:100%;object-fit:cover}\n.hd h1{font-size:1.08rem;font-weight:800;line-height:1.3}\n.hd p{font-size:.8rem;opacity:.85;margin-top:2px}\n.chat{flex:1;overflow-y:auto;padding:18px 14px 8px;display:flex;flex-direction:column;gap:12px;-webkit-overflow-scrolling:touch}\n.msg{display:flex;gap:9px;max-width:94%;animation:pop .25s ease}\n@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}\n@media (prefers-reduced-motion:reduce){.msg{animation:none}}\n.msg .b{padding:11px 14px;border-radius:16px;font-size:.94rem;line-height:1.62}\n.msg.bot{align-self:flex-start}\n.msg.bot .ic{width:32px;height:32px;border-radius:50%;background:var(--card);color:var(--ink);border:1.5px solid var(--line);display:flex;\n  align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;font-size:1.05rem}\n.msg.bot .b{background:var(--card);border:1px solid var(--line);border-top-left-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.04)}\n.msg.user{align-self:flex-end;flex-direction:row-reverse}\n.msg.user .b{background:var(--pri);color:var(--pri-ink);border-top-right-radius:4px}\n.b .q{font-weight:800;color:var(--pri-text);margin-bottom:4px}\n.b .a a,.greet a{color:var(--pri-text);text-decoration:underline}\n.b .note{font-size:.8rem;color:var(--mut);background:var(--soft);border-radius:8px;padding:4px 9px;margin-bottom:7px;display:inline-block}\n.hint{font-size:.78rem;color:var(--mut);margin:10px 0 2px;font-weight:700}\n.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:7px}\n.chips.col{flex-direction:column;align-items:flex-start}\n.chip{font:inherit;font-size:.84rem;font-weight:600;background:var(--soft);color:var(--pri-text);border:1px solid var(--line);\n  padding:7px 13px;border-radius:20px;cursor:pointer;text-align:left;line-height:1.4;transition:background .15s,color .15s}\n.chip:hover,.chip:focus-visible{background:var(--pri);color:var(--pri-ink);border-color:var(--pri)}\n.chip:focus-visible,.lnk:focus-visible,.composer input:focus-visible,.composer button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.chip.cat{background:var(--pri);color:var(--pri-ink);border-color:var(--pri)}\n.chip.cat:hover{filter:brightness(1.12)}\n.chip.contact{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}\n.links{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}\n.lnk{display:inline-flex;align-items:center;gap:4px;font-size:.84rem;font-weight:700;text-decoration:none;background:var(--acc);\n  color:var(--acc-ink);padding:8px 14px;border-radius:10px}\n.lnk:hover{filter:brightness(1.06)}\n.all details{border:1px solid var(--line);border-radius:10px;margin-top:8px;background:var(--card)}\n.all summary{cursor:pointer;padding:9px 12px;font-weight:700;font-size:.88rem;list-style:none;display:flex;align-items:center;gap:6px}\n.all summary::-webkit-details-marker{display:none}\n.all summary::before{content:'▸';color:var(--mut);transition:transform .15s}\n.all details[open] summary::before{transform:rotate(90deg)}\n.all .cnt{margin-left:auto;font-size:.74rem;color:var(--mut);background:var(--soft);border-radius:10px;padding:1px 8px}\n.all details .chips{padding:0 10px 10px}\n.typing{display:flex;gap:4px;padding:4px 2px}\n.typing span{width:7px;height:7px;border-radius:50%;background:var(--mut);opacity:.5;animation:blink 1s infinite}\n.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}\n@keyframes blink{0%,100%{opacity:.25}50%{opacity:.9}}\n.quick{display:flex;gap:7px;overflow-x:auto;padding:9px 28px 9px 12px;background:var(--card);border-top:1px solid var(--line);\n  flex-shrink:0;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent);\n  mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent)}\n.quick::-webkit-scrollbar{display:none}\n.quick .chip{white-space:nowrap;flex-shrink:0}\n.composer{flex-shrink:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--card);border-top:1px solid var(--line);\n  display:flex;gap:8px;align-items:center}\n.composer input{flex:1;min-width:0;padding:12px 16px;border:2px solid var(--line);border-radius:24px;font:inherit;font-size:16px;\n  background:var(--card);color:var(--ink)}\n.composer input:focus{outline:none;border-color:var(--pri)}\n.composer button{width:46px;height:46px;border-radius:50%;border:0;background:var(--pri);color:var(--pri-ink);font-size:1.15rem;\n  cursor:pointer;flex-shrink:0}\n.ft{flex-shrink:0;text-align:center;font-size:.72rem;color:var(--mut);background:var(--card);padding:0 12px 8px;display:flex;\n  flex-wrap:wrap;justify-content:center;gap:4px 10px}\n.ft a{color:var(--mut)}\n.greet{font-weight:400}\nhtml.embed .app{box-shadow:none;max-width:none}\nhtml.embed .hd{padding:10px 14px}\nhtml.embed .hd .av{width:36px;height:36px;font-size:1.25rem}\nhtml.embed .hd h1{font-size:.98rem}\n","engine":"/*!\n * FAQ 챗봇 키트 — 검색 엔진 (외부 라이브러리 없음)\n * 핀로그(FinLog) 금융 챗봇의 검색 엔진을 범용 FAQ용으로 넓힌 버전입니다.\n * 답을 지어내지 않고, 사람이 써 둔 답 중에서 가장 알맞은 것을 찾아 돌려줍니다.\n */\n(function (root, factory) {\n  var api = factory();\n  if (typeof module === 'object' && module.exports) module.exports = api;\n  else root.BotEngine = api;\n})(typeof self !== 'undefined' ? self : this, function () {\n  'use strict';\n\n  // 검색에 도움이 안 되는 말(군말·어미)\n  var STOP = new Set(['뭐', '뭐야', '뭔가요', '뭐예요', '뭐에요', '무엇', '무엇인가요', '알려줘', '알려주세요', '알려줘요',\n    '궁금해요', '궁금합니다', '궁금', '문의', '문의드려요', '질문', '혹시', '좀', '그', '저', '제가', '저희', '이거', '이건',\n    '이게', '그거', '그럼', '그리고', '근데', '또', '해', '해요', '하나요', '하는', '되나요', '돼요', '되요', '되는', '있나요',\n    '있어요', '있는', '없나요', '없어요', '인가요', '인가', '이야', '이에요', '예요', '에요', '한가요', '어떻게', '어때',\n    '어때요', '대해', '대해서', '관련', '관해', '있을까요', '할까요', '될까요', '가능', '가능한가요', '가능해요', '가능할까요',\n    '하고', '싶어요', '싶은데', '합니다', '입니다', '나요', '까요', '주세요', '해주세요', '알고', '싶습니다']);\n\n  // 낱말 끝에 붙는 조사·어미(긴 것부터 검사)\n  var SUFFIX = ['가능한가요', '가능할까요', '가능해요', '되나요', '될까요', '되는지', '있나요', '있어요', '있을까요', '없나요',\n    '없어요', '인가요', '한가요', '하나요', '할까요', '하면요', '해요', '에서는', '에서', '으로는', '으로', '에게', '한테', '까지',\n    '부터', '이랑', '이란', '이라는', '라는', '에대해', '에대한', '에관해', '이에요', '예요', '에요', '이요', '은요', '는요', '나요',\n    '까요', '가요', '하면', '되면', '해도', '돼도', '되도', '인데', '이나', '하고', '처럼', '보다', '마다', '도', '은', '는', '이',\n    '가', '을', '를', '에', '와', '과', '로', '만', '랑', '나', '요'];\n  var PARTICLE1 = '은는이가을를도만로랑와과나요에';\n\n  // 질문 끝에 흔한 두 글자(어미)는 유사도 계산에서 뺀다\n  var END_BI = new Set(['나요', '해요', '어요', '가요', '까요', '예요', '에요', '되나', '하나', '인가', '한가', '있어', '없어',\n    '세요', '니다', '습니', '합니', '는데', '은데', '할까', '될까', '있나', '없나', '주세', '돼요', '되요']);\n\n  var PUNCT = /[\\s()[\\]{}\u003c>·•,.\\-_/\\\\?!~'\"“”‘’:;…|+*=#@^`]/g;\n  var SPLIT = /[\\s()[\\]{}\u003c>·•,.\\-_/\\\\?!~'\"“”‘’:;…|+*=#@^`]+/;\n\n  // 숫자 + 명/인(사람 수)은 '몇명'으로 맞춰 \"6명이 가도 돼요?\"도 인원 질문으로 찾는다\n  function canon(s) {\n    return String(s == null ? '' : s).normalize('NFC').toLowerCase()\n      .replace(/몇\\s+(?=[가-힣])/g, '몇') // \"몇 시\" → \"몇시\"\n      .replace(/\\d+\\s*(명|인)(?![가-힣])|\\d+\\s*(명|인)(?=[이가은는도을를에])/g, '몇명');\n  }\n\n  // 질문의 '종류'만 말해 주는 낱말. 이것만 맞고 모르는 낱말이 섞이면(예: \"화장실 어디예요\") 확신하지 않는다\n  var GENERIC = new Set(['어디', '언제', '얼마', '몇시', '몇명', '몇번', '몇개', '몇분', '무슨', '어떤', '어느', '누구', '가격',\n    '비용', '요금', '시간', '방법', '가능', '여부', '정보', '문의', '안내']);\n\n  function norm(s) {\n    return canon(s).replace(PUNCT, '');\n  }\n\n  function stripJosa(w) {\n    for (var pass = 0; pass \u003c 2; pass++) {\n      var hit = false;\n      for (var i = 0; i \u003c SUFFIX.length; i++) {\n        var s = SUFFIX[i];\n        if (w.length - s.length >= 2 && w.slice(-s.length) === s) { w = w.slice(0, -s.length); hit = true; break; }\n      }\n      if (!hit) break;\n    }\n    return w;\n  }\n\n  function toks(s) {\n    var out = [];\n    canon(s).split(SPLIT).forEach(function (w) {\n      if (!w) return;\n      var b = stripJosa(w);\n      if (b.length >= 2 && !STOP.has(b) && !STOP.has(w)) out.push(b);\n    });\n    return out;\n  }\n\n  // 한 글자 낱말(숯, 술, 차 …). 데이터에 한 글자 키워드가 있을 때만 쓰인다\n  function words1(s) {\n    var out = [];\n    canon(s).split(SPLIT).forEach(function (w) {\n      if (w.length === 1) out.push(w);\n      else if (w.length === 2 && PARTICLE1.indexOf(w[1]) >= 0) out.push(w[0]);\n    });\n    return out.filter(function (w) { return /[가-힣a-z0-9]/.test(w) && !STOP.has(w); });\n  }\n\n  // 한글 음절을 자모로 풀어 오타를 잡는다(예: 주처 → 주차)\n  function jamo(s) {\n    var out = [];\n    for (var i = 0; i \u003c s.length; i++) {\n      var c = s.charCodeAt(i);\n      if (c >= 0xac00 && c \u003c= 0xd7a3) {\n        var x = c - 0xac00;\n        out.push('i' + Math.floor(x / 588), 'm' + Math.floor((x % 588) / 28));\n        if (x % 28) out.push('f' + (x % 28));\n      } else out.push(s[i]);\n    }\n    return out;\n  }\n\n  function lev(a, b, max) {\n    if (max == null) max = Infinity;\n    var m = a.length, n = b.length;\n    if (Math.abs(m - n) > max) return max + 1;\n    var prev = [], cur, i, j;\n    for (j = 0; j \u003c= n; j++) prev[j] = j;\n    for (i = 1; i \u003c= m; i++) {\n      cur = [i];\n      var rowMin = i;\n      for (j = 1; j \u003c= n; j++) {\n        cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));\n        if (cur[j] \u003c rowMin) rowMin = cur[j];\n      }\n      if (rowMin > max) return max + 1;\n      prev = cur;\n    }\n    return prev[n];\n  }\n\n  function bigrams(ns) {\n    var set = new Set();\n    for (var i = 0; i \u003c ns.length - 1; i++) {\n      var b = ns.slice(i, i + 2);\n      if (!END_BI.has(b)) set.add(b);\n    }\n    return set;\n  }\n\n  function dice(a, b) {\n    if (!a.size || !b.size) return 0;\n    var n = 0;\n    a.forEach(function (x) { if (b.has(x)) n++; });\n    return (2 * n) / (a.size + b.size);\n  }\n\n  function uniq(arr) { return Array.from(new Set(arr)); }\n\n  /** 검색용 색인을 만든다. items: [{cat, q, a, kw:[], links:[]}] */\n  function prepare(items) {\n    return (items || []).map(function (e, i) {\n      var kw = uniq((e.kw || []).map(norm).filter(Boolean));\n      var nq = norm(e.q);\n      // 오타 교정은 사람이 고른 키워드 기준으로만(질문 속 '날이' 같은 조각은 제외)\n      var vocab = kw.slice();\n      (e.kw || []).forEach(function (k) { vocab = vocab.concat(toks(k)); });\n      if (!kw.length) vocab = toks(e.q);\n      return Object.assign({}, e, {\n        _i: i,\n        _nq: nq,\n        _qt: uniq(toks(e.q)),\n        _nkw: kw,\n        _na: norm(e.a),\n        _ncat: norm(e.cat),\n        _bis: [nq].concat(kw).map(bigrams),\n        _vocab: uniq(vocab.map(norm).filter(function (w) { return w.length >= 2; }))\n      });\n    });\n  }\n\n  function score(e, nq, tk, qbi, w1, wt, unk) {\n    var s = 0, ev = [];\n    if (e._nq === nq) s += 120;\n    else if (nq.length >= 4 && (e._nq.indexOf(nq) >= 0 || (e._nq.length >= 4 && nq.indexOf(e._nq) >= 0))) s += 48;\n\n    // 키워드: 겹치는(다른 키워드에 포함되는) 짧은 키워드는 한 번만 센다\n    var hits = [];\n    e._nkw.forEach(function (k) {\n      if (k === nq) hits.push({ k: k, v: 90 });\n      else if (k.length >= 2 && nq.indexOf(k) >= 0) hits.push({ k: k, v: 34 + Math.min(16, (k.length - 2) * 4) });\n      else if (nq.length >= 2 && k.indexOf(nq) >= 0) hits.push({ k: k, v: 16 });\n    });\n    hits.forEach(function (h) {\n      var covered = hits.some(function (o) { return o !== h && o.k.length > h.k.length && o.k.indexOf(h.k) >= 0; });\n      if (!covered) { s += h.v; ev.push(h.k); }\n    });\n    // 한 글자 키워드는 질문에 따로 떨어진 낱말로 나올 때만 인정\n    (w1 || []).forEach(function (c) { if (e._nkw.indexOf(c) >= 0) { s += 72; ev.push(c); } });\n\n    tk.forEach(function (w) {\n      var v = 0;\n      if (e._nq.indexOf(w) >= 0) v += 16;\n      else if (e._qt.some(function (t) { return t.indexOf(w) >= 0 || (t.length >= 2 && w.indexOf(t) >= 0); })) v += 12;\n      if (e._nkw.some(function (k) { return k.indexOf(w) >= 0 || (k.length >= 2 && w.indexOf(k) >= 0); })) v += 18;\n      if (e._nkw.indexOf(w) >= 0) v += 20; // 키워드와 낱말이 정확히 같음\n      if (e._ncat && e._ncat.indexOf(w) >= 0) v += 6;\n      if (e._na.indexOf(w) >= 0) v += 4;\n      s += v * (wt && wt[w] != null ? wt[w] : 1);\n      if (v) ev.push(w);\n    });\n\n    var d = 0;\n    e._bis.forEach(function (b) { var v = dice(qbi, b); if (v > d) d = v; });\n    s += d * 50;\n\n    // 챗봇이 전혀 모르는 낱말이 질문에 있으면 덜 확신한다\n    if (unk > 0) {\n      s *= Math.pow(0.85, Math.min(unk, 2));\n      if (ev.length && ev.every(function (w) { return GENERIC.has(w); })) s *= 0.4;\n    }\n    return Math.round(s);\n  }\n\n  function knownAnywhere(index, w) {\n    return index.some(function (e) {\n      return e._nq.indexOf(w) >= 0 || e._na.indexOf(w) >= 0 || (e._ncat && e._ncat.indexOf(w) >= 0) ||\n        e._nkw.some(function (k) { return k.indexOf(w) >= 0 || (k.length >= 2 && w.indexOf(k) >= 0); });\n    });\n  }\n\n  // 여러 항목에 두루 나오는 낱말(예: 학원 챗봇의 '학원')은 덜 중요하게 본다\n  function weights(index, tk) {\n    var wt = {};\n    tk.forEach(function (w) {\n      var df = 0;\n      index.forEach(function (e) {\n        if (e._nq.indexOf(w) >= 0 || e._nkw.some(function (k) { return k.indexOf(w) >= 0; })) df++;\n      });\n      wt[w] = df \u003c= 1 ? 1 : df === 2 ? 0.85 : df \u003c= 4 ? 0.6 : 0.4;\n    });\n    return wt;\n  }\n\n  /** 질문과 가장 잘 맞는 항목들을 점수순으로 돌려준다 */\n  function search(index, q) {\n    var nq = norm(q);\n    if (!nq) return [];\n    var tk = uniq(toks(q).map(norm));\n    var qbi = bigrams(nq);\n    var w1 = uniq(words1(q));\n    var wt = weights(index, tk);\n    var unk = tk.filter(function (w) { return !knownAnywhere(index, w); }).length;\n    var out = [];\n    index.forEach(function (e) {\n      var s = score(e, nq, tk, qbi, w1, wt, unk);\n      if (s > 0) out.push({ e: e, s: s });\n    });\n    out.sort(function (a, b) { return b.s - a.s || a.e._i - b.e._i; });\n    return out;\n  }\n\n  /** 오타 교정용 단어장 */\n  function vocab(index) {\n    var v = new Map();\n    index.forEach(function (e) { e._vocab.forEach(function (w) { if (!v.has(w)) v.set(w, jamo(w)); }); });\n    return v;\n  }\n\n  function known(w, voc) {\n    if (voc.has(w)) return true;\n    var ok = false;\n    voc.forEach(function (_, v) { if (!ok && (v.indexOf(w) >= 0 || (v.length >= 2 && w.indexOf(v) >= 0))) ok = true; });\n    return ok;\n  }\n\n  /** 모르는 낱말을 자모 거리로 가장 가까운 아는 낱말로 바꾼다. 바뀐 게 없으면 null */\n  function correct(q, voc) {\n    var changed = [];\n    var fixed = toks(q).map(norm).map(function (w) {\n      if (w.length \u003c 2 || known(w, voc)) return w;\n      var jw = jamo(w);\n      if (jw.length \u003c 4) return w;\n      var maxD = jw.length >= 8 ? 2 : 1;\n      var best = null, bd = maxD + 1;\n      voc.forEach(function (jv, v) {\n        if (bd === 0 || Math.abs(jv.length - jw.length) > maxD) return;\n        var d = lev(jw, jv, bd - 1);\n        if (d \u003c bd) { bd = d; best = v; }\n      });\n      if (best && bd \u003c= maxD) { changed.push({ from: w, to: best }); return best; }\n      return w;\n    });\n    return changed.length ? { query: fixed.join(' '), changes: changed } : null;\n  }\n\n  /** 같은 분류이거나 키워드가 겹치는 항목 */\n  function related(index, e, n) {\n    var kw = new Set(e._nkw);\n    return index.filter(function (o) { return o !== e; }).map(function (o) {\n      var s = 0;\n      if (o.cat && o.cat === e.cat) s += 2;\n      if (o._nkw.some(function (k) { return kw.has(k); })) s += 3;\n      return { o: o, s: s };\n    }).filter(function (x) { return x.s > 0; })\n      .sort(function (a, b) { return b.s - a.s || a.o._i - b.o._i; })\n      .slice(0, n || 3).map(function (x) { return x.o; });\n  }\n\n  // 인사·감사·상담원 연결 같은 기본 대화\n  var INTENTS = {\n    greet: ['안녕', '안녕하세요', '안녕하십니까', '하이', 'hi', 'hello', 'ㅎㅇ', '반가워', '반가워요', '반갑습니다'],\n    thanks: ['고마워', '고마워요', '고맙습니다', '감사', '감사해요', '감사합니다', '땡큐', 'thanks', 'thankyou', 'ㄳ', 'ㄱㅅ', '좋아요', '알겠어요', '알겠습니다'],\n    human: ['상담원', '상담사', '직원', '사장님', '사람이랑', '사람과', '사람연결', '연결해', '연결해주세요', '통화', '전화번호', '연락처', '문의처'],\n    help: ['처음', '처음으로', '메뉴', '도움말', 'help', '시작', '목록', '전체']\n  };\n\n  function intent(q) {\n    var nq = norm(q);\n    if (!nq) return null;\n    var found = null;\n    Object.keys(INTENTS).some(function (k) {\n      return INTENTS[k].some(function (w) {\n        var nw = norm(w);\n        var hit = k === 'human' ? nq.indexOf(nw) >= 0 : (nq === nw || (nq.indexOf(nw) === 0 && nq.length \u003c= nw.length + 3));\n        if (hit) found = k;\n        return hit;\n      });\n    });\n    return found;\n  }\n\n  function esc(s) {\n    return String(s == null ? '' : s).replace(/[&\u003c>\"']/g, function (c) {\n      return { '&': '&amp;', '\u003c': '&lt;', '>': '&gt;', '\"': '&quot;', \"'\": '&#39;' }[c];\n    });\n  }\n\n  /** 답변 글을 안전한 HTML로: 줄바꿈, **굵게**, 주소 자동 링크 */\n  function fmt(text) {\n    var h = esc(text);\n    h = h.replace(/\\*\\*([^*]+)\\*\\*/g, '\u003cb>$1\u003c/b>');\n    h = h.replace(/(https?:\\/\\/[^\\s\u003c]+[^\\s\u003c.,;:!?)\\]'\"])/g, '\u003ca href=\"$1\" target=\"_blank\" rel=\"noopener noreferrer\">$1\u003c/a>');\n    return h.replace(/\\r?\\n/g, '\u003cbr>');\n  }\n\n  /** 버튼 링크는 웹·전화·문자·메일 주소만 허용 */\n  function safeUrl(u) {\n    u = String(u == null ? '' : u).trim();\n    if (/^(https?:|tel:|mailto:|sms:)/i.test(u)) return u;\n    if (/^[\\w-]+(\\.[\\w-]+)+(\\/\\S*)?$/i.test(u) && !/^javascript/i.test(u)) return 'https://' + u;\n    return null;\n  }\n\n  // 답하지 못한 질문을 보고할 때 개인정보로 보이는 부분을 가린다\n  function scrub(q) {\n    return String(q || '')\n      .replace(/[\\w.+-]+@[\\w-]+\\.[\\w.-]+/g, '***')\n      .replace(/\\d[\\d\\s-]{4,}\\d/g, '***')\n      .slice(0, 200);\n  }\n\n  var CONFIDENT = 45, CANDIDATE = 22;\n\n  /**\n   * 질문 하나에 대한 챗봇의 판단. 화면(ui.js)과 테스트가 함께 쓴다.\n   * answer: 바로 답 / category: 분류 목록 / intent: 인사·감사·상담원 / suggest: 오타 교정 후 \"혹시 ○○?\" /\n   * candidates: 비슷한 질문 후보 / none: 못 찾음\n   */\n  function decide(index, voc, q, cats) {\n    var nq = norm(q);\n    var cat = (cats || []).filter(function (c) { return norm(c) === nq; })[0];\n    if (cat) return { type: 'category', cat: cat };\n    var res = search(index, q);\n    if (res.length && res[0].s >= CONFIDENT) return { type: 'answer', item: res[0].e, score: res[0].s, results: res };\n    var it = intent(q);\n    if (it) return { type: 'intent', intent: it, results: res };\n    var fix = correct(q, voc);\n    if (fix) {\n      var r2 = search(index, fix.query);\n      if (r2.length && r2[0].s >= CONFIDENT) {\n        // 원래 질문으로도 그럴듯한 후보가 있었다면 둘 다 보여 준다(진짜 낱말을 오타로 오해했을 수 있으므로)\n        if (res.length && res[0].s >= CANDIDATE && res[0].e !== r2[0].e) {\n          return { type: 'candidates', items: [res[0].e, r2[0].e], fix: fix, results: res };\n        }\n        return { type: 'suggest', item: r2[0].e, fix: fix, score: r2[0].s, results: res };\n      }\n    }\n    var c = res.filter(function (x) { return x.s >= CANDIDATE; }).slice(0, 3);\n    if (c.length) return { type: 'candidates', items: c.map(function (x) { return x.e; }), results: res };\n    return { type: 'none', results: res };\n  }\n\n  return {\n    decide: decide,\n    canon: canon, norm: norm, toks: toks, words1: words1, stripJosa: stripJosa, jamo: jamo, lev: lev, bigrams: bigrams, dice: dice,\n    prepare: prepare, search: search, vocab: vocab, correct: correct, related: related, intent: intent,\n    esc: esc, fmt: fmt, safeUrl: safeUrl, scrub: scrub,\n    CONFIDENT: CONFIDENT, CANDIDATE: CANDIDATE\n  };\n});\n","ui":"/*!\n * FAQ 챗봇 키트 — 화면(대화창) 스크립트\n * window.BOT = { config: {...}, items: [...] } 와 BotEngine 을 사용합니다.\n */\n(function () {\n  'use strict';\n  var BOT = window.BOT || { config: {}, items: [] };\n  var C = BOT.config || {};\n  var E = window.BotEngine;\n  var INDEX = E.prepare(BOT.items || []);\n  var VOCAB = E.vocab(INDEX);\n  var CATS = [];\n  INDEX.forEach(function (e) { if (e.cat && CATS.indexOf(e.cat) \u003c 0) CATS.push(e.cat); });\n\n  var chat = document.getElementById('chat');\n  var inp = document.getElementById('inp');\n  var quick = document.getElementById('quick');\n  var form = document.getElementById('form');\n\n  var embedded = false;\n  try { embedded = new URLSearchParams(location.search).get('embed') === '1'; } catch (err) { /* 오래된 브라우저 */ }\n  if (embedded) {\n    document.documentElement.classList.add('embed');\n    // 홈페이지 위젯 안에서 Esc 를 누르면 위젯을 닫도록 알린다\n    document.addEventListener('keydown', function (e) {\n      if (e.key === 'Escape' && window.parent !== window) window.parent.postMessage({ type: 'faqbot:close' }, '*');\n    });\n  }\n\n  function el(tag, cls, html) {\n    var d = document.createElement(tag);\n    if (cls) d.className = cls;\n    if (html != null) d.innerHTML = html;\n    return d;\n  }\n  function scroll() { chat.scrollTop = chat.scrollHeight; }\n\n  function avatar() {\n    if (C.avatarImg) return '\u003cimg src=\"' + E.esc(C.avatarImg) + '\" alt=\"\">';\n    return '\u003cspan aria-hidden=\"true\">' + E.esc(C.avatar || '💬') + '\u003c/span>';\n  }\n\n  function addUser(t) {\n    var m = el('div', 'msg user');\n    m.appendChild(el('div', 'b', E.esc(t)));\n    chat.appendChild(m);\n    scroll();\n  }\n\n  function botMsg() {\n    var m = el('div', 'msg bot');\n    m.appendChild(el('div', 'ic', avatar()));\n    var b = el('div', 'b');\n    m.appendChild(b);\n    chat.appendChild(m);\n    scroll();\n    return b;\n  }\n\n  function typing(on) {\n    var t = document.getElementById('typing');\n    if (!on) { if (t) t.remove(); return; }\n    if (t) return;\n    var m = el('div', 'msg bot');\n    m.id = 'typing';\n    m.setAttribute('aria-hidden', 'true');\n    m.appendChild(el('div', 'ic', avatar()));\n    var b = el('div', 'b');\n    b.appendChild(el('div', 'typing', '\u003cspan>\u003c/span>\u003cspan>\u003c/span>\u003cspan>\u003c/span>'));\n    m.appendChild(b);\n    chat.appendChild(m);\n    scroll();\n  }\n\n  /** 누르면 질문을 보내는 버튼 묶음 */\n  function chips(parent, list, label, cls) {\n    if (!list.length) return;\n    if (label) parent.appendChild(el('div', 'hint', E.esc(label)));\n    var wrap = el('div', 'chips' + (cls ? ' ' + cls : ''));\n    list.forEach(function (x) {\n      var btn = el('button', 'chip' + (x.cls ? ' ' + x.cls : ''), E.esc(x.text));\n      btn.type = 'button';\n      btn.onclick = x.onClick || function () { ask(x.ask || x.text); };\n      wrap.appendChild(btn);\n    });\n    parent.appendChild(wrap);\n  }\n\n  function linkButtons(parent, links) {\n    var ok = (links || []).map(function (l) { return { label: l.label, url: E.safeUrl(l.url) }; })\n      .filter(function (l) { return l.url; });\n    if (!ok.length) return;\n    var wrap = el('div', 'links');\n    ok.forEach(function (l) {\n      var a = el('a', 'lnk', E.esc(l.label || '바로가기'));\n      a.href = l.url;\n      if (/^https?:/i.test(l.url)) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }\n      wrap.appendChild(a);\n    });\n    parent.appendChild(wrap);\n  }\n\n  function contacts(parent, label) {\n    if (!C.contacts || !C.contacts.length) return;\n    if (label) parent.appendChild(el('div', 'hint', E.esc(label)));\n    linkButtons(parent, C.contacts);\n  }\n\n  function answer(e, note) {\n    var b = botMsg();\n    var h = '';\n    if (note) h += '\u003cdiv class=\"note\">' + note + '\u003c/div>';\n    h += '\u003cdiv class=\"q\">' + E.esc(e.q) + '\u003c/div>\u003cdiv class=\"a\">' + E.fmt(e.a) + '\u003c/div>';\n    b.innerHTML = h;\n    linkButtons(b, e.links);\n    var rel = E.related(INDEX, e, 3).map(function (o) { return { text: o.q }; });\n    chips(b, rel, '함께 많이 묻는 질문');\n    scroll();\n  }\n\n  function showCategory(cat) {\n    var b = botMsg();\n    b.innerHTML = '\u003cb>' + E.esc(cat) + '\u003c/b> 관련 질문이에요. 궁금한 것을 눌러 보세요.';\n    chips(b, INDEX.filter(function (e) { return e.cat === cat; }).map(function (e) { return { text: e.q }; }));\n    scroll();\n  }\n\n  function showAll() {\n    var b = botMsg();\n    b.innerHTML = '자주 묻는 질문 \u003cb>' + INDEX.length + '개\u003c/b>를 분류별로 모았어요.';\n    var wrap = el('div', 'all');\n    var groups = CATS.length ? CATS : [''];\n    groups.forEach(function (cat, i) {\n      var list = INDEX.filter(function (e) { return (e.cat || '') === cat; });\n      if (!list.length) return;\n      var det = el('details');\n      if (i === 0) det.open = true;\n      det.appendChild(el('summary', null, E.esc(cat || '전체') + '\u003cspan class=\"cnt\">' + list.length + '\u003c/span>'));\n      chips(det, list.map(function (e) { return { text: e.q }; }));\n      wrap.appendChild(det);\n    });\n    b.appendChild(wrap);\n    scroll();\n  }\n\n  function catChips(parent, label) {\n    chips(parent, CATS.map(function (c) {\n      return { text: c, cls: 'cat', onClick: function () { addUser(c); showCategory(c); } };\n    }), label);\n  }\n\n  function report(q, kind) {\n    if (!C.reportUrl || !navigator.sendBeacon) return;\n    try {\n      navigator.sendBeacon(C.reportUrl, JSON.stringify({ bot: C.name || '', q: E.scrub(q), kind: kind, t: new Date().toISOString() }));\n    } catch (err) { /* 보고 실패는 무시 */ }\n  }\n\n  function respond(q) {\n    typing(false);\n    var d = E.decide(INDEX, VOCAB, q, CATS);\n\n    if (d.type === 'category') { showCategory(d.cat); return; }\n    if (d.type === 'answer') { answer(d.item); return; }\n\n    var b = botMsg();\n    if (d.type === 'intent') {\n      if (d.intent === 'greet') {\n        b.innerHTML = E.esc(C.greetReply || '안녕하세요! 무엇이 궁금하세요?');\n        chips(b, (C.examples || []).map(function (t) { return { text: t }; }), '이렇게 물어보세요');\n      } else if (d.intent === 'thanks') {\n        b.innerHTML = E.esc(C.thanksReply || '도움이 되었다니 기뻐요. 더 궁금한 게 있으면 언제든 물어보세요!');\n      } else if (d.intent === 'human') {\n        b.innerHTML = E.esc(C.humanReply || '직접 문의하시려면 아래 버튼을 눌러 주세요.');\n        contacts(b);\n      } else {\n        b.innerHTML = '무엇을 도와드릴까요? 분류를 누르거나 질문을 입력해 보세요.';\n        catChips(b);\n      }\n    } else if (d.type === 'suggest') {\n      var words = d.fix.changes.map(function (c) { return '‘' + E.esc(c.to) + '’'; }).join(', ');\n      b.innerHTML = '혹시 ' + words + '에 대해 물어보신 건가요?';\n      chips(b, [{ text: '▶ ' + d.item.q, ask: d.item.q }]);\n      report(q, 'suggest');\n    } else if (d.type === 'candidates') {\n      b.innerHTML = '정확히 맞는 답을 찾지 못했어요. 혹시 이 중에 있나요?';\n      chips(b, d.items.map(function (e) { return { text: e.q }; }));\n      contacts(b, '원하는 답이 없으면 직접 문의해 주세요');\n      report(q, 'candidates');\n    } else {\n      b.innerHTML = E.esc(C.noMatch || '죄송해요, 그 질문은 아직 답을 준비하지 못했어요.');\n      catChips(b, '분류에서 찾아보기');\n      contacts(b, '직접 문의하기');\n      report(q, 'nomatch');\n    }\n    scroll();\n  }\n\n  var lastQ = '', lastT = 0;\n  function ask(q) {\n    q = String(q || '').trim();\n    if (!q) return;\n    var now = Date.now();\n    if (q === lastQ && now - lastT \u003c 600) return; // 한글 입력기 중복 전송 방지\n    lastQ = q; lastT = now;\n    addUser(q);\n    typing(true);\n    setTimeout(function () { respond(q); }, 280);\n  }\n\n  form.addEventListener('submit', function (ev) {\n    ev.preventDefault();\n    var v = inp.value;\n    inp.value = '';\n    ask(v);\n  });\n\n  // 머리말·빠른 메뉴·꼬리말\n  document.getElementById('hdav').innerHTML = avatar();\n  document.getElementById('bname').textContent = C.name || 'FAQ 챗봇';\n  document.getElementById('btag').textContent = C.tagline || '';\n  if (C.placeholder) inp.placeholder = C.placeholder;\n\n  function quickBtn(text, cls, fn) {\n    var b = el('button', 'chip ' + (cls || ''), E.esc(text));\n    b.type = 'button';\n    b.onclick = fn;\n    quick.appendChild(b);\n  }\n  quickBtn('☰ 전체 질문', 'cat', function () { addUser('전체 질문'); showAll(); });\n  CATS.forEach(function (c) { quickBtn(c, 'cat', function () { addUser(c); showCategory(c); }); });\n  if (C.contacts && C.contacts.length) {\n    quickBtn(C.contactLabel || '📞 문의하기', 'contact', function () {\n      addUser(C.contactLabel || '문의하기');\n      var b = botMsg();\n      b.innerHTML = E.esc(C.humanReply || '직접 문의하시려면 아래 버튼을 눌러 주세요.');\n      contacts(b);\n    });\n  }\n\n  var ft = document.getElementById('ft');\n  var fh = '';\n  if (C.footer) fh += '\u003cspan>' + E.esc(C.footer) + '\u003c/span>';\n  if (C.reportUrl) fh += '\u003cspan>더 나은 답변을 위해 답하지 못한 질문만 익명으로 모읍니다.\u003c/span>';\n  if (C.credit && C.credit.label) {\n    var cu = E.safeUrl(C.credit.url);\n    fh += cu ? '\u003ca href=\"' + E.esc(cu) + '\" target=\"_blank\" rel=\"noopener noreferrer\">' + E.esc(C.credit.label) + '\u003c/a>'\n      : '\u003cspan>' + E.esc(C.credit.label) + '\u003c/span>';\n  }\n  if (fh) ft.innerHTML = fh; else ft.remove();\n\n  // 첫 인사\n  (function () {\n    var b = botMsg();\n    b.innerHTML = '\u003cdiv class=\"greet\">' + E.fmt(C.greeting || '안녕하세요! 궁금한 것을 물어보세요.') + '\u003c/div>';\n    chips(b, (C.examples || []).map(function (t) { return { text: t }; }), '이렇게 물어보세요', 'col');\n  })();\n\n  // 테스트·관리용으로 엔진을 노출\n  window.FAQBot = { ask: ask, search: function (q) { return E.search(INDEX, q); } };\n})();\n"},"widget":"/*!\n * FAQ 챗봇 키트 — 홈페이지에 떠 있는 챗봇 버튼(위젯)\n * 사용법: \u003cscript src=\"https://내-챗봇-주소/widget.js\" data-color=\"#1f4e9b\" data-label=\"무엇이든 물어보세요\" defer>\u003c/script>\n * 선택 속성: data-bot(챗봇 주소, 기본값은 widget.js와 같은 폴더의 index.html), data-position=\"left\", data-open=\"true\"\n */\n(function () {\n  'use strict';\n  if (window.__faqBotWidget) return;\n  window.__faqBotWidget = true;\n\n  var s = document.currentScript || (function () { var a = document.getElementsByTagName('script'); return a[a.length - 1]; })();\n  var attr = function (k) { return s.getAttribute(k); };\n  var bot = attr('data-bot') || String(attr('src') || '').replace(/[?#].*$/, '').replace(/[^/]*$/, '') + 'index.html';\n  var color = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(attr('data-color') || '') ? attr('data-color') : '#1f4e9b';\n  var label = attr('data-label') || '무엇이든 물어보세요';\n  var side = attr('data-position') === 'left' ? 'left' : 'right';\n  var url = bot + (bot.indexOf('?') >= 0 ? '&' : '?') + 'embed=1';\n\n  var css = '' +\n    '.fbw-btn{position:fixed;bottom:20px;' + side + ':20px;width:60px;height:60px;border-radius:50%;border:0;cursor:pointer;' +\n    'background:' + color + ';color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.25);z-index:2147483000;display:flex;align-items:center;' +\n    'justify-content:center;transition:transform .15s}' +\n    '.fbw-btn:hover{transform:scale(1.06)}.fbw-btn:focus-visible{outline:3px solid #ffbf47;outline-offset:3px}' +\n    '.fbw-btn svg{width:28px;height:28px}' +\n    '.fbw-pill{position:fixed;bottom:34px;' + side + ':92px;background:#fff;color:#1b1f27;font:600 14px/1.3 system-ui,-apple-system,\"Apple SD Gothic Neo\",\"Malgun Gothic\",sans-serif;' +\n    'padding:9px 14px;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.18);z-index:2147483000;cursor:pointer;white-space:nowrap}' +\n    '.fbw-panel{position:fixed;bottom:92px;' + side + ':20px;width:380px;height:min(640px,calc(100vh - 120px));border-radius:18px;' +\n    'overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.28);z-index:2147483001;background:#fff;display:none}' +\n    '.fbw-panel.open{display:block}.fbw-panel iframe{width:100%;height:100%;border:0;display:block}' +\n    '.fbw-x{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;border:0;cursor:pointer;' +\n    'background:rgba(0,0,0,.35);color:#fff;font-size:18px;line-height:34px;z-index:2}' +\n    '.fbw-x:focus-visible{outline:3px solid #ffbf47}' +\n    '@media (max-width:520px){.fbw-panel{inset:0;width:auto;height:auto;border-radius:0;bottom:0;' + side + ':0}' +\n    '.fbw-pill{display:none}}';\n\n  function init() {\n    var st = document.createElement('style');\n    st.textContent = css;\n    document.head.appendChild(st);\n\n    var btn = document.createElement('button');\n    btn.className = 'fbw-btn';\n    btn.type = 'button';\n    btn.setAttribute('aria-label', label);\n    btn.setAttribute('aria-expanded', 'false');\n    btn.setAttribute('aria-controls', 'fbw-panel');\n    var ICON_CHAT = '\u003csvg viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\">\u003cpath d=\"M12 3C6.5 3 2 6.6 2 11c0 2.4 1.3 4.6 3.4 6.1L4.5 21l4.3-2.3c1 .2 2.1.3 3.2.3 5.5 0 10-3.6 10-8s-4.5-8-10-8z\"/>\u003c/svg>';\n    var ICON_X = '\u003csvg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" aria-hidden=\"true\">\u003cpath d=\"M6 6l12 12M18 6L6 18\"/>\u003c/svg>';\n    btn.innerHTML = ICON_CHAT;\n\n    var pill = document.createElement('div');\n    pill.className = 'fbw-pill';\n    pill.textContent = label;\n\n    var panel = document.createElement('div');\n    panel.className = 'fbw-panel';\n    panel.id = 'fbw-panel';\n    panel.setAttribute('role', 'dialog');\n    panel.setAttribute('aria-label', label);\n    var x = document.createElement('button');\n    x.className = 'fbw-x';\n    x.type = 'button';\n    x.setAttribute('aria-label', '챗봇 닫기');\n    x.textContent = '✕';\n    panel.appendChild(x);\n\n    var frame = null;\n    function setOpen(on) {\n      if (on && !frame) {\n        frame = document.createElement('iframe');\n        frame.src = url;\n        frame.title = label;\n        frame.setAttribute('loading', 'lazy');\n        panel.appendChild(frame);\n      }\n      panel.classList.toggle('open', on);\n      btn.setAttribute('aria-expanded', on ? 'true' : 'false');\n      btn.innerHTML = on ? ICON_X : ICON_CHAT;\n      if (pill.parentNode) pill.parentNode.removeChild(pill);\n      if (on) { setTimeout(function () { try { frame.focus(); } catch (e) { /* 무시 */ } }, 60); }\n      else btn.focus();\n    }\n    btn.onclick = function () { setOpen(!panel.classList.contains('open')); };\n    pill.onclick = function () { setOpen(true); };\n    x.onclick = function () { setOpen(false); };\n    document.addEventListener('keydown', function (e) {\n      if (e.key === 'Escape' && panel.classList.contains('open')) setOpen(false);\n    });\n    // 챗봇 안에서 Esc 를 누르면 챗봇이 알려 준다\n    window.addEventListener('message', function (e) {\n      if (frame && e.source === frame.contentWindow && e.data && e.data.type === 'faqbot:close') setOpen(false);\n    });\n\n    document.body.appendChild(panel);\n    document.body.appendChild(pill);\n    document.body.appendChild(btn);\n    if (attr('data-open') === 'true') setOpen(true);\n  }\n\n  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);\n  else init();\n})();\n","examples":{"academy":{"config":{"name":"바른수학학원","tagline":"수강료·시간표·레벨테스트 상담 챗봇","avatar":"📐","theme":{"primary":"#23408e","accent":"#ff8a3d","bg":"#f1f4fb"},"greeting":"안녕하세요, **바른수학학원** 상담 챗봇이에요 📐\n수강료, 시간표, 레벨테스트처럼 학부모님들이 자주 묻는 질문에 바로 답해 드릴게요.","placeholder":"예: 레벨테스트는 어떻게 봐요?","examples":["레벨테스트는 어떻게 봐요?","수강료가 얼마인가요?","결석하면 보강해 주나요?"],"noMatch":"죄송해요, 그 질문은 상담 선생님께 직접 물어봐 주시면 정확히 안내해 드릴게요.","contacts":[{"label":"📞 상담 전화","url":"tel:051-000-0000"},{"label":"💬 카카오톡 상담","url":"https://pf.kakao.com/"}],"footer":"※ 데모용 가상 학원입니다","widgetLabel":"학원 상담 챗봇"},"csv":"카테고리,질문,답변,키워드,링크\r\n수업,어떤 반이 있나요?,\"초등 5·6학년, 중등 1~3학년, 고등 1·2학년 반을 운영해요. 학년마다 레벨테스트 결과에 따라 기본반과 심화반으로 나뉘어요.\",\"반, 반편성, 학년, 초등, 중등, 고등, 중학생, 고등학생, 초등학생, 대상, 심화반\",\r\n수업,수업 시간표가 어떻게 되나요?,\"초등반은 월·수·금 오후 4시~5시 30분, 중등반은 화·목 오후 5~7시와 토요일 오전, 고등반은 월·수·금 오후 7~10시예요.\n반별 자세한 시간표는 상담 때 안내해 드려요.\",\"시간표, 수업시간, 요일, 몇시, 스케줄, 일정, 언제 수업\",\r\n상담·등록,레벨테스트는 어떻게 보나요?,전화나 카카오톡으로 예약하면 평일 오후에 50분 동안 **무료**로 테스트를 봐요. 끝나면 바로 결과 상담을 해 드려요.,\"레벨테스트, 레테, 테스트, 입학테스트, 진단평가, 시험, 입학시험\",\r\n상담·등록,수강료는 얼마인가요?,\"초등반 월 28만 원, 중등반 월 35만 원, 고등반 월 42만 원이에요(교재비 별도).\n모두 교육청에 신고한 금액이에요.\",\"수강료, 학원비, 원비, 가격, 비용, 얼마, 금액, 교습비, 한달\",\r\n상담·등록,형제가 같이 다니면 할인되나요?,형제·자매·남매가 함께 다니면 둘째부터 수강료를 10% 할인해 드려요.,\"형제, 자매, 남매, 형제할인, 다자녀, 할인, 동생\",\r\n상담·등록,수강료는 어떻게 내나요?,매달 1일에 카드나 계좌이체로 내면 돼요. 결제 링크를 문자로 보내 드려서 휴대폰으로도 낼 수 있어요.,\"결제, 납부, 카드결제, 계좌이체, 입금, 학원비 결제, 결제방법\",\r\n상담·등록,환불은 어떻게 되나요?,\"「학원의 설립·운영 및 과외교습에 관한 법률」에 정해진 환불 기준을 따라요.\n예를 들어 한 달 수업 중 1/3이 지나기 전에 그만두면 낸 수강료의 2/3를, 절반이 지나기 전이면 1/2을 돌려받아요. 자세한 내용은 상담 때 안내해 드려요.\",\"환불, 환불규정, 그만두면, 중도퇴원, 퇴원, 취소, 반환, 그만둘때\",\r\n상담·등록,학기 중간에 들어가도 따라갈 수 있나요?,\"레벨테스트를 보고 맞는 반에 배정하고, 처음 2주 동안 빠진 진도를 따로 보충해 드려요.\",\"중간, 중도입학, 신규, 따라갈수, 진도, 처음, 등록, 중간에 들어가도\",\r\n수업,결석하면 보강해 주나요?,미리 연락 주신 결석은 같은 주 안에 보강 수업을 잡아 드려요. 갑자기 아파서 빠진 경우에도 영상 강의와 개별 질문 시간으로 보충해 드려요.,\"결석, 보강, 빠지면, 못가면, 아파서, 보충, 영상강의, 결석하면\",\r\n수업,숙제는 얼마나 나오나요?,수업마다 30~60분 정도의 숙제가 나와요. 숙제 검사 결과는 매주 학부모님께 문자로 알려 드려요.,\"숙제, 과제, 숙제량, 숙제검사, 숙제 많아요\",\r\n수업,내신 대비는 어떻게 하나요?,시험 4주 전부터 학교별 기출문제와 프린트로 내신 대비반을 운영해요. 주말 특강도 따로 열어요.,\"내신, 시험대비, 중간고사, 기말고사, 기출, 학교시험, 특강, 내신대비\",\r\n학부모,아이 학습 상황은 어떻게 알 수 있나요?,\"매달 말에 학습 리포트(진도, 테스트 점수, 수업 태도)를 보내 드리고, 학기마다 한 번씩 학부모 상담을 해요.\",\"학부모상담, 상담, 리포트, 성적표, 진도, 피드백, 알림, 성적\",\r\n이용 안내,학원 차량을 운행하나요?,초등반과 중등반은 학원 차량이 정해진 노선으로 운행해요. 고등반은 차량을 운행하지 않아요.,\"차량, 셔틀, 픽업, 운행, 학원차, 버스, 하원, 등원\",\r\n이용 안내,교재비는 따로 내나요?,\"학기마다 교재를 1~2권 쓰고, 책값만 받아요(한 권에 1만 5천~2만 원).\",\"교재, 교재비, 책, 문제집, 책값\",\r\n이용 안내,자습실이 있나요?,수업이 없는 시간에는 자습실을 무료로 쓸 수 있어요(평일 오후 2시~밤 10시). 조교 선생님이 질문도 받아 줘요.,\"자습, 자습실, 독서실, 공부방, 질문, 조교, 자습시간\",\r\n"},"cafe":{"config":{"name":"온기 커피 로스터스","tagline":"영업시간·메뉴·주차, 무엇이든 물어보세요","avatar":"☕","theme":{"primary":"#5b3a29","accent":"#e0a84f","bg":"#f7f2ec"},"greeting":"안녕하세요, **온기 커피 로스터스**예요 ☕\n영업시간, 메뉴, 주차처럼 자주 묻는 질문에 바로 답해 드릴게요.","placeholder":"예: 주차 돼요?","examples":["오늘 몇 시까지 해요?","디카페인도 있나요?","강아지 데려가도 돼요?"],"noMatch":"앗, 그 질문은 아직 준비가 안 됐어요. 아래 버튼으로 매장에 직접 물어봐 주세요!","contacts":[{"label":"📞 전화하기","url":"tel:051-000-0000"},{"label":"📷 인스타그램 DM","url":"https://www.instagram.com/"},{"label":"📍 길찾기","url":"https://map.naver.com/"}],"footer":"※ 데모용 가상 매장입니다","widgetLabel":"궁금한 건 챗봇에게!"},"csv":"카테고리,질문,답변,키워드,링크\r\n영업,영업시간이 어떻게 되나요?,\"평일 08:00~21:00, 주말·공휴일 10:00~21:00이에요.\n음료 주문은 마감 30분 전(20:30)까지 받아요.\",\"영업시간, 몇시, 몇시까지, 몇시부터, 오픈, 마감, 문닫는시간, 운영시간, 언제까지, 닫아요, 문 닫아요, 몇시에 열어요, 주말, 토요일, 일요일, 공휴일\",\r\n영업,쉬는 날이 있나요?,매주 **월요일**은 정기 휴무예요. 명절 휴무는 인스타그램에 미리 공지해요.,\"휴무, 쉬는날, 정기휴무, 월요일, 명절, 설날, 추석, 오늘 문 열어요\",인스타그램 공지 보기=https://www.instagram.com/\r\n위치·주차,매장이 어디에 있나요?,\"부산 금정구 가상로 12, 1층이에요. 지하철역 3번 출구에서 걸어서 5분 거리예요.\",\"위치, 주소, 어디, 오시는길, 찾아가는길, 지하철, 역, 버스\",네이버 지도로 보기=https://map.naver.com/\r\n위치·주차,주차할 수 있나요?,\"매장 뒤편에 4대까지 주차할 수 있어요. 자리가 없으면 맞은편 공영주차장(유료)을 이용해 주세요.\n음료를 사시면 1시간 무료 주차권을 드려요.\",\"주차, 주차장, 차, 자동차, 주차비, 무료주차, 주차권, 차 가지고, 차 끌고, 차 가져가도\",\r\n메뉴,디카페인 커피도 있나요?,네! 모든 에스프레소 음료를 디카페인 원두로 바꿀 수 있어요(+500원).,\"디카페인, 카페인, 디카프, decaf, 임산부, 밤에 마셔도\",\r\n메뉴,우유를 두유나 오트밀크로 바꿀 수 있나요?,두유·오트밀크로 바꿀 수 있어요(+500원). 락토프리 우유는 추가 요금이 없어요.,\"두유, 오트, 오트밀크, 귀리우유, 락토프리, 우유변경, 비건, 우유 알레르기\",\r\n메뉴,대표 메뉴가 뭐예요?,\"흑임자 크림을 올린 **온기 라떼**와, 매장에서 직접 볶은 원두로 내리는 **핸드드립**이 가장 인기 있어요.\",\"시그니처, 추천, 인기, 대표메뉴, 맛있는거, 메뉴추천, 뭐가 맛있어요, 베스트\",\r\n메뉴,디저트도 파나요?,매일 아침 구운 스콘·휘낭시에·바스크 치즈케이크를 팔아요. 오후에는 품절될 수 있어요.,\"디저트, 케이크, 스콘, 빵, 휘낭시에, 치즈케이크, 베이커리, 간식\",\r\n주문·결제,포장이나 배달도 되나요?,\"모든 메뉴를 포장할 수 있어요. 배달은 배달앱에서 \"\"온기 커피 로스터스\"\"를 검색해 주세요.\",\"포장, 테이크아웃, 배달, 배민, 쿠팡이츠, 요기요, 배달앱\",\r\n주문·결제,텀블러를 가져가면 할인되나요?,개인 텀블러를 가져오시면 음료 한 잔에 300원을 할인해 드려요.,\"텀블러, 할인, 개인컵, 리유저블, 다회용컵, 텀블러할인\",\r\n주문·결제,어떤 결제 수단을 쓸 수 있나요?,\"카드, 현금, 삼성페이·애플페이, 지역화폐를 받아요. 현금영수증도 발급해 드려요.\",\"결제, 카드, 현금, 페이, 애플페이, 삼성페이, 지역화폐, 현금영수증, 계좌이체\",\r\n주문·결제,기프티콘으로 선물할 수 있나요?,\"카카오톡 선물하기에서 \"\"온기 커피 로스터스\"\"를 검색하면 음료·원두 기프티콘을 보낼 수 있어요.\",\"기프티콘, 선물, 선물하기, 카카오톡선물, 쿠폰, 상품권\",\r\n매장 이용,와이파이 비밀번호가 뭐예요?,\"와이파이 이름은 ONGI_GUEST이고, 비밀번호는 영수증 아래쪽에 적혀 있어요.\",\"와이파이, wifi, 와파, 와이파이비번, 비번, 비밀번호, 인터넷\",\r\n매장 이용,콘센트 있는 자리가 있나요?,창가 바 테이블과 2층 큰 테이블에 콘센트가 있어요. 노트북 작업도 편하게 하세요.,\"콘센트, 충전, 노트북, 카공, 공부, 작업, 전원\",\r\n매장 이용,반려동물과 함께 가도 되나요?,목줄을 한 작은 반려견은 1층 테라스석에서 함께 있을 수 있어요. 실내 동반은 어려운 점 양해 부탁드려요.,\"반려동물, 강아지, 반려견, 애견, 애견동반, 고양이, 펫, 애완견\",\r\n단체·예약,단체 예약이나 대관이 되나요?,8명 이상 단체석은 하루 전까지 전화로 예약해 주세요. 2층 전체 대관(최대 20명)은 평일 저녁에 할 수 있어요.,\"단체, 예약, 대관, 모임, 단체석, 회식, 생일파티, 자리 예약\",전화로 예약하기=tel:051-000-0000\r\n원두,원두도 따로 살 수 있나요?,매장에서 직접 볶은 원두를 200g·500g 단위로 팔아요. 원하시면 핸드드립·에스프레소용으로 갈아 드려요.,\"원두, 원두구매, 로스팅, 홀빈, 분쇄, 그라인딩, 커피콩, 원두 사고싶어요\",\r\n원두,원두를 택배로 주문할 수 있나요?,온라인 스토어에서 주문하시면 월·목요일에 볶아서 그날 바로 보내 드려요.,\"택배, 배송, 스마트스토어, 온라인, 정기배송, 구독, 원두배송\",온라인 스토어 가기=https://smartstore.naver.com/\r\n"},"club":{"config":{"name":"밴드 동아리 울림","tagline":"신입 부원 모집 Q&A","avatar":"🎸","theme":{"primary":"#6b2fb3","accent":"#ffcc00","bg":"#f5f0fb"},"greeting":"안녕하세요! **밴드 동아리 울림** 신입 모집 챗봇이에요 🎸\n지원 방법, 활동, 회비처럼 궁금한 점을 물어보세요.","placeholder":"예: 악기를 못 쳐도 돼요?","examples":["악기를 못 쳐도 들어갈 수 있나요?","지원 마감이 언제예요?","회비는 얼마예요?"],"noMatch":"그 질문은 아직 준비가 안 됐어요. 오픈채팅으로 물어보면 운영진이 바로 답해 줄 거예요!","contacts":[{"label":"💬 오픈채팅 문의","url":"https://open.kakao.com/"},{"label":"📷 인스타그램","url":"https://www.instagram.com/"},{"label":"📝 지원서 쓰기","url":"https://forms.gle/"}],"footer":"※ 데모용 가상 동아리입니다","widgetLabel":"신입 모집 Q&A"},"csv":"카테고리,질문,답변,키워드,링크\r\n지원,지원 기간이 언제예요?,\"1학기는 3월 2일~3월 14일, 2학기는 9월 1일~9월 12일에 신입 부원을 모집해요.\",\"지원기간, 모집기간, 마감, 지원마감, 모집, 신입모집, 언제까지\",\r\n지원,어떻게 지원하나요?,구글 폼 지원서를 내면 3일 안에 면접 일정을 문자로 알려 드려요.,\"지원, 지원방법, 지원서, 구글폼, 신청, 가입, 가입방법, 들어가려면\",지원서 쓰기=https://forms.gle/\r\n지원,악기를 못 쳐도 들어갈 수 있나요?,물론이에요! 신입 부원의 절반 넘게 초보자예요. 첫 학기에 선배들이 파트별로 기초부터 알려 줘요.,\"초보, 초보자, 왕초보, 악기 못쳐도, 처음, 처음인데, 괜찮, 할줄 몰라도, 경험없어도, 실력, 입문\",\r\n지원,오디션이 있나요?,실력을 보는 오디션은 없어요. 10분 정도 가볍게 이야기하는 면접만 봐요. 보컬 지원자는 원하면 한 소절 불러 봐도 돼요.,\"오디션, 면접, 실기, 테스트, 실력테스트\",\r\n지원,다른 학교 학생이나 졸업생도 지원할 수 있나요?,재학생과 휴학생만 정회원으로 지원할 수 있어요. 졸업생은 OB 회원으로 공연에 함께할 수 있어요.,\"타학교, 다른학교, 졸업생, 휴학생, 대학원생, 지원자격, 자격\",\r\n활동,어떤 파트가 있나요?,\"보컬, 기타, 베이스, 드럼, 키보드 다섯 파트가 있어요. 지원서에 1·2지망 파트를 적어 주세요.\",\"파트, 보컬, 기타, 베이스, 드럼, 키보드, 건반, 세션\",\r\n활동,정기 모임은 언제 하나요?,\"매주 수요일 저녁 7시에 전체 모임을 하고, 팀 합주는 팀끼리 시간을 정해서 해요.\",\"정기모임, 모임, 요일, 합주, 연습, 연습시간, 모임시간\",\r\n활동,공연은 몇 번 하나요?,\"학기마다 정기공연 1번, 축제 공연 1번을 해요. 버스킹이나 연합 공연은 원하는 팀만 나가요.\",\"공연, 정기공연, 축제, 버스킹, 무대, 연합공연\",\r\n활동,활동을 꼭 매주 나가야 하나요?,정기 모임은 한 달에 2번 이상 나오는 걸 권해요. 시험 기간에는 모임을 쉬어요.,\"출석, 필수, 의무, 빠지면, 시험기간, 바쁘면, 활동량, 매주\",\r\n활동,동아리방은 어디에 있나요?,학생회관 3층 312호예요. 예약표에 이름을 적으면 부원 누구나 연습실로 쓸 수 있어요.,\"동아리방, 동방, 위치, 어디, 연습실, 학생회관\",\r\n활동,뒤풀이에 꼭 가야 하나요?,\"아니요, 뒤풀이는 자유 참여예요. 술을 마시지 않아도 전혀 문제없어요.\",\"뒤풀이, 회식, 술, 음주, 강제, 술자리\",\r\n활동,MT도 가나요?,\"학기마다 1박 2일로 MT를 가요(참가비 따로, 자유 참여).\",\"엠티, mt, 여행, 1박2일, 수련회\",\r\n회비·장비,회비는 얼마예요?,한 학기 회비는 3만 원이에요. 동아리방 장비 관리와 공연장 대관비로 써요.,\"회비, 비용, 돈, 얼마, 가입비, 학기회비\",\r\n회비·장비,악기가 없어도 되나요?,\"동아리방에 드럼, 앰프, 키보드, 연습용 기타·베이스가 있어서 개인 악기가 없어도 연습할 수 있어요.\",\"악기, 장비, 악기없어도, 없는데, 없어요, 앰프, 대여, 빌려, 악기대여\",\r\n"},"mureobot":{"config":{"name":"물어봇","tagline":"월 이용료 0원 FAQ 챗봇 — 무엇이든 물어보세요","avatar":"🙋","theme":{"primary":"#2342b8","accent":"#ffd23f","bg":"#f3f5fb"},"greeting":"안녕하세요, **물어봇**이에요 🙋\n가격, 제작 기간, 설치 방법처럼 궁금한 걸 물어보세요. 지금 이 대화도 물어봇으로 만든 챗봇이에요.","placeholder":"예: 가격이 얼마예요?","examples":["가격이 얼마예요?","홈페이지가 없어도 되나요?","GPT 챗봇이랑 뭐가 달라요?"],"noMatch":"그 질문은 아직 준비가 안 됐어요. 크몽에서 문의해 주시면 바로 답해 드릴게요.","contacts":[{"label":"🛒 크몽에서 주문·문의","url":"https://kmong.com/search?keyword=%EB%AC%BC%EC%96%B4%EB%B4%87"}],"footer":"물어봇 · 이 챗봇도 물어봇으로 만들었어요","widgetLabel":"물어봇에게 물어보세요"},"csv":"카테고리,질문,답변,키워드,링크\r\n가격,가격이 얼마예요?,\"**STANDARD 39,000원**(질문 15개), **DELUXE 79,000원**(질문 40개·로고·홈페이지 버튼), **PREMIUM 149,000원**(질문 80개·설치 대행·QR 안내문)이에요. 월 이용료는 없어요.\",\"가격, 얼마, 비용, 요금, 견적, 패키지, 금액\",\r\n가격,매달 내는 돈이 있나요?,\"없어요. 챗봇이 파일 하나로 동작해서 서버비·AI 사용료가 들지 않아요. 원하시면 **월 관리(19,900원)**로 매달 답변을 보강해 드려요.\",\"월 이용료, 매달, 유지비, 구독, 서버비, 월정액, 관리비, 유지 비용\",\r\n제작,만드는 데 얼마나 걸려요?,\"요청서를 받은 뒤 STANDARD 3일, DELUXE 4일, PREMIUM 5일이에요. 급하시면 하루 단축 옵션도 있어요.\",\"기간, 며칠, 얼마나 걸려, 작업기간, 빨리, 급해요, 언제 받아\",\r\n제작,무엇을 준비하면 되나요?,\"손님이 자주 묻는 질문을 대충 적어 주시거나, 네이버 플레이스·인스타 공지 캡처만 보내 주세요. 로고와 전화·카톡·예약 링크가 있으면 함께 주세요.\",\"준비, 준비물, 자료, 필요한것, 뭐 보내, 요청서\",\r\n기능,GPT 챗봇이랑 뭐가 달라요?,\"GPT 챗봇은 자유롭게 대화하지만 가끔 사실과 다른 답을 지어내고 사용료가 나와요. 물어봇은 **사장님이 확인한 답만** 보여 줘서 틀린 안내를 하지 않고, 비용이 없어요.\",\"gpt, 챗gpt, 지피티, 인공지능, ai, 차이, 다른점, 뭐가 달라\",\r\n기능,질문을 못 알아들으면 어떻게 돼요?,\"“혹시 이 질문인가요?”로 비슷한 질문을 보여 주고, 그래도 없으면 전화·카카오톡 버튼으로 연결해요. 오타는 “혹시 ‘주차’?”처럼 되물어요.\",\"못알아들으면, 엉뚱한, 오타, 모르는 질문, 틀리면, 못 찾으면\",\r\n기능,예약이나 결제도 되나요?,아니요. 물어봇은 자주 묻는 질문에 답하는 챗봇이에요. 예약·결제는 네이버 예약 같은 기존 링크로 연결해 드려요.,\"예약, 결제, 주문 접수, 예약기능, 결제기능, 장바구니\",\r\n기능,어떤 업종에 맞나요?,\"카페·음식점, 펜션·숙박, 학원, 미용실·네일, 필라테스·헬스, 쇼핑몰, 동아리·학생회처럼 같은 질문을 자주 받는 곳이면 다 좋아요. 의료·법률·투자 상담용은 만들지 않아요.\",\"업종, 어떤 가게, 학원, 펜션, 카페, 미용실, 쇼핑몰, 동아리, 병원\",\r\n설치,홈페이지가 없어도 되나요?,\"네. 챗봇 주소(링크)를 인스타그램 프로필, 카카오톡 채널, 네이버 플레이스에 넣고, 매장에는 QR 코드를 붙이면 돼요.\",\"홈페이지 없어요, 홈페이지 없는데, 링크, qr, 큐알, 인스타, 네이버플레이스\",\r\n설치,홈페이지에 붙일 수 있나요?,아임웹·카페24·워드프레스처럼 HTML을 넣을 수 있는 홈페이지라면 **코드 한 줄**로 오른쪽 아래에 떠 있는 버튼이 생겨요. PREMIUM은 설치까지 대신해 드려요.,\"홈페이지, 위젯, 아임웹, 카페24, 워드프레스, 설치, 붙이기, 버튼\",\r\n설치,카카오톡 채널 자동응답이 되나요?,\"카카오톡 채널 안의 챗봇이 아니라, 채널 소개나 자동 메시지에 챗봇 링크를 넣어 연결하는 방식이에요.\",\"카카오톡, 카톡, 카카오채널, 자동응답, 플러스친구\",\r\n관리,나중에 내용을 바꿀 수 있나요?,네. 질문표(엑셀)를 고쳐 보내 주시면 반영해 드려요(패키지별 수정 횟수 안에서). 월 관리를 이용하시면 매달 답변을 보강해 드려요.,\"수정, 변경, 바꾸기, 업데이트, 고치기, 추가\",\r\n관리,손님 정보가 저장되나요?,\"아니요. 손님 질문은 저장되지도, 어디로 보내지지도 않아요. 월 관리 고객이 원하시면 답하지 못한 질문만 익명으로 모을 수 있어요.\",\"개인정보, 저장, 보안, 기록, 수집, 로그\",\r\n관리,챗봇 파일은 누구 거예요?,사장님 거예요. 챗봇 파일과 질문표(엑셀)를 그대로 드려요.,\"소유, 소스, 파일, 저작권, 원본, 소스코드\",\r\n주문,어떻게 주문하나요?,크몽에서 **‘물어봇’**을 검색해 주문해 주세요. 결제 후 요청서를 작성하시면 바로 시작해요.,\"주문, 신청, 구매, 의뢰, 맡기기, 크몽, 문의\",크몽에서 보기=https://kmong.com/search?keyword=%EB%AC%BC%EC%96%B4%EB%B4%87\r\n"},"pension":{"config":{"name":"숲속별빛 펜션","tagline":"입실·바베큐·환불 규정을 바로 알려 드려요","avatar":"🌲","theme":{"primary":"#1f5f4a","accent":"#f2c14e","bg":"#eef4f0"},"greeting":"안녕하세요, **숲속별빛 펜션**이에요 🌲\n입실 시간, 바베큐, 환불 규정처럼 자주 묻는 질문에 바로 답해 드릴게요.","placeholder":"예: 바베큐 비용이 얼마예요?","examples":["체크인 몇 시예요?","바베큐 비용이 얼마예요?","강아지 데려가도 되나요?"],"noMatch":"죄송해요, 그 질문은 아직 답을 준비하지 못했어요. 아래 버튼으로 사장님께 직접 물어봐 주세요.","contacts":[{"label":"📞 전화 문의","url":"tel:010-0000-0000"},{"label":"💬 카카오톡 채널","url":"https://pf.kakao.com/"},{"label":"🗓 예약하기","url":"https://booking.naver.com/"}],"footer":"※ 데모용 가상 펜션입니다","widgetLabel":"예약 전 궁금한 점, 물어보세요"},"csv":"카테고리,질문,답변,키워드,링크\r\n입실·퇴실,체크인·체크아웃 시간이 언제인가요?,\"체크인은 **오후 3시**, 체크아웃은 **오전 11시**예요.\n앞뒤 날짜가 비어 있으면 얼리 체크인·레이트 체크아웃(1시간 1만 원)도 가능하니 미리 물어봐 주세요.\",\"체크인, 체크아웃, 입실, 퇴실, 입실시간, 퇴실시간, 몇시, 얼리체크인, 레이트체크아웃, 늦게 퇴실, 퇴실 연장, 일찍 입실\",\r\n입실·퇴실,늦게 도착해도 되나요?,밤 10시 이후에 도착할 예정이면 미리 연락 주세요. 셀프 체크인 방법(출입 비밀번호)을 문자로 보내 드려요.,\"늦게, 늦은, 늦게도착, 도착, 밤늦게, 셀프체크인, 출입비밀번호, 야간\",\r\n요금·예약,기준 인원보다 더 오면 추가 요금이 있나요?,\"객실마다 기준 인원과 최대 인원이 달라요. 기준 인원을 넘으면 1명당 1박 2만 원이 추가돼요(만 3세 미만 무료).\n최대 인원을 넘어서 묵을 수는 없어요.\",\"인원, 인원추가, 추가요금, 기준인원, 최대인원, 몇명, 사람 추가, 인원초과\",\r\n요금·예약,예약은 어떻게 하나요?,네이버 예약이나 전화로 예약할 수 있어요. 예약금 입금이 확인되면 예약이 확정돼요.,\"예약, 예약방법, 네이버예약, 예약하기, 예약금, 입금, 예약확정\",네이버 예약=https://booking.naver.com/\r\n요금·예약,예약을 취소하면 환불받을 수 있나요?,\"이용일 기준으로 7일 전까지 100%, 5~6일 전 70%, 3~4일 전 50%, 1~2일 전 20%를 돌려드려요. 이용 당일 취소는 환불이 어려워요.\n천재지변으로 이용할 수 없으면 전액 환불해 드려요.\",\"환불, 취소, 환불규정, 위약금, 취소수수료, 날짜변경, 예약취소, 천재지변\",\r\n시설,바베큐를 할 수 있나요?,\"객실마다 전용 바베큐장이 있어요. 숯·그릴 세트는 2만 원(4인 기준)이고 오후 5시부터 9시 30분까지 쓸 수 있어요.\n고기와 식재료는 직접 준비해 주세요.\",\"바베큐, 바비큐, bbq, 숯, 그릴, 고기, 불판, 바베큐비용, 바베큐 가격\",\r\n시설,불멍도 할 수 있나요?,\"네, 화로대 불멍 세트를 1만 5천 원에 빌려 드려요(장작 포함). 안전을 위해 밤 10시까지만 쓸 수 있어요.\",\"불멍, 화로, 화로대, 캠프파이어, 장작, 모닥불\",\r\n시설,수영장은 언제 운영하나요?,야외 수영장은 7월 1일부터 8월 31일까지 오전 10시~오후 7시에 운영해요. 객실 안 개별 스파는 1년 내내 쓸 수 있어요.,\"수영장, 풀, 물놀이, 스파, 자쿠지, 온수, 수영, 개별스파\",\r\n시설,와이파이가 되나요?,모든 객실에서 무료 와이파이를 쓸 수 있어요. 비밀번호는 객실 안내문에 적혀 있어요.,\"와이파이, wifi, 와파, 인터넷, 와이파이비번, 비번\",\r\n시설,객실에서 요리할 수 있나요?,\"모든 객실에 인덕션, 냉장고, 전자레인지, 밥솥, 기본 식기가 있어요. 생선처럼 냄새가 많이 나는 요리는 바베큐장을 이용해 주세요.\",\"취사, 요리, 주방, 조리, 식기, 냄비, 밥솥, 인덕션, 냉장고\",\r\n시설,수건이나 세면도구가 있나요?,\"수건(1인 2장), 샴푸, 린스, 바디워시, 드라이기가 있어요. 칫솔과 치약은 챙겨 와 주세요.\",\"수건, 타월, 어메니티, 샴푸, 세면도구, 칫솔, 치약, 드라이기, 비품\",\r\n이용 안내,반려동물과 함께 묵을 수 있나요?,\"반려견 동반 전용 객실(별빛동 101·102호)에서만 함께 지낼 수 있어요. 한 마리당 1박 1만 5천 원이 추가되고, 최대 2마리까지 가능해요.\",\"반려동물, 강아지, 반려견, 애견, 애견동반, 펫, 고양이, 애견펜션\",\r\n이용 안내,아기와 함께 가도 괜찮을까요?,\"아기 침대, 아기 의자, 젖병 소독기를 무료로 빌려 드려요. 예약할 때 미리 말씀해 주세요.\",\"아기, 애기, 유아, 영유아, 아기침대, 아기의자, 젖병, 소독기, 키즈, 아이\",\r\n주변 정보,근처에 마트가 있나요?,\"차로 5분 거리에 마트가 있어요(밤 9시 마감). 펜션 관리동에서도 생수, 라면, 얼음을 팔아요.\",\"마트, 편의점, 장보기, 매점, 얼음, 생수, 라면, 슈퍼\",\r\n주변 정보,주변에 가 볼 만한 곳이 있나요?,차로 15분 거리에 계곡 산책로와 전망대가 있어요. 체크인할 때 주변 맛집 지도도 드려요.,\"관광, 주변, 근처, 가볼만한곳, 맛집, 계곡, 산책, 여행, 놀거리\",\r\n이용 안내,픽업 서비스가 있나요?,\"가장 가까운 버스터미널에서 무료로 픽업해 드려요(오후 3~6시, 하루 전 예약 필수).\",\"픽업, 셔틀, 터미널, 버스, 대중교통, 차없이, 뚜벅이, 데리러\",\r\n이용 안내,조식이 나오나요?,조식은 따로 드리지 않아요. 대신 관리동에서 토스트 키트(빵·잼·커피)를 1만 원에 팔아요.,\"조식, 아침, 아침밥, 브런치, 식사, 토스트, 아침식사\",\r\n"}}};
+  var A = window.BotAssemble, E = window.BotEngine;
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = 'faqbot-builder-v1';
+  var logo = null;
+
+  var LABELS = { cafe: '☕ 카페', pension: '🌲 펜션', academy: '📐 학원', club: '🎸 동아리', mureobot: '🙋 서비스 소개' };
+  Object.keys(P.examples).forEach(function (k) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = LABELS[k] || k;
+    b.onclick = function () { load(P.examples[k].config, P.examples[k].csv); toast('예시를 불러왔어요'); };
+    $('exBtns').appendChild(b);
+  });
+  var blank = document.createElement('button');
+  blank.type = 'button';
+  blank.textContent = '빈 양식';
+  blank.onclick = function () {
+    load({ name: '우리 가게', tagline: '자주 묻는 질문에 바로 답해 드려요', avatar: '💬', theme: { primary: '#1f4e9b', accent: '#f2b33d', bg: '#eef2fa' },
+      greeting: '안녕하세요! 궁금한 것을 물어보세요.', placeholder: '궁금한 것을 입력하세요', examples: [], noMatch: '죄송해요, 그 질문은 아직 준비가 안 됐어요. 아래 버튼으로 문의해 주세요.', contacts: [] },
+    A.HEADERS.join(',') + '\n');
+  };
+  $('exBtns').appendChild(blank);
+
+  function lines(s) { return String(s || '').split(/\r?\n/).map(function (x) { return x.trim(); }).filter(Boolean); }
+
+  function collect() {
+    var cfg = {
+      name: $('f-name').value.trim(),
+      tagline: $('f-tagline').value.trim(),
+      avatar: $('f-avatar').value.trim() || '💬',
+      theme: { primary: $('f-pri').value, accent: $('f-acc').value, bg: $('f-bg').value },
+      greeting: $('f-greeting').value,
+      placeholder: $('f-placeholder').value.trim(),
+      examples: lines($('f-examples').value),
+      noMatch: $('f-nomatch').value.trim(),
+      contacts: lines($('f-contacts').value).map(function (l) {
+        var i = l.indexOf('=');
+        return i > 0 ? { label: l.slice(0, i).trim(), url: l.slice(i + 1).trim() } : { label: '문의하기', url: l };
+      }),
+      footer: $('f-footer').value.trim()
+    };
+    if (logo) cfg.avatarImg = logo;
+    if ($('f-credit').value.trim()) cfg.credit = { label: $('f-credit').value.trim(), url: $('f-crediturl').value.trim() };
+    if ($('f-report').value.trim()) cfg.reportUrl = $('f-report').value.trim();
+    if (P.widgetLabel) cfg.widgetLabel = P.widgetLabel;
+    return cfg;
+  }
+
+  function load(cfg, csv) {
+    cfg = cfg || {};
+    var t = cfg.theme || {};
+    $('f-name').value = cfg.name || '';
+    $('f-tagline').value = cfg.tagline || '';
+    $('f-avatar').value = cfg.avatar || '💬';
+    $('f-pri').value = t.primary || '#1f4e9b';
+    $('f-acc').value = t.accent || '#f2b33d';
+    $('f-bg').value = t.bg || '#eef2fa';
+    $('f-greeting').value = cfg.greeting || '';
+    $('f-placeholder').value = cfg.placeholder || '';
+    $('f-examples').value = (cfg.examples || []).join('\n');
+    $('f-nomatch').value = cfg.noMatch || '';
+    $('f-contacts').value = (cfg.contacts || []).map(function (c) { return c.label + ' = ' + c.url; }).join('\n');
+    $('f-footer').value = cfg.footer || '';
+    $('f-credit').value = (cfg.credit && cfg.credit.label) || '';
+    $('f-crediturl').value = (cfg.credit && cfg.credit.url) || '';
+    $('f-report').value = cfg.reportUrl || '';
+    P.widgetLabel = cfg.widgetLabel || '';
+    setLogo(cfg.avatarImg || null);
+    $('f-csv').value = csv || '';
+    refresh();
+  }
+
+  function setLogo(dataUrl) {
+    logo = dataUrl;
+    $('logoPrev').hidden = !logo;
+    if (logo) $('logoPrev').querySelector('img').src = logo;
+  }
+
+  var current = { cfg: null, items: [], errors: [] };
+  function validate() {
+    var r = A.rowsToItems(A.parseCSV($('f-csv').value));
+    current.items = r.items;
+    current.errors = r.errors;
+    var fatal = r.errors.filter(function (e) { return !e.warn; });
+    var st = $('csvStatus');
+    var cats = {};
+    r.items.forEach(function (e) { if (e.cat) cats[e.cat] = 1; });
+    st.className = 'status' + (fatal.length || !r.items.length ? ' bad' : '');
+    st.textContent = fatal.length ? '고쳐야 할 줄이 ' + fatal.length + '개 있어요' :
+      (r.items.length ? '✔ 질문 ' + r.items.length + '개 · 분류 ' + Object.keys(cats).length + '개' : '질문·답변을 넣어 주세요');
+    $('csvErrs').innerHTML = r.errors.map(function (e) {
+      return '<li class="' + (e.warn ? 'warn' : '') + '">' + (e.warn ? '⚠ ' : '✖ ') + e.row + '번째 줄: ' + A.escHtml(e.msg) + '</li>';
+    }).join('');
+  }
+
+  function html() { return A.assemble(P.parts, current.cfg, current.items); }
+
+  var timer = null;
+  function refresh() {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      current.cfg = collect();
+      validate();
+      try { $('preview').srcdoc = html(); } catch (err) { toast(err.message); }
+      $('f-embed').value = A.embedSnippet($('f-url').value.trim(), current.cfg);
+      runTest();
+      save();
+    }, 350);
+  }
+
+  function runTest() {
+    var q = $('f-test').value.trim();
+    var out = $('testOut');
+    if (!q) { out.innerHTML = ''; return; }
+    var idx = E.prepare(current.items);
+    var res = E.search(idx, q).slice(0, 3);
+    var fix = null;
+    if (!res.length || res[0].s < E.CONFIDENT) {
+      fix = E.correct(q, E.vocab(idx));
+      if (fix) res = E.search(idx, fix.query).slice(0, 3);
+    }
+    out.innerHTML = (fix ? '<li style="list-style:none;margin-left:-18px">오타 교정: ' + A.escHtml(fix.query) + '</li>' : '') +
+      (res.length ? res.map(function (x) { return '<li>' + A.escHtml(x.e.q) + '<span class="sc">' + x.s + '점</span></li>'; }).join('')
+        : '<li style="list-style:none;margin-left:-18px">맞는 질문이 없어요 → "답을 못 찾았을 때" 문구가 나가요</li>');
+  }
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify({ cfg: current.cfg, csv: $('f-csv').value, url: $('f-url').value })); } catch (err) { /* 저장 불가 환경 */ }
+  }
+
+  function download(name, text, type) {
+    var blob = new Blob([text], { type: (type || 'text/plain') + ';charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+
+  var tt = null;
+  function toast(msg) {
+    var t = $('toast');
+    t.textContent = msg;
+    t.classList.add('on');
+    clearTimeout(tt);
+    tt = setTimeout(function () { t.classList.remove('on'); }, 2200);
+  }
+
+  document.querySelectorAll('main input, main textarea').forEach(function (n) {
+    if (n.type === 'file' || n.id === 'f-embed') return;
+    n.addEventListener('input', refresh);
+  });
+  $('f-test').addEventListener('input', runTest);
+
+  $('f-logo').onchange = function () {
+    var f = this.files[0];
+    if (!f) return;
+    if (f.size > 300 * 1024) toast('로고가 300KB보다 커요. 챗봇이 느려질 수 있어요.');
+    var r = new FileReader();
+    r.onload = function () { setLogo(r.result); refresh(); };
+    r.readAsDataURL(f);
+    this.value = '';
+  };
+  $('logoDel').onclick = function () { setLogo(null); refresh(); };
+
+  $('f-csvfile').onchange = function () {
+    var f = this.files[0];
+    if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      var text = String(r.result);
+      // 엑셀(한국어 윈도우)이 저장한 EUC-KR 파일이면 글자가 깨지므로 다시 읽는다
+      if (text.indexOf('�') >= 0) {
+        var r2 = new FileReader();
+        r2.onload = function () { $('f-csv').value = String(r2.result); refresh(); toast('EUC-KR 파일로 읽었어요'); };
+        r2.readAsText(f, 'euc-kr');
+        return;
+      }
+      $('f-csv').value = text.replace(/^﻿/, '');
+      refresh();
+    };
+    r.readAsText(f, 'utf-8');
+    this.value = '';
+  };
+
+  $('dlTpl').onclick = function () {
+    download('faq-양식.csv', A.toCSV([A.HEADERS, ['영업', '영업시간이 어떻게 되나요?', '평일 9시~18시예요.', '영업시간, 몇시, 오픈, 마감', ''],
+      ['위치', '주차할 수 있나요?', '건물 뒤에 3대 주차할 수 있어요.', '주차, 주차장, 차', '길찾기=https://map.naver.com/']]), 'text/csv');
+  };
+  $('dlCsv').onclick = function () {
+    var rows = A.parseCSV($('f-csv').value);
+    download((current.cfg.name || 'faq') + '.csv', A.toCSV(rows), 'text/csv');
+  };
+  $('dlHtml').onclick = function () {
+    current.cfg = collect();
+    validate();
+    var fatal = current.errors.filter(function (e) { return !e.warn; });
+    if (fatal.length || !current.items.length) { toast('질문·답변의 빨간 줄을 먼저 고쳐 주세요'); return; }
+    download('index.html', html(), 'text/html');
+  };
+  $('dlWidget').onclick = function () { download('widget.js', P.widget, 'text/javascript'); };
+  $('saveProj').onclick = function () {
+    download((current.cfg.name || 'faq-bot') + '.json', JSON.stringify({ config: collect(), csv: $('f-csv').value }, null, 2), 'application/json');
+  };
+  $('f-proj').onchange = function () {
+    var f = this.files[0];
+    if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      try { var p = JSON.parse(String(r.result)); load(p.config, p.csv); toast('프로젝트를 불러왔어요'); }
+      catch (err) { toast('프로젝트 파일을 읽지 못했어요'); }
+    };
+    r.readAsText(f, 'utf-8');
+    this.value = '';
+  };
+  $('cpEmbed').onclick = function () {
+    var t = $('f-embed');
+    t.select();
+    var done = function () { toast('복사했어요'); };
+    if (navigator.clipboard) navigator.clipboard.writeText(t.value).then(done, function () { document.execCommand('copy'); done(); });
+    else { document.execCommand('copy'); done(); }
+  };
+
+  var saved = null;
+  try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (err) { saved = null; }
+  if (saved && saved.cfg) { load(saved.cfg, saved.csv); $('f-url').value = saved.url || ''; }
+  else load(P.examples.cafe.config, P.examples.cafe.csv);
+})();
+</script>
+</body>
+</html>
