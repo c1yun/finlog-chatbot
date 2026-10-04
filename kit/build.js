@@ -46,8 +46,8 @@ function loadProject(dir) {
   return { config, items, errors };
 }
 
-function buildProject(dir, outRoot) {
-  const name = path.basename(path.resolve(dir));
+function buildProject(dir, outRoot, outName, publicUrl) {
+  const name = outName || path.basename(path.resolve(dir));
   const { config, items, errors } = loadProject(dir);
   const fatal = errors.filter((e) => !e.warn);
   errors.forEach((e) => console.log(`  ${e.warn ? '⚠' : '✖'} ${e.row}번째 줄: ${e.msg}`));
@@ -59,23 +59,25 @@ function buildProject(dir, outRoot) {
   const html = A.assemble(parts(), config, items);
   fs.writeFileSync(path.join(out, 'index.html'), html);
   fs.copyFileSync(path.join(SRC, 'widget.js'), path.join(out, 'widget.js'));
-  fs.writeFileSync(path.join(out, '설치안내.txt'), guide(config));
+  fs.writeFileSync(path.join(out, '설치안내.txt'), guide(config, publicUrl));
   const cats = new Set(items.map((e) => e.cat).filter(Boolean)).size;
   console.log(`✔ ${name}: 질문 ${items.length}개 · 분류 ${cats}개 · ${(html.length / 1024).toFixed(0)}KB → ${path.relative(process.cwd(), out)}/`);
   return out;
 }
 
-function guide(config) {
+function guide(config, publicUrl) {
+  const url = publicUrl || 'https://○○○.netlify.app/';
   return [
     `${config.name || 'FAQ 챗봇'} — 설치 안내`,
     '',
-    '1) 인터넷에 올리기 (무료, 1분)',
-    '   https://app.netlify.com/drop 에 이 폴더를 통째로 끌어다 놓으면 https://○○○.netlify.app 주소가 생깁니다.',
+    publicUrl ? '1) 챗봇 주소' : '1) 인터넷에 올리기 (무료)',
+    publicUrl ? '   ' + publicUrl
+      : '   GitHub Pages나 Netlify(가입 후 Drop)에 이 폴더를 올리면 https://○○○ 주소가 생깁니다.',
     '   이 주소를 인스타그램 프로필, 카카오톡 채널, 네이버 플레이스 소개에 넣으면 됩니다.',
     '',
     '2) 홈페이지에 떠 있는 버튼으로 붙이기 (선택)',
-    '   홈페이지의 </body> 바로 앞에 아래 한 줄을 넣고, 주소를 1)에서 받은 주소로 바꿔 주세요.',
-    '   ' + A.embedSnippet('https://○○○.netlify.app/', config),
+    '   홈페이지의 </body> 바로 앞에 아래 한 줄을 넣어 주세요.' + (publicUrl ? '' : ' 주소는 1)에서 받은 주소로 바꿔 주세요.'),
+    '   ' + A.embedSnippet(url, config),
     '',
     '3) 매장 안내용 QR 코드',
     '   네이버 QR코드 같은 무료 생성기에 1)의 주소를 넣어 QR 이미지를 만들고, 계산대·테이블에 붙여 두세요.',

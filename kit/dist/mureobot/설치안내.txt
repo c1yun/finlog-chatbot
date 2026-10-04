@@ -1,4 +1,4 @@
-밴드 동아리 울림 — 설치 안내
+물어봇 — 설치 안내
 
 1) 인터넷에 올리기 (무료)
    GitHub Pages나 Netlify(가입 후 Drop)에 이 폴더를 올리면 https://○○○ 주소가 생깁니다.
@@ -6,7 +6,7 @@
 
 2) 홈페이지에 떠 있는 버튼으로 붙이기 (선택)
    홈페이지의 </body> 바로 앞에 아래 한 줄을 넣어 주세요. 주소는 1)에서 받은 주소로 바꿔 주세요.
-   <script src="https://○○○.netlify.app/widget.js" data-color="#6b2fb3" data-label="신입 모집 Q&amp;A" defer></script>
+   <script src="https://○○○.netlify.app/widget.js" data-color="#2342b8" data-label="물어봇에게 물어보세요" defer></script>
 
 3) 매장 안내용 QR 코드
    네이버 QR코드 같은 무료 생성기에 1)의 주소를 넣어 QR 이미지를 만들고, 계산대·테이블에 붙여 두세요.
