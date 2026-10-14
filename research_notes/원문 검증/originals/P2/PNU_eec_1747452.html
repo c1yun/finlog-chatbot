@@ -1,0 +1,118 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+	
+
+
+	
+
+
+
+
+	
+
+
+
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="index, follow">
+        <title>알림메세지</title>
+        <script>
+			function jf_messageSubmit() {
+				
+				
+					
+						return true;
+					
+					
+				
+			}
+		</script>
+    </head>
+    <body>
+
+		<link rel="stylesheet" href="/Web-home/_UI/css/message/style.css">
+    	
+			<form id="messageForm" name="messageForm" method="post" action="/bbs/eehome/2654/artclList.do" onsubmit="return jf_messageSubmit();" class="_messageForm">
+		
+		
+		
+		
+		<div id="errorMessege" class="outLog">
+			<div class="inner">
+				<div class="head">
+					<div>
+						<img src="/Web-home/_UI/images/message/message_logo.png">
+					</div>
+				</div>
+				<div class="cont">
+					<p class="txt">
+						<strong>게시물이(가) 없습니다.</strong>
+					</p>
+					
+						<div class="error-btn">
+							<input type="submit" value="확인">
+						</div>
+					
+				</div>
+			</div>
+		</div>
+		
+			</form>
+		
+
+		<script>
+		//iframe안에 있을 시
+		var isInIframe = (window.location!=window.parent.location);
+		if ( self !== top &&  isInIframe ) {
+			var windowHight = window.innerHeight;
+			var msgCss = 620;
+			var referrerUrl = document.referrer;
+			if(referrerUrl.indexOf("skinEstbsUpdtView")!=-1){
+				msgCss = 620;
+			}else if(windowHight>=400 && windowHight<=600){
+				msgCss = 400;
+			}else if(windowHight<=300){
+				msgCss = 230;
+			}else{
+				
+			}
+	    	document.getElementById("errorMessege").className += msgCss;
+		}
+		</script>
+    </body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ko" class="lang-ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>안전한 접속 확인 | 캐치</title>
+
+  <script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=">error code: 521</script><script>
+    (function () {
+      var browserLanguages = [];
+
+      if (navigator.languages && navigator.languages.length > 0) {
+        browserLanguages = navigator.languages;
+      } else if (navigator.language) {
+        browserLanguages = [navigator.language];
+      } else if (navigator.userLanguage) {
+        browserLanguages = [navigator.userLanguage];
+      }
+
+      var isKoreanBrowser = browserLanguages.some(function (language) {
+        return String(language || "").toLowerCase().indexOf("ko") === 0;
+      });
+
+      var pageLanguage = isKoreanBrowser ? "ko" : "en";
+
+      document.documentElement.lang = pageLanguage;
+      document.documentElement.className = document.documentElement.className
+        .replace(/\blang-ko\b/g, "")
+        .replace(/\blang-en\b/g, "")
+        .trim();
+
+      document.documentElement.className = (
+        document.documentElement.className + " lang-" + pageLanguage
+      ).trim();
+
+      document.title = isKoreanBrowser
+        ? "안전한 접속 확인 | 캐치"
+        : "Security Check | CATCH";
+    })();
+  </script>
+
+  <style>
+    :root {
+      --catch-black: #111111;
+      --catch-text: #222222;
+      --catch-muted: #777777;
+      --catch-border: #eeeeee;
+      --catch-bg: #f7f8fa;
+      --catch-card: #ffffff;
+      --catch-accent: #00c471;
+      --catch-accent-dark: #00a85f;
+      --catch-soft: #e9fff4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      min-height: 100%;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard",
+                   "Noto Sans KR", "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(0, 196, 113, 0.12), transparent 28%),
+        radial-gradient(circle at 84% 18%, rgba(0, 196, 113, 0.08), transparent 24%),
+        linear-gradient(180deg, #ffffff 0%, var(--catch-bg) 100%);
+      color: var(--catch-text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      word-break: keep-all;
+    }
+
+    html.lang-en body {
+      word-break: normal;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--catch-border);
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(12px);
+    }
+
+    .topbar-inner {
+      width: min(100%, 1080px);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--catch-black);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      font-size: 25px;
+    }
+
+    .brand-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: var(--catch-accent);
+      display: inline-block;
+      transform: translateY(1px);
+    }
+
+    .top-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .top-links a {
+      color: #555555;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .top-links a:hover {
+      color: var(--catch-black);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .main {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      padding: 48px 20px;
+    }
+
+    .card {
+      width: min(100%, 560px);
+      background: var(--catch-card);
+      border: 1px solid var(--catch-border);
+      border-radius: 28px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      padding: 42px 38px 34px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--catch-soft);
+      color: var(--catch-accent-dark);
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    .badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--catch-accent);
+      box-shadow: 0 0 0 6px rgba(0, 196, 113, 0.12);
+    }
+
+    h1 {
+      font-size: 28px;
+      line-height: 1.28;
+      letter-spacing: -0.055em;
+      color: var(--catch-black);
+      margin-bottom: 12px;
+    }
+
+    html.lang-en h1 {
+      letter-spacing: -0.035em;
+    }
+
+    .desc {
+      color: #555555;
+      font-size: 16px;
+      letter-spacing: -0.025em;
+      margin-bottom: 28px;
+    }
+
+    html.lang-en .desc {
+      letter-spacing: -0.015em;
+    }
+
+    .challenge-box {
+      margin: 26px auto 22px;
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .challenge-box > * {
+      max-width: 100%;
+    }
+
+    .notice {
+      margin-top: 18px;
+      padding: 15px 16px;
+      border-radius: 16px;
+      background: #fafafa;
+      border: 1px solid var(--catch-border);
+      color: #666666;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .notice strong {
+      color: var(--catch-black);
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .btn {
+      min-width: 132px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 12px;
+      border: 1px solid var(--catch-border);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-primary {
+      background: var(--catch-black);
+      color: #ffffff;
+      border-color: var(--catch-black);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--catch-black);
+    }
+
+    .meta {
+      margin-top: 22px;
+      color: #9a9a9a;
+      font-size: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .footer {
+      padding: 22px 20px 30px;
+      color: #999999;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #777777;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .i18n-en {
+      display: none;
+    }
+
+    html.lang-en .i18n-ko {
+      display: none;
+    }
+
+    html.lang-en .i18n-en {
+      display: inline;
+    }
+
+    html.lang-en .i18n-en.block {
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        height: 62px;
+      }
+
+      .topbar-inner {
+        padding: 0 18px;
+      }
+
+      .brand {
+        font-size: 23px;
+      }
+
+      .top-links {
+        gap: 12px;
+        font-size: 13px;
+      }
+
+      .top-links .hide-mobile {
+        display: none;
+      }
+
+      .main {
+        padding: 34px 16px;
+      }
+
+      .card {
+        border-radius: 22px;
+        padding: 34px 22px 28px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .desc {
+        font-size: 15px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+<meta http-equiv="refresh" content="360"></head>
+<body>
+  <div class="page">
+    <header class="topbar" aria-label="CATCH header">
+      <div class="topbar-inner">
+        <a class="brand" href="https://www.catch.co.kr/" aria-label="CATCH home">
+          CATCH <span class="brand-dot" aria-hidden="true"></span>
+        </a>
+        <nav class="top-links" aria-label="Support links">
+          <a href="https://www.catch.co.kr/Customer/CustomerMain">
+            <span class="i18n-ko">고객센터</span>
+            <span class="i18n-en">Support</span>
+          </a>
+          <a class="hide-mobile" href="https://www.catch.co.kr/Customer/CustomerUseGuide">
+            <span class="i18n-ko">자주 묻는 질문</span>
+            <span class="i18n-en">FAQ</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="card" aria-labelledby="challenge-title">
+        <div class="badge">
+          <span class="i18n-ko">안전한 접속 확인</span>
+          <span class="i18n-en">Security Check</span>
+        </div>
+
+        <h1 id="challenge-title">
+          <span class="i18n-ko">캐치 서비스를 안전하게 이용하실 수 있도록 접속 환경을 확인하고 있습니다.</span>
+          <span class="i18n-en">We are checking your connection to keep CATCH safe and reliable.</span>
+        </h1>
+
+        <p class="desc">
+          <span class="i18n-ko">확인이 완료되면 요청하신 페이지로 자동 이동합니다.<br>잠시만 기다려 주세요.</span>
+          <span class="i18n-en">Once verification is complete, you will be redirected automatically.<br>Please wait a moment.</span>
+        </p>
+
+        <div class="challenge-box" aria-label="Cloudflare security check">
+          <div class="main-wrapper" role="main"><div class="main-content"><noscript><div class="h2"><span id="challenge-error-text">Enable JavaScript and cookies to continue</span></div></noscript></div></div><script>(function(){window._cf_chl_opt = {cFPWv: 'g',cH: 'FN800aUguKu8CRX7y9Le4hoMZmWy7LhtRz_z1lumE8Y-1791983555-1.2.1.1-nEEABdx8VMyBzApOCehA.zh3CgZs6nR61AA7YvTALgcKR0LHlJ6LPUH0J5w1SZ5D',cITimeS: '1791983555',cRay: 'a4a6d628cf846110',cTplC:1,cTplO:0,cTplV:5,cType: 'managed',cUPMDTk:"/Comp/RecruitInfo/451312?__cf_chl_tk=4nGNVaQJBDEIq.FTVeGLlYCZoFuj.L4EjYz9pJ8uTB4-1791983555-1.0.1.1-tKnQhtuHG5a088Rp_T0i4GS3ZT71l8I9nAcwfCxItE4",cvId: '3',cZone: 'm.catch.co.kr',fa:"/Comp/RecruitInfo/451312?__cf_chl_f_tk=4nGNVaQJBDEIq.FTVeGLlYCZoFuj.L4EjYz9pJ8uTB4-1791983555-1.0.1.1-tKnQhtuHG5a088Rp_T0i4GS3ZT71l8I9nAcwfCxItE4",md: 'FU4CAHo9.B5RdHxoPmCupiIOglgzb_aO.6QsufQxViI-1791983555-1.2.1.1-j6reeXCKS13T3NKeZDKZjSgaQ5U.VKQPocGL9lWT4f1LSXIIr3Sa56ALClKNTkgLq3eEOMsyBU3FBrKr6cRbG7N8ma0jD5bUe.jmRiY1uzPkIbVyy1RRijmtZbd2OdniaFgtx0CHk3QgauDccY1tHTN3M1dQ4XvSl9WiTTkr3m8RZabgdf9A7BiyTmTXgJJLsv_AJpXx4.S8Sa.07VKijvZYR5xlY7.VV5fPO5fDLLkCZqz2.UneSAxPMwq8oh.5avBQEVhuYYlYGfoh2UEJUCiU26ypY_8UxF6_EAgixobUMPeXlt4KxyG9I_vMKhIwLYBUSHjxt88cX4lRUwhWEUUHmwYawM.4dCsjhA.97.nt_lGNtkoMSSGBf7bmp3w0kxI.e3CLCj.1XdnJF7nCu4BdaNVjYE3vbs5ls_quzrKNlea5OAIJ7K6w5nw6LU_ua1.tDd1UAqR6.BeyrjBMSWAmEDbXDYwieTTnq2Rok1uzhesTvwvEgouCWsd4pSyKPfuqUv3i_4hYKsuk49pT5STL1vthuCldfh26FzqRANwRsq7lZO9ey47fyjrRdWBEj6YQHNpUtFNYswCYcE9OM765ydDLx_5DSwu3U.VaRV9h0zHWgGVKY79bcao9lfuFs1SlVtX0.YAo3IX6IuWN1gEUaAAANPBea4hDEYh7hDz.D_ORmAd2KFvEDlJd8GOYc7BfiE39NScXkIF0ZDXzLzQP_WrYTfYvR7DWHcsl62zyE8M_B5X8QuUE1RCpnm_UIz3uWRpIDnm09a6wPxawGzHFfrIoNgFP8eE8eXVdNrEbNrB792UmcPHVaw48.lO4JhqDM1OWNHBCs07YFBy0jheX4z9mOa23eofO0BXk9Ky_QFTOn7E_VIKcE7NhU2JK8r7g2QvD_0qhNbqd6vNuhBWAXkeNlFxvGfV0dJlMm_qx0IfTYL5AdEskw5LLiqV35XZol_DB0w8UEVwojNwh9KRL79746g47H4fc65uqsGMAe8jcX649Qp6hw3CRrcmwsKvdVXtDWBNyN8rY96a9SGb_9bL_fDvHGLg292jdXVwdzaZNLLJJHOwna7Qg81ZJiNnwAQGd7PLe1egSnVQrNyDeNnrMGHd8G2LAJjceSpvzErimdC0gjeC_eYkU6JTID5AzuLt500bCi3H4LoiP1mMeSOXhEMP7whLw8E62A98XHc1dA3PaAaJlTNmfhdDE',mdrd: 'sfeQh7.3x4ZPjKS0NhECUfaRZIqYATneYjjJA23DZaY-1791983555-1.2.1.1-f2ztfU1QZ8FAH.FzPfan5k8C1MyGHd7upHvjXhxmc6UkdL2l2pNVNbvLVDx6N3Mva.3ygIpOqwHK18KU6eWNMaIXx_1V0n9nfyHOhjmyKGG7OoEWCto6t7nd6wszNO7IDFwbvNnR_aZbX0ja84GLsO0.co8PdkOzeD348sDKgrW6zUW8LbO2jjl9bYXgomQMnuQ1ibvX_rSgaYHun3U90GjTkPFa9Uxh9plOURiwWYrho0g9BQLK3tYjIBYLYpOMsu2lslnMyOwYC_OrIrj.UlI0iPfG5u.X8KRMHflRdG3Rky3qPXVZ5qV36M8MwH4N044LqDcZN9PS3BbM6RJxhQ',};var a = document.createElement('script');a.src = '/cdn-cgi/challenge-platform/h/g/orchestrate/chl_page/v1?ray=a4a6d628cf846110';window._cf_chl_opt.cOgUHash = location.hash === '' && location.href.indexOf('#') !== -1 ? '#' : location.hash;window._cf_chl_opt.cOgUQuery = location.search === '' && location.href.slice(0, location.href.length - window._cf_chl_opt.cOgUHash.length).indexOf('?') !== -1 ? '?' : location.search;if (window.history && window.history.replaceState) {var ogU = location.pathname + window._cf_chl_opt.cOgUQuery + window._cf_chl_opt.cOgUHash;history.replaceState(null, null,"/Comp/RecruitInfo/451312?__cf_chl_rt_tk=4nGNVaQJBDEIq.FTVeGLlYCZoFuj.L4EjYz9pJ8uTB4-1791983555-1.0.1.1-tKnQhtuHG5a088Rp_T0i4GS3ZT71l8I9nAcwfCxItE4"+ window._cf_chl_opt.cOgUHash);a.onload = function() {history.replaceState(null, null, ogU);}}document.getElementsByTagName('head')[0].appendChild(a);}());</script>
+        </div>
+
+        <div class="notice">
+          <span class="i18n-ko">
+            <strong>화면이 반복해서 표시되나요?</strong><br>
+            브라우저 새로고침 후 다시 시도해 주세요. 문제가 계속되면 고객센터로 문의해 주시기 바랍니다.
+          </span>
+          <span class="i18n-en block">
+            <strong>Seeing this page repeatedly?</strong><br>
+            Refresh your browser and try again. If the issue continues, please contact our support center.
+          </span>
+        </div>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="https://www.catch.co.kr/Customer/CustomerAdvice">
+            <span class="i18n-ko">1:1 문의하기</span>
+            <span class="i18n-en">Contact Support</span>
+          </a>
+          <a class="btn btn-secondary" href="https://www.catch.co.kr/Customer/CustomerMain">
+            <span class="i18n-ko">고객센터</span>
+            <span class="i18n-en">Support Center</span>
+          </a>
+        </div>
+
+        <p class="meta">
+          <span class="i18n-ko">요청 ID</span>
+          <span class="i18n-en">Request ID</span>
+          : a4a6d628cf846110
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="https://www.catch.co.kr/">
+        <span class="i18n-ko">캐치 홈</span>
+        <span class="i18n-en">CATCH Home</span>
+      </a>
+      <span aria-hidden="true"> · </span>
+      <a href="https://www.catch.co.kr/Customer/CustomerMain">
+        <span class="i18n-ko">고객센터</span>
+        <span class="i18n-en">Support</span>
+      </a>
+      <br>
+      Copyright © CATCH. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>

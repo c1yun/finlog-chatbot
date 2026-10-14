@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+	<title>동화엔텍</title>
+	<meta name="keywords" content="열교환기" />	<meta name="Description" content="㈜동화엔텍은 열에너지 교환 기술로 ‘월드클래스 기업’을 지향합니다." />	<link rel="shortcut icon" href="/images/main/dhentec-logo-favicon.png">	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=medium-dpi" name="viewport" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<link rel="stylesheet" href="/common/css/common.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/common/js/slick.min.js"></script>
+	<script type="text/javascript" src="/common/js/common.js"></script>
+	<script type="text/javascript" src="/common/js/_basicFunction.js"></script>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-4YM0MV2VYH"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-4YM0MV2VYH');
+	</script><script src='https://www.google.com/recaptcha/api.js'></script></head>
+<body>
+	<!-- skip_nav -->
+	<div id="skip_nav">
+		<a href="#gnb">메뉴 바로가기</a>
+		<a href="#container">본문 바로가기</a>
+	</div>
+	<!-- //skip_nav --><!-- wrap -->
+<div id="wrap" class="main">
+	<div id="header" class="bgbg">
+	<div class="header_inner">
+		<h1><a href="/" class="logo"><img src="/images/common/logo.png" alt="" class="logo_color"><img src="/images/common/logo_white.png" alt="" class="logo_white"></a></h1>
+		<!-- <a href="/board/contact/board_write.php" class="btn_contact">문의하기</a>-->
+		<div class="langBox">
+			<p>KOR</p>
+			<ul class="langList" style="display: none;">
+				<li><a href="/eng">ENG</a></li>
+				<li><a href="/jpn/">JPN</a></li>
+				<li><a href="/cha/">CHN</a></li>
+			</ul>
+		</div>
+		<a href="" class="btn_all_menu">
+			<div class="btn_all_menu_inner">
+				<span class="barTop"></span>
+				<span class="barMid"></span>
+				<span class="barBot"></span>
+			</div>
+		</a>
+		<div id="gnb">
+			<ul class="gnbWrap">
+				<li class="">
+					<a href="/about_us/overview.php">회사소개</a>
+					<ul class="dep2">
+						<li>
+							<a href="/about_us/overview.php">㈜동화엔텍 소개</a>
+						</li>
+						<li><a href="/about_us/history.php">연혁</a></li>
+						<li>
+							<a href="/about_us/noksan_plant.php">사업장 소개</a>
+						</li>
+						<li>
+							<a href="/about_us/subsidiary.php">계열사 소개</a>
+						</li>
+						<li><a href="/about_us/network.php">네트워크 소개</a></li>
+					</ul>
+				</li>
+				<li class="">
+					<a href="/business/shipbuilding_business/list.php?search_category=1">사업소개</a>
+					<ul class="dep2">
+						<li>
+							<a href="/business/shipbuilding_business/list.php?search_category=1">조선사업</a>
+							<ul class="dep3">
+								<li><a href="/business/shipbuilding_business/list.php?search_category=1">시스템</a></li>
+								<li><a href="/business/shipbuilding_business/list.php?search_category=2">장비</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="/business/land_business/list.php?search_category=1">플랜트사업</a>
+							<ul class="dep3">
+								<li><a href="/business/land_business/list.php?search_category=1">For Steam Turbine</a></li>
+								<li><a href="/business/land_business/list.php?search_category=2">For Gas Turbine</a></li>
+								<li><a href="/business/land_business/list.php?search_category=3">For Compressor</a></li>
+								<li><a href="/business/land_business/list.php?search_category=4">For Power Plant</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="/business/maintenance_business/list.php?search_category=1">보전사업</a>
+							<ul class="dep3">
+								<li><a href="/business/maintenance_business/list.php?search_category=1">유지보수</a></li>
+								<li><a href="/business/maintenance_business/reproduction_repair.php">재생·수리</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="/business/hydrogen_business/list.php?search_category=1">수소사업</a>
+							<ul class="dep3">
+								<li><a href="/business/hydrogen_business/list.php?search_category=1">압축장치</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="">
+					<a href="/sustainable_management/social_contribution.php">지속가능경영</a>
+					<ul class="dep2">
+						<li><a href="/sustainable_management/esg.php">ESG경영</a></li>
+						<li>
+							<a href="/sustainable_management/ethical_management.php">윤리경영</a>
+						</li>
+						<li>
+							<a href="/sustainable_management/quality_management_policy.php">품질경영</a>
+						</li>
+						<li>
+							<a href="/sustainable_management/health_safety_policy.php">안전보건환경경영</a>
+						</li>
+						<li><a href="/sustainable_management/social_contribution.php">사회공헌</a></li>
+					</ul>
+				</li>
+				<li class="">
+					<a href="/careers/hr_system.php">인재채용</a>
+					<ul class="dep2">
+						<li><a href="/careers/hr_system.php">인사제도</a></li>
+						<li><a href="/careers/welfare_benefits.php">복리후생</a></li>
+						<li><a href="/careers/recruit_inquiry_list.php">채용문의</a></li>
+						<li>
+							<a href="/careers/recruit_list.php">입사지원</a>
+						</li>
+					</ul>
+				</li>
+				<li class="">
+					<a href="/board/notice/board_list.php">홍보센터</a>
+					<ul class="dep2">
+						<li><a href="/board/notice/board_list.php">동화뉴스</a></li>
+						<li>
+							<a href="/board/pr_movie/board_list.php">홍보자료</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="allMenuWrap">
+		<div class="allMenuWrap_inner">
+			<div class="allMenu_inner">
+				<div class="allMenu_box">
+					<ul class="allMenu clearfix">
+						<li class="">
+							<span>회사소개</span>
+							<a href="/about_us/overview.php">회사소개</a>
+							<ul class="depth2">
+								<li>
+									<a href="/about_us/overview.php">㈜동화엔텍 소개</a>
+								</li>
+
+								<li><a href="/about_us/history.php">연혁</a></li>
+								<li>
+									<a href="/about_us/noksan_plant.php">사업장 소개</a>
+								</li>
+								<li>2024-01-24
+									<a href="/about_us/subsidiary.php">계열사 소개</a>
+								</li>
+								<li><a href="/about_us/network.php">네트워크 소개</a></li>
+							</ul>
+						</li>
+						<li class="">
+
+							<span>사업소개</span>
+							<a href="/business/shipbuilding_business/list.php?search_category=1">사업소개</a>
+							<ul class="depth2">
+								<li>
+									<a href="/business/shipbuilding_business/list.php?search_category=1">조선사업</a>
+									<ul class="depth3">
+										<li><a href="/business/shipbuilding_business/list.php?search_category=1">시스템</a></li>
+										<li><a href="/business/shipbuilding_business/list.php?search_category=2">장비</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="/business/land_business/list.php?search_category=1">육상사업</a>
+									<ul class="depth3">
+										<li><a href="/business/land_business/list.php?search_category=1">For Steam Turbine</a></li>
+										<li><a href="/business/land_business/list.php?search_category=2">For Gas Turbine</a></li>
+										<li><a href="/business/land_business/list.php?search_category=3">For Compressor</a></li>
+										<li><a href="/business/land_business/list.php?search_category=4">For Power Plant</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="/business/maintenance_business/list.php?search_category=1">보전사업</a>
+									<ul class="depth3">
+										<li><a href="/business/maintenance_business/list.php?search_category=1">유지보수</a></li>
+										<li><a href="/business/maintenance_business/reproduction_repair.php">재생·수리</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="/business/hydrogen_business/list.php?search_category=1">수소사업</a>
+									<ul class="depth3">
+										<li><a href="/business/hydrogen_business/list.php?search_category=1">압축장치</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li class="">
+							<span>지속가능경영</span>
+							<a href="/sustainable_management/social_contribution.php">지속가능경영</a>
+							<ul class="depth2">
+								<li><a href="/sustainable_management/esg.php">ESG경영</a></li>
+								<li>
+									<a href="/sustainable_management/ethical_management.php">윤리경영</a>
+								</li>
+								<li>
+									<a href="/sustainable_management/quality_management_policy.php">품질경영</a>
+								</li>
+								<li>
+									<a href="/sustainable_management/quality_management_policy.php">안전보건환경경영</a>
+								</li>
+								<li><a href="/sustainable_management/social_contribution.php">사회공헌</a></li>
+							</ul>
+						</li>
+
+						<li class="">
+							<span>인재채용</span>
+							<a href="/careers/hr_system.php">인재채용</a>
+							<ul class="depth2">
+								<li><a href="/careers/hr_system.php">인사제도</a></li>
+								<li><a href="/careers/welfare_benefits.php">복리후생</a></li>
+								<li><a href="/careers/recruit_inquiry_list.php">채용문의</a></li>
+								<li>
+									<a href="/careers/recruit_list.php">입사지원</a>
+								</li>
+							</ul>
+						</li>
+						<li class="">
+							<span>홍보센터</span>
+							<a href="/board/notice/board_list.php">홍보센터</a>
+							<ul class="depth2">
+								<li><a href="/board/notice/board_list.php">동화뉴스</a></li>
+								<li>
+									<a href="/board/pr_movie/board_list.php">홍보자료</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+	<div class="dim"></div>
+</div>
+
+	<!--container-->
+	<div id="container">
+		<div class="mvArea aniBox">
+			<div class="mvWrap">
+				<div class="mv_item mv_item1 winH"><span class="mv_bg"></span></div>
+				<div class="mv_item mv_item2 winH"><span class="mv_bg"></span></div>
+				<div class="mv_item mv_item3 winH"><span class="mv_bg"></span></div>
+				<div class="mv_item mv_item4 winH"><span class="mv_bg"></span></div>
+				<div class="mv_item mv_item5 winH"><span class="mv_bg"></span></div>
+				<div class="mv_item mv_item6 winH"><span class="mv_bg"></span></div>
+			</div>
+			<div class="mvControlWrap">
+				<div class="mvControl">
+					<div class="progress-round__wrap">
+						<svg class="progress">
+							<circle r="57" cx="59" cy="59" class="prog_c" />
+							<circle r="58" cx="59" cy="59" class="prog_b" />
+
+							<circle r="38" cx="40" cy="40" class="prog_c_m" />
+							<circle r="39" cx="40" cy="40" class="prog_b_m" />
+						</svg>
+
+
+					</div>
+				</div>
+				<div class="icon_scroll">
+					<p>SCROLL</p>
+					<em></em>
+				</div>
+			</div>
+			<div class="mvTxtWrap">
+				<div class="mvTxt aniBox type_bot">
+					<strong>FIRST MOVER</strong>
+					<p>for Low Carbon and Green Energy Technologies</p>
+					<div class="btnBox">
+						<a href="/about_us/overview.php">ABOUT US</a>
+						<a href="/business/shipbuilding_business/list.php?search_category=1">BUSINESS</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mainWrap" id="skrollr-body">
+			<div class="mainSec mainSec1">
+
+
+				<div class="mainBoardNew">
+					<div class="mb_movie  aniBox type_cv">
+						<div class="mbTit1">
+							<div class="mb_news_inner">
+								<h2>홍보영상</h2>
+							</div>
+
+						</div>
+						<div class="videoBox ">
+							<div id="player" class="video"></div>
+							<div class="cover">
+								<svg xmlns="http://www.w3.org/2000/svg" width="119.004" height="119.003" viewBox="0 0 119.004 119.003"
+								     class="btn_play">
+									<defs>
+										<style>
+											.cls-1 {
+												fill: #fff
+											}
+										</style>
+									</defs>
+									<path id="빼기_1"
+									      d="M18229.5 10312a59.321 59.321 0 1 1 23.158-4.676 59.138 59.138 0 0 1-23.158 4.676zm-13.5-81v44l38-22-38-22z"
+									      class="cls-1" data-name="빼기 1" transform="translate(-18169.998 -10192.998)" />
+								</svg>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="mb_news aniBox type_right">
+						<div class="mb_news_inner">
+							<div class="mbTit2 m_only">
+								<h2>동화뉴스</h2>
+							</div>
+							<div class="mb_news_list">
+																			<div class="mb_news_item">
+												<a href="/board/notice/board_view.php?num=4840">
+													<div class="img_box">
+														<div class="img_box_bg" style="background-image: url(/upload_files/board/NOTICE/o_1i3f3thag1un58h6d3prev10l6a.jpg);"></div>
+													</div>
+													<div class="txt_box">
+														<h2>동화뉴스</h2>
+														<span class="date">2024/07/23</span>
+														<p class="subject">(주)동화엔텍 나눔명문기업 가입</p>
+														<!-- <p class="writer">By <strong>dhentec Posted</strong></p> -->
+													</div>
+
+
+												</a>
+											</div>
+																						<div class="mb_news_item">
+												<a href="/board/notice/board_view.php?num=4789">
+													<div class="img_box">
+														<div class="img_box_bg" style="background-image: url(/upload_files/board/NOTICE/o_1i1rl70o3139qttq2rjm5vatja.png);"></div>
+													</div>
+													<div class="txt_box">
+														<h2>동화뉴스</h2>
+														<span class="date">2024/07/03</span>
+														<p class="subject">㈜동화엔텍, 2024 고용우수기업 외 선정 소식</p>
+														<!-- <p class="writer">By <strong>dhentec Posted</strong></p> -->
+													</div>
+
+
+												</a>
+											</div>
+																						<div class="mb_news_item">
+												<a href="/board/notice/board_view.php?num=4773">
+													<div class="img_box">
+														<div class="img_box_bg" style="background-image: url(/upload_files/board/NOTICE/o_1i0nlhi0kkk16ev11v01hjf13vca.jpg);"></div>
+													</div>
+													<div class="txt_box">
+														<h2>동화뉴스</h2>
+														<span class="date">2024/06/19</span>
+														<p class="subject">동화엔텍&동화뉴텍, Posidonia 2024 전시회 참가</p>
+														<!-- <p class="writer">By <strong>dhentec Posted</strong></p> -->
+													</div>
+
+
+												</a>
+											</div>
+																						<div class="mb_news_item">
+												<a href="/board/notice/board_view.php?num=4726">
+													<div class="img_box">
+														<div class="img_box_bg" style="background-image: url(/upload_files/board/NOTICE/o_1hukeojer1dhnhtplmordb1kara.png);"></div>
+													</div>
+													<div class="txt_box">
+														<h2>동화뉴스</h2>
+														<span class="date">2024/05/24</span>
+														<p class="subject">동화차이나(동화강소), 4주년 및 공장 이전 완료 기념 방문</p>
+														<!-- <p class="writer">By <strong>dhentec Posted</strong></p> -->
+													</div>
+
+
+												</a>
+											</div>
+																						<div class="mb_news_item">
+												<a href="/board/notice/board_view.php?num=4725">
+													<div class="img_box">
+														<div class="img_box_bg" style="background-image: url(/upload_files/board/NOTICE/o_1hukdq0gc16hu1go81q7ju0lp0a.png);"></div>
+													</div>
+													<div class="txt_box">
+														<h2>동화뉴스</h2>
+														<span class="date">2024/05/24</span>
+														<p class="subject">㈜동화엔텍 HP Pump Skid, GSI 1호선 인도 완료</p>
+														<!-- <p class="writer">By <strong>dhentec Posted</strong></p> -->
+													</div>
+
+
+												</a>
+											</div>
+																						<div class="mb_news_item">
+												<a href="/board/notice/board_view.php?num=4724">
+													<div class="img_box">
+														<div class="img_box_bg" style="background-image: url(/upload_files/board/NOTICE/o_1hukd1gdrbrq1romfg8mu615tja.png);"></div>
+													</div>
+													<div class="txt_box">
+														<h2>동화뉴스</h2>
+														<span class="date">2024/05/24</span>
+														<p class="subject">동화차이나 EGR COOLER 1호기 출하</p>
+														<!-- <p class="writer">By <strong>dhentec Posted</strong></p> -->
+													</div>
+
+
+												</a>
+											</div>
+											
+							</div>
+							<div class="dotsBoxWrap">
+								<div class="dotsBox"></div>
+							</div>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+			<div class="mainSec mainSec2">
+				<div class="mb_news_inner">
+					<ul class="main_menu">
+						<li>
+							<a href="/board/catalogues/board_list.php?search_category=1">
+								<div class="img_box"><img src="images/main/main_icon1.png" alt=""></div>
+								<p>카탈로그</p>
+							</a>
+						</li>
+						<li>
+							<a href="/board/awards/board_list.php">
+								<div class="img_box"><img src="images/main/main_icon2.png" alt=""></div>
+								<p>수상내역</p>
+							</a>
+						</li>
+						<li>
+							<a href="/board/world_class/board_list.php">
+								<div class="img_box"><img src="images/main/main_icon3.png" alt=""></div>
+								<p>세계일류상품</p>
+							</a>
+						</li>
+						<li>
+							<a href="/careers/hr_system.php">
+								<div class="img_box"><img src="images/main/main_icon4.png" alt=""></div>
+								<p>인재채용</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="mainSec mainSec3">
+				<div class="inner">
+					<div class="ms3Tit">
+						<h2 class="aniBox">DongHwa Entec Business</h2>
+					</div>
+					<div class="mainBusiness_wrap">
+						<div class="mainBusiness_Item mainBusiness_Item1">
+							<div class="mbi_inner">
+								<a href="/business/shipbuilding_business/list.php?search_category=1">
+									<div class="img_box aniBox type_cv rightleft">
+										<img src="images/main/main_business1.jpg" alt="">
+									</div>
+									<div class="txt_box aniBox type_left">
+										<strong>조선사업</strong>
+										<p>World Class Shipbuilding</p>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="mainBusiness_Item mainBusiness_Item2">
+							<div class="mbi_inner">
+								<a href="/business/land_business/list.php?search_category=1">
+									<div class="img_box aniBox  type_cv rightleft">
+										<img src="images/main/main_business2.jpg" alt="">
+									</div>
+									<div class="txt_box aniBox type_left">
+										<strong>육상사업</strong>
+										<p>World Class Land industry</p>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="mainBusiness_Item mainBusiness_Item3">
+							<div class="mbi_inner">
+								<a href="/business/maintenance_business/list.php?search_category=1">
+									<div class="img_box aniBox  type_cv rightleft">
+										<img src="images/main/main_business3.jpg" alt="">
+									</div>
+									<div class="txt_box aniBox type_left">
+										<strong>보전사업</strong>
+										<p>Maintenance Business</p>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="mainBusiness_Item mainBusiness_Item4">
+							<div class="mbi_inner">
+								<a href="/business/hydrogen_business/list.php?search_category=1">
+									<div class="img_box aniBox  type_cv rightleft">
+										<img src="images/main/main_business4.jpg" alt="">
+									</div>
+									<div class="txt_box aniBox type_left">
+										<strong>수소사업</strong>
+										<p>World Class Hydrogen Industry</p>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mainSec mainSec4">
+
+
+				<div class="ms4Tit aniBox">
+					<h2>DongHwa Entec Story</h2>
+				</div>
+
+				<div class="banner_box aniBox">
+					<div class="banner_box_item item4">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner14.jpg);"></div>
+					</div>
+					<div class="banner_box_item item5">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner5.jpg);"></div>
+					</div>
+					<div class="banner_box_item item6">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner8.jpg);"></div>
+					</div>
+					<div class="banner_box_item item7">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner18.jpg);"></div>
+					</div>
+					<div class="banner_box_item item8">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner3.jpg);"></div>
+					</div>
+					<div class="banner_box_item item10">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner12.jpg);"></div>
+					</div>
+					<div class="banner_box_item item10">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner23.jpg);"></div>
+					</div>
+					<div class="banner_box_item item11">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner17.jpg);"></div>
+					</div>
+					<div class="banner_box_item item12">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner16.jpg);"></div>
+					</div>
+					<!--<div class="banner_box_item item13"><div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner6.jpg);"></div></div>-->
+					<div class="banner_box_item item16">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner13.jpg);"></div>
+					</div>
+					<div class="banner_box_item item16">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner24.jpg);"></div>
+					</div>
+					<div class="banner_box_item item16">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner25.jpg);"></div>
+					</div>
+					<div class="banner_box_item item3">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner20.jpg);"></div>
+					</div>
+					<div class="banner_box_item item3">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner26.jpg);"></div>
+					</div>
+					<div class="banner_box_item item3">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner27.jpg);"></div>
+					</div>
+					<div class="banner_box_item item3">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner28.jpg);"></div>
+					</div>
+					<div class="banner_box_item item3">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner29.jpg);"></div>
+					</div>
+					<div class="banner_box_item item3">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner30.jpg);"></div>
+					</div>
+					<div class="banner_box_item item3">
+						<div class="banner_box_item_inner" style="background-image: url(/images/main/main_banner31.jpg);"></div>
+					</div>
+				</div>
+				<div class="txt_box aniBox type_right">
+					<p>㈜동화엔텍은 1980년 창사 이래 선박, 석유화학, <br>발전설비 분야의 최고 수준의 열교환 서비스를 제공하고 있습니다.<br>
+						이제는 환경과 에너지를 기반으로 열교환기와 시스템엔지니어링 전문 기업으로써 <br>고객 가치를 높이고, 지속가능 사회에 공헌하는 기업으로 발전하도록 하겠습니다. </p>
+				</div>
+			</div>
+			<div class="mainSec mainSec5">
+				<div class="inner">
+					<h2 class="ms5Tit">지속가능경영</h2>
+					<p>㈜동화엔텍은 경제적 성장과 더불어 사회에 공헌하고 환경문제에 기여하는 가치를 창출하여<br>다양한 이해관계자의 기대에 부응함으로써 기업가치와 기업경쟁력을 높여 지속적인 성장을 꾀하는 경영활동을
+						추구하고 있습니다.</p>
+					<div class="ms5BtnWrap">
+						<span>© 2023</span>
+						<ul>
+							<li><a href="/sustainable_management/social_contribution.php">사회공헌 +</a></li>
+							<li><a href="/sustainable_management/ethical_management.php">윤리경영 +</a></li>
+							<li><a href="/sustainable_management/quality_management_policy.php">품질경영 +</a></li>
+							<li><a href="/sustainable_management/health_safety_policy.php">안전보건환경경영 +</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="mainSec mainSec6">
+				<div class="inner">
+					<div class="mainContact">
+						<form name="frm_ins" method="post" enctype="multipart/form-data" action="board_proc.php"
+						      target="frm_hiddenFrame" onsubmit="return check_register();">
+							<div class="mainContact_inner">
+								<div class="mcTit">
+									<span>고객문의</span>
+									<h2>CUSTOMER CENTER</h2>
+								</div>
+								<div class="msCsWrap">
+									<div class="msCsTop">
+										<select name="etc_3" id="" class="select_ty1">
+											<option value="">문의유형</option>
+											<option value="4">시스템문의</option>
+											<option value="1">제품문의</option>
+											<option value="2">서비스문의</option>
+											<option value="3">기타</option>
+										</select>
+										<select name="etc_4" id="" class="select_ty1">
+											<option value="">부서선택</option>
+											<!--											<option value="1">기술영업1팀</option>-->
+											<!--											<option value="2">기술영업2팀</option>-->
+											<option value="6">플랜트사업팀</option>
+											<option value="7">조선사업팀</option>
+											<option value="3">글로벌서비스팀</option>
+											<option value="4">연구소</option>
+											<option value="5">시스템PM팀</option>
+											<option value="8">기타</option>
+										</select>
+									</div>
+									<div class="msCsBot">
+										<div class="cs_list col3">
+											<div>
+												<label>성함</label>
+												<input type="text" name="subject" class="input_ty1">
+											</div>
+											<div>
+												<label>회사</label>
+												<input type="text" name="etc_5" class="input_ty1">
+											</div>
+											<div>
+												<label>국가</label>
+												<input type="text" name="etc_6" class="input_ty1">
+											</div>
+										</div>
+										<div class="cs_list col2">
+											<div>
+												<label>연락처</label>
+												<input type="tel" name="etc_1" class="input_ty1">
+											</div>
+											<div>
+												<label>이메일</label>
+												<input type="text" name="etc_2" class="input_ty1">
+											</div>
+										</div>
+										<div class="cs_list col1">
+											<div><label>문의사항</label><textarea name="content" id="" class="ta_ty1 w100"></textarea></div>
+										</div>
+										<div class="cs_list col1 attachFile">
+											<div>
+												<label>첨부파일</label>
+												<div class="attachBox">
+													<div class="attach-item">
+														<span class="attach uploadFile hasDel">
+															<input type="file" class="inputfile" name="inputfile" id="inputfile" />
+															<input type="text" value="선택한 파일 없음" class="input_ty1" name="inputfileName"
+															       id="inputfileName" readonly="readonly" />
+															<input type="button" value="파일선택" class="selectFile" />
+													</div>
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+																		<div class="g-recaptcha" data-sitekey="6LcRWyoaAAAAAIN-2cIWMNWmccRNxFeR1EvPXJYZ"></div>
+																	</div>
+								<label class="input_custum ty_check"><input type="checkbox" name="user_agree" id="user_agree"
+								                                            class="input_hide" value="Y" required=""><span
+										class="fake_input "></span>※개인정보처리방침에 동의합니다.</label>
+								<div class="mcBtn taC">
+									<input type="submit" value="문의하기" class="btn_submit" id="btn_submit">
+								</div>
+
+							</div>
+						</form>
+					</div>
+					<div class="mainBot_menu taC">
+						<ul>
+							<li><a href="/about_us/overview.php">회사소개</a></li>
+							<li><a href="/business/shipbuilding_business/list.php?search_category=1">사업소개</a></li>
+							<li><a href="/sustainable_management/social_contribution.php">지속가능경영</a></li>
+							<li><a href="/careers/hr_system.php">인재채용</a></li>
+							<li><a href="/board/notice/board_list.php">홍보센터</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--//container-->
+	<div id="footer">
+	<div class="footer_inner">
+		<div class="footer_cont">
+			<p>주소 : 부산시 강서구 화전산단 1로 63번길 20 (우)46740</p>
+			<!-- <p><span>Tel : <a href="tel:[phone-redacted]">[phone-redacted]</a></span><span>fax : [phone-redacted]</span><span>E-mail : [email-redacted]</span></p> -->
+			<p>Copyright © 2020 DongHwa Entec. All rights reserved.</p>
+		</div>
+		<div class="footer_sns">
+			<a href="https://www.facebook.com/%EB%8F%99%ED%99%94%EC%97%94%ED%85%8D-DongHwa-Entec-104978678295549" target="_blank"><img src="/images/main/bot_sns1.png" alt=""></a>
+			<a href="https://www.instagram.com/DongHwaEntec/" target="_blank"><img src="/images/main/bot_sns3.png" alt=""></a>
+			<!-- <a href=""><img src="/images/main/bot_sns2.png" alt=""></a> -->
+			<!-- <a href="https://twitter.com/DongHwa_Entec" target="_blank"><img src="/images/main/bot_sns4.png" alt=""></a>
+			<a href="https://donghwa-entec.blogspot.com/" target="_blank"><img src="/images/main/icon_blogger.png" alt=""></a>
+			<a href="https://donghwa-entec.tumblr.com/" target="_blank"><img src="/images/main/icon_tumblr.png" alt=""></a> -->
+			<a href="https://www.youtube.com/channel/UCqfBxODh78rplXlTP4YsxLA" target="_blank"><img src="/images/main/icon_youtube.png" alt=""></a>
+		</div>
+		<a  href="" id="scrTop"><img src="/images/main/toTop.png" alt=""></a>
+	</div>
+	
+</div>
+
+
+<div style='display:none;'>
+<!--폼 처리용 히튼 프레임 시작-->
+<iframe id="frm_hiddenFrame" name="frm_hiddenFrame" frameborder="0" scrolling="no" height="800" width="800" title="내용없음" ></iframe>
+<!--폼 처리용 히튼 프레임 종료-->
+</div></div>
+<!-- //wrap -->
+
+<script type="text/javascript" src="/common/js/slick.min.js"></script>
+<script src="/common/js/skrollr.min.js"></script>
+<script>
+	/*유튜브 iframe api*/
+
+	var tag = document.createElement('script');
+	tag.src = "https://www.youtube.com/iframe_api";
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	var player;
+
+	function onYouTubeIframeAPIReady() {
+		player = new YT.Player('player', {
+
+			videoId: 'hGHm5BPIYjA',  // Tn7N7h9FlHk https://youtu.be/AfqsKhpxf7o
+			playerVars: {
+				rel: 0,
+				controls: 0,
+				playsinline: 1,
+				modestbranding: 1,
+				showinfo: 0
+			},//추천영상 안보여주게 설정 https://youtu.be/Tn7N7h9FlHk
+			events: {
+				'onReady': onPlayerReady,
+				'onStateChange': onPlayerStateChange
+			}
+		});
+	}
+
+	function onPlayerReady(event) {
+		//event.target.playVideo();
+	}
+
+
+	function onPlayerStateChange(event) {
+		// playerState = event.data == YT.PlayerState.ENDED ? '종료됨' :
+		//event.data == YT.PlayerState.PLAYING ? '재생 중' :
+		//event.data == YT.PlayerState.PAUSED ? '일시중지 됨' :
+		//event.data == YT.PlayerState.BUFFERING ? '버퍼링 중' :
+		//event.data == YT.PlayerState.CUED ? '재생준비 완료됨' :
+		//event.data == -1 ? '시작되지 않음' : '예외';
+
+		//console.log('onPlayerStateChange 실행: ' + playerState);
+		if (event.data == YT.PlayerState.PLAYING) {
+			$(' .videoBox').addClass('on');
+
+		}
+		if (event.data == YT.PlayerState.PAUSED) {
+			$('.cover, .videoBox').removeClass('on');
+		}
+		if (event.data == YT.PlayerState.ENDED) {
+			$('.overviewWrap .videoBox').removeClass('on');
+			$('.cover, .videoBox').removeClass('on');
+		}
+	}
+
+	//재생
+	function playVideo() {
+		player.playVideo();
+
+	}
+
+	//정지
+	function stopVideo() {
+		player.stopVideo();
+	}
+
+	//일시정지
+	function pauseVideo() {
+		player.pauseVideo();
+
+	}
+
+	/*유튜브 iframe api 끝*/
+
+
+	$(function () {
+		var time = 4;
+		var $bar,
+			$slick,
+			isPause,
+			tick,
+			percentTime,
+			percentTime2;
+
+
+		$slick = $('.mvWrap');
+
+		$slick.slick({
+			fade: true,
+			//autoplay:true,
+			pauseOnHover: false,
+			//autoplaySpeed: time*1000,
+			//dots:true,
+			arrows: false,
+			//appendDots:'.dotsBox'
+		});
+
+
+		//$bar = $('.slider-progress .progress');
+		$barRound = $('.progress');
+
+		function startProgressbar() {
+			resetProgressbar();
+			percentTime = 0;
+			percentTime2 = 0;
+			isPause = false;
+			tick = setInterval(interval, 20);
+		}
+
+		var $rbar = $('.progress circle.prog_c');
+		var $rbar2 = $('.progress circle.prog_c_m');
+
+		var rlen = 2 * Math.PI * $rbar.attr('r');
+		var rlen2 = 2 * Math.PI * $rbar2.attr('r');
+
+		function interval() {
+			if (isPause === false) {
+				percentTime += 0.4;
+				percentTime2 += 0.4;
+				$rbar.css({
+					'stroke-dasharray': rlen,
+					'stroke-dashoffset': rlen * (1 - percentTime / 100)
+				});
+
+				$rbar2.css({
+					'stroke-dasharray': rlen2,
+					'stroke-dashoffset': rlen2 * (1 - percentTime / 100)
+				});
+
+				$('.mv_bg').attr(
+					'style', "transform:scale(" + (1.1 - percentTime2 / 1000) + ") rotate(.001deg)"
+				);
+
+				// console.log(percentTime/500);
+
+				if (percentTime >= 100) {
+					$slick.slick('slickNext');
+					startProgressbar();
+				}
+			}
+
+
+		}
+
+		function resetProgressbar() {
+			clearTimeout(tick);
+		}
+
+
+		startProgressbar();
+
+
+		$('.progress').on('click', function () {
+
+			if (isPause === false) {
+				isPause = true;
+				$('.mvControl').addClass('paused');
+			} else {
+				isPause = false;
+				$('.mvControl').removeClass('paused');
+			}
+			//$(this).removeClass('on').siblings().addClass('on');
+		});
+
+
+		$('.mv_item1').addClass('on');
+		$('.mvWrap').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+			resetProgressbar();
+			startProgressbar();
+			$('.mvControl').removeClass('paused');
+			var idx = nextSlide + 1;
+			$('.mv_item').removeClass('on');
+			$('.mv_item' + idx + '').addClass('on');
+			// console.log(idx);
+
+		});
+
+
+		$('.mb_news_list').slick({
+			dots: true,
+			arrows: false,
+			fade: true,
+			appendDots: '.dotsBox',
+			autoplay: true,
+			pauseOnHover: false,
+		});
+
+
+		$('.cover').on('click', function () {
+
+			if ($(this).hasClass('on')) {
+				$(this).removeClass('on');
+
+				player.pauseVideo();
+
+
+				//$('.overviewWrap .videoBox').removeClass('on');
+			} else {
+				$(this).addClass('on');
+				player.playVideo();
+				//$('.overviewWrap .videoBox').addClass('on');
+			}
+
+			//player.playVideo();
+			//$('.overviewWrap .videoBox').addClass('on');
+		});
+
+
+		$(window).on('load', function () {
+			var s = skrollr.init({
+				forceHeight: false,
+				/*
+				mobileCheck: function(){
+					if((/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent || navigator.vendor || window.opera)){
+						 // mobile device
+					}
+
+
+			}
+			*/
+
+
+			});
+			if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+				s.destroy();
+			}
+		});
+
+
+		$('.banner_box').slick({
+			fade: true,
+			autoplay: true
+		});
+	});
+
+
+	function check_register() {
+		var f = document.frm_ins;
+
+		if (getChecked_Value(f.user_agree) != "Y") {
+			alert("개인정보 취급방침에 동의해 주세요.");
+			return false;
+		}
+		if (!IsCheck(f.subject, "성함을 입력해주세요.")) return false;
+		if (!IsCheck(f.etc_1, "연락처를 입력해주세요.")) return false;
+		if (!IsCheck(f.etc_2, "이메일을 입력해주세요.")) return false;
+		if (!IsCheck(f.content, "문의내용을를 입력해주세요.")) return false;
+
+				var captcha = grecaptcha.getResponse();
+		if (captcha.length == 0) {
+			alert( '자동등록방지를 확인해 주세요.' );
+			return false;
+		}
+		
+		$("#btn_submit").attr('value', '등록중..');
+		$("#btn_submit").attr('type', 'button');
+
+		f.action = "contact_proc.php";
+		f.target = "frm_hiddenFrame";
+
+		return true;
+	}
+
+	function button_recovery() {
+		$("#btn_submit").attr('value', '등록');
+		$("#btn_submit").attr('type', 'submit');
+	}
+
+</script>
+
+</body>
+</html>

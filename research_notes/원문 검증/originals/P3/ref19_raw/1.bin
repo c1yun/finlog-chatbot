@@ -1,0 +1,822 @@
+
+
+
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+<title data-origin="부산대 학생성공개발원">(모집연장) [학생성공개발원] 가장 일하고 싶은 지역기업 TOP10 공모전 안내(~10.26.월) - 부산대 학생성공개발원</title>
+
+<style>
+	:root {
+		--thema_color:#159A54;
+		--point_bgcolor:#00a652;
+		--thema_sub_color01: #ffffff;
+		--thema_sub_color02: #ffffff;
+		--thema_sub_color03: #ffffff;
+		--thema_sub_color04: #ffffff;
+
+
+		--thema_sub_op_color01: #ffffff;
+		--thema_sub_op_color02: #ffffff;
+		--thema_sub_op_color03: #ffffff;
+		--thema_sub_op_color04: #ffffff;
+
+		--thema_color_sub_color:#159A54;
+		--thema_color2:#159A54;
+	}
+
+	html, body { 
+		font-size: 14px !important;
+	}
+	
+	@media all and (max-width:600px) {
+		html {font-size: 12px !important;}
+	}
+</style><link rel="stylesheet" href="/styles/responsive.css?v=1791450496" type="text/css">
+<link rel="stylesheet" href="/styles/common.css?v=1791450496" type="text/css">
+<link rel="shortcut icon" type="image/x-icon" href="https://job.pusan.ac.kr/attachment/view/366/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" href="https://job.pusan.ac.kr/attachment/view/367/emblem.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://job.pusan.ac.kr/attachment/view/367/emblem.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://job.pusan.ac.kr/attachment/view/367/emblem.png">
+<link rel="apple-touch-icon" sizes="57x57" href="https://job.pusan.ac.kr/attachment/view/367/emblem.png">
+<link rel="canonical" href="https://job.pusan.ac.kr/ko/notice/notice/view/204367">
+<script src="/scripts/moment.js?v=1791450496"></script>
+<script src="/scripts/jquery.js?v=1791450496"></script>
+<script src="/scripts/jquery.extend.js?v=1791450496"></script>
+<script src="/scripts/common.js?v=1791450496"></script>
+<link rel="stylesheet" href="/modules/member/styles/style.css?v=1791450488" type="text/css">
+<script src="/modules/member/scripts/script.js?v=1791450488"></script>
+<script src="/modules/member/scripts/session.js?v=1791450488"></script>
+<script src="/modules/coursemos/scripts/script.js?v=1791450485"></script>
+<link rel="stylesheet" href="/modules/coursemos/styles/style.css?v=1791450485" type="text/css">
+<script src="/modules/coursemos/scripts/script_ozExtra.js?v=1791450485"></script>
+<link rel="stylesheet" href="/modules/coursemos/styles/style_ozExtra.css?v=1791450485" type="text/css">
+<link rel="stylesheet" href="/modules/coursemos/styles/button.css.php?v=1791450485" type="text/css">
+<link rel="stylesheet" href="/modules/coursemos/styles/style_custom.css.php?v=1791450485" type="text/css">
+<script src="/modules/pusan/scripts/script.js?v=1791450493"></script>
+<link rel="stylesheet" href="/modules/pusan/styles/style.css.php?v=1791450493" type="text/css">
+<link rel="stylesheet" href="/modules/pusan/templets/default/styles/style.css?v=1791450494" type="text/css">
+<script src="/modules/sms/scripts/script.js?v=1791450495"></script>
+<link rel="stylesheet" href="/modules/attachment/styles/style.css?v=1791450483" type="text/css">
+<script src="/modules/push/scripts/script.js?v=1791450495"></script>
+<link rel="stylesheet" href="/modules/popupuniv/styles/style.css?v=1791450492" type="text/css">
+<script src="/modules/popupuniv/scripts/script.js?v=1791450492"></script>
+<link rel="stylesheet" href="/modules/popupuniv/templets/default/styles/style.css?v=1791450492" type="text/css">
+<link rel="stylesheet" href="/modules/keyword/styles/style.css?v=1791450488" type="text/css">
+<script src="/modules/keyword/scripts/keyword.js?v=1791450488"></script>
+<script src="/modules/profile/scripts/script.js?v=1791450493"></script>
+<meta content="noindex">
+<meta content="noindex, nofollow">
+<script src="/modules/boarduniv/scripts/script.js?v=1791450484"></script>
+<link rel="stylesheet" href="/modules/coursemos/templets/default/modules/boarduniv/default/styles/style.css?v=1791450486" type="text/css">
+<script src="/modules/coursemos/templets/default/modules/boarduniv/default/scripts/script.js?v=1791450486"></script>
+<script src="/modules/attachment/scripts/script.js?v=1791450483"></script>
+<script src="/modules/attachment/templets/default/scripts/script.js?v=1791450483"></script>
+<link rel="stylesheet" href="/modules/attachment/templets/default/styles/style.css?v=1791450483" type="text/css">
+<script src="/modules/wysiwyg/scripts/wysiwyg.js.php?v=1791450496"></script>
+<link rel="stylesheet" href="/modules/wysiwyg/styles/wysiwyg.css.php?theme=default&v=1791450496" type="text/css">
+<script src="/modules/wysiwyg/scripts/codemirror/codemirror.js?v=1791450496"></script>
+<link rel="stylesheet" href="/modules/wysiwyg/styles/codemirror/codemirror.css?v=1791450496" type="text/css">
+<script src="/modules/wysiwyg/scripts/codemirror/mode/xml.js?v=1791450496"></script>
+<script src="/modules/coursemos/scripts/printThis.js?v=1791450485"></script>
+<script src="/modules/ozpack/scripts/script.js?v=1791450491"></script>
+<link rel="stylesheet" href="/modules/ozpack/styles/style.css?v=1791450492" type="text/css">
+<link rel="stylesheet" href="/modules/pusan/templets/career/styles/subpage.css?v=1791450494" type="text/css">
+<script src="/modules/pusan/templets/career/scripts/subpage.js?v=1791450494"></script>
+<link rel="stylesheet" href="/modules/pusan/templets/career/widgets/coursemos.sidebarVer2/default/styles/style.css?v=1791450494" type="text/css">
+<script src="/modules/coursemos/widgets/sidebarVer2/scripts/script.js?v=1791450487"></script>
+<link rel="stylesheet" href="/modules/coursemos/widgets/sidebarVer2/styles/style.css.php?v=1791450487" type="text/css">
+<meta name="description" content="우리 대학 재학생의 지역기업 인식 개선부터 기업가치 재발견, 직무 탐색 및 채용 연계로 이어지는 부산대학교형 학생성공(Student Success) 교육혁신 모델 구축과 대학·기업·지역이 함께 성장하는 지속가능한 산학협력생태계를 조성하기 위한  「가장 일하고 싶은 지역기업 TOP10」 공모전을 개최하오니 많은 관심과 지원 부탁드립니다. ■ 운영개요1. 참가자격: 본교 학부 전학년 재학생(휴학·유예·졸업생 제외)2. 모집인원: 100명(5명×20팀)3. 공모내용: 팀별 부·울·경 기업분석 및 분석 발표 등4. 신청기간: ~ (모집연장) 2026. 10. 26.(월) 16:00까지 (기한 내 미제출 시 무효처리)5. 신청방법: 아래 서류 3가지를 신청기간 내 이메일 제출([email-redacted]) - 붙임 1. 참가신청서(스캔본) ※원본은 문창회관 2층 현장실습지원센터 제출 필수 - 붙임 2. 연구계획서 - 재학증명서(5인 전체) ※공모전 기간 내 재학신분 유지 및 5인구성 필수 ■ 공모전 세부운영 내용모집 및 선별(팀별 5명)⇒기업선택(팀별)(부·울·경소재)⇒1차심사 / 20팀 선정(신청서 및 연구계획서 제출)⇒팀별 자율 기업연구⇒        2차심사(상위 10개팀 선정)⇒3차심사 발표대회(10개팀)⇒지역기업TOP10 선정⇒시상, 백서 및기업 인증서 발급 ※ 기업분석 방법 및 심사내용은 붙임파일 「(최종) 공모전 안내」 파일확인 ■ 추진일정구분세부일정비고모집 및 신청~ 10. 26.(월) 16:00까지모집 연장 1차 심사 결과 안내2026. 10. 28.(수) 예정지원금 지급 20팀 선발기업조사 및 결과보고 제출2026. 10. 28.(수) ~ 11. 18.(수) 12:00자율연구 진행 및 [붙임 3.결과보고서] 제출2차 심사 결과안내2026. 11. 20.(금) 예정 발표대회(3차)2026. 11. 30.(월) 예정PPT 자율 양식※ 상기 일정은 내부 운영 상황에 따라 변동될 수 있음■ 우수작 시상 및 지원금구분최종 발표 심사1차심사총장상최우수상우수상장려상팀별 지원금팀123420시상금(팀당, 원)2,000,0001,000,000600,000400,000300,000■ 기타안내1. 공모작은 학생성공개발원 홈페이지나 지역기업 TOP10 모음집(백서)에 공개될 수 있음※ 개인 신상정보(성명, 학번, 연락처)는 비공개2. 신청기간 및 수상작 발표 등 상기 일정은 진행 상황에 따라 변동 가능3. 문의처 : 학생성공개발원 ([phone-redacted])">
+<meta name="robots" content="index, nofollow">
+<meta property="og:url" content="https://job.pusan.ac.kr/ko/notice/notice/view/204367">
+<meta property="og:type" content="website">
+<meta property="og:title" content="(모집연장) [학생성공개발원] 가장 일하고 싶은 지역기업 TOP10 공모전 안내(~10.26.월)">
+<meta property="og:description" content="우리 대학 재학생의 지역기업 인식 개선부터 기업가치 재발견, 직무 탐색 및 채용 연계로 이어지는 부산대학교형 학생성공(Student Success) 교육혁신 모델 구축과 대학·기업·지역이 함께 성장하는 지속가능한 산학협력생태계를 조성하기 위한  「가장 일하고 싶은 지역기업 TOP10」 공모전을 개최하오니 많은 관심과 지원 부탁드립니다. ■ 운영개요1. 참가자격: 본교 학부 전학년 재학생(휴학·유예·졸업생 제외)2. 모집인원: 100명(5명×20팀)3. 공모내용: 팀별 부·울·경 기업분석 및 분석 발표 등4. 신청기간: ~ (모집연장) 2026. 10. 26.(월) 16:00까지 (기한 내 미제출 시 무효처리)5. 신청방법: 아래 서류 3가지를 신청기간 내 이메일 제출([email-redacted]) - 붙임 1. 참가신청서(스캔본) ※원본은 문창회관 2층 현장실습지원센터 제출 필수 - 붙임 2. 연구계획서 - 재학증명서(5인 전체) ※공모전 기간 내 재학신분 유지 및 5인구성 필수 ■ 공모전 세부운영 내용모집 및 선별(팀별 5명)⇒기업선택(팀별)(부·울·경소재)⇒1차심사 / 20팀 선정(신청서 및 연구계획서 제출)⇒팀별 자율 기업연구⇒        2차심사(상위 10개팀 선정)⇒3차심사 발표대회(10개팀)⇒지역기업TOP10 선정⇒시상, 백서 및기업 인증서 발급 ※ 기업분석 방법 및 심사내용은 붙임파일 「(최종) 공모전 안내」 파일확인 ■ 추진일정구분세부일정비고모집 및 신청~ 10. 26.(월) 16:00까지모집 연장 1차 심사 결과 안내2026. 10. 28.(수) 예정지원금 지급 20팀 선발기업조사 및 결과보고 제출2026. 10. 28.(수) ~ 11. 18.(수) 12:00자율연구 진행 및 [붙임 3.결과보고서] 제출2차 심사 결과안내2026. 11. 20.(금) 예정 발표대회(3차)2026. 11. 30.(월) 예정PPT 자율 양식※ 상기 일정은 내부 운영 상황에 따라 변동될 수 있음■ 우수작 시상 및 지원금구분최종 발표 심사1차심사총장상최우수상우수상장려상팀별 지원금팀123420시상금(팀당, 원)2,000,0001,000,000600,000400,000300,000■ 기타안내1. 공모작은 학생성공개발원 홈페이지나 지역기업 TOP10 모음집(백서)에 공개될 수 있음※ 개인 신상정보(성명, 학번, 연락처)는 비공개2. 신청기간 및 수상작 발표 등 상기 일정은 진행 상황에 따라 변동 가능3. 문의처 : 학생성공개발원 ([phone-redacted])">
+<meta property="og:image" content="https://job.pusan.ac.kr/attachment/view/1449899/preview.png">
+<meta property="og:image:width" content="1220">
+<meta property="og:image:height" content="180">
+<meta property="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/modules/pusan/templets/career/styles/style.css?v=1791450494" type="text/css">
+<script src="/modules/pusan/templets/career/scripts/script.js?v=1791450494"></script>
+<link rel="stylesheet" href="/modules/pusan/templets/career/widgets/coursemos.loginbarVer2/default/styles/style.css?v=1791450494" type="text/css">
+<script src="/modules/pusan/templets/career/widgets/coursemos.loginbarVer2/default/scripts/script.js?v=1791450494"></script>
+<link rel="stylesheet" href="/modules/coursemos/widgets/loginbarVer2/styles/style.css.php?v=1791450487" type="text/css">
+<script src="/modules/coursemos/widgets/loginbarVer2/scripts/script.js?v=1791450487"></script>
+<script src="/scripts/language.js.php?language=ko&languages=module@coursemos@ko,module@etcform@ko,module@push@ko,module@eco@ko,module@popupuniv@ko&v=1791450496"></script>
+<script src="/scripts/php2js.js.php?language=ko&menu=notice&page=notice&view=view&v=1791450496"></script>
+<link rel="stylesheet" href="/styles/font.css.php?language=ko&font=moimz,XEIcon,Roboto,FontAwesome,NanumSquare,OpenSans&default=NanumSquare&v=1791450496" type="text/css">
+</head>
+<body>
+	<!-- iModule Alert -->
+	<div data-role="alert"></div>
+	
+	<!-- iModule Wrapper -->
+	<div data-role="wrapper">
+
+<div class="top">
+	<div class="container">
+		<div class="link">
+			<a href="https://www.pusan.ac.kr/kor/Main.do" target="_blank" class="pusan">부산대학교 바로가기</a>
+			<!-- <a href="/ko/strategy" class="strategy">취업전략과 소개</a>
+			<a href="/ko/reservation" class="job">취업준비실 예약</a> -->
+		</div>
+		<div class="box_login">
+			
+<!-- WIDGET : coursemos.loginbarVer2 -->
+<div data-role="widget" data-widget="coursemos-loginbarVer2" data-templet="default" data-thema="light">
+<button type="button" data-action="login">로그인</button>
+<!-- <button type="button" data-action="sso_login">SSO 로그인</button> -->
+</div>
+<!--// WIDGET : coursemos.loginbarVer2 -->
+<!-- Load Time : 0.00839 -->
+			<a href="/ko/index/signup/register/2" class="join">기업회원가입</a>
+		</div>
+	</div>
+</div>
+<header>
+	<div class="content">
+		<div class="container">
+			<h1><a href="/ko/" style="background-image:url(/attachment/view/364/logo.png);">부산대학교 취업전략과</a></h1>
+			<nav>
+				<ul class="gnb">
+										<li class="notice">
+						<a href="/ko/notice"><span class="line">공지사항</span></a>
+						<div class="submenu">
+							<div class="container">
+								<div class="wrap">
+
+
+									<div class="title">
+										<h2>공지사항</h2>
+										<p>
+											여러분과 함께 꿈을 향해 나아가는<br>
+											부산대학교 취업전략과
+										</p>
+									</div>
+
+									<div class="menus">
+										<ul>
+
+	<li class="selected" >
+		<a href="/ko/notice/notice">공지사항</a>
+	</li>
+	
+										</ul>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</li>
+										<li class="recruit">
+						<a href="/ko/recruit"><span class="line">채용정보</span></a>
+						<div class="submenu">
+							<div class="container">
+								<div class="wrap">
+
+
+									<div class="title">
+										<h2>채용정보</h2>
+										<p>
+											여러분과 함께 꿈을 향해 나아가는<br>
+											부산대학교 취업전략과
+										</p>
+									</div>
+
+									<div class="menus">
+										<ul>
+
+	<li class="" >
+		<a href="/ko/recruit/board">일반채용</a>
+	</li>
+	</ul><ul>
+	<li class="" >
+		<a href="/ko/recruit/openrecruit">공채달력</a>
+	</li>
+	
+										</ul>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</li>
+										<li class="counsel">
+						<a href="/ko/counsel"><span class="line">상담 신청</span></a>
+						<div class="submenu">
+							<div class="container">
+								<div class="wrap">
+
+
+									<div class="title">
+										<h2>상담 신청</h2>
+										<p>
+											여러분과 함께 꿈을 향해 나아가는<br>
+											부산대학교 취업전략과
+										</p>
+									</div>
+
+									<div class="menus">
+										<ul>
+
+			<li class="group ">
+				<a href="/ko/counsel/job_info">진로/취업상담</a>
+				<ul>
+			
+	<li class="" >
+		<a href="/ko/counsel/job_info">상담안내</a>
+	</li>
+	
+	<li class="" >
+		<a href="/ko/counsel/job">상담신청</a>
+	</li>
+	</li></ul></ul><ul>
+			<li class="group ">
+				<a href="/ko/counsel/interview">입사서류/면접 클리닉</a>
+				<ul>
+			
+	<li class="" >
+		<a href="/ko/counsel/interview">상담안내</a>
+	</li>
+	
+	<li class="" >
+		<a href="/ko/counsel/interview_apply">상담신청</a>
+	</li>
+	
+										</ul>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</li>
+										<li class="support">
+						<a href="/ko/support"><span class="line">진로 취업 프로그램</span></a>
+						<div class="submenu">
+							<div class="container">
+								<div class="wrap">
+
+
+									<div class="title">
+										<h2>진로 취업 프로그램</h2>
+										<p>
+											여러분과 함께 꿈을 향해 나아가는<br>
+											부산대학교 취업전략과
+										</p>
+									</div>
+
+									<div class="menus">
+										<ul>
+
+	<li class="" >
+		<a href="/ko/support/enterprise">공무원 지원 프로그램</a>
+	</li>
+	</ul><ul>
+	<li class="" >
+		<a href="/ko/support/jobs">현장실습지원센터</a>
+	</li>
+	
+										</ul>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</li>
+										<li class="community">
+						<a href="/ko/community"><span class="line">커뮤니티</span></a>
+						<div class="submenu">
+							<div class="container">
+								<div class="wrap">
+
+
+									<div class="title">
+										<h2>커뮤니티</h2>
+										<p>
+											여러분과 함께 꿈을 향해 나아가는<br>
+											부산대학교 취업전략과
+										</p>
+									</div>
+
+									<div class="menus">
+										<ul>
+
+	<li class="" >
+		<a href="/ko/community/qna">Q&A</a>
+	</li>
+	</ul><ul>
+	<li class="" >
+		<a href="/ko/community/dataroom">자료실</a>
+	</li>
+	</ul><ul>
+	<li class="" >
+		<a href="/ko/community/faq">FAQ</a>
+	</li>
+	</ul><ul>
+	<li class="" >
+		<a href="/ko/community/calendar">취업 캘린더</a>
+	</li>
+	
+										</ul>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</li>
+										<li class="career">
+						<a href="/ko/career"><span class="line">교내경력관리시스템</span></a>
+						<div class="submenu">
+							<div class="container">
+								<div class="wrap">
+
+
+									<div class="title">
+										<h2>교내경력관리시스템</h2>
+										<p>
+											여러분과 함께 꿈을 향해 나아가는<br>
+											부산대학교 취업전략과
+										</p>
+									</div>
+
+									<div class="menus">
+										<ul>
+
+	<li class="" >
+		<a href="/ko/career/vision">대학생활설계와 비전</a>
+	</li>
+	</ul><ul>
+	<li class="" >
+		<a href="/ko/career/develop">직업능력개발과정</a>
+	</li>
+	</ul><ul>
+			<li class="group ">
+				<a href="/ko/career/pass">경력관리</a>
+				<ul>
+			
+	<li class="" >
+		<a href="/ko/career/pass">경력관리 안내</a>
+	</li>
+	
+	<li class="" >
+		<a href="/ko/career/pass_info">경력 신청</a>
+	</li>
+	
+										</ul>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</li>
+										<li class="strategy">
+						<a href="/ko/strategy"><span class="line">학생성공개발원 소개</span></a>
+						<div class="submenu">
+							<div class="container">
+								<div class="wrap">
+
+
+									<div class="title">
+										<h2>학생성공개발원 소개</h2>
+										<p>
+											여러분과 함께 꿈을 향해 나아가는<br>
+											부산대학교 취업전략과
+										</p>
+									</div>
+
+									<div class="menus">
+										<ul>
+
+	<li class="" >
+		<a href="/ko/strategy/intro">주요사업</a>
+	</li>
+	</ul><ul>
+	<li class="" >
+		<a href="/ko/strategy/contact">조직 및 업무 안내</a>
+	</li>
+	</ul><ul>
+	<li class="" >
+		<a href="/ko/strategy/map">찾아오시는 길</a>
+	</li>
+	
+										</ul>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</li>
+									</ul>
+				<a class="insta__button_link" target="_blank" href="https://www.instagram.com/pnu_job/"></a>
+				<button type="button" data-action="all" onclick="OpenAllService(this);"><i class="mi mi-bars"></i></button>
+				<button type="button" class="slide" onclick="OpenSlideMenu();"><i class="mi mi-bars"></i></button>
+			</nav>
+		</div>
+		<div class="top_all_menu">
+			<div class="container" >
+				<ul>
+										<li>
+						<h4><a href="/ko/notice">공지사항</a></h4>
+
+						<ul>
+<li class="selected"><a href="/ko/notice/notice">공지사항</a></li>						</ul>
+					</li>
+										<li>
+						<h4><a href="/ko/recruit">채용정보</a></h4>
+
+						<ul>
+<li class=""><a href="/ko/recruit/board">일반채용</a></li><li class=""><a href="/ko/recruit/openrecruit">공채달력</a></li>						</ul>
+					</li>
+										<li>
+						<h4><a href="/ko/counsel">상담 신청</a></h4>
+
+						<ul>
+
+			<li class="group ">
+				<a href="/ko/counsel/job_info">진로/취업상담</a>
+				<ul>
+			<li class=""><a href="/ko/counsel/job_info">상담안내</a></li><li class=""><a href="/ko/counsel/job">상담신청</a></li></li></ul>
+			<li class="group ">
+				<a href="/ko/counsel/interview">입사서류/면접 클리닉</a>
+				<ul>
+			<li class=""><a href="/ko/counsel/interview">상담안내</a></li><li class=""><a href="/ko/counsel/interview_apply">상담신청</a></li></ul></li>						</ul>
+					</li>
+										<li>
+						<h4><a href="/ko/support">진로 취업 프로그램</a></h4>
+
+						<ul>
+<li class=""><a href="/ko/support/enterprise">공무원 지원 프로그램</a></li><li class=""><a href="/ko/support/jobs">현장실습지원센터</a></li>						</ul>
+					</li>
+										<li>
+						<h4><a href="/ko/community">커뮤니티</a></h4>
+
+						<ul>
+<li class=""><a href="/ko/community/qna">Q&A</a></li><li class=""><a href="/ko/community/dataroom">자료실</a></li><li class=""><a href="/ko/community/faq">FAQ</a></li><li class=""><a href="/ko/community/calendar">취업 캘린더</a></li>						</ul>
+					</li>
+										<li>
+						<h4><a href="/ko/career">교내경력관리시스템</a></h4>
+
+						<ul>
+<li class=""><a href="/ko/career/vision">대학생활설계와 비전</a></li><li class=""><a href="/ko/career/develop">직업능력개발과정</a></li>
+			<li class="group ">
+				<a href="/ko/career/pass">경력관리</a>
+				<ul>
+			<li class=""><a href="/ko/career/pass">경력관리 안내</a></li><li class=""><a href="/ko/career/pass_info">경력 신청</a></li></ul></li>						</ul>
+					</li>
+										<li>
+						<h4><a href="/ko/strategy">학생성공개발원 소개</a></h4>
+
+						<ul>
+<li class=""><a href="/ko/strategy/intro">주요사업</a></li><li class=""><a href="/ko/strategy/contact">조직 및 업무 안내</a></li><li class=""><a href="/ko/strategy/map">찾아오시는 길</a></li>						</ul>
+					</li>
+									</ul>
+				<div class="both"></div>
+			</div>
+		</div>
+	</div>
+</header>
+<div class="dim"></div>
+<!-- Load Time header1 : 0.00631 -->
+<!-- Load Time header2 : 0.01670 -->
+
+<main class="subpage">
+
+	<div class="intro page_notice" style="background-image:url(/attachment/original/1449899/preview.png)">
+		<p>공지사항</p>
+	</div>
+
+	<div class="nbreadcrumb">
+		<div class="container">
+			<a href="/ko/" class="home" ><i class="fa fa-home"></i><span class="ir_hidden">홈</span></a>
+
+			<div data-role="input" >
+				<select name="menu" title="메뉴">
+										<option value="/ko/notice" selected="selected">공지사항</option>
+										<option value="/ko/recruit">채용정보</option>
+										<option value="/ko/counsel">상담 신청</option>
+										<option value="/ko/support">진로 취업 프로그램</option>
+										<option value="/ko/community">커뮤니티</option>
+										<option value="/ko/career">교내경력관리시스템</option>
+										<option value="/ko/strategy">학생성공개발원 소개</option>
+									</select>
+			</div>
+
+			<div data-role="input">
+				<select name="page" title="페이지">
+											<option value="/ko/notice/notice" selected="selected">공지사항</option>
+									</select>
+			</div>
+		</div>
+	</div>
+	<div class="context">
+		<div class="container">
+			<h3>
+									공지사항							</h3>
+				<nav>
+					<!-- <h2><//?php echo $IM->getMenus($IM->menu)->title; ?></h2> -->
+					<ul>
+							</ul>
+			</nav>
+		</div>
+
+		<section>
+			<div class="container">			
+
+<div data-role="wysiwyg-content"><p>여러분과 함께 꿈을 향해 나아가는 부산대학교 취업전략과</p></div>
+
+
+<!-- BOARDUNIV MODULE -->
+<div data-role="context" data-type="module" data-module="boarduniv" data-base-url="/ko/notice/notice" data-bid="hrd_notice" data-view="view" data-configs="{&quot;templet&quot;:&quot;#coursemos.default.default&quot;,&quot;attachment&quot;:&quot;#&quot;,&quot;category&quot;:0,&quot;templet_configs&quot;:{&quot;name&quot;:&quot;NONE&quot;,&quot;use_email&quot;:&quot;FALSE&quot;,&quot;use_belong&quot;:&quot;FALSE&quot;,&quot;ment&quot;:&quot;TRUE&quot;,&quot;default_content&quot;:&quot;&quot;,&quot;use_grade&quot;:&quot;FALSE&quot;}}">
+
+<!-- cache context (2026-10-14 22:10:33) //-->
+
+<div id="ModuleBoardunivView" data-idx="204367">
+<article data-role="post">
+	<div class="header">
+		<h5>(모집연장) [학생성공개발원] 가장 일하고 싶은 지역기업 TOP10 공모전 안내(~10.26.월)</h5>
+
+				<ul class="noname">
+			<li class="date"><b>작성일자</b><i class="xi xi-time"></i><time datetime="2026-09-21T10:15:32+09:00" data-time="1789953332" data-format="Y-m-d H:i:s" data-moment="YYYY-MM-DD HH:mm:ss">2026-09-21 10:15:32</time></li>
+			<li class="hit"><b>조회</b><i class="xi xi-eye"></i>653</li>
+		</ul>
+			</div>
+
+	<div class="content" id="ModuleBoardunivBodyPrintBox">
+		
+<div data-role="wysiwyg-content"><p>우리 대학 재학생의 지역기업 인식 개선부터 기업가치 재발견, 직무 탐색 및 채용 연계로 이어지는 <strong>부산대학교형 학생성공(Student Success)</strong> 교육혁신 모델 구축과 </p><p>대학·기업·지역이 함께 성장하는 지속가능한 산학협력생태계를 조성하기 위한<strong>  「가장 일하고 싶은 지역기업 TOP10」 공모전을 개최</strong>하오니 많은 관심과 지원 부탁드립니다. </p><p><br /></p><p>■ <strong>운영개요</strong></p><p>1. 참가자격: 본교 학부 전학년 <strong>재학생</strong>(휴학·유예·졸업생 제외)</p><p>2. 모집인원: 100명(5명×20팀)</p><p>3. 공모내용: 팀별 부·울·경 기업분석 및 분석 발표 등</p><h2>4. 신청기간:<span style="color:rgb(184,49,47);"> </span><strong><span style="color:rgb(184,49,47);">~ (모집연장) 2026. 10. 26.(월) 16:00까지 (기한 내 미제출 시 무효처리)</span></strong></h2><p>5. 신청방법: 아래 서류 3가지를 신청기간 내 이메일 제출([email-redacted])</p><p> - 붙임 1. 참가신청서(스캔본) <u>※원본은 문창회관 2층 현장실습지원센터 제출 필수</u></p><p> - 붙임 2. 연구계획서</p><p> - 재학증명서(5인 전체) <span style="color:rgb(41,105,176);"><u><strong>※공모전 기간 내 재학신분 유지 및 5인구성 필수</strong></u></span></p><p><br /></p><p><strong> ■ 공모전 세부운영 내용</strong></p><table style="width:91%;"><tbody><tr><td style="text-align:center;" valign="middle"><p>모집 및 선별</p><p>(팀별 5명)</p></td><td style="text-align:center;" valign="middle"><p>⇒</p></td><td style="text-align:center;" valign="middle"><p>기업선택(팀별)</p><p>(부·울·경소재)</p></td><td style="text-align:center;" valign="middle"><p>⇒</p></td><td style="text-align:center;" valign="middle"><p>1차심사 / 20팀 선정</p><p>(신청서 및 연구계획서 제출)</p></td><td style="text-align:center;" valign="middle"><p>⇒</p></td><td style="text-align:center;" valign="middle"><p>팀별 자율 기업연구</p></td><td style="text-align:center;" valign="middle"><p>⇒</p></td></tr><tr><td style="text-align:center;" valign="middle"><p> </p></td><td style="text-align:center;" valign="middle"><p> </p></td><td style="text-align:center;" valign="middle"><p> </p></td><td style="text-align:center;" valign="middle"><p> </p></td><td style="text-align:center;" valign="middle"><p> </p></td><td style="text-align:center;" valign="middle"><p> </p></td><td style="text-align:center;" valign="middle"><p> </p></td><td style="text-align:center;" valign="middle"><p> </p></td></tr><tr><td style="text-align:center;" valign="middle"><p>2차심사</p><p>(상위 10개팀 선정)</p></td><td style="text-align:center;" valign="middle"><p>⇒</p></td><td style="text-align:center;" valign="middle"><p>3차심사 발표대회</p><p>(10개팀)</p></td><td style="text-align:center;" valign="middle"><p>⇒</p></td><td style="text-align:center;" valign="middle"><p>지역기업</p><p>TOP10 선정</p></td><td style="text-align:center;" valign="middle"><p>⇒</p></td><td style="text-align:center;" valign="middle"><p>시상, 백서 및</p><p>기업 인증서 발급</p></td><td style="text-align:center;" valign="middle"><p> </p></td></tr></tbody></table><p><br /></p><p>※ 기업분석 방법 및 심사내용은 붙임파일 「(최종) 공모전 안내」 파일확인 </p><p><br /></p><p>■<strong> 추진일정</strong></p><table style="width:92%;"><tbody><tr><td style="text-align:center;background-color:rgb(247,218,100);" valign="middle"><p><strong>구분</strong></p></td><td style="text-align:center;background-color:rgb(247,218,100);width:45.465%;" valign="middle"><p><strong>세부일정</strong></p></td><td style="text-align:center;background-color:rgb(247,218,100);width:29.7269%;" valign="middle"><p><strong>비고</strong></p></td></tr><tr><td style="text-align:center;" valign="middle"><p>모집 및 신청</p></td><td style="text-align:center;width:45.465%;" valign="middle"><p>~ 10. 26.(월) 16:00까지</p></td><td style="text-align:center;width:29.7269%;" valign="middle"><strong>모집 연장</strong><p> </p></td></tr><tr><td style="text-align:center;" valign="middle"><p>1차 심사 결과 안내</p></td><td style="text-align:center;width:45.465%;" valign="middle"><p>2026. 10. 28.(수) 예정</p></td><td style="text-align:center;width:29.7269%;" valign="middle"><p>지원금 지급 20팀 선발</p></td></tr><tr><td style="text-align:center;" valign="middle"><p>기업조사 및 결과보고 제출</p></td><td style="text-align:center;width:45.465%;" valign="middle"><p>2026. 10. 28.(수) ~ 11. 18.(수) 12:00</p></td><td style="text-align:center;width:29.7269%;" valign="middle"><p>자율연구 진행 및 [붙임 3.결과보고서] 제출</p></td></tr><tr><td style="text-align:center;" valign="middle"><p>2차 심사 결과안내</p></td><td style="text-align:center;width:45.465%;" valign="middle"><p>2026. 11. 20.(금) 예정</p></td><td style="text-align:center;width:29.7269%;" valign="middle"><p> </p></td></tr><tr><td style="text-align:center;" valign="middle"><p>발표대회(3차)</p></td><td style="text-align:center;width:45.465%;" valign="middle"><p>2026. 11. 30.(월) 예정</p></td><td style="text-align:center;width:29.7269%;" valign="middle"><p>PPT 자율 양식</p></td></tr></tbody></table><p>※ 상기 일정은 내부 운영 상황에 따라 변동될 수 있음</p><p><br /></p><p>■ <strong>우수작 시상 및 지원금</strong></p><table style="width:92%;"><tbody><tr><td rowspan="2" style="text-align:center;background-color:rgb(247,218,100);" valign="middle"><p><strong>구분</strong></p></td><td colspan="4" style="text-align:center;background-color:rgb(247,218,100);" valign="middle"><p><strong>최종 발표 심사</strong></p></td><td style="text-align:center;background-color:rgb(247,218,100);" valign="middle"><p><strong>1차심사</strong></p></td></tr><tr><td style="text-align:center;background-color:rgb(247,218,100);" valign="middle"><p><strong>총장상</strong></p></td><td style="text-align:center;background-color:rgb(247,218,100);" valign="middle"><p><strong>최우수상</strong></p></td><td style="text-align:center;background-color:rgb(247,218,100);" valign="middle"><p><strong>우수상</strong></p></td><td style="text-align:center;background-color:rgb(247,218,100);" valign="middle"><p><strong>장려상</strong></p></td><td style="text-align:center;background-color:rgb(247,218,100);" valign="middle"><p><strong>팀별 지원금</strong></p></td></tr><tr><td style="text-align:center;" valign="middle"><p>팀</p></td><td style="text-align:center;" valign="middle"><p>1</p></td><td style="text-align:center;" valign="middle"><p>2</p></td><td style="text-align:center;" valign="middle"><p>3</p></td><td style="text-align:center;" valign="middle"><p>4</p></td><td style="text-align:center;" valign="middle"><p>20</p></td></tr><tr><td style="text-align:center;" valign="middle"><p>시상금(팀당, 원)</p></td><td style="text-align:center;" valign="middle"><p>2,000,000</p></td><td style="text-align:center;" valign="middle"><p>1,000,000</p></td><td style="text-align:center;" valign="middle"><p>600,000</p></td><td style="text-align:center;" valign="middle"><p>400,000</p></td><td style="text-align:center;" valign="middle"><p>300,000</p></td></tr></tbody></table><p><br /></p><p><br /></p><p>■ <strong>기타안내</strong></p><p>1. 공모작은 학생성공개발원 홈페이지나 지역기업 TOP10 모음집(백서)에 공개될 수 있음</p><p>※ 개인 신상정보(성명, 학번, 연락처)는 비공개</p><p>2. 신청기간 및 수상작 발표 등 상기 일정은 진행 상황에 따라 변동 가능</p><p>3. 문의처 : 학생성공개발원 ([phone-redacted])</p></div>
+	</div>
+
+
+	<div data-module="attachment">
+		<h5><i class="xi xi-clip"></i>첨부파일</h5>
+		<ul>
+
+		<li>
+			<i class="icon" data-type="document"></i><a href="/attachment/download/1583877/%EB%B6%99%EC%9E%84+1.+%EC%B0%B8%EA%B0%80%EC%8B%A0%EC%B2%AD%EC%84%9C.xlsx"><span class="size">(71.30KB)</span>붙임 1. 참가신청서.xlsx</a>
+		</li>
+
+		<li>
+			<i class="icon" data-type="file"></i><a href="/attachment/download/1583878/%EB%B6%99%EC%9E%84+2.+%EC%97%B0%EA%B5%AC%EA%B3%84%ED%9A%8D%EC%84%9C.hwp"><span class="size">(40.45KB)</span>붙임 2. 연구계획서.hwp</a>
+		</li>
+
+		<li>
+			<i class="icon" data-type="file"></i><a href="/attachment/download/1583879/%EB%B6%99%EC%9E%84+3.+%EA%B2%B0%EA%B3%BC%EB%B3%B4%EA%B3%A0%EC%96%91%EC%8B%9D.hwp"><span class="size">(77.31KB)</span>붙임 3. 결과보고양식.hwp</a>
+		</li>
+
+		<li>
+			<i class="icon" data-type="file"></i><a href="/attachment/download/1583908/%EB%B6%99%EC%9E%84+2.+%EC%97%B0%EA%B5%AC%EA%B3%84%ED%9A%8D%EC%84%9C.docx"><span class="size">(11.69KB)</span>붙임 2. 연구계획서.docx</a>
+		</li>
+
+		<li>
+			<i class="icon" data-type="file"></i><a href="/attachment/download/1583909/%EB%B6%99%EC%9E%84+3.+%EA%B2%B0%EA%B3%BC%EB%B3%B4%EA%B3%A0%EC%96%91%EC%8B%9D.docx"><span class="size">(10.77KB)</span>붙임 3. 결과보고양식.docx</a>
+		</li>
+
+		<li>
+			<i class="icon" data-type="document"></i><a href="/attachment/download/1584200/%28%EC%B0%B8%EA%B3%A0%29+%EC%A4%91%EA%B2%AC%EA%B8%B0%EC%97%85%EB%A6%AC%EC%8A%A4%ED%8A%B8.xlsx"><span class="size">(25.78KB)</span>(참고) 중견기업리스트.xlsx</a>
+		</li>
+
+		<li>
+			<i class="icon" data-type="document"></i><a href="#" class="file" data-bid="hrd_notice" data-idx="1588088"onclick="Boarduniv.view.attachment.contextmenu(event,'hrd_notice',1588088,'/attachment/download/1588088/%28%EB%AA%A8%EC%A7%91%EC%97%B0%EC%9E%A5%29+%EA%B3%B5%EB%AA%A8%EC%A0%84+%EC%95%88%EB%82%B4.pdf'); return false;">(모집연장) 공모전 안내.pdf</a>
+		</li>
+
+		</ul>
+	</div>
+
+
+	
+		<div data-role="button">
+
+			</div>
+
+		</article>
+
+<ul class="buttons">
+	<li>
+		<div class="button_list" data-role="button">
+			<a href="/ko/notice/notice/list/1" class="thema_etc_color">목록보기</a>
+			<button data-action="print" class="thema_etc_color">본문출력</button>
+            <a href="/ko/notice/notice/view/204366?p=1">< 이전글</a><a href="/ko/notice/notice/view/204368?p=1">다음글 ></a>		</div>
+	</li>
+	<li>
+		<div data-role="button">
+					</div>
+	</li>
+</ul>
+</div>
+<script>Boarduniv.view.init("ModuleBoardunivView");</script>
+</div>
+<!--// BOARDUNIV MODULE -->
+			</div>			<br /><br /><br />
+		</section>
+	</div>
+</main>
+
+<!-- WIDGET : coursemos.sidebarVer2 -->
+<div data-role="widget" data-widget="coursemos-sidebarVer2" data-templet="default">
+<aside>
+	<div class="header bgcolor1">
+				<button type="button" class="close" onclick="OpenSlideMenu();"><i class="mi mi-close color1"></i></button>
+	</div>
+	
+	<form id="WidgetCoursemosSidebarLogin">
+<section data-role="login" class="login">
+<div class="paddingBox">
+	<div class="help">
+		<button type="button">로그인 안내</button>
+
+		<div class="helpBox">
+			<div>학내 구성원은 신분에 따라 아이디에 학번 또는 사번, 패스워드를 입력하여 로그인합니다.</div>
+		</div>
+	</div>
+
+	<div class="loginForm">
+		<div class="input">
+			<div data-role="input" data-default="야야야">
+				<input type="text" name="email" placeholder="아이디" title="id">
+			</div>
+			<div data-role="input" data-default="야야야">
+				<input type="password" name="password" placeholder="패스워드" title="password" autocomplete="off">
+			</div>
+		</div>
+		<button type="submit">로그인</button>
+	</div>
+
+	<div class="link">
+			</div>
+</div>
+
+<div class="errorBox" data-error="로그인에 실패하였습니다. 학번 또는 사번 및 패스워드를 다시 한번 확인하여 주시기 바랍니다."></div>
+</section>
+</form>
+<script>$("#WidgetCoursemosSidebarLogin").inits(Member.login);</script>
+
+	
+	<ul class="menu login">
+				<li class="opened selected">
+			<a href="/ko/notice">
+				공지사항				<i data-role="toggle" class="btn_sub_toggle fa fa-angle-down"></i>			</a>
+
+						<div class="submenu">
+								<a href="/ko/notice/notice" class="selected">공지사항</a>
+							</div>
+					</li>
+				<li>
+			<a href="/ko/recruit">
+				채용정보				<i data-role="toggle" class="btn_sub_toggle fa fa-angle-down"></i>			</a>
+
+						<div class="submenu">
+								<a href="/ko/recruit/board">일반채용</a>
+								<a href="/ko/recruit/openrecruit">공채달력</a>
+							</div>
+					</li>
+				<li>
+			<a href="/ko/counsel">
+				상담 신청				<i data-role="toggle" class="btn_sub_toggle fa fa-angle-down"></i>			</a>
+
+						<div class="submenu">
+								<a href="/ko/counsel/job_info">상담안내</a>
+								<a href="/ko/counsel/job">상담신청</a>
+								<a href="/ko/counsel/interview">상담안내</a>
+								<a href="/ko/counsel/interview_apply">상담신청</a>
+							</div>
+					</li>
+				<li>
+			<a href="/ko/support">
+				진로 취업 프로그램				<i data-role="toggle" class="btn_sub_toggle fa fa-angle-down"></i>			</a>
+
+						<div class="submenu">
+								<a href="/ko/support/enterprise">공무원 지원 프로그램</a>
+								<a href="/ko/support/jobs">현장실습지원센터</a>
+							</div>
+					</li>
+				<li>
+			<a href="/ko/community">
+				커뮤니티				<i data-role="toggle" class="btn_sub_toggle fa fa-angle-down"></i>			</a>
+
+						<div class="submenu">
+								<a href="/ko/community/qna">Q&A</a>
+								<a href="/ko/community/dataroom">자료실</a>
+								<a href="/ko/community/faq">FAQ</a>
+								<a href="/ko/community/calendar">취업 캘린더</a>
+							</div>
+					</li>
+				<li>
+			<a href="/ko/career">
+				교내경력관리시스템				<i data-role="toggle" class="btn_sub_toggle fa fa-angle-down"></i>			</a>
+
+						<div class="submenu">
+								<a href="/ko/career/vision">대학생활설계와 비전</a>
+								<a href="/ko/career/develop">직업능력개발과정</a>
+								<a href="/ko/career/pass">경력관리 안내</a>
+								<a href="/ko/career/pass_info">경력 신청</a>
+							</div>
+					</li>
+				<li>
+			<a href="/ko/strategy">
+				학생성공개발원 소개				<i data-role="toggle" class="btn_sub_toggle fa fa-angle-down"></i>			</a>
+
+						<div class="submenu">
+								<a href="/ko/strategy/intro">주요사업</a>
+								<a href="/ko/strategy/contact">조직 및 업무 안내</a>
+								<a href="/ko/strategy/map">찾아오시는 길</a>
+							</div>
+					</li>
+			</ul>
+</aside>
+</div>
+<!--// WIDGET : coursemos.sidebarVer2 -->
+<!-- Load Time : 0.00636 -->
+
+<footer class="subpage">
+	<div class="foot_top">
+		<div class="container">
+			<ul class="menus">
+				<li><a href="https://www.pusan.ac.kr/kor/CMS/Board/Board.do?mCode=MN186" target="_blank"><span>개인정보처리방침</span></a></li>
+				<li><a href="#" target="_blank"><span>저작권보호정책</span></a></li>
+				<li><a href="#" target="_blank"><span>이메일 무단수집거부</span></a></li>
+				<li class="sns">
+					<!-- <a href="" target="_blank"><i class="fa fa-facebook"></i></a> -->
+					<!-- <a href="" target="_blank"><i class="fa fa-twitter"></i></a> -->
+					<a href="https://www.instagram.com/pnu_job/" target="_blank"  target="_blank"><i class="fa fa-instagram"></i></i></a>
+					<a href="#" target="_blank" class="copy-btn"><i class="xi xi-share-alt"></i></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		<div class="f_logo_wrap">
+			<strong class="f_logo">부산대학교</strong>
+		</div>
+		<div class="contact">
+			<div class="address">
+				<p>(46241) 부산광역시 금정구 부산대학로 63번길 2 (장전동) 부산대학교 취업전략과</p>
+				<p class="tel">TEL (051) 510-1283</p>
+				<p class="fax">FAX (051) 512-2545</p>
+			</div>
+			<div class="copyright">
+				<p>본 홈페이지에 게시된 이메일 주소가 자동수집되는 것을 거부하며, 이를위반시 정보통신망법에 의해 처벌됨을 유념하시기 바랍니다. </p>
+				<p class="copyright">COPYRIGHT © 부산대학교.ALL RIGHTS RESERVED.</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+<!--  -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9PZR3CCDCL"></script>
+
+<!-- 링크 복사 스크립트 -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9PZR3CCDCL');
+
+function copyClip(url){
+	var $temp = $('<input>');
+	$('body').append($temp);
+	$temp.val(url).select();
+	document.execCommand('copy');
+	$temp.remove();
+	alert('URL이 복사되었습니다.');
+}
+$('.copy-btn').on('click', function(e){
+	e.preventDefault();
+	var link = location.href;
+	copyClip(link);
+});
+
+
+</script>
+
+
+	</div>
+	<!--// iModule Wrapper -->
+	<iframe name="ImSitedownloadFrame" style="display:none;"></iframe>
+</body>
+</html>
+<!-- Created by iModule (https://www.imodules.io) -->
+<!-- job.pusan.ac.kr -->
+<!-- Load Time 1: 0.02160 -->
+<!-- Load Time 2: 0.13335 -->
+<!-- Load Time 3: 0.16393 -->
+<!-- Load Time 4: 0.16394 -->
+<!-- Load Time 5: 0.22868 -->
+<!-- Load Time -: 7 -->
+<!-- Load Time context1 : 0.16397 -->
+<!-- Load Time context2 : 0.16398 -->
+<!-- Load Time context4 : 0.16398 -->
+<!-- Load Time context5 : 0.18132 -->
+<!-- Load Time context_boarduniv : 0.18133 -->
+<!-- Load Time context6 (MODULE) : 0.22867 -->
+<!-- Load Time context7 : 0.22868 -->
+<!-- Load Time 6: 0.26365 -->
+<!-- Load Time 7: 0.26402 -->
+<!-- Load Time 8: 0.27101 -->
+<!-- Load Time 9: 0.28772 -->
+<!-- Load Time E: 0.28802 -->

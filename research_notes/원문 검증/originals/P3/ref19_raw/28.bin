@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko" #htmlroot="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <!-- 브라우저의 캐시를 사용하지 않게하는 방법.. 강력새로고침은 안해도 되지만 새로고침을 할 때마다 트래픽소비가 늘어나고 로딩시간이 길어짐 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>청년일자리 강소기업</title>
+  <base href="/">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+  <!-- 카카오 주소 API 스크립트 추가 -->
+  <script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<link rel="stylesheet" href="styles.046bda780b2bd16f650f.css"></head>
+<body>
+<app-root></app-root>
+<script src="runtime.34b9c1e5bb4c388fef14.js" defer></script><script src="polyfills.618d742b4751ac61e0d8.js" defer></script><script src="main.13c04573b312b3fd1abd.js" defer></script></body>
+</html>
