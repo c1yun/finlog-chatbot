@@ -1,0 +1,391 @@
+			$location.find(".locationDepth1").text(pathArray[1] ? pathArray[1].trim() : '');
+			$location.find(".locationDepth2").text(pathArray[2] ? pathArray[2].trim() : '');
+			$location.find("li:empty").remove();
+			$location.find("li:last").css("font-weight", "700");
+		}
+		// ⑥ 기존 gnb 쿠키 기반 fallback
+		function fallbackBreadCrumb() {
+			var currentMenuId = fn_getCookie("currentMainMenuId");
+			if (!fn_empty(currentMenuId)) {
+				$(".location > .locationDepth1").text($('.gnb-menu > li.active').find('a,button').html());
+				$(".location > .locationDepth2").append($('.gnb-menu > li.active').find('li.active').html());
+			} else {
+				$(".location").hide();
+			}
+			$(".location").find("li:empty").remove();
+			$(".location").find("li:last").css("font-weight", "700");
+		}
+	});
+홈
+    {
+        "@context":"https://schema.org/",
+        "@type":"Dataset",
+        "name":"국민연금공단_국민연금 가입 사업장 내역",
+        "description":"(국민연금가입사업장정보) 법정동단위 지역별, 국민연금 가입 사업장 정보
+* 제공 범위: 가입자 수 3인 이상 법인사업장, 가입자 수 10인 이상 개인사업장(2025.7.이후)
+* 사업장 컬럼별 상세설명
+○ 자료생성년월 → 자격마감일(사유발생일이 속하는 달의 다음달 15일)까지 신고분 반영
+○ 가입자 수 → 가입자 수(고지인원 수 포함)
+○ 당월고지금액 → 국민연금법 시행령 제5조에 의거 기준소득월액 상한액 적용으로 실제소득과 고지금액은 상이할 수 있음
+■상한액 2022.7. ~ 2023.6.  5,530,000원 
+■상한액 2023.7. ~ 2024.6.  5,900,000원 
+■상한액 2024.7. ~ 2025.6.  6,170,000원 
+■상한액 2025.7. ~ 2026.6.  6,370,000원 
+■상한액 2026.7. ~ 2027.6.  6,590,000원 
+○ 신규취득자수 → 납부재개 포함 ※전달 고지대상자와 비교하므로 실제 취득자수와 상이할 수 있음(초일 취득이 아닌 경우  당월 미고지되면 다음 달 취득자 수에 반영)
+○ 상실가입자수 → 납부예외 포함. ※해당 자료추출월과 익월을 비교하여 자료추출월에는 고지가 있으나 익월에는 고지가  없는 대상자에 대한 건수를 제공하므로 실제 상실자 수와 상이할 수 있음",
+        "url": "https://data.go.kr/data/15083277/fileData.do",
+        "keywords":[
+            "가입,자격,사업장,국민연금,당월고지금액"
+        ],
+        "license" : "https://data.go.kr/ugs/selectPortalPolicyView.do",
+        "creator":{
+            "@type":"Organization",
+            "name":"국민연금공단",
+            "contactPoint":{
+                "@type":"ContactPoint",
+                "contactType": "가입지원실",
+                "telephone":"+82-0637135688"
+            }
+        },
+        "dateCreated": "2026-09-23",
+        "dateModified": "2026-09-23",
+        "datePublished": "2026-09-23",
+        "includedInDataCatalog":{
+            "@type":"DataCatalog",
+            "name":"data.go.kr"
+        },
+        "distribution":[
+            {
+                "@type":"DataDownload",
+                "encodingFormat":"CSV",
+                "contentUrl": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000007692952&fileDetailSn=1&insertDataPrcus=N"
+            }
+        ]
+    }
+CSV
+새창 열림
+새창 열림
+새창 열림
+국민연금공단_국민연금 가입 사업장 내역
+Quick
+AI
+Summary
+    // ======================= quick summary =========================
+    async function executeSearch(dataPk, dType) {
+        await handleStreamingResponse(dataPk, dType);
+    }
+    async function handleStreamingResponse(dataPk, dType) {
+        const $qickSummary = $('#quickSummary');
+        $qickSummary.addClass('krds-spinner')
+        const $markdownBody = $('#quickSummary');
+        marked.setOptions({breaks: true})
+        try {
+            const response = await fetch('/tcs/dss/getOrCreateQuickSummary.do', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    publicDataPk: dataPk,
+                    dType: dType
+                })
+            });
+            if (!response.ok) throw new Error(`HTTP `);
+            const data = await response.json();
+            $markdownBody.html(marked.parse(data.result));
+            $qickSummary.removeClass('krds-spinner');
+        } catch (error) {
+            console.error("Streaming Error:", error);
+            $qickSummary.removeClass('krds-spinner');
+            $markdownBody.append("
+AI가 활용사례 정보를 알려주는 퀵서머리 서비스에 오류가 발생하였습니다.
+재시도에도 같은 메시지가 발생한다면, 서비스 운영자에게 문의 부탁드립니다.
+");
+        }
+    }
+    // ===============================================================
+관심목록에 추가
+38
+3
+파일데이터
+선택됨
+오픈 API
+추천데이터
+이 페이지의 구성
+데이터 상세
+파일데이터 정보
+표준 메타데이터
+이용 조건 및 라이선스 정보
+미리보기
+주기성 과거 데이터
+도움말
+공공데이터활용지원센터는 공공데이터포털에 개방되는 3단계 이상의 오픈 포맷 파일데이터를 오픈 API(RestAPI 기반의 JSON/XML)로 자동변환하여 제공합니다.
+오픈 API를 활용하기 위해서는 공공데이터포털 회원 가입 및 활용신청이 필요하며, 활용 관련 문의는 공공데이터활용지원센터로 연락주시기 바랍니다.
+데이터 자체에 대한 문의는 아래 제공기관의 관리부서 전화번호로 연락주시기 바랍니다.
+파일데이터는 로그인 없이 다운로드를 통해 이용하실 수 있습니다.
+                                                        CSV
+                                                    국민연금공단_국민연금 가입 사업장 내역
+                                                    <button type="button" class="krds-btn medium primary"
+                                                            onclick="fileDetailObj.fn_fileDataDown('15083277', 'uddi:8e0d590f-768e-4cbd-9560-c7168c8d13b6', '','1', '1')">
+                                                        다운로드 
+파일데이터 정보
+데이터 오류·개선 의견이 있으신가요?
+데이터 개선요청
+오류신고 및 문의
+기본 정보
+파일데이터명
+국민연금공단_국민연금 가입 사업장 내역_20260923
+분류체계
+사회복지 - 공적연금
+제공기관
+              국민연금공단
+관리부서명
+가입지원실
+관리부서 전화번호
+              let telNo = "0637135688";
+              if (telNo !== null && telNo !== "null" && telNo !== "nullnullnull") {
+                $("#telNo").text(telNo.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3"));
+              }
+보유근거
+수집방법
+업데이트 주기
+월간
+차기 등록 예정일
+2026-10-26
+상세 및 제공정보
+설명
+(국민연금가입사업장정보) 법정동단위 지역별, 국민연금 가입 사업장 정보
+* 제공 범위: 가입자 수 3인 이상 법인사업장, 가입자 수 10인 이상 개인사업장(2025.7.이후)
+* 사업장 컬럼별 상세설명
+○ 자료생성년월 → 자격마감일(사유발생일이 속하는 달의 다음달 15일)까지 신고분 반영
+○ 가입자 수 → 가입자 수(고지인원 수 포함)
+○ 당월고지금액 → 국민연금법 시행령 제5조에 의거 기준소득월액 상한액 적용으로 실제소득과 고지금액은 상이할 수 있음
+■상한액 2022.7. ~ 2023.6.  5,530,000원 
+■상한액 2023.7. ~ 2024.6.  5,900,000원 
+■상한액 2024.7. ~ 2025.6.  6,170,000원 
+■상한액 2025.7. ~ 2026.6.  6,370,000원 
+■상한액 2026.7. ~ 2027.6.  6,590,000원 
+○ 신규취득자수 → 납부재개 포함 ※전달 고지대상자와 비교하므로 실제 취득자수와 상이할 수 있음(초일 취득이 아닌 경우  당월 미고지되면 다음 달 취득자 수에 반영)
+○ 상실가입자수 → 납부예외 포함. ※해당 자료추출월과 익월을 비교하여 자료추출월에는 고지가 있으나 익월에는 고지가  없는 대상자에 대한 건수를 제공하므로 실제 상실자 수와 상이할 수 있음
+데이터 항목(컬럼) 정보
+데이터 항목(컬럼) 정보 펼쳐보기
+                  컬럼 정의서 다운로드
+데이터 항목 표로 항목명, 항목명(영문명), 항목 설명, 도메인분류, 데이터타입, 최대길이, 표현방식, 단위, 생성출처(정보시스템명, DB명, Table명), 코드로 구성되어있습니다.
+항목명
+항목명(영문명)
+항목 설명
+도메인분류
+데이터타입
+최대길이
+표현방식
+단위
+생성출처
+코드
+정보시스템명
+DB명
+Table명
+자료생성년월
+DATA_CRT_YM
+              자료생성년월입니다.
+날짜/시간_연월
+가변문자형(VARCHAR)
+10
+                -
+-
+사업장명
+WKPL_NM
+              사업장명입니다.
+명칭_명
+가변문자형(VARCHAR)
+1000
+                -
+-
+사업자등록번호
+BZOWR_RGST_NO
+              사업자등록번호입니다.
+내용_내용
+가변문자형(VARCHAR)
+100
+                -
+-
+사업장가입상태코드 1 등록 2 탈퇴
+WKPL_JNNG_STCD
+              사업장가입상태코드 1 등록 2 탈퇴입니다.
+코드_코드
+가변문자형(VARCHAR)
+10
+                -
+-
+우편번호
+ZIP
+              우편번호입니다.
+번호_우편번호
+가변문자형(VARCHAR)
+10
+                -
+-
+사업장지번상세주소
+WKPL_LTNO_DTL_ADDR
+              사업장지번상세주소입니다.
+내용_내용
+가변문자형(VARCHAR)
+1000
+                -
+-
+사업장도로명상세주소
+WKPL_ROAD_NM_DTL_ADDR
+              사업장도로명상세주소입니다.
+내용_내용
+가변문자형(VARCHAR)
+1000
+                -
+-
+고객법정동주소코드
+CUST_LDONG_ADDR_CD
+              고객법정동주소코드입니다.
+코드_코드
+가변문자형(VARCHAR)
+100
+                -
+-
+고객행정동주소코드
+CUST_PADONG_ADDR_CD
+              고객행정동주소코드입니다.
+코드_코드
+가변문자형(VARCHAR)
+100
+                -
+-
+법정동주소광역시도코드
+LDONG_ADDR_MGPL_DG_CD
+              법정동주소광역시도코드입니다.
+코드_코드
+가변문자형(VARCHAR)
+100
+                -
+-
+법정동주소광역시시군구코드
+LDONG_ADDR_MGPL_SGGU_CD
+              법정동주소광역시시군구코드입니다.
+코드_코드
+가변문자형(VARCHAR)
+100
+                -
+-
+법정동주소광역시시군구읍면동코드
+LDONG_ADDR_MGPL_SGGU_EMD_CD
+              법정동주소광역시시군구읍면동코드입니다.
+코드_코드
+가변문자형(VARCHAR)
+100
+                -
+-
+사업장형태구분코드 1 법인 2 개인
+WKPL_STYL_DVCD
+              사업장형태구분코드 1 법인 2 개인입니다.
+코드_코드
+가변문자형(VARCHAR)
+100
+                -
+-
+사업장업종코드
+WKPL_INTP_CD
+              사업장업종코드입니다.
+코드_코드
+가변문자형(VARCHAR)
+100
+                -
+-
+사업장업종코드명
+VLDT_VL_KRN_NM
+              사업장업종코드명입니다.
+코드_코드
+가변문자형(VARCHAR)
+100
+                -
+-
+적용일자
+ADPT_DT
+              적용일자입니다.
+날짜/시간_연월일
+가변문자형(VARCHAR)
+10
+                -
+-
+재등록일자
+RE_ADPT_DT
+              재등록일자입니다.
+날짜/시간_연월일
+가변문자형(VARCHAR)
+10
+                -
+-
+탈퇴일자
+RRG_DT
+              탈퇴일자입니다.
+날짜/시간_연월일
+가변문자형(VARCHAR)
+10
+                -
+-
+가입자수
+JNNGP_CNT
+              가입자수입니다.
+수량_수
+숫자형(NUMERIC)
+200
+                -
+-
+당월고지금액
+CRRMM_NTC_AMT
+              당월고지금액입니다.
+금액_금액
+숫자형(NUMERIC)
+200
+                -
+-
+신규취득자수
+NW_ACQZR_CNT
+              신규취득자수입니다.
+수량_수
+숫자형(NUMERIC)
+200
+                -
+-
+상실가입자수
+LSS_JNNGP_CNT
+              상실가입자수입니다.
+수량_수
+숫자형(NUMERIC)
+200
+                -
+-
+매체유형
+텍스트
+확장자
+CSV
+전체 행
+1
+키워드
+가입,자격,사업장,국민연금,당월고지금액
+데이터 한계
+공간범위
+시간범위
+제공형태
+공공데이터포털에서 다운로드(원문파일등록)
+다운로드(바로가기)
+159613
+등록일
+2026-09-23
+수정일
+2026-09-23
+기타 유의사항
+국민연금 가입 사업장 내역 자료는 9월 23일에 추출이 되었으며, 자료의 내용은 전월(2026년 8월의 사업장) 입니다. 해당 자료는 15일 자격이 마감되는 날을 기준으로 이틀 후에 자료를 생성하고 있으며, 15일이 주말인 경우에는 다음주 영업일에 마감처리 및 이틀후에 자료생성(사업장의 미신고로 업종코드 등 공란존재)
+표준 메타데이터
+※ 데이터 연계 및 검색을 위한 표준 메타데이터입니다.
+Schema.org
+DCAT
+이용 조건 및 라이선스 정보
+비용부과유무
+무료
+비용부과기준 및 단위
+건 
