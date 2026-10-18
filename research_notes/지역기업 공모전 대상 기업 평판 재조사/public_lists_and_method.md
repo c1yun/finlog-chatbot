@@ -317,7 +317,7 @@
   - 제2절 '우발채무 등에 관한 사항' §11-2-1에 중요한 소송사건이 들어간다.
   - 공시대상기간은 원칙적으로 3사업연도다(DART 길라잡이).
   - 출처: [금감원 작성기준 PDF](https://www.fss.or.kr/fss/cmmn/file/fileDown.do?atchFileId=97a9f7ced3f4417a8e0bb142ce48d4a3&fileSn=4)
-  - 사본: `public_lists/method/fss_기업공시서식작성기준_2026.9.30시행.pdf`
+  - 사본: 해당 절 발췌 `public_lists/method/fss_기업공시서식작성기준_제11장제2절_제3절_발췌.txt` (전체 PDF는 용량 때문에 보관하지 않음. 위 출처에서 내려받을 수 있음)
 - 논란(Controversy) 판정 방식 [원문]
   - MSCI: 심각도(Very Severe/Severe/Moderate/Minor), 역할(Direct/Indirect), 상태(Ongoing/Partially Concluded/Concluded/Archived)로 본다. "Ongoing controversy cases score lower (worse)… Direct score lower (worse) than… Indirect." 마지막 공개 비판 이후 Moderate는 1년, Severe는 2년, Very severe는 3년이 지나면 종결 처리한다.
     - 출처: [MSCI Controversies and Global Norms Methodology, April 2026](https://www.msci.com/documents/1296102/34424357/ESG-Research-Controversies-Methodology.pdf)
@@ -325,7 +325,7 @@
     - 출처: [Sustainalytics Controversies Research FAQ, Nov 2025](https://www.sustainalytics.com/knowledge-hub/controversies-research-faq-nov-2025)
   - 국민연금: 중대성 평가의 심각성은 "피해규모, 손해규모, 손해기간, 반복정도를 고려하여 평가"한다.
     - 출처: [국민연금 2021년 수탁자책임보고서](https://fund.nps.or.kr/html/download/fund/2021년수탁자책임보고서(국문).pdf)
-    - 사본: `public_lists/method/nps_2021년수탁자책임보고서_국문.pdf`
+    - 사본: 보관하지 않음(용량). 위 출처에서 내려받을 수 있음
 
 #### 3-B. 판정 기준(제안)
 
@@ -387,7 +387,7 @@
 - 표본 편향 [원문, 초록]
   - "online reviews often suffer from selection bias—people with extreme opinions are more motivated to share them than people with moderate opinions" — [Marinescu et al., NBER WP 24372](https://www.nber.org/papers/w24372)
   - 극단 평가자가 리뷰를 더 많이 써 평균 평점이 편향되고 "J-shaped" 분포가 나타난다 — [Hu, Pavlou & Zhang, MIS Quarterly 41(2), 2017](https://aisel.aisnet.org/misq/vol41/iss2/8)
-- 명예훼손·인용 관련 법 [원문, 법제처 현행 법령. 사본 `public_lists/method/law_*.txt`]
+- 명예훼손·인용 관련 법 [원문, 법제처 현행 법령. 일부 조문 발췌는 `public_lists/method/law_조회경로근거조문_발췌_20261018.txt`, 법령 전문은 용량 때문에 보관하지 않음(국가법령정보센터 law.go.kr)]
   - 형법 제307조①: "공연히 사실을 적시하여 사람의 명예를 훼손한 자는 2년 이하의 징역이나 금고 또는 500만원 이하의 벌금"
   - 형법 제310조: "진실한 사실로서 오로지 공공의 이익에 관한 때에는 처벌하지 아니한다."
   - 정보통신망법 제70조①: "사람을 비방할 목적으로 정보통신망을 통하여 공공연하게 사실을 드러내어…3년 이하의 징역 또는 3천만원 이하의 벌금"
