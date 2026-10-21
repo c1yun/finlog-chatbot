@@ -14,3 +14,9 @@
 빌드 순서: `python3 score.py && python3 check_report.py && node build_report.js out.docx && python3 postprocess.py out.docx && python3 render_pdf.py out.docx out.pdf`
 
 설문 후에는 `report_meta.js`의 TOP3 이유와 `build_report.js`의 '적합성' 열(현재 '설문 후')을 학생 선호 점수로 채운다.
+
+## 설문·인터뷰 도구
+
+`간판떼고_설문·인터뷰 도구.docx/.pdf`는 `build_tools.js`로 만든다. 문안은 `tool_meta.js`, 카드는 `cards_regional.json`(R01~R10)·`cards_metro.json`(M01~M10, A·B 세트), 기업별 인터뷰 질문은 `interview_q.json`이다. 카드의 공개형과 비공개형은 기업명·근무지역만 다르다.
+
+빌드 순서: `node build_tools.js out.docx && python3 postprocess.py out.docx && python3 render_pdf.py out.docx out.pdf`
