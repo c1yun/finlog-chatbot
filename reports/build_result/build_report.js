@@ -101,7 +101,10 @@ function cover() {
   const t3 = R.top3;
   out.push(lead(`부산·울산·경남 지역기업 10곳을 공개자료로 분석하고 6개 영역 100점 기준으로 평가했다. 기업 평가만으로 정한 잠정 TOP3는 ${t3.join('·')}다. 학생 설문과 인터뷰를 마치면 학생 선호(30%)를 더해 확정한다.`));
   out.push(tbl([W], [[{ t: META.status, fill: C.yellow, size: 18 }]], { padV: 70, padH: 120 }));
-  out.push(gap(8));
+  out.push(gap(6));
+  out.push(tbl(cw([24, 52, 24]), [[headc('남은 작업'), headc('무엇을 채우나'), headc('일정')], ...META.pending.map(([a, b, c]) => [{ t: a, bold: true, fill: C.gray }, b, { t: c, align: CENTER }])], { size: 16, padV: 30 }));
+  out.push(note(META.pendingNote));
+  out.push(gap(4));
 
   const rows = [[headc('번호'), headc('기업 (본점)'), headc('업종'), headc('대표 학사 신입 직무'), headc('잠정 점수 (범위)'), headc('충족률'), headc('평판')]];
   ORDER.forEach((k, i) => {
@@ -188,7 +191,7 @@ function companySection(k, i) {
   // 평가 점수
   const S = final(k);
   if (S) {
-    out.push(circ('평가 점수 (잠정)', hasB(k) ? '두 평가자 평균 · 부록 2' : '1차 평가 · 부록 2'));
+    out.push(circ('평가 점수 (잠정)', hasB(k) ? '두 채점 평균 · 부록 2' : '1차 채점 · 부록 2'));
     const sr = [[headc('영역 (배점)'), headc('확인 배점'), headc('득점'), headc('영역 환산'), headc('미확인 항목')]];
     S.areas.forEach((a) => {
       const miss = a.items.filter((x) => x.j === null).map((x) => `${x.name}(${x.w})`).join(', ');
@@ -290,9 +293,9 @@ function sec2() {
   // 영역별 일치율(2인 평가)
   const withB = ORDER.filter((k) => hasB(k));
   if (withB.length) {
-    out.push(h3('두 평가자의 영역별 일치율'));
+    out.push(h3('두 채점의 영역별 일치율'));
     const names = SC[withB[0]].final.areas.map((a) => a.name);
-    const ar = [[headc('영역'), headc('두 사람 모두 확인한 항목'), headc('판정 같음'), headc('차이 1점 이내'), headc('제3 평가자 조정 항목')]];
+    const ar = [[headc('영역'), headc('두 사람 모두 확인한 항목'), headc('판정 같음'), headc('차이 1점 이내'), headc('원문 재대조 조정 항목')]];
     names.forEach((nm) => {
       let items = 0; let same = 0; let near = 0; let adj = 0;
       withB.forEach((k) => {
@@ -307,7 +310,7 @@ function sec2() {
         { t: String(adj), align: CENTER }]);
     });
     out.push(tbl(cw([22, 22, 18, 18, 20]), ar, { size: 16, padV: 30 }));
-    out.push(note(`${withB.length}개 기업 × 세부 항목 기준이다. 판정은 0~5점이며, 영역 득점 차가 2점 이상이거나 한 사람만 확인한 항목은 원문을 다시 대조해 제3 평가자가 정했다.`));
+    out.push(note(`${withB.length}개 기업 × 세부 항목 기준이다. 판정은 0~5점이며, 영역 득점 차가 2점 이상이거나 한쪽만 확인한 항목은 2차 채점자가 원문을 다시 대조해 정했다.`));
   }
   return out;
 }
@@ -362,7 +365,7 @@ function appendix() {
 
   out.push(h1('부록 2  기업별 세부 항목 판정', { pageBreak: true }));
   const anyB = ORDER.some((k) => hasB(k));
-  out.push(p(`칸의 값은 세부 항목의 최종 판정(0~5점)이다. ${anyB ? '두 평가자 판정의 평균이고, 제3 평가자가 조정한 항목은 조정값이다.' : '현재 1차 평가 값이다.'} '–'는 미확인이다.`, { size: 18 }));
+  out.push(p(`칸의 값은 세부 항목의 최종 판정(0~5점)이다. ${anyB ? '두 채점 판정의 평균이고, 원문 재대조로 조정한 항목은 조정값이다.' : '현재 1차 평가 값이다.'} '–'는 미확인이다.`, { size: 18 }));
   const ks = ORDER.filter((k) => final(k));
   const head = [headc('영역'), headc('세부 항목 (배점)'), ...ks.map((k) => headc(k, { size: 13 }))];
   const mrows = [head];
@@ -383,7 +386,7 @@ function appendix() {
   mrows.push([{ t: '환산점수', span: 2, fill: C.label, bold: true, align: CENTER }, ...ks.map((k) => ({ t: fmt(final(k).scaled), align: CENTER, bold: true, fill: C.yellow }))]);
   mrows.push([{ t: '정보 충족률', span: 2, fill: C.label, bold: true, align: CENTER }, ...ks.map((k) => ({ t: pct(final(k).fill), align: CENTER }))]);
   out.push(tbl(cw([10, 22, ...ks.map(() => 68 / ks.length)]), mrows, { size: 15, padV: 24, padH: 30 }));
-  if (anyB) out.push(note('†는 제3 평가자가 원문을 다시 대조해 정한 항목이다. 근거는 연구 노트의 기업별 채점조정 파일에 있다.'));
+  if (anyB) out.push(note('†는 2차 채점자가 원문을 다시 대조해 정한 항목이다. 근거는 연구 노트의 기업별 채점조정 파일에 있다.'));
 
   out.push(h1('부록 3  공개 원칙과 이용 시 주의', { before: 360 }));
   META.disclaimer.forEach((t) => out.push(bullet(t, { size: 18 })));
