@@ -116,7 +116,7 @@ function sec4() {
 
   out.push(h2('2  기업 분석과 공통 평가 (①)'));
   out.push(lead(S.analysis.lead));
-  out.push(h3('(1) 먼저 거른다 — 평판·결격 점검', { before: 40 }));
+  out.push(h3('(1) 결격 사유가 있으면 대상에서 제외한다 — 평판·결격 점검', { before: 40 }));
   out.push(p(S.analysis.gate.intro, { size: 18, after: 60 }));
   out.push(tbl(cw([9, 61, 30]), S.analysis.gate.table, { header: true, labelCol: true, size: 16 }));
   out.push(gap(4));
@@ -220,7 +220,7 @@ function sec5() {
   out.push(note(S.companiesNote));
   out.push(h3('자격·평판 점검 결과', { pageBreak: true }));
   out.push(lead(S.repLead, { size: 18, after: 60 }));
-  out.push(tbl(cw([12, 15, 19, 8, 7, 39]), S.rep, { header: true, labelCol: true, size: 16, padH: 60 }));
+  out.push(tbl(cw([12, 16, 22, 8, 42]), S.rep, { header: true, labelCol: true, size: 16, padH: 60 }));
   out.push(note(S.repNote));
   out.push(h3('선정 조정'));
   S.adjust.forEach((t) => out.push(bullet(t)));

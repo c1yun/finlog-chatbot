@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const L = require('./lib');
 const {
-  D, FONT, W, C, cw: cw0, p, bullet, h2, h3, lead, note, gap, tbl, mk, exact, LINE,
+  D, FONT, W, C, cw: cw0, p, bullet, h2, h3, lead, note, gap, tbl, mk, exact, LINE, NONE,
 } = L;
 const {
   Document, Packer, Paragraph, TextRun, AlignmentType, Header, Footer, PageNumber,
@@ -53,17 +53,31 @@ const BORDERS = { top: LINE, bottom: LINE, left: LINE, right: LINE, insideHorizo
 const dxa = (n) => ({ size: n, type: WidthType.DXA });
 
 // 양식의 큰 상자(Ⅱ·Ⅲ·Ⅳ): 테두리 1칸 표. 내용이 길면 쪽을 넘어 이어진다.
-function box(kids) {
-  kids.push(gap(2)); // 칸은 문단으로 끝나야 한다
+// 긴 상자는 절(節) 단위 행으로 나눈다. 행은 쪽 가운데서 잘리지 않아(cantSplit) 제목이 쪽 끝에 홀로 남지 않는다.
+// next(true): 글 문단만 있는 행은 쪽 사이에서 나뉘어도 되므로 cantSplit을 끈다(쪽 아래가 크게 비는 것을 줄인다).
+class Rows {
+  constructor() { this.rows = [[]]; this.split = [false]; }
+  push(...x) { this.rows[this.rows.length - 1].push(...x); }
+  next(split = false) {
+    if (this.rows[this.rows.length - 1].length) { this.rows.push([]); this.split.push(split); }
+  }
+}
+function box(src) {
+  const groups = src instanceof Rows ? src.rows : [src];
+  const splits = src instanceof Rows ? src.split : [false];
   return new Table({
     width: dxa(W),
     columnWidths: [W],
     layout: TableLayoutType.FIXED,
-    borders: BORDERS,
-    rows: [new TableRow({
-      cantSplit: false,
-      children: [new TableCell({ width: dxa(W), margins: { top: 90, bottom: 60, left: BOX_PAD, right: BOX_PAD }, children: kids })],
-    })],
+    // 절 사이는 옅은 가는 선. 쪽이 바뀌는 곳에서 상자가 닫혀 보이게 한다.
+    borders: { ...BORDERS, insideHorizontal: { style: 'single', size: 2, color: 'A6A6A6' } },
+    rows: groups.map((kids, i) => {
+      kids.push(gap(2)); // 칸은 문단으로 끝나야 한다
+      return new TableRow({
+        cantSplit: groups.length > 1 && !splits[i],
+        children: [new TableCell({ width: dxa(W), margins: { top: i === 0 ? 90 : 40, bottom: 40, left: BOX_PAD, right: BOX_PAD }, children: kids })],
+      });
+    }),
   });
 }
 
@@ -174,112 +188,139 @@ function sec2() {
 
 // ───────── Ⅲ. 연구배경 및 목적 (왜) ─────────
 function sec3() {
+  L.FLAG.keep = false;
   const out = [fh1('Ⅲ. 연구배경 및 목적', { pageBreak: true, tag: '| 왜 (Why)' })];
   CUR_W = IW;
-  const k = [];
+  const k = new Rows();
   k.push(dashLabel('연구 배경', { keepNext: false }));
   k.push(h2('1  연구배경 — 왜 이 연구가 필요한가', { before: 40 }));
   k.push(lead(DATA.s3.lead));
   k.push(tbl(cw([20, 80]), DATA.s3.problems, { labelCol: true, size: 18 }));
+  k.next(true);
   k.push(gap(6));
   DATA.s3.after.forEach((t) => k.push(p(t)));
+  k.next();
   k.push(tbl(cw([16, 21, 21, 21, 21]), DATA.s3.purposeMap.map((r, i) => r.map((c, j) => ({
     t: c, align: CENTER, bold: i === 0 || j === 0, fill: i === 0 ? C.head : j === 0 ? C.label : undefined,
   }))), { size: 17, padV: 45 }));
   k.push(note(DATA.s3.purposeNote));
 
-  k.push(dashLabel('연구 목적', { before: 160 }));
+  k.next(true);
+  k.push(dashLabel('연구 목적', { before: 40, keepNext: false })); // 행의 첫 문단은 '다음 문단과 함께'를 끈다(켜면 LibreOffice가 행을 다음 행과 묶어 함께 민다)
   k.push(h2('2  연구 목적과 연구 질문', { before: 40 }));
   k.push(lead(DATA.s3.purposeLead));
   k.push(tbl(cw([34, 38, 28]), DATA.s3.questions, { header: true, size: 18 }));
   k.push(note(DATA.s3.questionsNote));
 
-  k.push(h2('3  심사기준과 연구의 연결'));
+  k.next();
+  k.push(h2('3  심사기준과 연구의 연결', { before: 40 }));
   k.push(lead(DATA.s3.criteriaLead));
   k.push(tbl(cw([27, 73]), DATA.s3.criteria, { header: true, labelCol: true, size: 18 }));
   k.push(note(DATA.s3.criteriaNote));
   CUR_W = W;
   out.push(box(k));
+  L.FLAG.keep = true;
   return out;
 }
 
 // ───────── Ⅳ. 세부 내용 및 추진계획 (어떻게·언제) ─────────
 function sec4() {
+  L.FLAG.keep = false; // 행이 쪽 사이에서 잘리지 않으므로 '다음 문단과 함께'를 끈다(켜 두면 LibreOffice가 행을 통째로 다음 쪽으로 민다)
   const S = DATA.s4;
   const out = [fh1('Ⅳ. 세부 내용 및 추진계획', { before: 300, tag: '| 어떻게 (How) · 언제 (When)' })];
   CUR_W = IW;
-  const k = [];
+  const k = new Rows();
   k.push(dashLabel('연구방법, 추진계획, 기대효과 등', { keepNext: false }));
   k.push(lead(S.lead));
 
   k.push(h2('1  활동별 육하원칙 한눈에 보기', { before: 60 }));
   k.push(tbl(cw([10, 22.5, 22.5, 22.5, 22.5]), S.matrix, { header: true, labelCol: true, size: 17, padV: 40, padH: 70 }));
 
+  k.next();
   k.push(h2('2  기업 분석과 공통 평가 (①)'));
   k.push(lead(S.analysis.lead));
-  k.push(h3('(1) 먼저 거른다 — 평판·결격 점검', { before: 40 }));
+  k.push(h3('(1) 결격 사유가 있으면 대상에서 제외한다 — 평판·결격 점검', { before: 40 }));
   k.push(p(S.analysis.gate.intro, { size: 18, after: 60 }));
   k.push(tbl(cw([9, 61, 30]), S.analysis.gate.table, { header: true, labelCol: true, size: 16 }));
+  k.next(true);
   k.push(gap(4));
   S.analysis.gate.notes.forEach((t) => k.push(bullet(t, { size: 18 })));
+  k.next();
   k.push(h3('(2) 무엇을 조사하나 — 7개 조사 묶음'));
   k.push(tbl(cw([16, 19, 43, 22]), S.analysis.bundles, { header: true, labelCol: true, size: 16 }));
+  k.next();
   k.push(h3('(3) 어떻게 평가하나 — 6개 영역 100점 평가표'));
   k.push(tbl(cw([25, 9, 66]), S.analysis.rubric, { header: true, labelCol: true, size: 17 }));
   k.push(note(S.analysis.rubricNote));
+  k.next(true);
   k.push(p(S.analysis.benchmark, { size: 18, after: 60 }));
+  k.next(true);
   k.push(h3('(4) 검증 원칙'));
   S.analysis.principles.forEach((t) => k.push(bullet(t)));
 
+  k.next(true);
   k.push(h2('3  블라인드 학생 설문 (②)'));
   k.push(lead(S.survey.lead));
   k.push(h3('(1) 누구에게 — 대상과 모집', { before: 40 }));
   S.survey.sample.forEach((t) => k.push(bullet(t)));
+  k.next();
   k.push(h3('(2) 어떻게 — 설계 5단계'));
   k.push(tbl(cw([16, 84]), S.survey.design, { labelCol: true, size: 17 }));
   k.push(gap(6));
   k.push(tbl(cw([38, 34, 28]), S.survey.cardInfo, { header: true, size: 17 }));
+  k.next(true);
   k.push(h3('(3) 분석과 연구 윤리'));
   S.survey.analysis.forEach((t) => k.push(bullet(t)));
 
+  k.next();
   k.push(h2('4  인터뷰 (③)'));
   k.push(lead(S.interview.lead));
   k.push(tbl(cw([24, 14, 62]), S.interview.table, { header: true, labelCol: true, size: 17 }));
+  k.next(true);
   k.push(gap(6));
   S.interview.bullets.forEach((t) => k.push(bullet(t)));
 
+  k.next();
   k.push(h2('5  TOP3 선정 방법 (④)'));
   k.push(lead(S.top3.lead));
   k.push(tbl([CUR_W], [[{ fill: C.yellow, t: S.top3.formula, size: 19 }]], { padV: 80, padH: 160 }));
+  k.next(true);
   k.push(gap(6));
   S.top3.rules.forEach((t) => k.push(bullet(t)));
 
+  k.next();
   k.push(h2('6  개선 아이디어 — 전공별 직무 카드와 학생 사용 검증'));
   k.push(lead(S.improve.lead));
   k.push(tbl(cw([14, 86]), S.improve.steps, { labelCol: true, size: 17 }));
 
+  k.next();
   k.push(h2('7  결과물과 8주 취업 준비 전략'));
   k.push(lead(S.outputs.lead));
   k.push(h3('(1) 최종 결과물 5종', { before: 40 }));
   k.push(tbl(cw([29, 71]), S.outputs.table, { header: true, labelCol: true, size: 17 }));
+  k.next();
   k.push(h3('(2) 기업별 8주 취업 준비 전략'));
   k.push(tbl(cw([10, 16, 74]), S.outputs.weeks, { header: true, labelCol: true, size: 17 }));
   k.push(note(S.outputs.weeksNote));
 
+  k.next();
   k.push(h2('8  기대 효과'));
   k.push(lead(S.effects.lead));
   k.push(tbl(cw([16, 84]), S.effects.table, { header: true, labelCol: true, size: 17 }));
 
+  k.next();
   k.push(h2('9  추진 일정 — 언제'));
   k.push(lead(S.schedule.lead, { after: 20 }));
   k.push(note(S.schedule.note, { before: 0, after: 60 }));
   k.push(gantt(S.schedule));
 
+  k.next();
   k.push(h2('10  위험 요인과 대응 계획'));
   k.push(lead(S.risks.lead));
   k.push(tbl(cw([25, 50, 25]), S.risks.table, { header: true, labelCol: true, size: 17 }));
   CUR_W = W;
   out.push(box(k));
+  L.FLAG.keep = true;
   return out;
 }
 
@@ -309,7 +350,7 @@ function gantt(S) {
 // ───────── Ⅴ. 대상 기업 선정 기준 및 현황 (어디서) ─────────
 function sec5() {
   const S = DATA.s5;
-  const out = [fh1('Ⅴ. 대상 기업 선정 기준 및 현황', { before: 360, tag: '| 어디서 (Where)' })];
+  const out = [fh1('Ⅴ. 대상 기업 선정 기준 및 현황', { pageBreak: true, tag: '| 어디서 (Where)' })];
   out.push(h2('1  선정 기준', { before: 0 }));
   out.push(lead(S.lead));
 
@@ -349,7 +390,7 @@ function sec5() {
   out.push(note(S.companiesNote.replace(`${QUOTA}. `, '※ '), { before: 60 }));
   out.push(h3('자격·평판 점검 결과'));
   out.push(lead(S.repLead, { size: 18, after: 60 }));
-  out.push(tbl(cw([12, 15, 19, 8, 7, 39]), S.rep, { header: true, labelCol: true, size: 16, padH: 60 }));
+  out.push(tbl(cw([12, 16, 22, 8, 42]), S.rep, { header: true, labelCol: true, size: 16, padH: 60 }));
   out.push(note(S.repNote));
   out.push(h3('선정 조정'));
   S.adjust.forEach((t) => out.push(bullet(t)));

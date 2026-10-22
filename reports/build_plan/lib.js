@@ -77,12 +77,13 @@ function h1(text, o = {}) {
   });
 }
 
+const FLAG = { keep: true };
 function h2(text, o = {}) {
   return new Paragraph({
     heading: HeadingLevel.HEADING_2,
     children: [mk(text, { size: 23, bold: true })],
     spacing: { before: o.before ?? 220, after: 50, ...exact(23, 1.45) },
-    keepNext: true,
+    keepNext: o.keepNext ?? FLAG.keep,
     pageBreakBefore: !!o.pageBreak,
   });
 }
@@ -92,13 +93,13 @@ function h3(text, o = {}) {
     heading: HeadingLevel.HEADING_3,
     children: [mk(text, { size: 21, bold: true })],
     spacing: { before: o.before ?? 140, after: 30, ...exact(21, 1.45) },
-    keepNext: true,
+    keepNext: o.keepNext ?? FLAG.keep,
     pageBreakBefore: !!o.pageBreak,
   });
 }
 
 // 각 절의 첫 줄 요지 문장(파란 굵은 글씨)
-const lead = (text, o = {}) => p(text, { bold: true, color: C.blue, after: o.after ?? 100, keepNext: true, size: o.size });
+const lead = (text, o = {}) => p(text, { bold: true, color: C.blue, after: o.after ?? 100, keepNext: o.keepNext ?? FLAG.keep, size: o.size });
 const note = (text, o = {}) => p(text, { size: 17, color: C.sub, before: o.before ?? 40, after: o.after ?? 60 });
 const gap = (pt = 4) => new Paragraph({ children: [], spacing: { before: 0, after: 0, line: pt * 20, lineRule: D.LineRuleType.EXACT } });
 const pageBreak = () => new Paragraph({ children: [new PageBreak()] });
@@ -173,4 +174,4 @@ function tbl(widths, rows, o = {}) {
   });
 }
 
-module.exports = { exact, D, FONT, W, C, cw, runs, p, bullet, h1, h2, h3, lead, note, gap, pageBreak, tbl, mk, NONE, LINE };
+module.exports = { FLAG, exact, D, FONT, W, C, cw, runs, p, bullet, h1, h2, h3, lead, note, gap, pageBreak, tbl, mk, NONE, LINE };
