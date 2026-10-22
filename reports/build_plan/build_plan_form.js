@@ -95,7 +95,7 @@ function labelBox(label, kids, labelW) {
 const dashLabel = (t, o = {}) => new Paragraph({
   children: [mk(`- ${t}`, { size: 21, bold: true })],
   spacing: { before: o.before ?? 0, after: 50, ...exact(21, 1.45) },
-  keepNext: true,
+  keepNext: o.keepNext ?? true,
 });
 
 // ───────── 연구 요약(표지) ─────────
@@ -160,8 +160,8 @@ function sec2() {
   const out = [fh1('Ⅱ. 연구개요', { before: 300, tag: '| 무엇을 (What)' })];
   CUR_W = IW;
   const k = [];
-  DATA.s2.overview.forEach(([key, val]) => {
-    k.push(dashLabel(key));
+  DATA.s2.overview.forEach(([key, val], i) => {
+    k.push(dashLabel(key, { keepNext: i > 0 }));
     k.push(p(`· ${val}`, { bold: key === '연구 주제', after: 80, indent: { left: 220, hanging: 160 } }));
   });
   k.push(gap(4));
@@ -177,7 +177,7 @@ function sec3() {
   const out = [fh1('Ⅲ. 연구배경 및 목적', { pageBreak: true, tag: '| 왜 (Why)' })];
   CUR_W = IW;
   const k = [];
-  k.push(dashLabel('연구 배경'));
+  k.push(dashLabel('연구 배경', { keepNext: false }));
   k.push(h2('1  연구배경 — 왜 이 연구가 필요한가', { before: 40 }));
   k.push(lead(DATA.s3.lead));
   k.push(tbl(cw([20, 80]), DATA.s3.problems, { labelCol: true, size: 18 }));
@@ -206,10 +206,10 @@ function sec3() {
 // ───────── Ⅳ. 세부 내용 및 추진계획 (어떻게·언제) ─────────
 function sec4() {
   const S = DATA.s4;
-  const out = [fh1('Ⅳ. 세부 내용 및 추진계획', { pageBreak: true, tag: '| 어떻게 (How) · 언제 (When)' })];
+  const out = [fh1('Ⅳ. 세부 내용 및 추진계획', { before: 300, tag: '| 어떻게 (How) · 언제 (When)' })];
   CUR_W = IW;
   const k = [];
-  k.push(dashLabel('연구방법, 추진계획, 기대효과 등'));
+  k.push(dashLabel('연구방법, 추진계획, 기대효과 등', { keepNext: false }));
   k.push(lead(S.lead));
 
   k.push(h2('1  활동별 육하원칙 한눈에 보기', { before: 60 }));
@@ -286,7 +286,7 @@ function sec4() {
 function gantt(S) {
   const periods = S.periods;
   const widths = cw([36, ...periods.map(() => 64 / periods.length)]);
-  const head = ['활동 (산출물)', ...periods].map((t) => ({ t, size: 15 }));
+  const head = ['활동 (산출물)', ...periods].map((t) => ({ t, size: 16 }));
   const rows = [head];
   S.rows.forEach(([act, out, , marks]) => {
     const cells = [
@@ -332,11 +332,21 @@ function sec5() {
   out.push(h2('2  선정 기업 10곳 — 지역별 현황', { pageBreak: true }));
   out.push(lead(S.listLead));
   // 양식의 '선정기업명' 라벨 칸(왼쪽, 전체 행 병합) + 구분·기업명·주요업종·산업·선정이유·연구방법
-  const head = S.companies[0].map((t) => ({ t, fill: C.head, bold: true, align: CENTER }));
-  const cRows = [[{ t: '선정기업명', rowSpan: S.companies.length, fill: C.label, bold: true, align: CENTER }, ...head], ...S.companies.slice(1)];
+  // 머리 칸의 괄호 부제('선정이유 (연구 질문)')는 둘째 줄로 내려 양식의 칸 이름('선정이유')이 첫 줄에 오게 한다.
+  const head = S.companies[0].map((t) => ({ t: t.replace(/ \(/, '\n(').split('\n'), fill: C.head, bold: true, align: CENTER }));
+  // 양식의 마지막 칸 "※ 부산·울산·경남 …"은 표의 마지막 행이다(표와 떨어지지 않게 마지막 기업 행에 keepNext).
+  const QUOTA = '※ 부산·울산·경남 각 지역 기업을 최소 1개 이상 포함하여 총 10개 기업을 선정';
+  const keep = (c) => (typeof c === 'object' && !Array.isArray(c) ? { ...c, keepNext: true } : { t: c, keepNext: true });
+  const body = S.companies.slice(1);
+  body[body.length - 1] = body[body.length - 1].map(keep);
+  const cRows = [
+    [{ t: '선정기업명', rowSpan: S.companies.length + 1, fill: C.label, bold: true, align: CENTER }, ...head],
+    ...body,
+    [{ t: QUOTA, span: 5, size: 16, keepNext: true }],
+  ];
   out.push(tbl(cw([10, 6, 11, 13, 37, 23]), cRows, { size: 16, padH: 60 }));
-  out.push(note('※ 부산·울산·경남 각 지역 기업을 최소 1개 이상 포함하여 총 10개 기업을 선정'));
-  out.push(note(S.companiesNote));
+  // 설명 문단의 첫 문장은 위 표의 마지막 칸으로 옮겼으므로 한 번만 나오게 한다.
+  out.push(note(S.companiesNote.replace(`${QUOTA}. `, '※ '), { before: 60 }));
   out.push(h3('자격·평판 점검 결과'));
   out.push(lead(S.repLead, { size: 18, after: 60 }));
   out.push(tbl(cw([12, 15, 19, 8, 7, 39]), S.rep, { header: true, labelCol: true, size: 16, padH: 60 }));
