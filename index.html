@@ -142,6 +142,9 @@ tr.total td { font-weight: 700; }
 .toast { position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 999px; font-size: 15px; z-index: 20; }
 
 /* bottom tabs */
+/* On hosts that pin their own badge to the bottom-right corner (netlify.app free tier), lift the tab bar above it instead of covering it. */
+body.badge-host .tabs { padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 64px); }
+body.badge-host .wrap { padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px)); }
 .tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9; background: var(--card); border-top: 1px solid var(--rule);
   padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); padding-bottom: env(safe-area-inset-bottom, 0px); }
 .tabs-inner { max-width: 640px; margin: 0 auto; display: flex; }
@@ -331,6 +334,7 @@ function applyZoom() { document.body.classList.toggle('big', !!store.get('big', 
 function zoomBtn() { return `<button class="zoombtn" type="button" id="zoomToggle" aria-pressed="${store.get('big', false) ? 'true' : 'false'}" aria-label="큰 글자 켜기/끄기">큰 글자</button>`; }
 function route() {
   applyZoom();
+  try { document.body.classList.toggle('badge-host', /\.netlify\.app$/.test(location.hostname)); } catch (e) {}
   const h = (location.hash || '#schedule').replace('#', '');
   const tab = SUB[h] ? 'lists' : (TABS.some(t => t.id === h) ? h : 'schedule');
   document.getElementById('tabs').innerHTML = TABS.map(t => `<button class="tab${t.id === tab ? ' on' : ''}" type="button" data-tab="${t.id}" aria-current="${t.id === tab ? 'page' : 'false'}">${t.icon}<span>${t.label}</span></button>`).join('');
