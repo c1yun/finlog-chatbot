@@ -2,7 +2,8 @@
 import os, re
 from PIL import Image, ImageDraw
 H = os.path.dirname(os.path.abspath(__file__))
-app = open(os.path.join(H, '..', 'app', 'danang-app.html'), encoding='utf-8').read()
+OUT = os.path.join(H, '..', 'site'); os.makedirs(OUT, exist_ok=True)
+app = open(os.path.join(H, 'danang-app.html'), encoding='utf-8').read()  # output of build_app.py
 head = '''<!doctype html>
 <html lang="ko">
 <head>
@@ -29,9 +30,9 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
 '''
 # the artifact file starts with <title> and a claude-specific meta; keep title, drop the claude meta
 app = app.replace('<meta name="claude:viewport-fit-sides" content="cover">\n', '')
-open(os.path.join(H, 'index.html'), 'w', encoding='utf-8').write(head + body_start + app + tail)
+open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8').write(head + body_start + app + tail)
 
-open(os.path.join(H, 'manifest.webmanifest'), 'w', encoding='utf-8').write('''{
+open(os.path.join(OUT, 'manifest.webmanifest'), 'w', encoding='utf-8').write('''{
   "name": "엄마와 다낭 5일",
   "short_name": "엄마와 다낭",
   "description": "다낭·호이안 5박 가이드: 날짜별 일정, 먹기, 마사지, 할 것, 쇼핑·준비물",
@@ -49,7 +50,7 @@ open(os.path.join(H, 'manifest.webmanifest'), 'w', encoding='utf-8').write('''{
   ]
 }
 ''')
-open(os.path.join(H, 'sw.js'), 'w', encoding='utf-8').write('''// Offline cache: the whole app is one HTML file, so cache it plus the manifest/icons.
+open(os.path.join(OUT, 'sw.js'), 'w', encoding='utf-8').write('''// Offline cache: the whole app is one HTML file, so cache it plus the manifest/icons.
 const CACHE = 'danang-app-v1';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())); });
@@ -61,7 +62,7 @@ self.addEventListener('fetch', e => {
   e.respondWith(fetch(e.request).then(r => { const copy = r.clone(); caches.open(CACHE).then(c => c.put(e.request, copy)); return r; }).catch(() => caches.match(e.request, { ignoreSearch: true }).then(r => r || caches.match('./index.html'))));
 });
 ''')
-open(os.path.join(H, '_headers'), 'w').write('''/*
+open(os.path.join(OUT, '_headers'), 'w').write('''/*
   Cache-Control: public, max-age=0, must-revalidate
 /sw.js
   Cache-Control: no-cache
@@ -75,6 +76,6 @@ def icon(size, maskable=False, path='icon.png'):
     d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], fill=(240, 148, 103, 255))
     for i, w in enumerate((0.62, 0.48, 0.34)):
         y = size * (0.66 + i * 0.075); d.rounded_rectangle([size * 0.5 - size * w / 2, y, size * 0.5 + size * w / 2, y + size * 0.035], radius=size * 0.02, fill=(236, 241, 246, 255))
-    im.save(os.path.join(H, path))
+    im.save(os.path.join(OUT, path))
 icon(192, path='icon-192.png'); icon(512, path='icon-512.png'); icon(512, maskable=True, path='icon-512-maskable.png'); icon(180, path='apple-touch-icon.png')
-print('site files:', sorted(os.listdir(H)))
+print('site files:', sorted(os.listdir(OUT)))

@@ -1,7 +1,7 @@
 # Build the single-file app: app.tmpl.html + data.json + manual.json + lists.json + images -> danang-app.html
 import json, os, base64, glob, sys
 H = os.path.dirname(os.path.abspath(__file__))
-P2 = os.path.join(H, '..', 'pamphlet2')
+P2 = H  # img/ and img/credits/ live next to this script in the repo
 
 def load(p, default):
     try: return json.load(open(p, encoding='utf-8'))
