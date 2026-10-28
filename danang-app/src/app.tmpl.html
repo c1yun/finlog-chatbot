@@ -1,6 +1,7 @@
 <title>엄마와 다낭 5일</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Gowun+Batang:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Gowun+Batang:wght@400;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Gowun+Batang:wght@400;700&display=swap"></noscript>
 <style>
 /* Layout: phone-first app. Sticky day bar on top, fixed five-tab bar at the bottom, one column of large-type cards in between. */
 :root {
@@ -11,7 +12,8 @@
   --rule: #DFE5EC;
   --accent: #1E4E8C;    /* Han River indigo: navigation, links */
   --accent-soft: #E6EEF9;
-  --time: #C8562B;      /* lantern orange: times and primary buttons */
+  --time: #B0461F;      /* lantern orange, darkened for 5.6:1 on white */
+  --on-accent: #FFFFFF; /* text on accent-filled chips and buttons */
   --warn-bg: #FFF4E0;
   --warn-fg: #7A4B00;
   --ok: #2E7D5B;
@@ -20,13 +22,14 @@
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #0F161F; --card: #18222E; --fg: #ECF1F6; --muted: #A2AFBD; --rule: #2B3744;
-  --accent: #8FB8EE; --accent-soft: #1E2F44; --time: #F09467; --warn-bg: #3A2A12; --warn-fg: #F3D9A6; --ok: #7CC8A3; color-scheme: dark } }
+  --accent: #8FB8EE; --accent-soft: #1E2F44; --time: #F09467; --on-accent: #0F161F; --warn-bg: #3A2A12; --warn-fg: #F3D9A6; --ok: #7CC8A3; color-scheme: dark } }
 :root[data-theme="dark"] {
   --bg: #0F161F; --card: #18222E; --fg: #ECF1F6; --muted: #A2AFBD; --rule: #2B3744;
-  --accent: #8FB8EE; --accent-soft: #1E2F44; --time: #F09467; --warn-bg: #3A2A12; --warn-fg: #F3D9A6; --ok: #7CC8A3; color-scheme: dark }
+  --accent: #8FB8EE; --accent-soft: #1E2F44; --time: #F09467; --on-accent: #0F161F; --warn-bg: #3A2A12; --warn-fg: #F3D9A6; --ok: #7CC8A3; color-scheme: dark }
 
 html, body { height: 100%; }
-body { margin: 0; background: var(--bg); color: var(--fg); font: 400 18px/1.6 var(--font-body); -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 18px/1.6 var(--font-body); -webkit-text-size-adjust: 100%; word-break: keep-all; overflow-wrap: anywhere; }
+.num, .tel, .nowrap { white-space: nowrap; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--card); }
 * { box-sizing: border-box; }
 img { max-width: 100%; display: block; }
@@ -41,17 +44,18 @@ h1, h2, h3 { margin: 0; text-wrap: balance; }
 .brand { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 .brand h1 { font: 700 22px/1.2 var(--font-display); }
 .brand .sub { font-size: 14px; color: var(--muted); flex: 1 1 auto; }
-.daybar { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+.daybar { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
 .daybar::-webkit-scrollbar { display: none; }
-.daychip { flex: 1 0 auto; min-width: 56px; min-height: 54px; border: 1px solid var(--rule); border-radius: 12px; background: var(--bg); color: var(--fg);
-  display: grid; place-items: center; gap: 0; padding: 4px 8px; cursor: pointer; }
+.daychip { flex: 1 1 0; min-width: 0; min-height: 56px; border: 1px solid var(--rule); border-radius: 12px; background: var(--bg); color: var(--fg);
+  display: grid; place-items: center; gap: 0; padding: 4px 2px; cursor: pointer; position: relative; }
+.daychip .today { position: absolute; top: -8px; left: 50%; transform: translateX(-50%); font-size: 11px; font-weight: 700; color: var(--on-accent); background: var(--time); border-radius: 999px; padding: 0 6px; line-height: 16px; }
 .daychip b { font-size: 17px; line-height: 1.1; }
-.daychip span { font-size: 12px; color: var(--muted); line-height: 1.2; }
-.daychip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
-.daychip.on span { color: #DCE8F7; }
+.daychip span { font-size: 13px; color: var(--muted); line-height: 1.2; }
+.daychip.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.daychip.on span { color: var(--on-accent); opacity: .85; }
 .seg { display: flex; gap: 6px; padding-bottom: 10px; }
 .seg button { flex: 1; min-height: 46px; border: 1px solid var(--rule); border-radius: 12px; background: var(--bg); color: var(--fg); font-weight: 700; font-size: 16px; cursor: pointer; }
-.seg button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.seg button.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 
 /* content */
 .wrap { max-width: 640px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
@@ -74,20 +78,21 @@ h1, h2, h3 { margin: 0; text-wrap: balance; }
 .ph { position: relative; aspect-ratio: 16 / 10; max-width: 100%; background: var(--accent-soft); }
 .ph img { width: 100%; height: 100%; object-fit: cover; }
 .chips { position: absolute; left: 10px; bottom: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
-.chip { font-size: 12px; font-weight: 700; background: rgba(255,255,255,.92); color: #17212C; border-radius: 999px; padding: 3px 9px; }
+.chip { font-size: 14px; font-weight: 700; background: rgba(255,255,255,.92); color: #17212C; border-radius: 999px; padding: 3px 9px; }
 .body { padding: 12px 14px 14px; display: grid; gap: 10px; }
 .body h3 { font-size: 21px; line-height: 1.3; }
-.vi { font-size: 14px; color: var(--muted); line-height: 1.4; word-break: break-word; }
+.vi { font-size: 16px; color: var(--fg); opacity: .85; line-height: 1.4; overflow-wrap: anywhere; }
 .why { margin: 0; font-size: 17px; }
 .why b { color: var(--accent); }
 .meta { margin: 0; display: grid; grid-template-columns: 64px 1fr; gap: 6px 10px; font-size: 16px; }
-.meta dt { color: var(--muted); font-size: 14px; font-weight: 700; padding-top: 3px; }
+.meta dt { color: var(--muted); font-size: 15px; font-weight: 700; padding-top: 3px; }
 .meta dd { margin: 0; min-width: 0; line-height: 1.5; }
 .when { font-size: 14px; font-weight: 700; color: var(--time); }
 .actions { display: flex; gap: 8px; flex-wrap: wrap; }
 .btn { min-height: 46px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--rule); background: var(--bg); color: var(--fg); font-weight: 700; font-size: 16px;
   display: inline-flex; align-items: center; gap: 6px; text-decoration: none; cursor: pointer; }
-.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn.tel { font-variant-numeric: tabular-nums; }
 .btn:focus-visible, .tab:focus-visible, .daychip:focus-visible, .seg button:focus-visible { outline: 3px solid var(--time); outline-offset: 2px; }
 details.planb { background: var(--card); border: 1px solid var(--rule); border-radius: 14px; padding: 0 14px; }
 details.planb summary { cursor: pointer; font-weight: 700; font-size: 17px; padding: 12px 0; list-style: none; display: flex; justify-content: space-between; align-items: center; }
@@ -101,13 +106,15 @@ details.planb .pb { padding: 0 0 14px; font-size: 16px; }
 .check label:last-child { border-bottom: 0; }
 .check input { width: 26px; height: 26px; margin: 2px 0 0; accent-color: var(--accent); }
 .check .n { font-size: 17px; font-weight: 500; }
-.check .s { font-size: 14px; color: var(--muted); line-height: 1.45; }
+.check .s { font-size: 16px; color: var(--muted); line-height: 1.45; }
 .check label.done .n { text-decoration: line-through; color: var(--muted); }
 .kv { background: var(--card); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
 .kv .row { display: grid; gap: 2px; padding: 12px 14px; border-bottom: 1px solid var(--rule); }
 .kv .row:last-child { border-bottom: 0; }
 .kv .k { font-size: 17px; font-weight: 700; }
-.kv .v { font-size: 15px; color: var(--muted); line-height: 1.5; }
+.kv .v { font-size: 16px; color: var(--muted); line-height: 1.5; }
+.kv .v.big { font-size: 19px; color: var(--fg); font-weight: 500; }
+.kv .row .actions { margin-top: 6px; }
 .kv .v.num { color: var(--fg); font-size: 18px; font-variant-numeric: tabular-nums; }
 .tbl { overflow-x: auto; }
 table { border-collapse: collapse; width: 100%; font-size: 15px; }
@@ -122,13 +129,19 @@ tr.total td { font-weight: 700; }
 .tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9; background: var(--card); border-top: 1px solid var(--rule);
   padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); padding-bottom: env(safe-area-inset-bottom, 0px); }
 .tabs-inner { max-width: 640px; margin: 0 auto; display: flex; }
-.tab { flex: 1; min-height: 60px; border: 0; background: none; color: var(--muted); display: grid; place-items: center; gap: 2px; padding: 6px 2px; cursor: pointer; font-weight: 700; font-size: 13px; }
+.tab { flex: 1; min-height: 60px; border: 0; background: none; color: var(--muted); display: grid; place-items: center; gap: 2px; padding: 6px 2px; cursor: pointer; font-weight: 500; font-size: 15px; }
+body.big .tab { font-size: 17px; }
 .tab svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
-.tab.on { color: var(--accent); }
+.tab.on { color: var(--accent); font-weight: 700; background: var(--accent-soft); box-shadow: inset 0 3px 0 var(--accent); }
 @media (prefers-reduced-motion: no-preference) { .daychip, .tab, .seg button { transition: background .15s, color .15s; } }
 /* larger-type mode for mom: scales content, leaves the fixed bars alone */
 body.big .wrap, body.big .top-inner { zoom: 1.15; }
-.zoombtn { min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--rule); background: var(--bg); color: var(--fg); font-weight: 700; font-size: 14px; cursor: pointer; white-space: nowrap; }
+.zoombtn { min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--rule); background: var(--bg); color: var(--fg); font-weight: 700; font-size: 15px; cursor: pointer; white-space: nowrap; }
+.zoombtn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+@media (max-width: 420px) { .stop { grid-template-columns: 1fr; gap: 4px; } .stop .t { padding-top: 0; display: flex; gap: 8px; align-items: baseline; } .stop .t small { display: inline; } }
+@media (max-width: 360px) { .meta { grid-template-columns: 1fr; gap: 2px; } .meta dt { padding-top: 8px; } }
+body.big .meta { grid-template-columns: 1fr; gap: 2px; } body.big .meta dt { padding-top: 8px; }
+.undo { margin-left: 10px; background: none; border: 1px solid currentColor; color: inherit; border-radius: 999px; padding: 2px 10px; font-weight: 700; cursor: pointer; }
 </style>
 
 <header class="top"><div class="top-inner" id="top"></div></header>
@@ -159,12 +172,31 @@ const store = {
 };
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const img = k => IMG[k] ? `<img src="${IMG[k]}" alt="" loading="lazy">` : '';
-const mapUrl = (vi, title, city) => {
-  const q = (vi || title || '').replace(/\s*[·→]\s*/g, ' ').replace(/\(.*?\)/g, ' ').trim();
-  const withCity = /Đà Nẵng|Hội An|Da Nang|Hoi An/i.test(q) ? q : q + ' ' + city;
-  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(withCity);
-};
-function toast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 1600); }
+const TRIP = ['THU', 'FRI', 'SAT', 'SUN', 'MON', 'TUE'];
+function mapQuery(s, day) {
+  const fix = (MANUAL.mapFix || {})[(day ? dayKey(day) : '') + ' ' + (s.time || '')] || {};
+  if (fix.nomap || s.nomap) return null;
+  let q = fix.map || s.map || '';
+  if (!q) {
+    let v = s.vi || '';
+    if (v.includes('→')) v = v.split('→').pop();
+    v = v.replace(/\(([^)]*)\)/g, (m, g) => /^\s*\d/.test(g) ? ' ' + g + ' ' : ' ');
+    v = v.replace(/[가-힣][^,·]*/g, ' ').replace(/\s*·\s*/g, ' ').replace(/\s+/g, ' ').trim();
+    q = v;
+  }
+  if (!q) return null;
+  const hasCity = /Đà Nẵng|Hội An|Da Nang|Hoi An/i.test(q);
+  const city = hasCity ? '' : (fix.city || s.city || ((day && dayKey(day) === 'SUN' && (s.time || '') < '15:00') ? 'Hội An' : 'Đà Nẵng'));
+  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(city ? q + ' ' + city : q);
+}
+const mapUrl = (vi, title, city) => mapQuery({ vi: vi || title, city }, null);
+const telHref = p => 'tel:' + String(p).replace(/[^\d+]/g, '');
+function toast(msg, undo) {
+  document.querySelectorAll('.toast').forEach(x => x.remove());
+  const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = msg;
+  if (undo) { const b = document.createElement('button'); b.type = 'button'; b.className = 'undo'; b.textContent = '되돌리기'; b.addEventListener('click', () => { undo(); t.remove(); }); t.appendChild(b); }
+  document.body.appendChild(t); setTimeout(() => t.remove(), undo ? 6000 : 1600);
+}
 function copyText(txt, el) {
   const done = () => toast('복사했어요');
   if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done).catch(() => fallback());
@@ -176,9 +208,8 @@ function copyText(txt, el) {
 const DAYS = [MANUAL.thu, ...DATA.days, MANUAL.tue].filter(Boolean);
 const dayKey = d => d.date.slice(0, 3);
 function stopCard(s, day, opts = {}) {
-  const city = dayKey(day) === 'SUN' ? 'Hội An' : 'Đà Nẵng';
   const meta = Object.entries(s.meta || {}).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`).join('');
-  const hasPlace = s.vi && !/^(DAD|Courtyard →|Courtyard 29F)/.test(s.vi) && !s.nomap;
+  const murl = mapQuery(s, day);
   return `<article class="card">
     ${s.img && IMG[s.img] ? `<div class="ph">${img(s.img)}${s.chips && s.chips.length ? `<div class="chips">${s.chips.map(c => `<span class="chip">${esc(c)}</span>`).join('')}</div>` : ''}</div>` : ''}
     <div class="body">
@@ -187,17 +218,19 @@ function stopCard(s, day, opts = {}) {
       ${s.vi ? `<div class="vi" data-copy>${esc(s.vi)}</div>` : ''}
       ${s.why ? `<p class="why">${s.why}</p>` : ''}
       ${meta ? `<dl class="meta">${meta}</dl>` : ''}
-      ${hasPlace ? `<div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="${mapUrl(s.vi, s.title, city)}">지도 열기</a><button class="btn" type="button" data-copybtn>주소 복사</button></div>` : ''}
+      ${murl ? `<div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="${murl}">지도 열기</a><button class="btn" type="button" data-copybtn>주소 복사</button></div>` : ''}
     </div></article>`;
 }
 
+function isoToday() { const n = new Date(); return n.getFullYear() + '-' + String(n.getMonth() + 1).padStart(2, '0') + '-' + String(n.getDate()).padStart(2, '0'); }
 function renderSchedule(main, top) {
-  const saved = store.get('day', null);
-  let cur = saved || todayKey();
-  if (!DAYS.some(d => dayKey(d) === cur)) cur = 'FRI';
-  top.innerHTML = `<div class="brand"><h1>엄마와 다낭 5일</h1><span class="sub">10/29 목 – 11/3 화</span></div>
-    <div class="daybar" role="tablist">${DAYS.map(d => `<button class="daychip${dayKey(d) === cur ? ' on' : ''}" role="tab" data-day="${dayKey(d)}"><b>${DAY_KO[dayKey(d)]}</b><span>${esc(d.date.replace(/^[A-Z]{3} · /, ''))}</span></button>`).join('')}</div>`;
-  top.querySelectorAll('.daychip').forEach(b => b.addEventListener('click', () => { store.set('day', b.dataset.day); renderSchedule(main, top); window.scrollTo({ top: 0 }); }));
+  const saved = store.get('day', null); const iso = isoToday(); const today = todayKey(); const inTrip = !!DAY_BY_ISO[iso];
+  let cur = (saved && typeof saved === 'object' && saved.on === iso && saved.k) || (inTrip ? today : null) || (saved && typeof saved === 'object' ? saved.k : saved) || today;
+  if (!DAYS.some(d => dayKey(d) === cur)) cur = 'THU';
+  top.innerHTML = `<div class="brand"><h1>엄마와 다낭 5일</h1></div>
+    <div class="daybar" role="tablist">${DAYS.map(d => `<button class="daychip${dayKey(d) === cur ? ' on' : ''}" role="tab" aria-selected="${dayKey(d) === cur}" data-day="${dayKey(d)}">${inTrip && dayKey(d) === today ? '<span class="today">오늘</span>' : ''}<b>${DAY_KO[dayKey(d)]}</b><span>${esc(d.date.replace(/^[A-Z]{3} · /, ''))}</span></button>`).join('')}</div>`;
+  top.querySelectorAll('.daychip').forEach(b => b.addEventListener('click', () => { store.set('day', { k: b.dataset.day, on: isoToday() }); route(); const nb = top.querySelector(`[data-day="${b.dataset.day}"]`); if (nb) nb.focus({ preventScroll: true }); }));
+  const onChip = top.querySelector('.daychip.on'); if (onChip && onChip.scrollIntoView) onChip.scrollIntoView({ inline: 'nearest', block: 'nearest' });
   const d = DAYS.find(x => dayKey(x) === cur);
   main.innerHTML = `<div class="dayhead"><div class="date">${esc(d.long || d.date)}</div><h2>${esc(d.title)}${d.wx ? `<span class="wx">${esc(d.wx)}</span>` : ''}</h2>${d.summary ? `<div class="summary">${esc(d.summary)}</div>` : ''}</div>
     ${(d.notes || []).map(n => `<div class="note">${n}</div>`).join('')}
@@ -205,13 +238,10 @@ function renderSchedule(main, top) {
     ${d.planb ? `<details class="planb"><summary>비 오거나 사정이 생기면</summary><div class="pb">${d.planb}</div></details>` : ''}`;
   wireCopy(main);
 }
-function todayKey() {
-  const m = { '2026-10-29': 'THU', '2026-10-30': 'FRI', '2026-10-31': 'SAT', '2026-11-01': 'SUN', '2026-11-02': 'MON', '2026-11-03': 'TUE' };
-  const now = new Date(); const iso = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
-  return m[iso] || 'FRI';
-}
+const DAY_BY_ISO = { '2026-10-29': 'THU', '2026-10-30': 'FRI', '2026-10-31': 'SAT', '2026-11-01': 'SUN', '2026-11-02': 'MON', '2026-11-03': 'TUE' };
+function todayKey() { const iso = isoToday(); if (DAY_BY_ISO[iso]) return DAY_BY_ISO[iso]; return iso < '2026-10-29' ? 'THU' : 'TUE'; }
 function wireCopy(root) {
-  root.querySelectorAll('[data-copybtn]').forEach(b => b.addEventListener('click', () => { const el = b.closest('.body').querySelector('[data-copy]'); if (el) copyText(el.textContent, el); }));
+  root.querySelectorAll('[data-copybtn]').forEach(b => b.addEventListener('click', () => { const box = b.closest('.body, .row') || root; const el = box.querySelector('[data-copy]'); if (el) copyText(el.textContent, el); }));
 }
 
 // category pages built from the schedule plus manual extras
@@ -248,8 +278,10 @@ function renderLists(main, top, sub) {
     cb.addEventListener('change', () => { store.set(key, cb.checked); cb.closest('label').classList.toggle('done', cb.checked); });
   });
   main.querySelectorAll('[data-reset]').forEach(b => b.addEventListener('click', () => {
-    main.querySelectorAll('.check input').forEach(cb => { if (cb.dataset.id.startsWith(b.dataset.reset)) { cb.checked = false; store.set('chk:' + cb.dataset.id, false); cb.closest('label').classList.remove('done'); } });
-    toast('체크를 모두 지웠어요');
+    const was = [];
+    main.querySelectorAll('.check input').forEach(cb => { if (cb.dataset.id.startsWith(b.dataset.reset) && cb.checked) { was.push(cb); cb.checked = false; store.set('chk:' + cb.dataset.id, false); cb.closest('label').classList.remove('done'); } });
+    if (!was.length) { toast('지울 체크가 없어요'); return; }
+    toast('체크 ' + was.length + '개를 지웠어요', () => { was.forEach(cb => { cb.checked = true; store.set('chk:' + cb.dataset.id, true); cb.closest('label').classList.add('done'); }); });
   }));
   wireCopy(main);
 }
@@ -258,15 +290,19 @@ const resetBtn = p => `<div class="actions"><button class="btn" type="button" da
 
 function renderInfo() {
   const I = LISTS.info || {}; const H = I.hotel || MANUAL.hotel || {};
-  const kv = (rows, numKey) => `<div class="kv">${rows.map(r => `<div class="row"><div class="k">${esc(r.name || r.ko || r.k)}</div>${r.phone ? `<div class="v num" data-copy>${esc(r.phone)}</div>` : ''}<div class="v">${esc(r.note || r.v || (r.vi ? r.vi + ' (' + r.read + ')' : ''))}</div></div>`).join('')}</div>`;
+  const tels = p => String(p || '').split(/\s*[\/,]\s*/).filter(x => /\d{3,}/.test(x)).map(x => `<a class="btn tel" href="${telHref(x)}">전화 ${esc(x.trim())}</a>`).join('');
+  const kv = rows => `<div class="kv">${rows.map(r => {
+    if (r.vi) return `<div class="row"><div class="k">${esc(r.ko)}</div><div class="v big" data-copy>${esc(r.vi)}</div><div class="v">${esc(r.read || '')}</div></div>`;
+    const t = tels(r.phone);
+    return `<div class="row"><div class="k">${esc(r.name || r.k)}</div>${r.phone ? `<div class="v num" data-copy>${esc(r.phone)}</div>` : ''}<div class="v">${esc(r.note || r.v || '')}</div>${t ? `<div class="actions">${t}</div>` : ''}</div>`; }).join('')}</div>`;
   const budget = (DATA.budget || []);
   return `
+    ${I.emergency && I.emergency.length ? `<h2 class="sect-h">급할 때 <small>이 화면을 그대로 보여 줘도 돼요</small></h2>${kv(I.emergency)}` : ''}
     <h2 class="sect-h">숙소</h2>
-    <div class="kv"><div class="row"><div class="k">${esc(H.name || '')}</div><div class="v" data-copy>${esc(H.addr || '')}</div>${H.phone ? `<div class="v num">${esc(H.phone)}</div>` : ''}${H.checkin ? `<div class="v">${esc(H.checkin)}</div>` : ''}</div>
+    <div class="kv"><div class="row"><div class="k">${esc(H.name || '')}</div><div class="v big" data-copy>${esc(H.addr || '')}</div>${H.checkin ? `<div class="v">${esc(H.checkin)}</div>` : ''}<div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="${mapUrl(H.addr, H.name, 'Đà Nẵng')}">호텔 지도 열기</a><button class="btn" type="button" data-copybtn>주소 복사</button>${tels(H.phone)}</div></div>
       ${(H.notes || []).map(n => `<div class="row"><div class="v">${esc(n)}</div></div>`).join('')}
       ${(MANUAL.hotelNotes || []).map(n => `<div class="row"><div class="v">${n}</div></div>`).join('')}</div>
-    <div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="${mapUrl(H.addr, H.name, 'Đà Nẵng')}">호텔 지도 열기</a></div>
-    ${I.emergency && I.emergency.length ? `<h2 class="sect-h">급할 때</h2>${kv(I.emergency)}` : ''}
+    ${I.health && I.health.length ? `<h2 class="sect-h">건강</h2>${kv(I.health)}` : ''}
     ${I.transport && I.transport.length ? `<h2 class="sect-h">이동</h2>${kv(I.transport)}` : ''}
     ${I.money && I.money.length ? `<h2 class="sect-h">돈</h2>${kv(I.money)}` : ''}
     ${I.phrases && I.phrases.length ? `<h2 class="sect-h">한마디 베트남어</h2>${kv(I.phrases)}` : ''}
@@ -276,13 +312,13 @@ function renderInfo() {
 }
 
 function applyZoom() { document.body.classList.toggle('big', !!store.get('big', false)); }
-function zoomBtn() { return `<button class="zoombtn" type="button" id="zoomToggle" aria-pressed="${store.get('big', false) ? 'true' : 'false'}">${store.get('big', false) ? '글자 보통' : '글자 크게'}</button>`; }
+function zoomBtn() { return `<button class="zoombtn" type="button" id="zoomToggle" aria-pressed="${store.get('big', false) ? 'true' : 'false'}" aria-label="큰 글자 켜기/끄기">큰 글자</button>`; }
 function route() {
   applyZoom();
   const h = (location.hash || '#schedule').replace('#', '');
   const tab = SUB[h] ? 'lists' : (TABS.some(t => t.id === h) ? h : 'schedule');
   document.getElementById('tabs').innerHTML = TABS.map(t => `<button class="tab${t.id === tab ? ' on' : ''}" type="button" data-tab="${t.id}" aria-current="${t.id === tab ? 'page' : 'false'}">${t.icon}<span>${t.label}</span></button>`).join('');
-  document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => { location.hash = b.dataset.tab === 'lists' ? (store.get('sub', 'shopping')) : b.dataset.tab; }));
+  document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => { const target = b.dataset.tab === 'lists' ? (store.get('sub', 'shopping')) : b.dataset.tab; if ((location.hash || '#schedule').replace('#', '') === target) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; } location.hash = target; }));
   const main = document.getElementById('main'), top = document.getElementById('top');
   if (tab === 'schedule') renderSchedule(main, top);
   else if (tab === 'food') renderCategory(main, top, 'food', '먹기', '아침·점심·저녁과 카페, 날짜순', MANUAL.groups && MANUAL.groups.food);
@@ -290,7 +326,8 @@ function route() {
   else if (tab === 'todo') renderCategory(main, top, 'todo', '할 것', '보고 걷고 배우는 것들', MANUAL.groups && MANUAL.groups.todo);
   else { const sub = SUB[h] ? h : store.get('sub', 'shopping'); store.set('sub', sub); renderLists(main, top, sub); }
   const brand = top.querySelector('.brand');
-  if (brand) { brand.insertAdjacentHTML('beforeend', zoomBtn()); document.getElementById('zoomToggle').addEventListener('click', () => { store.set('big', !store.get('big', false)); route(); }); }
+  if (brand) { brand.insertAdjacentHTML('beforeend', zoomBtn()); document.getElementById('zoomToggle').addEventListener('click', e => { store.set('big', !store.get('big', false)); applyZoom(); e.currentTarget.setAttribute('aria-pressed', store.get('big', false) ? 'true' : 'false'); }); }
+  const tb = document.querySelector(`.tab[data-tab="${tab}"]`); if (tb && document.activeElement && document.activeElement.tagName === 'BODY') { /* keep natural focus */ }
   window.scrollTo({ top: 0 });
 }
 window.addEventListener('hashchange', route);

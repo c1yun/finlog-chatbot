@@ -1,13 +1,13 @@
 {
-  "name": "엄마와 다낭 5일",
-  "short_name": "엄마와 다낭",
+  "name": "2026다낭여행",
+  "short_name": "2026다낭여행",
   "description": "다낭·호이안 5박 가이드: 날짜별 일정, 먹기, 마사지, 할 것, 쇼핑·준비물",
   "start_url": "./index.html#schedule",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#F4F6F9",
-  "theme_color": "#1E4E8C",
+  "theme_color": "#FFFFFF",
   "lang": "ko",
   "icons": [
     { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
