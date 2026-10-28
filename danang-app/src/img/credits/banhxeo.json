@@ -1,0 +1,13 @@
+{
+ "title": "Bánh xèo",
+ "author": "Charles Haynes",
+ "author_url": "https://www.flickr.com/photos/haynes/",
+ "license": "CC BY-SA 2.0",
+ "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+ "img": "https://live.staticflickr.com/2732/4241156936_9eaae1516f_b.jpg",
+ "page": "https://www.flickr.com/photos/haynes/4241156936/",
+ "why": "노릇한 반쎄오 한 장이 접시 위 화면 중앙에 크게, 옆에 쌈용 생허브 더미가 보임(가로 사진, 얼굴 없음)",
+ "query": "banh xeo vietnam (also tried: banh xeo da nang nem lui / bánh xèo nem lụi / banh xeo da nang / nem lui / nem lụi / banh xeo hoi an / banh xeo hue — 뒤의 6개는 Flickr 검색 장애로 결과 0)",
+ "fallback": true,
+ "fallback_reason": "넴루이 꼬치·라이스페이퍼가 함께 나온 중부식 반쎄오 CC 사진을 찾지 못함(검색 장애) — 일반 반쎄오+허브 사진으로 대체"
+}

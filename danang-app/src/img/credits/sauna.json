@@ -1,0 +1,13 @@
+{
+ "title": "Jjimjilbang",
+ "author": "Dushan Hanuska",
+ "author_url": "https://www.flickr.com/photos/hanuska/",
+ "license": "CC BY-SA 2.0",
+ "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+ "img": "https://live.staticflickr.com/7436/12051456064_03fa496c1d_b.jpg",
+ "page": "https://www.flickr.com/photos/hanuska/12051456064/",
+ "why": "실제 한국 찜질방 내부(아치형 가마방 입구, 안마의자, 매트에 누운 사람들). 찜질방이 바로 식별되지만 실내가 어둡고 화질이 낮아 적합도는 보통",
+ "query": "jjimjilbang sauna / 찜질방 / korean sauna spa interior / sauna wooden room spa",
+ "fallback": true,
+ "fallback_reason": "4개 검색어 중 찜질방을 정면으로 보여주는 CC 사진은 이 한 장뿐(나머지는 얼굴 클로즈업·음식·간판). 밝은 가마방/온탕 사진은 플리커 검색 차단으로 추가 탐색 불가"
+}

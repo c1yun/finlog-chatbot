@@ -1,0 +1,11 @@
+{
+ "title": "Fancy Tea House",
+ "author": "mikecogh",
+ "author_url": "https://www.flickr.com/photos/mikecogh/",
+ "license": "CC BY-SA 4.0",
+ "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+ "page": "https://www.flickr.com/photos/mikecogh/55294297795/",
+ "query": "flickr tag feed: vietnam,teahouse",
+ "fallback": true,
+ "why": "FALLBACK: 다낭 미술관(78 Lê Duẩn)·베트남 옻칠화 전시 사진을 플리커 CC에서 찾지 못함(검색 7종: da nang fine arts museum / bảo tàng mỹ thuật đà nẵng / vietnamese lacquer painting / lacquer,vietnam / sơnmài / lacquerware / danang,art). 브리프의 대체 주제(베트남 찻집)로 베트남의 콜로니얼풍 찻집 외관(TEA HOUSE 간판) 사진을 사용"
+}

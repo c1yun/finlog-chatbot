@@ -1,0 +1,13 @@
+{
+ "title": "Bowl of Bánh Canh",
+ "author": "Prince Roy",
+ "author_url": "https://www.flickr.com/photos/princeroy/",
+ "license": "CC BY 2.0",
+ "license_url": "https://creativecommons.org/licenses/by/2.0/",
+ "img": "https://live.staticflickr.com/2923/33970127215_143acb335d_b.jpg",
+ "page": "https://www.flickr.com/photos/princeroy/33970127215/",
+ "why": "베트남 현지 식당의 바인깐 한 그릇(굵은 타피오카 면·꽈이·고기토막)이 중앙에 크게 보임. 6가지 검색어로도 '까록(가물치)' 버전 사진은 없어 일반 바인깐 사진으로 대체",
+ "query": "banh canh (fallback; also tried: banh canh ca loc / bánh canh cá lóc / banh canh ca loc hue / banh canh snakehead fish noodle / banh canh ca / bánh canh cá)",
+ "fallback": true,
+ "fallback_reason": "cá lóc(가물치) 바인깐 CC 사진 없음 — 같은 굵은 면 요리의 일반 바인깐 사진으로 대체"
+}

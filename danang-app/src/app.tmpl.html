@@ -1,0 +1,298 @@
+<title>엄마와 다낭 5일</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Gowun+Batang:wght@400;700&display=swap">
+<style>
+/* Layout: phone-first app. Sticky day bar on top, fixed five-tab bar at the bottom, one column of large-type cards in between. */
+:root {
+  --bg: #F4F6F9;        /* cool river-grey ground */
+  --card: #FFFFFF;
+  --fg: #17212C;
+  --muted: #5E6B79;
+  --rule: #DFE5EC;
+  --accent: #1E4E8C;    /* Han River indigo: navigation, links */
+  --accent-soft: #E6EEF9;
+  --time: #C8562B;      /* lantern orange: times and primary buttons */
+  --warn-bg: #FFF4E0;
+  --warn-fg: #7A4B00;
+  --ok: #2E7D5B;
+  --font-body: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-display: "Gowun Batang", "Noto Serif KR", "Apple Myungjo", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0F161F; --card: #18222E; --fg: #ECF1F6; --muted: #A2AFBD; --rule: #2B3744;
+  --accent: #8FB8EE; --accent-soft: #1E2F44; --time: #F09467; --warn-bg: #3A2A12; --warn-fg: #F3D9A6; --ok: #7CC8A3; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0F161F; --card: #18222E; --fg: #ECF1F6; --muted: #A2AFBD; --rule: #2B3744;
+  --accent: #8FB8EE; --accent-soft: #1E2F44; --time: #F09467; --warn-bg: #3A2A12; --warn-fg: #F3D9A6; --ok: #7CC8A3; color-scheme: dark }
+
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 18px/1.6 var(--font-body); -webkit-text-size-adjust: 100%; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--card); }
+* { box-sizing: border-box; }
+img { max-width: 100%; display: block; }
+a { color: var(--accent); }
+button { font: inherit; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+
+/* top bar */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--card); border-bottom: 1px solid var(--rule);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 10px 0; }
+.top-inner { max-width: 640px; margin: 0 auto; display: grid; gap: 8px; }
+.brand { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.brand h1 { font: 700 22px/1.2 var(--font-display); }
+.brand .sub { font-size: 14px; color: var(--muted); flex: 1 1 auto; }
+.daybar { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+.daybar::-webkit-scrollbar { display: none; }
+.daychip { flex: 1 0 auto; min-width: 56px; min-height: 54px; border: 1px solid var(--rule); border-radius: 12px; background: var(--bg); color: var(--fg);
+  display: grid; place-items: center; gap: 0; padding: 4px 8px; cursor: pointer; }
+.daychip b { font-size: 17px; line-height: 1.1; }
+.daychip span { font-size: 12px; color: var(--muted); line-height: 1.2; }
+.daychip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.daychip.on span { color: #DCE8F7; }
+.seg { display: flex; gap: 6px; padding-bottom: 10px; }
+.seg button { flex: 1; min-height: 46px; border: 1px solid var(--rule); border-radius: 12px; background: var(--bg); color: var(--fg); font-weight: 700; font-size: 16px; cursor: pointer; }
+.seg button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* content */
+.wrap { max-width: 640px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 14px calc(84px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 16px; }
+.wrap > * { min-width: 0; }
+.dayhead { display: grid; gap: 6px; padding-block: 4px 2px; }
+.dayhead .date { font-size: 15px; color: var(--muted); font-weight: 500; }
+.dayhead h2 { font: 700 26px/1.3 var(--font-display); }
+.dayhead .summary { font-size: 17px; color: var(--muted); }
+.wx { display: inline-block; font-size: 14px; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 2px 10px; margin-left: 6px; vertical-align: middle; }
+.note { background: var(--warn-bg); color: var(--warn-fg); border-radius: 14px; padding: 12px 14px; font-size: 16px; line-height: 1.55; }
+.note b { font-size: 17px; }
+.sect-h { font: 700 20px/1.3 var(--font-display); padding-top: 6px; }
+.sect-h small { display: block; font: 400 14px/1.4 var(--font-body); color: var(--muted); }
+
+.stop { display: grid; grid-template-columns: 58px 1fr; gap: 10px; }
+.stop .t { font-weight: 700; font-size: 19px; color: var(--time); font-variant-numeric: tabular-nums; padding-top: 10px; line-height: 1.2; }
+.stop .t small { display: block; font-size: 12px; color: var(--muted); font-weight: 700; }
+.card { background: var(--card); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; min-width: 0; }
+.ph { position: relative; aspect-ratio: 16 / 10; max-width: 100%; background: var(--accent-soft); }
+.ph img { width: 100%; height: 100%; object-fit: cover; }
+.chips { position: absolute; left: 10px; bottom: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 12px; font-weight: 700; background: rgba(255,255,255,.92); color: #17212C; border-radius: 999px; padding: 3px 9px; }
+.body { padding: 12px 14px 14px; display: grid; gap: 10px; }
+.body h3 { font-size: 21px; line-height: 1.3; }
+.vi { font-size: 14px; color: var(--muted); line-height: 1.4; word-break: break-word; }
+.why { margin: 0; font-size: 17px; }
+.why b { color: var(--accent); }
+.meta { margin: 0; display: grid; grid-template-columns: 64px 1fr; gap: 6px 10px; font-size: 16px; }
+.meta dt { color: var(--muted); font-size: 14px; font-weight: 700; padding-top: 3px; }
+.meta dd { margin: 0; min-width: 0; line-height: 1.5; }
+.when { font-size: 14px; font-weight: 700; color: var(--time); }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn { min-height: 46px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--rule); background: var(--bg); color: var(--fg); font-weight: 700; font-size: 16px;
+  display: inline-flex; align-items: center; gap: 6px; text-decoration: none; cursor: pointer; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn:focus-visible, .tab:focus-visible, .daychip:focus-visible, .seg button:focus-visible { outline: 3px solid var(--time); outline-offset: 2px; }
+details.planb { background: var(--card); border: 1px solid var(--rule); border-radius: 14px; padding: 0 14px; }
+details.planb summary { cursor: pointer; font-weight: 700; font-size: 17px; padding: 12px 0; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+details.planb summary::after { content: "펼치기"; font-size: 13px; color: var(--muted); font-weight: 500; }
+details.planb[open] summary::after { content: "접기"; }
+details.planb .pb { padding: 0 0 14px; font-size: 16px; }
+
+/* checklists */
+.check { background: var(--card); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
+.check label { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; padding: 12px 14px; border-bottom: 1px solid var(--rule); min-height: 54px; cursor: pointer; }
+.check label:last-child { border-bottom: 0; }
+.check input { width: 26px; height: 26px; margin: 2px 0 0; accent-color: var(--accent); }
+.check .n { font-size: 17px; font-weight: 500; }
+.check .s { font-size: 14px; color: var(--muted); line-height: 1.45; }
+.check label.done .n { text-decoration: line-through; color: var(--muted); }
+.kv { background: var(--card); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
+.kv .row { display: grid; gap: 2px; padding: 12px 14px; border-bottom: 1px solid var(--rule); }
+.kv .row:last-child { border-bottom: 0; }
+.kv .k { font-size: 17px; font-weight: 700; }
+.kv .v { font-size: 15px; color: var(--muted); line-height: 1.5; }
+.kv .v.num { color: var(--fg); font-size: 18px; font-variant-numeric: tabular-nums; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+td, th { padding: 8px 6px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+tr.total td { font-weight: 700; }
+.credits { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.tiny { font-size: 13px; color: var(--muted); }
+.toast { position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 999px; font-size: 15px; z-index: 20; }
+
+/* bottom tabs */
+.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9; background: var(--card); border-top: 1px solid var(--rule);
+  padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.tabs-inner { max-width: 640px; margin: 0 auto; display: flex; }
+.tab { flex: 1; min-height: 60px; border: 0; background: none; color: var(--muted); display: grid; place-items: center; gap: 2px; padding: 6px 2px; cursor: pointer; font-weight: 700; font-size: 13px; }
+.tab svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.tab.on { color: var(--accent); }
+@media (prefers-reduced-motion: no-preference) { .daychip, .tab, .seg button { transition: background .15s, color .15s; } }
+/* larger-type mode for mom: scales content, leaves the fixed bars alone */
+body.big .wrap, body.big .top-inner { zoom: 1.15; }
+.zoombtn { min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--rule); background: var(--bg); color: var(--fg); font-weight: 700; font-size: 14px; cursor: pointer; white-space: nowrap; }
+</style>
+
+<header class="top"><div class="top-inner" id="top"></div></header>
+<main class="wrap" id="main"></main>
+<nav class="tabs" aria-label="메뉴"><div class="tabs-inner" id="tabs"></div></nav>
+
+<script>
+const DATA = /*DATA*/{};
+const LISTS = /*LISTS*/{};
+const MANUAL = /*MANUAL*/{};
+const IMG = /*IMG*/{};
+const CREDITS = /*CREDITS*/{};
+
+const TABS = [
+  { id: 'schedule', label: '일정', icon: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>' },
+  { id: 'food', label: '먹기', icon: '<svg viewBox="0 0 24 24"><path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M8 7c0-2 2-2 2-4M13 7c0-2 2-2 2-4"/></svg>' },
+  { id: 'spa', label: '마사지', icon: '<svg viewBox="0 0 24 24"><path d="M12 20c-5 0-8-3-8-7 3 0 5 1 8 4 3-3 5-4 8-4 0 4-3 7-8 7z"/><path d="M12 17c-2-4-2-8 0-13 2 5 2 9 0 13z"/></svg>' },
+  { id: 'todo', label: '할 것', icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 6-4 0 2-6z"/></svg>' },
+  { id: 'lists', label: '리스트', icon: '<svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>' },
+];
+const SUB = { shopping: '쇼핑', packing: '준비물', info: '정보' };
+const CAT = MANUAL.cat || {};
+const DAY_KO = { THU: '목', FRI: '금', SAT: '토', SUN: '일', MON: '월', TUE: '화' };
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('dn:' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('dn:' + k, JSON.stringify(v)); } catch (e) {} },
+};
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const img = k => IMG[k] ? `<img src="${IMG[k]}" alt="" loading="lazy">` : '';
+const mapUrl = (vi, title, city) => {
+  const q = (vi || title || '').replace(/\s*[·→]\s*/g, ' ').replace(/\(.*?\)/g, ' ').trim();
+  const withCity = /Đà Nẵng|Hội An|Da Nang|Hoi An/i.test(q) ? q : q + ' ' + city;
+  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(withCity);
+};
+function toast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 1600); }
+function copyText(txt, el) {
+  const done = () => toast('복사했어요');
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done).catch(() => fallback());
+  else fallback();
+  function fallback() { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast('길게 눌러 복사하세요'); }
+}
+
+// all days: Thu + Tue from MANUAL, Fri–Mon parsed from the pamphlet
+const DAYS = [MANUAL.thu, ...DATA.days, MANUAL.tue].filter(Boolean);
+const dayKey = d => d.date.slice(0, 3);
+function stopCard(s, day, opts = {}) {
+  const city = dayKey(day) === 'SUN' ? 'Hội An' : 'Đà Nẵng';
+  const meta = Object.entries(s.meta || {}).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`).join('');
+  const hasPlace = s.vi && !/^(DAD|Courtyard →|Courtyard 29F)/.test(s.vi) && !s.nomap;
+  return `<article class="card">
+    ${s.img && IMG[s.img] ? `<div class="ph">${img(s.img)}${s.chips && s.chips.length ? `<div class="chips">${s.chips.map(c => `<span class="chip">${esc(c)}</span>`).join('')}</div>` : ''}</div>` : ''}
+    <div class="body">
+      ${opts.when ? `<div class="when">${esc(opts.when)}</div>` : ''}
+      <h3>${esc(s.title)}</h3>
+      ${s.vi ? `<div class="vi" data-copy>${esc(s.vi)}</div>` : ''}
+      ${s.why ? `<p class="why">${s.why}</p>` : ''}
+      ${meta ? `<dl class="meta">${meta}</dl>` : ''}
+      ${hasPlace ? `<div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="${mapUrl(s.vi, s.title, city)}">지도 열기</a><button class="btn" type="button" data-copybtn>주소 복사</button></div>` : ''}
+    </div></article>`;
+}
+
+function renderSchedule(main, top) {
+  const saved = store.get('day', null);
+  let cur = saved || todayKey();
+  if (!DAYS.some(d => dayKey(d) === cur)) cur = 'FRI';
+  top.innerHTML = `<div class="brand"><h1>엄마와 다낭 5일</h1><span class="sub">10/29 목 – 11/3 화</span></div>
+    <div class="daybar" role="tablist">${DAYS.map(d => `<button class="daychip${dayKey(d) === cur ? ' on' : ''}" role="tab" data-day="${dayKey(d)}"><b>${DAY_KO[dayKey(d)]}</b><span>${esc(d.date.replace(/^[A-Z]{3} · /, ''))}</span></button>`).join('')}</div>`;
+  top.querySelectorAll('.daychip').forEach(b => b.addEventListener('click', () => { store.set('day', b.dataset.day); renderSchedule(main, top); window.scrollTo({ top: 0 }); }));
+  const d = DAYS.find(x => dayKey(x) === cur);
+  main.innerHTML = `<div class="dayhead"><div class="date">${esc(d.long || d.date)}</div><h2>${esc(d.title)}${d.wx ? `<span class="wx">${esc(d.wx)}</span>` : ''}</h2>${d.summary ? `<div class="summary">${esc(d.summary)}</div>` : ''}</div>
+    ${(d.notes || []).map(n => `<div class="note">${n}</div>`).join('')}
+    ${(d.stops || []).map(s => `<div class="stop"><div class="t">${esc(s.time)}${s.variant ? `<small>${esc(s.variant)}</small>` : ''}</div>${stopCard(s, d)}</div>`).join('')}
+    ${d.planb ? `<details class="planb"><summary>비 오거나 사정이 생기면</summary><div class="pb">${d.planb}</div></details>` : ''}`;
+  wireCopy(main);
+}
+function todayKey() {
+  const m = { '2026-10-29': 'THU', '2026-10-30': 'FRI', '2026-10-31': 'SAT', '2026-11-01': 'SUN', '2026-11-02': 'MON', '2026-11-03': 'TUE' };
+  const now = new Date(); const iso = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+  return m[iso] || 'FRI';
+}
+function wireCopy(root) {
+  root.querySelectorAll('[data-copybtn]').forEach(b => b.addEventListener('click', () => { const el = b.closest('.body').querySelector('[data-copy]'); if (el) copyText(el.textContent, el); }));
+}
+
+// category pages built from the schedule plus manual extras
+function entriesFor(cat) {
+  const out = [];
+  DAYS.forEach(d => (d.stops || []).forEach(s => {
+    const c = (CAT.byKey || {})[s.img] || (CAT.byTitle || {})[s.title];
+    if (c && c.cat === cat) out.push({ ...s, group: c.group || '', when: DAY_KO[dayKey(d)] + ' ' + s.time + (s.variant ? ' ' + s.variant : ''), day: d });
+  }));
+  (MANUAL.extra || []).filter(e => e.cat === cat).forEach(e => out.push({ ...e, day: DAYS.find(d => dayKey(d) === (e.dayKey || 'FRI')) }));
+  return out;
+}
+function renderCategory(main, top, cat, title, intro, groups) {
+  top.innerHTML = `<div class="brand"><h1>${esc(title)}</h1><span class="sub">${esc(intro)}</span></div><div style="height:10px"></div>`;
+  const items = entriesFor(cat);
+  const order = groups || [...new Set(items.map(i => i.group))];
+  main.innerHTML = order.map(g => {
+    const its = items.filter(i => (i.group || '') === g);
+    if (!its.length) return '';
+    return `<h2 class="sect-h">${esc(g)}</h2>` + its.map(s => stopCard(s, s.day, { when: s.when })).join('');
+  }).join('') + (MANUAL.catNotes && MANUAL.catNotes[cat] ? `<div class="note">${MANUAL.catNotes[cat]}</div>` : '');
+  wireCopy(main);
+}
+
+function renderLists(main, top, sub) {
+  top.innerHTML = `<div class="brand"><h1>리스트</h1><span class="sub">체크한 것은 이 폰에만 저장돼요</span></div>
+    <div class="seg">${Object.entries(SUB).map(([k, v]) => `<button type="button" data-sub="${k}" class="${k === sub ? 'on' : ''}">${v}</button>`).join('')}</div>`;
+  top.querySelectorAll('[data-sub]').forEach(b => b.addEventListener('click', () => { location.hash = b.dataset.sub; }));
+  if (sub === 'shopping') main.innerHTML = checklist('shop', (LISTS.shopping || []).map((it, i) => ({ id: 'shop' + i, n: it.name, s: [it.where, it.price, it.when, it.note].filter(Boolean).join(' · ') }))) + resetBtn('shop');
+  else if (sub === 'packing') main.innerHTML = (LISTS.packing || []).map((g, gi) => `<h2 class="sect-h">${esc(g.group)}</h2>` + checklist('pack', (g.items || []).map((it, i) => ({ id: 'pack' + gi + '_' + i, n: it.name, s: it.note || '' })))).join('') + resetBtn('pack');
+  else main.innerHTML = renderInfo();
+  main.querySelectorAll('.check input').forEach(cb => {
+    const key = 'chk:' + cb.dataset.id; cb.checked = !!store.get(key, false); cb.closest('label').classList.toggle('done', cb.checked);
+    cb.addEventListener('change', () => { store.set(key, cb.checked); cb.closest('label').classList.toggle('done', cb.checked); });
+  });
+  main.querySelectorAll('[data-reset]').forEach(b => b.addEventListener('click', () => {
+    main.querySelectorAll('.check input').forEach(cb => { if (cb.dataset.id.startsWith(b.dataset.reset)) { cb.checked = false; store.set('chk:' + cb.dataset.id, false); cb.closest('label').classList.remove('done'); } });
+    toast('체크를 모두 지웠어요');
+  }));
+  wireCopy(main);
+}
+const checklist = (prefix, items) => `<div class="check">${items.map(it => `<label><input type="checkbox" id="cb_${it.id}" data-id="${it.id}"><span><span class="n">${esc(it.n)}</span>${it.s ? `<br><span class="s">${esc(it.s)}</span>` : ''}</span></label>`).join('')}</div>`;
+const resetBtn = p => `<div class="actions"><button class="btn" type="button" data-reset="${p}">체크 모두 지우기</button></div>`;
+
+function renderInfo() {
+  const I = LISTS.info || {}; const H = I.hotel || MANUAL.hotel || {};
+  const kv = (rows, numKey) => `<div class="kv">${rows.map(r => `<div class="row"><div class="k">${esc(r.name || r.ko || r.k)}</div>${r.phone ? `<div class="v num" data-copy>${esc(r.phone)}</div>` : ''}<div class="v">${esc(r.note || r.v || (r.vi ? r.vi + ' (' + r.read + ')' : ''))}</div></div>`).join('')}</div>`;
+  const budget = (DATA.budget || []);
+  return `
+    <h2 class="sect-h">숙소</h2>
+    <div class="kv"><div class="row"><div class="k">${esc(H.name || '')}</div><div class="v" data-copy>${esc(H.addr || '')}</div>${H.phone ? `<div class="v num">${esc(H.phone)}</div>` : ''}${H.checkin ? `<div class="v">${esc(H.checkin)}</div>` : ''}</div>
+      ${(H.notes || []).map(n => `<div class="row"><div class="v">${esc(n)}</div></div>`).join('')}
+      ${(MANUAL.hotelNotes || []).map(n => `<div class="row"><div class="v">${n}</div></div>`).join('')}</div>
+    <div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="${mapUrl(H.addr, H.name, 'Đà Nẵng')}">호텔 지도 열기</a></div>
+    ${I.emergency && I.emergency.length ? `<h2 class="sect-h">급할 때</h2>${kv(I.emergency)}` : ''}
+    ${I.transport && I.transport.length ? `<h2 class="sect-h">이동</h2>${kv(I.transport)}` : ''}
+    ${I.money && I.money.length ? `<h2 class="sect-h">돈</h2>${kv(I.money)}` : ''}
+    ${I.phrases && I.phrases.length ? `<h2 class="sect-h">한마디 베트남어</h2>${kv(I.phrases)}` : ''}
+    ${budget.length ? `<h2 class="sect-h">예산 <small>2인 기준</small></h2><div class="card"><div class="tbl"><table>${budget.map(b => `<tr class="${b.total ? 'total' : ''}"><td>${esc(b.item)}</td><td class="r">${esc(b.krw)}</td></tr>`).join('')}</table></div></div>` : ''}
+    ${(DATA.skips || []).length ? `<h2 class="sect-h">일부러 뺀 곳</h2><div class="kv">${DATA.skips.map(s => `<div class="row"><div class="k">${esc(s.name)}</div><div class="v">${esc(s.why)}</div></div>`).join('')}</div>` : ''}
+    <h2 class="sect-h">사진 출처</h2><div class="credits">${Object.entries(CREDITS).map(([k, c]) => `${esc(c.title || k)} — ${esc(c.author || '')} (${esc(c.license || 'Flickr')})`).join(' · ')}</div>`;
+}
+
+function applyZoom() { document.body.classList.toggle('big', !!store.get('big', false)); }
+function zoomBtn() { return `<button class="zoombtn" type="button" id="zoomToggle" aria-pressed="${store.get('big', false) ? 'true' : 'false'}">${store.get('big', false) ? '글자 보통' : '글자 크게'}</button>`; }
+function route() {
+  applyZoom();
+  const h = (location.hash || '#schedule').replace('#', '');
+  const tab = SUB[h] ? 'lists' : (TABS.some(t => t.id === h) ? h : 'schedule');
+  document.getElementById('tabs').innerHTML = TABS.map(t => `<button class="tab${t.id === tab ? ' on' : ''}" type="button" data-tab="${t.id}" aria-current="${t.id === tab ? 'page' : 'false'}">${t.icon}<span>${t.label}</span></button>`).join('');
+  document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => { location.hash = b.dataset.tab === 'lists' ? (store.get('sub', 'shopping')) : b.dataset.tab; }));
+  const main = document.getElementById('main'), top = document.getElementById('top');
+  if (tab === 'schedule') renderSchedule(main, top);
+  else if (tab === 'food') renderCategory(main, top, 'food', '먹기', '아침·점심·저녁과 카페, 날짜순', MANUAL.groups && MANUAL.groups.food);
+  else if (tab === 'spa') renderCategory(main, top, 'spa', '마사지', '하루 한 번, 가볍게', MANUAL.groups && MANUAL.groups.spa);
+  else if (tab === 'todo') renderCategory(main, top, 'todo', '할 것', '보고 걷고 배우는 것들', MANUAL.groups && MANUAL.groups.todo);
+  else { const sub = SUB[h] ? h : store.get('sub', 'shopping'); store.set('sub', sub); renderLists(main, top, sub); }
+  const brand = top.querySelector('.brand');
+  if (brand) { brand.insertAdjacentHTML('beforeend', zoomBtn()); document.getElementById('zoomToggle').addEventListener('click', () => { store.set('big', !store.get('big', false)); route(); }); }
+  window.scrollTo({ top: 0 });
+}
+window.addEventListener('hashchange', route);
+route();
+</script>
