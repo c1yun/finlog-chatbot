@@ -1,0 +1,713 @@
+{
+ "hotel": {
+  "q": "Courtyard by Marriott Danang Han River, 58 Bạch Đằng, Đà Nẵng",
+  "lat": 16.072514,
+  "lng": 108.224557,
+  "strings": [
+   "Courtyard by Marriott Danang Han River",
+   "Hotel",
+   "Street, Hai Chau",
+   "Favorites",
+   "2ahUKEwiao5WDjt6XAxVHHYYAHYDtORQQwaQDKAB6BAgFEBw",
+   "Want to go"
+  ],
+  "status": 200
+ },
+ "airport": {
+  "q": "Da Nang International Airport International Terminal T2",
+  "lat": 16.05698,
+  "lng": 108.202537,
+  "strings": [
+   "Danang International Airport",
+   "International airport",
+   "Hai Chau",
+   "Favorites",
+   "2ahUKEwic0MCEjt6XAxVZFYYAHTOoLOcQwaQDKAB6BAgFEBo",
+   "Want to go"
+  ],
+  "status": 200
+ },
+ "hanmarket": {
+  "q": "Chợ Hàn, 119 Trần Phú, Đà Nẵng",
+  "lat": 16.068084,
+  "lng": 108.224069,
+  "strings": [
+   "Han Market",
+   "Traditional market",
+   "Market",
+   "Tourist attraction",
+   "Hai Chau",
+   "Han Market, 119 Trần Phú, Hải Châu, Đà Nẵng 550000, Vietnam"
+  ],
+  "status": 200
+ },
+ "conmarket": {
+  "q": "Chợ Cồn, 290 Hùng Vương, Đà Nẵng",
+  "lat": 16.067793,
+  "lng": 108.214483,
+  "strings": [
+   "Con Market",
+   "Market",
+   "Tourist attraction",
+   "Hai Chau",
+   "Con Market, 90 Hùng Vương, Hải Châu, Đà Nẵng 550000, Vietnam",
+   "Favorites"
+  ],
+  "status": 200
+ },
+ "vincom": {
+  "q": "Vincom Plaza Ngô Quyền, 910A Ngô Quyền, Đà Nẵng",
+  "lat": 16.071373,
+  "lng": 108.23043,
+  "strings": [
+   "Vincom Plaza",
+   "Building",
+   "P, An Hai",
+   "Vincom Plaza, 910A Ng. Quyền, P, An Hải, Đà Nẵng 550000, Vietnam",
+   "Favorites",
+   "2ahUKEwiqt8KIjt6XAxULMYYAHdyKIfAQwaQDKAB6BAgFEBQ"
+  ],
+  "status": 200
+ },
+ "lotte": {
+  "q": "Lotte Mart Đà Nẵng, 6 Nại Nam",
+  "lat": 16.034837,
+  "lng": 108.229258,
+  "strings": [
+   "Lotte Mart Supermarket",
+   "Hypermarket",
+   "Hòa Cường, Hoa Cuong",
+   "Lotte Mart Supermarket, 6 Nại Nam, Hòa Cường, Đà Nẵng, Vietnam",
+   "Favorites",
+   "2ahUKEwibvvCJjt6XAxXXsCsGHePYAnMQwaQDKAB6BAgFEB0"
+  ],
+  "status": 200
+ },
+ "ala": {
+  "q": "Àla Coffee Roastery, K113/27 Nguyễn Chí Thanh, Đà Nẵng",
+  "lat": 16.07365,
+  "lng": 108.221785,
+  "strings": [
+   "Àla Cafe",
+   "Coffee shop",
+   "Coffee roastery",
+   "Outlet store",
+   "Hai Chau",
+   "Àla Cafe, 113/27 Nguyễn Chí Thanh, Hải Châu, Đà Nẵng 550000, Vietnam"
+  ],
+  "status": 200
+ },
+ "bunchaca": {
+  "q": "Bún chả cá 109, 109 Nguyễn Chí Thanh, Đà Nẵng",
+  "lat": 16.074422,
+  "lng": 108.220813,
+  "strings": [
+   "Bún chả cá 109",
+   "Soup shop",
+   "Hai Chau",
+   "Favorites",
+   "2ahUKEwj6vMOMjt6XAxXDDIYAHcQ_J50QwaQDKAB6BAgFEBs",
+   "Want to go"
+  ],
+  "status": 200
+ },
+ "bahon": {
+  "q": "Bún chả cá Bà Hờn, 113 Nguyễn Chí Thanh, Đà Nẵng",
+  "lat": 16.074101,
+  "lng": 108.221255,
+  "strings": [
+   "Hờn Fishcake Noodle Soup",
+   "Noodle shop",
+   "Restaurant",
+   "Hai Chau",
+   "Favorites",
+   "2ahUKEwixueyNjt6XAxU1oSsGHR_OK9gQwaQDKAB6BAgFEBs"
+  ],
+  "status": 200
+ },
+ "banhcanh": {
+  "q": "Bánh canh Yến, 253 Nguyễn Hoàng, Đà Nẵng",
+  "lat": 16.057644,
+  "lng": 108.213165,
+  "strings": [
+   "Bánh canh Yến",
+   "Bistro",
+   "Hai Chau",
+   "Bánh canh Yến, 253 Nguyễn Hoàng, Hải Châu, Đà Nẵng 550000, Vietnam",
+   "Favorites",
+   "2ahUKEwij45qPjt6XAxX_lCsGHcTVPMIQwaQDKAB6BAgFEBw"
+  ],
+  "status": 200
+ },
+ "namhien": {
+  "q": "Năm Hiền bánh xèo, 46 Phan Thanh, Đà Nẵng",
+  "lat": 16.064685,
+  "lng": 108.207933,
+  "strings": [
+   "Ẩm Thực Năm Hiền - Bánh Xèo Tôm Nhảy",
+   "Vietnamese restaurant",
+   "Bistro",
+   "Chinese restaurant",
+   "Korean restaurant",
+   "Restaurant"
+  ],
+  "status": 200
+ },
+ "bavui": {
+  "q": "Xôi gà Bà Vui, 55 Lê Hồng Phong, Đà Nẵng",
+  "lat": 16.063863,
+  "lng": 108.220901,
+  "strings": [
+   "Xôi, Bún măng gà bà Vui",
+   "Vietnamese restaurant",
+   "Hai Chau",
+   "Favorites",
+   "2ahUKEwjyxfCRjt6XAxUtlCsGHYPiGPsQwaQDKAB6BAgFEBo",
+   "Want to go"
+  ],
+  "status": 200
+ },
+ "beni2": {
+  "q": "Hải sản Bé Ni 2, 228 Võ Nguyên Giáp, Đà Nẵng",
+  "lat": 16.066802,
+  "lng": 108.244995,
+  "strings": [
+   "Bé Ni 2",
+   "Seafood restaurant",
+   "Restaurant",
+   "An Hai",
+   "Bé Ni 2, 228 Võ Nguyên Giáp, An Hải, Đà Nẵng 550000, Vietnam",
+   "Favorites"
+  ],
+  "status": 200
+ },
+ "namdanh": {
+  "q": "Hải sản Năm Đảnh, Trần Quang Khải, Đà Nẵng",
+  "lat": 16.102297,
+  "lng": 108.253399,
+  "strings": [
+   "Nam Danh Seafood",
+   "Seafood restaurant",
+   "Son Tra",
+   "Nam Danh Seafood, 139/59/38 Trần Quang Khải, Sơn Trà, Đà Nẵng, Vietnam",
+   "Favorites",
+   "2ahUKEwi4-sKUjt6XAxWunisGHXG1JSgQwaQDKAB6BAgFEBs"
+  ],
+  "status": 200
+ },
+ "caolau": {
+  "q": "Cao lầu Thanh, 26 Thái Phiên, Hội An",
+  "lat": 15.881693,
+  "lng": 108.328508,
+  "strings": [
+   "Quán Cao Lầu Thanh",
+   "Noodle shop",
+   "Hoi An",
+   "Quán Cao Lầu Thanh, 26 Thái Phiên, Hội An, Đà Nẵng, Vietnam",
+   "Favorites",
+   "2ahUKEwjQ3uqVjt6XAxWLsCsGHddAKuYQwaQDKAB6BAgFEBs"
+  ],
+  "status": 200
+ },
+ "quexua": {
+  "q": "Quê Xưa, 165 Núi Thành, Đà Nẵng",
+  "lat": 16.04688,
+  "lng": 108.221219,
+  "strings": [
+   "Mỳ Quảng Quê Xưa",
+   "Vietnamese restaurant",
+   "Hòa Cường, Hoa Cuong",
+   "Mỳ Quảng Quê Xưa, 165 Núi Thành, Hòa Cường, Đà Nẵng 550000, Vietnam",
+   "Favorites",
+   "2ahUKEwiprbaYjt6XAxXJNYYAHeSEJ9kQwaQDKAB6BAgFEBs"
+  ],
+  "status": 200
+ },
+ "miquang": {
+  "q": "Mỳ Quảng Sứa Hồng Vân, 59C Lê Hồng Phong, Đà Nẵng",
+  "lat": 16.063976,
+  "lng": 108.220572,
+  "strings": [
+   "Mì Quảng Hồng Vân",
+   "Breakfast restaurant",
+   "Hai Chau",
+   "Favorites",
+   "2ahUKEwjA7d6Zjt6XAxVXG4YAHQQ0KS8QwaQDKAB6BAgFEB0",
+   "Want to go"
+  ],
+  "status": 200
+ },
+ "bepcuon": {
+  "q": "Bếp Cuốn Đà Nẵng, 31 Trần Bạch Đằng",
+  "lat": 16.057963,
+  "lng": 108.24515,
+  "strings": [
+   "Bếp Cuốn Đà Nẵng - Michelin Selected 2025-2026",
+   "Vietnamese restaurant",
+   "Restaurant",
+   "An Hai",
+   "Favorites",
+   "2ahUKEwiZ54qbjt6XAxW_nSsGHeIuFa8QwaQDKAB6BAgFEB4"
+  ],
+  "status": 200
+ },
+ "gocnha": {
+  "q": "Góc Nhà Tụi Mình, K36/36 Lê Duẩn, Đà Nẵng",
+  "lat": 16.072386,
+  "lng": 108.221849,
+  "strings": [
+   "Goc Nha Tui Minh Teahouse",
+   "Traditional teahouse",
+   "Hai Chau",
+   "Favorites",
+   "2ahUKEwie5LScjt6XAxXtlCsGHZ5gMlUQwaQDKAB6BAgFEBo",
+   "Want to go"
+  ],
+  "status": 200
+ },
+ "xliii": {
+  "q": "XLIII Specialty Coffee, 422 Ngô Thì Sĩ, Đà Nẵng",
+  "lat": 16.048087,
+  "lng": 108.246023,
+  "strings": [
+   "XLIII Specialty Coffee",
+   "Coffee shop",
+   "Cafe",
+   "Coffee roastery",
+   "Ngu Hanh Son",
+   "Favorites"
+  ],
+  "status": 200
+ },
+ "chexuantrang": {
+  "q": "Chè Xuân Trang, 31 Lê Duẩn, Đà Nẵng",
+  "lat": 16.071226,
+  "lng": 108.220875,
+  "strings": [
+   "Chè Xuân Trang - cs 1",
+   "Cafe",
+   "Hai Chau",
+   "Chè Xuân Trang - cs 1, 31 Lê Duẩn, Hải Châu, Đà Nẵng 550000, Vietnam",
+   "Favorites",
+   "2ahUKEwiJ8Yafjt6XAxWmoSsGHavaNBUQwaQDKAB6BAgFEBc"
+  ],
+  "status": 200
+ },
+ "reachingout": {
+  "q": "Reaching Out Teahouse, 131 Trần Phú, Hội An",
+  "lat": 15.877058,
+  "lng": 108.327279,
+  "strings": [
+   "Reaching Out Teahouse",
+   "Tea house",
+   "Old Town, Hoi An",
+   "Favorites",
+   "2ahUKEwj797Cgjt6XAxWRNYYAHbX-NtYQwaQDKAB6BAgFECA",
+   "Want to go"
+  ],
+  "status": 200
+ },
+ "thecups": {
+  "q": "The Cups by the sea, 268 Võ Nguyên Giáp, Đà Nẵng",
+  "lat": 16.05618,
+  "lng": 108.24683,
+  "strings": [
+   "268 Võ Nguyên Giáp, Ngũ Hành Sơn, Đà Nẵng, Vietnam",
+   "2ahUKEwjo8dihjt6XAxVGiCsGHQJoKdcQmRl6BAgEEAE"
+  ],
+  "status": 200
+ },
+ "goldenlotus": {
+  "q": "Golden Lotus Oriental Organic Spa, 76 Hùng Vương, Đà Nẵng",
+  "lat": 16.06872,
+  "lng": 108.222914,
+  "strings": [
+   "Golden Lotus Oriental Organic Spa 2",
+   "Massage spa",
+   "Hai Chau",
+   "Favorites",
+   "2ahUKEwje54ijjt6XAxXCpCsGHSh5EKUQwaQDKAB6BAgFEBs",
+   "Want to go"
+  ],
+  "status": 200
+ },
+ "queenspa": {
+  "q": "Queen Spa Đà Nẵng, 144 Phạm Cự Lượng",
+  "lat": 16.059758,
+  "lng": 108.236396,
+  "strings": [
+   "Queen Spa Danang",
+   "Spa",
+   "Day spa",
+   "Health spa",
+   "Hot bedstone spa",
+   "Massage spa"
+  ],
+  "status": 200
+ },
+ "herbalspa": {
+  "q": "Herbal Spa, 201 Dương Đình Nghệ, Đà Nẵng",
+  "lat": 16.069025,
+  "lng": 108.237026,
+  "strings": [
+   "Luxury Herbal Spa, 201 D. Đình Nghệ, An Hải, Đà Nẵng, Vietnam",
+   "2ahUKEwiqgdiljt6XAxV0oCsGHWbeLF4QmRl6BAgEEAE"
+  ],
+  "status": 200
+ },
+ "lenspa": {
+  "q": "Len Spa, 05 Trần Quốc Toản, Đà Nẵng",
+  "lat": 16.066022,
+  "lng": 108.223869,
+  "strings": [
+   "Len Spa ( Shampoo - Nails - Massage )",
+   "Spa",
+   "Massage spa",
+   "Nail salon",
+   "Hai Chau",
+   "Favorites"
+  ],
+  "status": 200
+ },
+ "mocspa": {
+  "q": "Mộc Spa gội đầu dưỡng sinh, 406 Hoàng Diệu, Đà Nẵng",
+  "lat": 16.054407,
+  "lng": 108.217515,
+  "strings": [
+   "Mộc Spa 411 Hoàng Diệu - Gội Đầu & Massage",
+   "Massage spa",
+   "Hoa Cuong",
+   "Favorites",
+   "2ahUKEwiEq6aojt6XAxWyiSsGHbYKNyEQwaQDKAB6BAgFEB4",
+   "Want to go"
+  ],
+  "status": 200
+ },
+ "chamriverside": {
+  "q": "Cham Riverside Onsen Jjimjilbang Spa, 05 Lê Quang Hòa, Đà Nẵng",
+  "lat": 16.024049,
+  "lng": 108.225001,
+  "strings": [
+   "Cham Riverside: Onsen - Jjimjilbang - Spa",
+   "Spa",
+   "Day-use onsen",
+   "Hoa Xuan",
+   "Favorites",
+   "2ahUKEwjzhNCpjt6XAxWdNYYAHVM9HBwQwaQDKAB6BAgFECA"
+  ],
+  "status": 200
+ },
+ "meliayhi": {
+  "q": "Melia Vinpearl Danang Riverfront, 341 Trần Hưng Đạo",
+  "lat": 16.070832,
+  "lng": 108.229283,
+  "strings": [
+   "Meliá Vinpearl Danang Riverfront",
+   "Hotel",
+   "Phường, An Hai",
+   "Favorites",
+   "2ahUKEwjx2Paqjt6XAxVaN4YAHbuLG-sQwaQDKAB6BAgFEBs",
+   "Want to go"
+  ],
+  "status": 200
+ },
+ "fineart": {
+  "q": "Bảo tàng Mỹ thuật Đà Nẵng, 78 Lê Duẩn",
+  "lat": 16.071302,
+  "lng": 108.21772,
+  "strings": [
+   "Danang Fine Arts Museum",
+   "Art museum",
+   "Tourist attraction",
+   "Hai Chau",
+   "Danang Fine Arts Museum, 78 Lê Duẩn, Hải Châu, Đà Nẵng 550000, Vietnam",
+   "Favorites"
+  ],
+  "status": 200
+ },
+ "apec": {
+  "q": "Công viên APEC Đà Nẵng",
+  "lat": 16.058105,
+  "lng": 108.223243,
+  "strings": [
+   "APEC Park",
+   "Park",
+   "Hai Chau",
+   "APEC Park, Đ. 2 Tháng 9, Hải Châu, Đà Nẵng 550000, Vietnam",
+   "Favorites",
+   "2ahUKEwihq_Cujt6XAxXgiisGHd9XDW8QwaQDKAB6BAgFEBY"
+  ],
+  "status": 200
+ },
+ "dragonbridge": {
+  "q": "Cầu Rồng Đà Nẵng",
+  "lat": 16.061104,
+  "lng": 108.227693,
+  "strings": [
+   "Cầu Rồng",
+   "Cầu Rồng, Đà Nẵng 550000, Vietnam",
+   "Favorites",
+   "2ahUKEwiy_5Wwjt6XAxWbN4YAHdClJ8QQwaQDKAB6BAgFEA4",
+   "Want to go",
+   "2ahUKEwiy_5Wwjt6XAxWbN4YAHdClJ8QQwaQDKAF6BAgFEA8"
+  ],
+  "status": 200
+ },
+ "chammuseum": {
+  "q": "Bảo tàng Điêu khắc Chăm Đà Nẵng",
+  "lat": 16.060301,
+  "lng": 108.223268,
+  "strings": [
+   "Da Nang Museum of Cham Sculpture",
+   "Sculpture museum",
+   "Heritage museum",
+   "Tourist attraction",
+   "Phường, Hai Chau",
+   "Favorites"
+  ],
+  "status": 200
+ },
+ "haivanquan": {
+  "q": "Hải Vân Quan",
+  "lat": 16.187738,
+  "lng": 108.131294,
+  "strings": [
+   "Hai Van Pass",
+   "Historical landmark",
+   "Chan May - Lang Co",
+   "Hai Van Pass, Chân Mây - Lăng Cô, Huế, Vietnam",
+   "Favorites",
+   "2ahUKEwiPpbS1jt6XAxW2rysGHe2OJVkQwaQDKAB6BAgFEBU"
+  ],
+  "status": 200
+ },
+ "lapan": {
+  "q": "Đầm Lập An Lăng Cô",
+  "lat": 16.221422,
+  "lng": 108.061563,
+  "strings": [
+   "Lap An Lagoon",
+   "Tourist attraction",
+   "Chan May - Lang Co",
+   "Lap An Lagoon, Chân Mây - Lăng Cô, Huế 49000, Vietnam",
+   "Favorites",
+   "2ahUKEwjJ2tq2jt6XAxWGjCsGHU_uGgEQwaQDKAB6BAgFEBo"
+  ],
+  "status": 200
+ },
+ "chuacau": {
+  "q": "Chùa Cầu Hội An",
+  "lat": 15.877087,
+  "lng": 108.32607,
+  "strings": [
+   "Chùa Cầu",
+   "Historical landmark",
+   "Bridge",
+   "Tourist attraction",
+   "Hoi An",
+   "Chùa Cầu, Nguyễn Thị Minh Khai, Hội An, Đà Nẵng 564010, Vietnam"
+  ],
+  "status": 200
+ },
+ "phunghung": {
+  "q": "Nhà cổ Phùng Hưng, 4 Nguyễn Thị Minh Khai, Hội An",
+  "lat": 15.877191,
+  "lng": 108.325801,
+  "strings": [
+   "The Old House of Phung Hung",
+   "Historical landmark",
+   "Tourist attraction",
+   "Hoi An",
+   "Favorites",
+   "2ahUKEwjooti6jt6XAxXgmysGHeXbA98QwaQDKAB6BAgFEBc"
+  ],
+  "status": 200
+ },
+ "phuckien": {
+  "q": "Hội quán Phúc Kiến, 46 Trần Phú, Hội An",
+  "lat": 15.877485,
+  "lng": 108.330628,
+  "strings": [
+   "Fujian Assembly Hall",
+   "Heritage preservation",
+   "Tourist attraction",
+   "Old Town, Hoi An",
+   "Fujian Assembly Hall, 46 Trần Phú, Old Town, Hội An, Đà Nẵng, Vietnam",
+   "Favorites"
+  ],
+  "status": 200
+ },
+ "tanky": {
+  "q": "Nhà cổ Tấn Ký, 101 Nguyễn Thái Học, Hội An",
+  "lat": 15.876482,
+  "lng": 108.327766,
+  "strings": [
+   "Old House of Tan Ky",
+   "Heritage building",
+   "Tourist attraction",
+   "Old Town, Hoi An",
+   "Favorites",
+   "2ahUKEwj35qS9jt6XAxXjMYYAHfFoM54QwaQDKAB6BAgFEBw"
+  ],
+  "status": 200
+ },
+ "precious": {
+  "q": "Precious Heritage Museum, 26 Phan Bội Châu, Hội An",
+  "lat": 15.87714,
+  "lng": 108.334263,
+  "strings": [
+   "Precious Heritage Art Gallery Museum",
+   "Art museum",
+   "Art gallery",
+   "Heritage museum",
+   "Museum",
+   "Tourist attraction"
+  ],
+  "status": 200
+ },
+ "thanhha": {
+  "q": "Làng gốm Thanh Hà Hội An",
+  "lat": 15.877924,
+  "lng": 108.300239,
+  "strings": [
+   "Thanh Ha Pottery Village, Hoi An",
+   "Tourist attraction",
+   "Hoi An Tay",
+   "Favorites",
+   "2ahUKEwi9wpXBjt6XAxVcsCsGHfQvBz4QwaQDKAB6BAgFEB0",
+   "Want to go"
+  ],
+  "status": 200
+ },
+ "myson": {
+  "q": "Thánh địa Mỹ Sơn",
+  "lat": 15.768782,
+  "lng": 108.119315,
+  "strings": [
+   "My Son",
+   "Historical landmark",
+   "Heritage preservation",
+   "Tourist attraction",
+   "Thánh địa Mỹ Sơn, Duy Xuyên District",
+   "My Son, Thánh địa Mỹ Sơn, Duy Xuyên, Quảng Nam, Vietnam"
+  ],
+  "status": 200
+ },
+ "familyhosp": {
+  "q": "Family Hospital Đà Nẵng, 73 Nguyễn Hữu Thọ",
+  "lat": 16.053888,
+  "lng": 108.209117,
+  "strings": [
+   "Family Hospital",
+   "General hospital",
+   "Hoa Cuong",
+   "Family Hospital, 73 Nguyễn Hữu Thọ, Hòa Cường, Đà Nẵng 550000, Vietnam",
+   "Favorites",
+   "2ahUKEwjNg-rDjt6XAxVcsCsGHfQvBz4QwaQDKAB6BAgFEBo"
+  ],
+  "status": 200
+ },
+ "vinmec": {
+  "q": "Vinmec International Hospital Đà Nẵng",
+  "lat": 16.038838,
+  "lng": 108.211285,
+  "strings": [
+   "Vinmec Da Nang International Hospital",
+   "General hospital",
+   "Hoa Cuong",
+   "Favorites",
+   "2ahUKEwiZ25DFjt6XAxVjpysGHds_EXsQwaQDKAB6BAgFEB0",
+   "Want to go"
+  ],
+  "status": 200
+ },
+ "consulate": {
+  "q": "Consulate General of the Republic of Korea in Da Nang",
+  "lat": 16.02797,
+  "lng": 108.238133,
+  "strings": [
+   "Tổng lãnh sự quán Hàn Quốc tại Đà Nẵng",
+   "Foreign consulate",
+   "Ngu Hanh Son",
+   "Favorites",
+   "2ahUKEwjTu7vGjt6XAxUYNoYAHQJtNiQQwaQDKAB6BAgFEBo",
+   "Want to go"
+  ],
+  "status": 200
+ },
+ "babymustard": {
+  "q": "Baby Mustard Hoi An",
+  "lat": 15.90142,
+  "lng": 108.336468,
+  "strings": [
+   "Baby Mustard",
+   "Vietnamese restaurant",
+   "Hoi An Tay",
+   "Baby Mustard, Đường Biển, Hội An Tây, Đà Nẵng, Vietnam",
+   "Favorites",
+   "2ahUKEwiW0pjUjt6XAxUdoysGHeaqJI8QwaQDKAB6BAgFEBw"
+  ],
+  "status": 200
+ },
+ "museum": {
+  "q": "Da Nang Museum Bảo tàng Đà Nẵng",
+  "lat": 16.074554,
+  "lng": 108.223967,
+  "strings": [
+   "Đà Nẵng Museum",
+   "History museum",
+   "Tourist attraction",
+   "P, Hai Chau",
+   "Đà Nẵng Museum, 31 Trần Phú, P, Hải Châu, Đà Nẵng 550000, Vietnam",
+   "Favorites"
+  ],
+  "status": 200
+ },
+ "jolie": {
+  "q": "10 Trần Quốc Toản, Hải Châu, Đà Nẵng",
+  "lat": 16.066162,
+  "lng": 108.223581,
+  "strings": [
+   "10 Trần Quốc Toản",
+   "Building",
+   "Hai Chau",
+   "10 Trần Quốc Toản, Hải Châu, Đà Nẵng 550000, Vietnam",
+   "Favorites",
+   "2ahUKEwj706PYjt6XAxX6nisGHe6LLa8QwaQDKAB6BAgFEBE"
+  ],
+  "status": 200
+ },
+ "traque": {
+  "q": "Tra Que Vegetable Village Hoi An",
+  "lat": 15.902357,
+  "lng": 108.337635,
+  "strings": [
+   "Tra Que Vegetable Village, Hội An Tây, Đà Nẵng, Vietnam",
+   "2ahUKEwijyvPajt6XAxU9MYYAHaAGFtsQmRl6BAgEEAE"
+  ],
+  "status": 200
+ },
+ "cruise": {
+  "q": "Bến du thuyền sông Hàn Bạch Đằng",
+  "lat": 16.050397,
+  "lng": 108.223924,
+  "strings": [
+   "2ahUKEwir1tmAj96XAxXCpCsGHSh5EKUQmRl6BAgGEAA"
+  ],
+  "status": 200
+ },
+ "hoianticket": {
+  "q": "Trần Hưng Đạo & Hai Bà Trưng, Hội An",
+  "lat": 15.879922,
+  "lng": 108.326747,
+  "strings": [
+   "Trần Hưng Đạo & Đường Hai Bà Trưng",
+   "Intersection",
+   "Hoi An",
+   "Trần Hưng Đạo & Đường Hai Bà Trưng, Hội An, Đà Nẵng, Vietnam",
+   "Favorites",
+   "2ahUKEwjb-oSCj96XAxW1mCsGHS5NDyMQwaQDKAB6BAgFEBA"
+  ],
+  "status": 200
+ }
+}

@@ -30,10 +30,14 @@ for k in sorted(keys):
     if c: CREDITS[k] = {'title': c.get('title'), 'author': c.get('author'), 'license': c.get('license') or 'Flickr'}
     elif isinstance(old_credits.get(k), dict): CREDITS[k] = {'title': old_credits[k].get('title'), 'author': old_credits[k].get('author'), 'license': 'Flickr'}
 
+MAPD = {}
+for mp in (os.path.join(H, 'places_final.json'), os.path.join(H, '..', 'map', 'places_final.json')):
+    if os.path.exists(mp): MAPD = load(mp, {}); break
 tmpl = open(os.path.join(H, 'app.tmpl.html'), encoding='utf-8').read()
 def J(o): return json.dumps(o, ensure_ascii=False).replace('</', '<\\/')
 out = (tmpl.replace('/*DATA*/{}', J(data)).replace('/*LISTS*/{}', J(lists)).replace('/*MANUAL*/{}', J(manual))
-       .replace('/*IMG*/{}', J(IMG)).replace('/*CREDITS*/{}', J(CREDITS)))
+       .replace('/*IMG*/{}', J(IMG)).replace('/*CREDITS*/{}', J(CREDITS))
+       .replace('/*MAP*/{}', J(MAPD)))
 dst = os.path.join(H, 'danang-app.html')
 open(dst, 'w', encoding='utf-8').write(out)
 print(f'built {dst}: {os.path.getsize(dst)/1e6:.2f} MB, images {len(IMG)} (new {sum(1 for k in IMG if os.path.exists(os.path.join(P2, "img", k + ".jpg")))}), missing {missing}, lists {list(lists.keys())}')

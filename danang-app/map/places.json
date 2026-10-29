@@ -1,0 +1,522 @@
+[
+ {
+  "id": "hotel",
+  "cat": "stay",
+  "ko": "코트야드 메리어트 한리버 (숙소)",
+  "vi": "Courtyard by Marriott Danang Han River",
+  "addr": "58 Bạch Đằng, Hải Châu, Đà Nẵng",
+  "q": "Courtyard by Marriott Danang Han River, 58 Bạch Đằng, Đà Nẵng",
+  "when": "10/29 목 밤 ~ 11/3 화 새벽",
+  "note": "새벽 0~1시 체크인 OK. 실내풀·루프탑풀 06~19시(온수 아님), 사우나 없음."
+ },
+ {
+  "id": "airport",
+  "cat": "stay",
+  "ko": "다낭 국제공항 (국제선 T2)",
+  "vi": "Sân bay quốc tế Đà Nẵng – Ga quốc tế T2",
+  "addr": "Hải Châu, Đà Nẵng",
+  "q": "Da Nang International Airport International Terminal T2",
+  "when": "목 23:50 도착 · 화 00:45 출발",
+  "note": "도착층 1·2차선 GrabCar 표지에서 그랩. 호텔까지 10~15분."
+ },
+ {
+  "id": "hanmarket",
+  "cat": "shop",
+  "ko": "한시장",
+  "vi": "Chợ Hàn",
+  "addr": "119 Trần Phú, Hải Châu, Đà Nẵng",
+  "q": "Chợ Hàn, 119 Trần Phú, Đà Nẵng",
+  "when": "금 09:45 (15분 구경)",
+  "note": "사지 말고 구경만. 강변(Bạch Đằng) 쪽 입구 OCOP 부스에서 남오 피시소스 정가 확인. 06:00~19:00."
+ },
+ {
+  "id": "conmarket",
+  "cat": "shop",
+  "ko": "꼰시장 (먹거리·건어물)",
+  "vi": "Chợ Cồn",
+  "addr": "290 Hùng Vương, Hải Châu, Đà Nẵng",
+  "q": "Chợ Cồn, 290 Hùng Vương, Đà Nẵng",
+  "when": "월 12:00쯤 (B안)",
+  "note": "먹거리 골목 접시 3~5만동, 가격 먼저 묻기. 건어물·캐슈 선물. 통로 좁고 미끄러움."
+ },
+ {
+  "id": "vincom",
+  "cat": "shop",
+  "ko": "빈컴 플라자 (윈마트·쇼핑몰)",
+  "vi": "Vincom Plaza Ngô Quyền",
+  "addr": "910A Ngô Quyền, Sơn Trà, Đà Nẵng",
+  "q": "Vincom Plaza Ngô Quyền, 910A Ngô Quyền, Đà Nẵng",
+  "when": "비 오는 날·마지막 날 선물",
+  "note": "지하 윈마트(WinMart)에서 캐슈·말린 망고·커피를 정가로. 에어컨 실내."
+ },
+ {
+  "id": "lotte",
+  "cat": "shop",
+  "ko": "롯데마트 다낭",
+  "vi": "Lotte Mart Đà Nẵng",
+  "addr": "6 Nại Nam, Hải Châu, Đà Nẵng",
+  "q": "Lotte Mart Đà Nẵng, 6 Nại Nam",
+  "when": "선택 (선물 대량 구매)",
+  "note": "한국식 대형마트. 시내에서 그랩 10분. 윈마트로 충분하면 생략."
+ },
+ {
+  "id": "ala",
+  "cat": "shop",
+  "ko": "알라 로스터리 (베트남 원두)",
+  "vi": "Àla Coffee Roastery",
+  "addr": "K113/27 Nguyễn Chí Thanh, Hải Châu, Đà Nẵng",
+  "q": "Àla Coffee Roastery, K113/27 Nguyễn Chí Thanh, Đà Nẵng",
+  "when": "시간 날 때",
+  "note": "베트남 스페셜티 원두. 07:30~18:00. 홀빈으로 사면 오래 가요."
+ },
+ {
+  "id": "bunchaca",
+  "cat": "food",
+  "ko": "분짜까 109 (어묵국수)",
+  "vi": "Bún chả cá 109",
+  "addr": "109 Nguyễn Chí Thanh, Hải Châu, Đà Nẵng",
+  "q": "Bún chả cá 109, 109 Nguyễn Chí Thanh, Đà Nẵng",
+  "when": "금 09:00 아침",
+  "note": "미슐랭 빕구르망. 맑은 어묵국수 4~6만동. 06:00~22:00."
+ },
+ {
+  "id": "bahon",
+  "cat": "food",
+  "ko": "바 헌 (분짜까 대안)",
+  "vi": "Bún chả cá Bà Hờn",
+  "addr": "113 Nguyễn Chí Thanh, Hải Châu, Đà Nẵng",
+  "q": "Bún chả cá Bà Hờn, 113 Nguyễn Chí Thanh, Đà Nẵng",
+  "when": "금 아침 (줄 짧은 쪽)",
+  "note": "분짜까 109 옆집, 같은 급."
+ },
+ {
+  "id": "banhcanh",
+  "cat": "food",
+  "ko": "반까인 옌 (가물치 굵은 쌀국수)",
+  "vi": "Bánh canh Yến",
+  "addr": "253 Nguyễn Hoàng, Hải Châu, Đà Nẵng",
+  "q": "Bánh canh Yến, 253 Nguyễn Hoàng, Đà Nẵng",
+  "when": "금 11:45 점심",
+  "note": "미슐랭 셀렉티드. 3~5만동. 13~15시 쉬는 날 있음, 12시 전 도착."
+ },
+ {
+  "id": "namhien",
+  "cat": "food",
+  "ko": "남 히엔 (새우 반쎄오)",
+  "vi": "Bánh xèo Năm Hiền",
+  "addr": "46 Phan Thanh, Thạc Gián, Đà Nẵng",
+  "q": "Năm Hiền bánh xèo, 46 Phan Thanh, Đà Nẵng",
+  "when": "금 18:30 저녁",
+  "note": "빕구르망. 반쎄오+넴루이+반짱 쌈. 둘이 15~20만동."
+ },
+ {
+  "id": "bavui",
+  "cat": "food",
+  "ko": "바 부이 (닭찰밥·닭국수)",
+  "vi": "Xôi gà – Bún măng gà Bà Vui",
+  "addr": "55 Lê Hồng Phong, Hải Châu, Đà Nẵng",
+  "q": "Xôi gà Bà Vui, 55 Lê Hồng Phong, Đà Nẵng",
+  "when": "토 07:30 아침",
+  "note": "빕구르망 신규. 04:00~21:00. 3~4.5만동."
+ },
+ {
+  "id": "beni2",
+  "cat": "food",
+  "ko": "베 니 2 (해산물)",
+  "vi": "Hải sản Bé Ni 2",
+  "addr": "228 Võ Nguyên Giáp, An Hải, Đà Nẵng",
+  "q": "Hải sản Bé Ni 2, 228 Võ Nguyên Giáp, Đà Nẵng",
+  "when": "토 18:30 저녁",
+  "note": "빕구르망. 주문 전 kg당 가격 확인. 둘이 30~45만동."
+ },
+ {
+  "id": "namdanh",
+  "cat": "food",
+  "ko": "남 다인 (골목 해산물, 대안)",
+  "vi": "Hải sản Năm Đảnh",
+  "addr": "139/59/38 Trần Quang Khải, Thọ Quang, Đà Nẵng",
+  "q": "Hải sản Năm Đảnh, Trần Quang Khải, Đà Nẵng",
+  "when": "토 저녁 대안",
+  "note": "접시 균일 6~7만동. 골목 안이라 기사에게 주소 보여 주기."
+ },
+ {
+  "id": "caolau",
+  "cat": "food",
+  "ko": "까오러우 타인 (호이안 까오러우)",
+  "vi": "Cao lầu Thanh",
+  "addr": "26 Thái Phiên, Hội An",
+  "q": "Cao lầu Thanh, 26 Thái Phiên, Hội An",
+  "when": "일 11:45 점심",
+  "note": "일요일 14:30 마감. 현지인이 꼽는 호이안 까오러우."
+ },
+ {
+  "id": "babymustard",
+  "cat": "food",
+  "ko": "베이비 머스터드 (짜꾸에 농가 밥상)",
+  "vi": "Baby Mustard",
+  "addr": "Trà Quế, Cẩm Hà, Hội An",
+  "q": "Baby Mustard Hoi An",
+  "when": "일 12:40",
+  "note": "11:00~21:00. 밭 보며 가벼운 한 접시. 1인 15~25만동."
+ },
+ {
+  "id": "quexua",
+  "cat": "food",
+  "ko": "꿰 쓰어 (미꽝·반짱 쌈)",
+  "vi": "Quê Xưa",
+  "addr": "165 Núi Thành, Hải Châu, Đà Nẵng",
+  "q": "Quê Xưa, 165 Núi Thành, Đà Nẵng",
+  "when": "일 18:30 저녁",
+  "note": "빕구르망. 1층 자리 요청. 둘이 15~25만동."
+ },
+ {
+  "id": "miquang",
+  "cat": "food",
+  "ko": "미꽝 쓰어 홍번 (해파리 미꽝)",
+  "vi": "Mỳ Quảng Sứa Hồng Vân",
+  "addr": "59C Lê Hồng Phong, Hải Châu, Đà Nẵng",
+  "q": "Mỳ Quảng Sứa Hồng Vân, 59C Lê Hồng Phong, Đà Nẵng",
+  "when": "월 07:30 아침",
+  "note": "빕구르망. 오전만(06:00~13:00). 3.5~5만동."
+ },
+ {
+  "id": "bepcuon",
+  "cat": "food",
+  "ko": "벱 꾸온 (쌈·롤 요리)",
+  "vi": "Bếp Cuốn",
+  "addr": "31-33 Trần Bạch Đằng, Sơn Trà, Đà Nẵng",
+  "q": "Bếp Cuốn Đà Nẵng, 31 Trần Bạch Đằng",
+  "when": "월 19:00 마지막 저녁",
+  "note": "사진 메뉴·에어컨. 10:30~21:00. 1인 15~25만동."
+ },
+ {
+  "id": "gocnha",
+  "cat": "cafe",
+  "ko": "곡 냐 뚜이 민 (골목 찻집)",
+  "vi": "Góc Nhà Tụi Mình",
+  "addr": "K36/36 Lê Duẩn, Hải Châu, Đà Nẵng",
+  "q": "Góc Nhà Tụi Mình, K36/36 Lê Duẩn, Đà Nẵng",
+  "when": "금 13:00 (미술관 옆)",
+  "note": "베트남 산지 차 주전자 6~7만동. 영업 미확인 — 닫혀 있으면 패스."
+ },
+ {
+  "id": "xliii",
+  "cat": "cafe",
+  "ko": "43 팩토리 커피 (XLIII)",
+  "vi": "XLIII Specialty Coffee",
+  "addr": "422 Ngô Thì Sĩ, Bắc Mỹ An, Đà Nẵng",
+  "q": "XLIII Specialty Coffee, 422 Ngô Thì Sĩ, Đà Nẵng",
+  "when": "토 17:00",
+  "note": "넓고 조용한 스페셜티 카페. 11~20만동. 베트남 원두는 없음."
+ },
+ {
+  "id": "chexuantrang",
+  "cat": "cafe",
+  "ko": "쩨 쑤언 짱 (디저트)",
+  "vi": "Chè Xuân Trang",
+  "addr": "31 Lê Duẩn, Hải Châu, Đà Nẵng",
+  "q": "Chè Xuân Trang, 31 Lê Duẩn, Đà Nẵng",
+  "when": "토 20:30",
+  "note": "오래된 동네 쩨 가게. 1~3.3만동."
+ },
+ {
+  "id": "reachingout",
+  "cat": "cafe",
+  "ko": "리칭아웃 티하우스 (호이안)",
+  "vi": "Reaching Out Tea House",
+  "addr": "131 Trần Phú, Hội An",
+  "q": "Reaching Out Teahouse, 131 Trần Phú, Hội An",
+  "when": "일 10:05",
+  "note": "말없이 블록으로 주문하는 조용한 찻집. 주말 09:30 이후."
+ },
+ {
+  "id": "thecups",
+  "cat": "cafe",
+  "ko": "더 컵스 (바다 앞 연유커피)",
+  "vi": "B&B Bakery & The Cups by the Sea",
+  "addr": "268 Võ Nguyên Giáp, Đà Nẵng",
+  "q": "The Cups by the sea, 268 Võ Nguyên Giáp, Đà Nẵng",
+  "when": "월 18:00 (선택)",
+  "note": "06:30~23:00. 커피 4.5만~7.5만동."
+ },
+ {
+  "id": "goldenlotus",
+  "cat": "spa",
+  "ko": "골든로터스 스파 2호점 (발마사지)",
+  "vi": "Golden Lotus Oriental Organic Spa",
+  "addr": "76 Hùng Vương, Hải Châu, Đà Nẵng",
+  "q": "Golden Lotus Oriental Organic Spa, 76 Hùng Vương, Đà Nẵng",
+  "when": "금 16:30",
+  "note": "발 60분 25~40만동. 호텔 도보 10분."
+ },
+ {
+  "id": "queenspa",
+  "cat": "spa",
+  "ko": "퀸 스파 (핫스톤·허브볼)",
+  "vi": "Queen Spa Đà Nẵng",
+  "addr": "144 Phạm Cự Lượng, An Hải, Đà Nẵng",
+  "q": "Queen Spa Đà Nẵng, 144 Phạm Cự Lượng",
+  "when": "토 14:30",
+  "note": "08:00~22:00. 핫스톤 90분 70만동. 전날 카카오 예약."
+ },
+ {
+  "id": "herbalspa",
+  "cat": "spa",
+  "ko": "허벌 스파 (평일 오전 30%)",
+  "vi": "Herbal Spa Đà Nẵng",
+  "addr": "201 Dương Đình Nghệ, An Hải, Đà Nẵng",
+  "q": "Herbal Spa, 201 Dương Đình Nghệ, Đà Nẵng",
+  "when": "월 09:00 (B안)",
+  "note": "허벌 아로마 90분 44.1만동(코드 HBMP2026). 가족 룸 요청."
+ },
+ {
+  "id": "lenspa",
+  "cat": "spa",
+  "ko": "렌 스파 (약초 두피 샴푸)",
+  "vi": "Len Spa (gội đầu dưỡng sinh)",
+  "addr": "05 Trần Quốc Toản, Hải Châu, Đà Nẵng",
+  "q": "Len Spa, 05 Trần Quốc Toản, Đà Nẵng",
+  "when": "월 17:00",
+  "note": "두피 샴푸 60분 약 39만동. 한국어 메뉴. 호텔 도보 5분."
+ },
+ {
+  "id": "mocspa",
+  "cat": "spa",
+  "ko": "목 스파 (현지인 약초 샴푸, 대안)",
+  "vi": "Mộc Spa",
+  "addr": "411 Hoàng Diệu, Hải Châu, Đà Nẵng",
+  "q": "Mộc Spa 411 Hoàng Diệu Đà Nẵng",
+  "when": "월 대안",
+  "note": "09:00~19:00. 영어가 잘 안 통해요 — 번역 화면으로."
+ },
+ {
+  "id": "chamriverside",
+  "cat": "spa",
+  "ko": "참 리버사이드 온천·찜질방",
+  "vi": "Cham Riverside Onsen · Jjimjilbang · Spa",
+  "addr": "05 Lê Quang Hòa, Hòa Xuân, Đà Nẵng",
+  "q": "Cham Riverside Onsen Jjimjilbang Spa, 05 Lê Quang Hòa, Đà Nẵng",
+  "when": "일 15:30 (호이안 귀환길)",
+  "note": "다낭 유일의 한국식 찜질방(2026-08 개장). 자유이용 29만동. 07:00~22:00, 전화 0888 770 775."
+ },
+ {
+  "id": "meliayhi",
+  "cat": "spa",
+  "ko": "멜리아 빈펄 YHI 스파 사우나 (대안)",
+  "vi": "YHI Spa, Melia Vinpearl Danang Riverfront",
+  "addr": "341 Trần Hưng Đạo, Sơn Trà, Đà Nẵng",
+  "q": "Melia Vinpearl Danang Riverfront, 341 Trần Hưng Đạo",
+  "when": "비 오는 날 대안",
+  "note": "핀란드식 사우나·스팀 15만동 표시. 외부인 가능 여부 전화 확인."
+ },
+ {
+  "id": "museum",
+  "cat": "see",
+  "ko": "다낭박물관 (옛 시청)",
+  "vi": "Bảo tàng Đà Nẵng",
+  "addr": "42 Bạch Đằng, Hải Châu, Đà Nẵng",
+  "q": "Da Nang Museum Bảo tàng Đà Nẵng",
+  "when": "금 10:00",
+  "note": "08:00~17:00, 5만동. 엘리베이터 있음. 1시간 반."
+ },
+ {
+  "id": "fineart",
+  "cat": "see",
+  "ko": "다낭 미술관",
+  "vi": "Bảo tàng Mỹ thuật Đà Nẵng",
+  "addr": "78 Lê Duẩn, Hải Châu, Đà Nẵng",
+  "q": "Bảo tàng Mỹ thuật Đà Nẵng, 78 Lê Duẩn",
+  "when": "금 13:00",
+  "note": "08:00~17:00, 4만동. 칠화·소수민족 공예. 1~2층만 봐도 충분."
+ },
+ {
+  "id": "apec",
+  "cat": "see",
+  "ko": "APEC 공원",
+  "vi": "Công viên APEC",
+  "addr": "Bạch Đằng, Hải Châu, Đà Nẵng",
+  "q": "Công viên APEC Đà Nẵng",
+  "when": "금 20:30",
+  "note": "철제 연 지붕 아래 산책. 무료. 벤치 많음."
+ },
+ {
+  "id": "dragonbridge",
+  "cat": "see",
+  "ko": "용다리 (불쇼 금·토·일 21:00)",
+  "vi": "Cầu Rồng",
+  "addr": "Đà Nẵng",
+  "q": "Cầu Rồng Đà Nẵng",
+  "when": "금·토·일 21:00",
+  "note": "서쪽 강변에서 보기(동쪽 용머리 쪽은 물 분사에 젖어요). 약 15분."
+ },
+ {
+  "id": "cruise",
+  "cat": "see",
+  "ko": "한강 유람선 선착장",
+  "vi": "Bến du thuyền sông Hàn",
+  "addr": "Bạch Đằng, Hải Châu, Đà Nẵng",
+  "q": "Bến du thuyền sông Hàn Bạch Đằng",
+  "when": "일 21:00편",
+  "note": "15만동, 45분. 배 상태 보고 고르기, 2층 데크."
+ },
+ {
+  "id": "jolie",
+  "cat": "see",
+  "ko": "졸리 쿠킹 클래스 (집합 장소)",
+  "vi": "Jolie Da Nang Cooking Class – điểm hẹn",
+  "addr": "10 Trần Quốc Toản, Hải Châu, Đà Nẵng",
+  "q": "10 Trần Quốc Toản, Hải Châu, Đà Nẵng",
+  "when": "토 09:00",
+  "note": "한시장 옆 카페에서 집합 → 차로 강 동쪽 주방(14 An Trung Đông 6)."
+ },
+ {
+  "id": "chammuseum",
+  "cat": "see",
+  "ko": "참 조각 박물관",
+  "vi": "Bảo tàng Điêu khắc Chăm",
+  "addr": "02 2 Tháng 9, Hải Châu, Đà Nẵng",
+  "q": "Bảo tàng Điêu khắc Chăm Đà Nẵng",
+  "when": "월 10:45 (B안)",
+  "note": "07:00~17:00, 6만동. 국보 12점. 무료 음성 안내(한국어 없음)."
+ },
+ {
+  "id": "haivanquan",
+  "cat": "see",
+  "ko": "하이반관 (하이반 고개 정상)",
+  "vi": "Hải Vân Quan",
+  "addr": "Đèo Hải Vân",
+  "q": "Hải Vân Quan",
+  "when": "월 08:30 (A안, 날 좋을 때만)",
+  "note": "7만동. 급커브라 멀미약, 정상은 서늘해요. 산사태 경보 확인."
+ },
+ {
+  "id": "lapan",
+  "cat": "see",
+  "ko": "랍안 석호 (굴 점심)",
+  "vi": "Đầm Lập An",
+  "addr": "Lăng Cô, Huế",
+  "q": "Đầm Lập An Lăng Cô",
+  "when": "월 A안 점심",
+  "note": "하이반 고개 너머 석호. 굴 요리 점심."
+ },
+ {
+  "id": "hoianticket",
+  "cat": "see",
+  "ko": "호이안 매표소 (대절차 하차)",
+  "vi": "Quầy vé tham quan phố cổ Hội An",
+  "addr": "Trần Hưng Đạo – Hai Bà Trưng, Hội An",
+  "q": "Trần Hưng Đạo & Hai Bà Trưng, Hội An",
+  "when": "일 08:15",
+  "note": "통합권 12만동(체류 기간 최대 3일 유효). 공식 창구에서만 구매."
+ },
+ {
+  "id": "chuacau",
+  "cat": "see",
+  "ko": "내원교 (일본교)",
+  "vi": "Chùa Cầu",
+  "addr": "Nguyễn Thị Minh Khai, Hội An",
+  "q": "Chùa Cầu Hội An",
+  "when": "일 08:20",
+  "note": "아침 8시대가 한산. 다리 양끝 계단 5~6단."
+ },
+ {
+  "id": "phunghung",
+  "cat": "see",
+  "ko": "풍흥 고택",
+  "vi": "Nhà cổ Phùng Hưng",
+  "addr": "4 Nguyễn Thị Minh Khai, Hội An",
+  "q": "Nhà cổ Phùng Hưng, 4 Nguyễn Thị Minh Khai, Hội An",
+  "when": "일 08:30",
+  "note": "1780년 창고형 상가. 엄마는 1층만."
+ },
+ {
+  "id": "phuckien",
+  "cat": "see",
+  "ko": "복건회관",
+  "vi": "Hội quán Phúc Kiến",
+  "addr": "46 Trần Phú, Hội An",
+  "q": "Hội quán Phúc Kiến, 46 Trần Phú, Hội An",
+  "when": "일 09:05",
+  "note": "거대한 향 코일. 10~16시엔 붐비니 9시대에."
+ },
+ {
+  "id": "tanky",
+  "cat": "see",
+  "ko": "떤끼 고택",
+  "vi": "Nhà cổ Tấn Ký",
+  "addr": "101 Nguyễn Thái Học, Hội An",
+  "q": "Nhà cổ Tấn Ký, 101 Nguyễn Thái Học, Hội An",
+  "when": "일 09:30",
+  "note": "7대째 한 가족이 사는 집. 08:30~."
+ },
+ {
+  "id": "precious",
+  "cat": "see",
+  "ko": "프레셔스 헤리티지 박물관",
+  "vi": "Precious Heritage Museum",
+  "addr": "26 Phan Bội Châu, Hội An",
+  "q": "Precious Heritage Museum, 26 Phan Bội Châu, Hội An",
+  "when": "일 10:45",
+  "note": "무료, 08:00~20:00. 54개 민족 의상·사진. 에어컨."
+ },
+ {
+  "id": "traque",
+  "cat": "see",
+  "ko": "짜꾸에 채소마을",
+  "vi": "Làng rau Trà Quế",
+  "addr": "Cẩm Hà, Hội An",
+  "q": "Tra Que Vegetable Village Hoi An",
+  "when": "일 12:40",
+  "note": "입장 3.5만동. 평지 흙길 20분. 모기 기피제."
+ },
+ {
+  "id": "thanhha",
+  "cat": "see",
+  "ko": "탄하 도자기 마을 (선택)",
+  "vi": "Làng gốm Thanh Hà",
+  "addr": "Thanh Hà, Hội An",
+  "q": "Làng gốm Thanh Hà Hội An",
+  "when": "일 14:00 (선택)",
+  "note": "마을 3.5만동. 지치면 생략하고 찜질방으로."
+ },
+ {
+  "id": "myson",
+  "cat": "see",
+  "ko": "미선 유적 (선택, 월 아침)",
+  "vi": "Thánh địa Mỹ Sơn",
+  "addr": "Duy Phú, Quảng Nam",
+  "q": "Thánh địa Mỹ Sơn",
+  "when": "월 07:00 출발 (선택)",
+  "note": "편도 75~90분, 15만동. 현장 2시간, 왕복 포함 5시간."
+ },
+ {
+  "id": "familyhosp",
+  "cat": "help",
+  "ko": "패밀리 병원 (한국어 가능)",
+  "vi": "Family Hospital Đà Nẵng",
+  "addr": "73 Nguyễn Hữu Thọ, Hải Châu, Đà Nẵng",
+  "q": "Family Hospital Đà Nẵng, 73 Nguyễn Hữu Thọ",
+  "when": "비상시",
+  "note": "응급 0236 3632 333, 한국어 0911 424 040."
+ },
+ {
+  "id": "vinmec",
+  "cat": "help",
+  "ko": "빈멕 다낭 국제병원",
+  "vi": "Vinmec Đà Nẵng",
+  "addr": "30 Tháng 4, Hải Châu, Đà Nẵng",
+  "q": "Vinmec International Hospital Đà Nẵng",
+  "when": "비상시",
+  "note": "0236 3711 111. 한국어 통역."
+ },
+ {
+  "id": "consulate",
+  "cat": "help",
+  "ko": "주다낭 대한민국 총영사관",
+  "vi": "Tổng Lãnh sự quán Hàn Quốc tại Đà Nẵng",
+  "addr": "Đà Nẵng",
+  "q": "Consulate General of the Republic of Korea in Da Nang",
+  "when": "비상시",
+  "note": "영사콜센터 +82-2-3210-0404 (24시간)."
+ }
+]

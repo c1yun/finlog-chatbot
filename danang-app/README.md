@@ -14,3 +14,8 @@ python3 build_app.py          # app.tmpl.html + data/manual/lists + img → dana
 python3 make_site.py          # → ../site/index.html, manifest, sw.js, 아이콘  (경로는 스크립트 상단 APP 변수 조정)
 ```
 넷리파이에 `site/` 폴더를 올리면 끝. 사진 출처는 `src/img/credits/*.json`과 앱의 정보 탭 맨 아래에 있음.
+
+## 지도
+- `map/danang-places.kml` — 구글 내 지도(My Maps) 가져오기용 51곳(가볼 곳·맛집·카페·마사지·쇼핑·병원·숙소, 색깔별 폴더). `map/danang-places.csv`는 같은 내용의 CSV.
+- 좌표는 `map/geo_tbm.js`로 구글 지도 검색 결과에서 받은 값(`map/geo.json`), 장소 목록은 `map/places.json`, `python3 map/build_map.py`로 KML·CSV·앱용 `places_final.json` 생성.
+- 앱의 리스트 → 지도 탭: 분류별 목록, 장소별 "지도 열기", 하루 동선 버튼 6개.

@@ -48,7 +48,7 @@
    },
    {
     "time": "00:30",
-    "img": "riverside",
+    "img": "night_arrival",
     "chips": [
      "새벽 체크인 OK"
     ],
@@ -221,9 +221,22 @@
    "haivan_road": {
     "cat": "todo",
     "group": "바깥 나들이"
+   },
+   "teaset": {
+    "cat": "todo",
+    "group": "다낭 시내"
+   },
+   "specialty": {
+    "cat": "food",
+    "group": "카페·디저트"
    }
   },
-  "byTitle": {}
+  "byTitle": {
+   "다낭박물관 신관": {
+    "cat": "todo",
+    "group": "다낭 시내"
+   }
+  }
  },
  "groups": {
   "food": [
@@ -339,7 +352,7 @@
     "현지인 가게"
    ],
    "title": "목 스파 — 더 로컬한 약초 샴푸",
-   "vi": "Mộc Spa · 406 Hoàng Diệu, Đà Nẵng",
+   "vi": "Mộc Spa · 411 Hoàng Diệu, Đà Nẵng",
    "why": "렌 스파보다 싸고 현지인 손님 위주. 영어가 잘 안 통하니 번역 화면으로 \"Mẹ 60 tuổi, làm nhẹ\"(60세 어머니, 약하게).",
    "meta": {
     "시간·비용": "09:00~19:00 · 60~90분 10만~25만동",
@@ -424,6 +437,9 @@
   },
   "MON 15:00": {
    "map": "Len Spa, 05 Trần Quốc Toản, Đà Nẵng"
+  },
+  "FRI 10:00": {
+   "map": "Bảo tàng Đà Nẵng, 42 Bạch Đằng, Đà Nẵng"
   }
  }
 }
