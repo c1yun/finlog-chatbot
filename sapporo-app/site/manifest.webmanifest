@@ -1,0 +1,17 @@
+{
+  "name": "2027삿포로여행",
+  "short_name": "2027삿포로여행",
+  "description": "엄마와 삿포로 4일: 날짜별 일정, 먹기, 쇼핑, 할 것, 준비물·지도",
+  "start_url": "./index.html#schedule",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F2F5F8",
+  "theme_color": "#FFFFFF",
+  "lang": "ko",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

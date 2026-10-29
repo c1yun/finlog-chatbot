@@ -1,0 +1,672 @@
+{
+ "cats": [
+  {
+   "k": "stay",
+   "label": "숙소·공항·역",
+   "color": "#5B6877"
+  },
+  {
+   "k": "see",
+   "label": "가볼 곳",
+   "color": "#1F4E79"
+  },
+  {
+   "k": "food",
+   "label": "맛집",
+   "color": "#B3262E"
+  },
+  {
+   "k": "cafe",
+   "label": "카페·디저트",
+   "color": "#9A6A0B"
+  },
+  {
+   "k": "onsen",
+   "label": "온천·족욕·마사지",
+   "color": "#6E4BA8"
+  },
+  {
+   "k": "shop",
+   "label": "쇼핑",
+   "color": "#2E7D5B"
+  },
+  {
+   "k": "help",
+   "label": "병원·비상",
+   "color": "#C2185B"
+  }
+ ],
+ "places": [
+  {
+   "id": "hotel",
+   "cat": "stay",
+   "ko": "삿포로 그랜드 호텔 (숙소)",
+   "vi": "札幌グランドホテル",
+   "addr": "札幌市中央区北1条西4丁目",
+   "q": "Sapporo Grand Hotel",
+   "when": "3/9 화 ~ 3/12 금",
+   "note": "체크인 15:00 · 체크아웃 11:00. 지하보행공간(치카호)과 바로 연결. 대욕장·사우나 없음.",
+   "lat": 43.062687,
+   "lng": 141.350947
+  },
+  {
+   "id": "cts_intl",
+   "cat": "stay",
+   "ko": "신치토세 공항 국제선",
+   "vi": "新千歳空港 国際線旅客ターミナルビル",
+   "addr": "北海道千歳市美々",
+   "q": "New Chitose Airport International Terminal",
+   "when": "화 11:30 도착 · 금 12:30 출발",
+   "note": "출국 날에는 짐 부치기 전에 면세 환급 키오스크.",
+   "lat": 42.787446,
+   "lng": 141.676306
+  },
+  {
+   "id": "cts_dom",
+   "cat": "stay",
+   "ko": "신치토세 공항 국내선 (3층 식당·2층 기념품·지하 JR)",
+   "vi": "新千歳空港 国内線旅客ターミナルビル",
+   "addr": "北海道千歳市美々987-22",
+   "q": "New Chitose Airport Domestic Terminal",
+   "when": "화 점심 · 금 기념품",
+   "note": "국제선 2층에서 연결통로로 10~12분.",
+   "lat": 42.787521,
+   "lng": 141.680395
+  },
+  {
+   "id": "sapporo_stn",
+   "cat": "stay",
+   "ko": "JR 삿포로역",
+   "vi": "札幌駅",
+   "addr": "札幌市北区北6条西4丁目",
+   "q": "Sapporo Station",
+   "when": "화 도착 · 수 투어 집합(북쪽 출구) · 금 출발",
+   "note": "호텔에서 지하로 엄마 걸음 12분, 택시 5분.",
+   "lat": 43.068661,
+   "lng": 141.350755
+  },
+  {
+   "id": "kappa_liner_stop",
+   "cat": "stay",
+   "ko": "갓파라이너 승강장 (삿포로역앞 27번)",
+   "vi": "じょうてつバス 札幌駅前27番のりば",
+   "addr": "札幌市中央区北4条西1丁目付近(ホクレンビル前)",
+   "q": "43.066778,141.354333",
+   "when": "목 09:35 (A안)",
+   "note": "호쿠렌빌딩 앞. 26번과 헷갈리지 않기.",
+   "lat": 43.066778,
+   "lng": 141.354333
+  },
+  {
+   "id": "clock",
+   "cat": "see",
+   "ko": "삿포로 시계탑",
+   "vi": "札幌市時計台",
+   "addr": "札幌市中央区北1条西2丁目",
+   "q": "Sapporo Clock Tower",
+   "when": "화 16:00",
+   "note": "8:45~17:10 · ¥350. 길 건너 촬영 플라자에서 정면 사진.",
+   "lat": 43.062577,
+   "lng": 141.353493
+  },
+  {
+   "id": "odori_park",
+   "cat": "see",
+   "ko": "오도리공원",
+   "vi": "大通公園",
+   "addr": "札幌市中央区大通西1~12丁目",
+   "q": "Odori Park Sapporo",
+   "when": "화 17:00",
+   "note": "3월엔 눈이 질척해요. 짧게 걷기.",
+   "lat": 43.060752,
+   "lng": 141.354431
+  },
+  {
+   "id": "tvtower",
+   "cat": "see",
+   "ko": "삿포로 TV타워 전망대",
+   "vi": "さっぽろテレビ塔",
+   "addr": "札幌市中央区大通西1丁目",
+   "q": "Sapporo TV Tower",
+   "when": "화 17:15",
+   "note": "9:00~22:00 · ¥1,200. 일몰 17:33.",
+   "lat": 43.061105,
+   "lng": 141.356425
+  },
+  {
+   "id": "akapla",
+   "cat": "see",
+   "ko": "아카프라 일루미네이션",
+   "vi": "札幌市北3条広場(アカプラ)",
+   "addr": "札幌市中央区北2条西4丁目",
+   "q": "Sapporo Kita 3-jo Plaza Akapla",
+   "when": "화 20:40",
+   "note": "3월 14일까지. 호텔 바로 북쪽.",
+   "lat": 43.064238,
+   "lng": 141.350382
+  },
+  {
+   "id": "biei_shirahige",
+   "cat": "see",
+   "ko": "흰수염폭포",
+   "vi": "白ひげの滝",
+   "addr": "上川郡美瑛町白金",
+   "q": "Shirahige Waterfall Biei",
+   "when": "수 투어",
+   "note": "다리 위가 얼어 있어요. 아이젠.",
+   "lat": 43.474559,
+   "lng": 142.639318
+  },
+  {
+   "id": "biei_xmastree",
+   "cat": "see",
+   "ko": "크리스마스트리 나무",
+   "vi": "クリスマスツリーの木",
+   "addr": "上川郡美瑛町美馬牛",
+   "q": "Christmas Tree Biei",
+   "when": "수 투어",
+   "note": "밭 안 출입 금지.",
+   "lat": 43.554386,
+   "lng": 142.444217
+  },
+  {
+   "id": "biei_takushinkan",
+   "cat": "see",
+   "ko": "탁신관 자작나무숲",
+   "vi": "拓真館",
+   "addr": "上川郡美瑛町字拓進",
+   "q": "Takushinkan Biei",
+   "when": "수 투어",
+   "note": "갤러리 무료, 겨울 10:00~16:00.",
+   "lat": 43.52988,
+   "lng": 142.489365
+  },
+  {
+   "id": "biei_kenmary",
+   "cat": "see",
+   "ko": "켄과메리 나무",
+   "vi": "ケンとメリーの木",
+   "addr": "上川郡美瑛町大久保協生",
+   "q": "Ken and Mary Tree Biei",
+   "when": "수 투어(차창)",
+   "note": "대부분 버스 창으로 봐요.",
+   "lat": 43.609183,
+   "lng": 142.464196
+  },
+  {
+   "id": "biei_shikisai",
+   "cat": "see",
+   "ko": "시키사이노오카 설원",
+   "vi": "四季彩の丘",
+   "addr": "上川郡美瑛町新星",
+   "q": "Shikisai no Oka Biei",
+   "when": "수 투어",
+   "note": "9:10~17:00 · 썰매·알파카. 식당은 수요일 휴무.",
+   "lat": 43.529173,
+   "lng": 142.465082
+  },
+  {
+   "id": "biei_bluepond",
+   "cat": "see",
+   "ko": "청의 호수 (라이트업 투어만)",
+   "vi": "白金青い池",
+   "addr": "上川郡美瑛町白金",
+   "q": "Shirogane Blue Pond",
+   "when": "수 저녁 (선택)",
+   "note": "3월 낮엔 눈에 덮여요. 저녁 조명 투어에서만.",
+   "lat": 43.493474,
+   "lng": 142.614214
+  },
+  {
+   "id": "jozankei_gensen_park",
+   "cat": "onsen",
+   "ko": "조잔케이 원천공원 족욕",
+   "vi": "定山源泉公園",
+   "addr": "札幌市南区定山渓温泉東3丁目",
+   "q": "Jozankei Gensen Park",
+   "when": "목 10:40 (A안)",
+   "note": "7:00~21:00 · 무료. 수건 챙기기.",
+   "lat": 42.964978,
+   "lng": 141.163133
+  },
+  {
+   "id": "jozankei_futami_ashiyu",
+   "cat": "onsen",
+   "ko": "후타미 족욕 (지붕 있음)",
+   "vi": "四季のせせらぎ 二見の足湯",
+   "addr": "札幌市南区定山渓温泉西4丁目",
+   "q": "Futami Foot Bath Jozankei",
+   "when": "목 (A안)",
+   "note": "눈 와도 이용 가능 · 무료.",
+   "lat": 42.964927,
+   "lng": 141.159935
+  },
+  {
+   "id": "jozankei_kappa_tegyu",
+   "cat": "onsen",
+   "ko": "갓파 가족 소원 손온천",
+   "vi": "かっぱ家族の願かけ手湯",
+   "addr": "札幌市南区定山渓温泉東3丁目(国道230号沿い)",
+   "q": "Kappa Kazoku no Negaikake Teyu Jozankei",
+   "when": "목 (A안)",
+   "note": "갓파 동상에 물을 끼얹고 소원 빌기.",
+   "lat": 42.965248,
+   "lng": 141.165233
+  },
+  {
+   "id": "jozankei_millione",
+   "cat": "onsen",
+   "ko": "호텔 밀리오네 당일 온천",
+   "vi": "定山渓万世閣ホテルミリオーネ",
+   "addr": "札幌市南区定山渓温泉東3丁目",
+   "q": "Jozankei Manseikaku Hotel Milione",
+   "when": "목 12:00 (A안)",
+   "note": "12:00~20:00(접수 18:00) · ¥1,500. 온천패스로 입장.",
+   "lat": 42.964368,
+   "lng": 141.163925
+  },
+  {
+   "id": "momiriko",
+   "cat": "onsen",
+   "ko": "모미리코 발마사지",
+   "vi": "リラクゼーションサロン もみりこ",
+   "addr": "札幌市中央区南3条西4丁目21-10 キラク堂ビル6F",
+   "q": "Momileeco Massage Sapporo",
+   "when": "목 20:20 (선택)",
+   "note": "풋케어 60분 ¥6,300 · 개인룸 · 카드 OK.",
+   "lat": 43.056964,
+   "lng": 141.351558
+  },
+  {
+   "id": "yukakyo",
+   "cat": "onsen",
+   "ko": "스스키노 천연온천 유카쿄",
+   "vi": "すすきの天然温泉 湯香郷",
+   "addr": "札幌市中央区南7条西3丁目 ジャスマックプラザ",
+   "q": "Susukino Tennen Onsen Yukakyo",
+   "when": "목 저녁 (선택)",
+   "note": "10:00~24:00 · ¥2,750 · 011-513-8107.",
+   "lat": 43.051835,
+   "lng": 141.355479
+  },
+  {
+   "id": "honoka",
+   "cat": "onsen",
+   "ko": "여성 전용 고미치노유 호노카",
+   "vi": "女性専用 こみちの湯 ほのか",
+   "addr": "札幌市中央区南3条西2丁目15-5 狸小路2丁目",
+   "q": "Komichinoyu Honoka Sapporo",
+   "when": "아무 저녁 (여성만)",
+   "note": "24시간 · ¥1,350~ · 암반욕.",
+   "lat": 43.057484,
+   "lng": 141.355128
+  },
+  {
+   "id": "otaru_canal",
+   "cat": "see",
+   "ko": "오타루 운하 (아사쿠사바시)",
+   "vi": "小樽運河 浅草橋",
+   "addr": "小樽市港町5",
+   "q": "Asakusa Bridge Otaru Canal",
+   "when": "목 10:00 (B안)",
+   "note": "엽서 구도 사진 명소. 얼음길 주의.",
+   "lat": 43.197846,
+   "lng": 141.003275
+  },
+  {
+   "id": "otaru_sakaimachi",
+   "cat": "shop",
+   "ko": "사카이마치 거리",
+   "vi": "堺町通り商店街",
+   "addr": "小樽市堺町",
+   "q": "Sakaimachi Street Otaru",
+   "when": "목 10:45 (B안)",
+   "note": "가게 대부분 9:00~18:00.",
+   "lat": 43.191523,
+   "lng": 141.006825
+  },
+  {
+   "id": "otaru_orgel",
+   "cat": "shop",
+   "ko": "오타루 오르골당 본관",
+   "vi": "小樽オルゴール堂 本館",
+   "addr": "小樽市住吉町4-1",
+   "q": "Otaru Music Box Museum Main Building",
+   "when": "목 12:00 (B안)",
+   "note": "9:00~18:00 · 무료 입장 · 앞에 증기시계.",
+   "lat": 43.190529,
+   "lng": 141.007973
+  },
+  {
+   "id": "susukino_nikka",
+   "cat": "see",
+   "ko": "스스키노 니카 간판",
+   "vi": "すすきの交差点 ニッカウヰスキー看板",
+   "addr": "札幌市中央区南4条西3丁目",
+   "q": "Susukino Nikka Whisky Sign",
+   "when": "목 18:40",
+   "note": "호객꾼은 따라가지 않기.",
+   "lat": 43.055457,
+   "lng": 141.35359
+  },
+  {
+   "id": "cts_matsuo",
+   "cat": "food",
+   "ko": "마쓰오 징기스칸 (공항 국내선 3층)",
+   "vi": "松尾ジンギスカン 新千歳空港店",
+   "addr": "新千歳空港 国内線ターミナルビル3F",
+   "q": "Matsuo Jingisukan New Chitose Airport",
+   "when": "화 12:45",
+   "note": "68석 · 램 세트 ¥2,600 · 밥 리필.",
+   "lat": 42.787969,
+   "lng": 141.680236
+  },
+  {
+   "id": "cts_ramen_dojo",
+   "cat": "food",
+   "ko": "라멘도장 · 에비소바 이치겐 (공항 3층)",
+   "vi": "北海道ラーメン道場 / えびそば一幻",
+   "addr": "新千歳空港 国内線ターミナルビル3F",
+   "q": "Ebisoba Ichigen New Chitose Airport",
+   "when": "화 점심 대안",
+   "note": "새우 라멘 ¥990.",
+   "lat": 42.787969,
+   "lng": 141.680236
+  },
+  {
+   "id": "suage4",
+   "cat": "food",
+   "ko": "스아게4 수프카레",
+   "vi": "Soup Curry Suage４",
+   "addr": "札幌市中央区北3条西3-1-1 大同生命ビルmiredo 2F",
+   "q": "Soup Curry Suage4 Sapporo",
+   "when": "화 19:35",
+   "note": "11:00~21:00(LO 20:30) · 카드 OK · 예약 없음.",
+   "lat": 43.064699,
+   "lng": 141.35138
+  },
+  {
+   "id": "suage_plus",
+   "cat": "food",
+   "ko": "스아게+ 수프카레 (미나미4조, 대안)",
+   "vi": "Soup Curry Suage+（すあげプラス）",
+   "addr": "札幌市中央区南4条西5丁目 都志松ビル2F",
+   "q": "Soup Curry Suage+ Sapporo",
+   "when": "화 저녁 대안",
+   "note": "현금·PayPay만 · 계단 2층 · 줄 김.",
+   "lat": 43.055737,
+   "lng": 141.35127
+  },
+  {
+   "id": "junpei",
+   "cat": "food",
+   "ko": "준페이 에비동",
+   "vi": "洋食とCafe じゅんぺい",
+   "addr": "上川郡美瑛町本町4丁目4-10",
+   "q": "Junpei Biei",
+   "when": "수 12:40 (투어)",
+   "note": "11:00~15:00 · 월요일 휴무 · ¥1,800 · 현금.",
+   "lat": 43.58925,
+   "lng": 142.468077
+  },
+  {
+   "id": "shiki_hanamaru",
+   "cat": "food",
+   "ko": "시키하나마루 시계탑점 (스시)",
+   "vi": "町のすし家 四季花まる 時計台店",
+   "addr": "札幌市中央区北1条西2丁目1 札幌時計台ビル1F",
+   "q": "Shiki Hanamaru Tokeidai Sapporo",
+   "when": "수 19:15",
+   "note": "전화 예약 011-231-0870(2/1부터).",
+   "lat": 43.063023,
+   "lng": 141.353439
+  },
+  {
+   "id": "hanamaru_miredo",
+   "cat": "food",
+   "ko": "회전초밥 하나마루 miredo점 (대안)",
+   "vi": "回転寿司 根室花まる 大同生命札幌ビル miredo店",
+   "addr": "札幌市中央区北3条西3丁目1 大同生命札幌ビルB1F",
+   "q": "Nemuro Hanamaru miredo Sapporo",
+   "when": "수 저녁 대안",
+   "note": "11:00~22:00 · 예약 없음 · 발권기.",
+   "lat": 43.064726,
+   "lng": 141.351701
+  },
+  {
+   "id": "kani_honke",
+   "cat": "food",
+   "ko": "카니혼케 역앞 본점 (게 요리)",
+   "vi": "札幌かに本家 駅前本店",
+   "addr": "札幌市中央区北3条西2丁目",
+   "q": "Kani Honke Sapporo Station Main Branch",
+   "when": "목 17:00",
+   "note": "11:30~22:00 · 예약 011-222-0018.",
+   "lat": 43.065629,
+   "lng": 141.352665
+  },
+  {
+   "id": "ramen_yokocho",
+   "cat": "food",
+   "ko": "원조 삿포로 라멘요코초 (대안)",
+   "vi": "元祖さっぽろラーメン横丁",
+   "addr": "札幌市中央区南5条西3丁目 N・グランデビル1F",
+   "q": "Ganso Ramen Yokocho Sapporo",
+   "when": "목 저녁 대안",
+   "note": "가게마다 시간이 달라요.",
+   "lat": 43.054793,
+   "lng": 141.354291
+  },
+  {
+   "id": "kinotoya",
+   "cat": "cafe",
+   "ko": "키노토야 오도리공원점",
+   "vi": "きのとや 大通公園店・KINOTOYA cafe",
+   "addr": "札幌市中央区大通西3丁目7 北洋大通センター1F(大通BISSE)",
+   "q": "Kinotoya cafe Odori Park Sapporo",
+   "when": "화 16:30",
+   "note": "오무파르페 ¥754 · 지하 13번 출구 직결.",
+   "lat": 43.061419,
+   "lng": 141.352291
+  },
+  {
+   "id": "otaru_letao",
+   "cat": "cafe",
+   "ko": "르타오 본점 (오타루)",
+   "vi": "小樽洋菓子舗ルタオ 本店",
+   "addr": "小樽市堺町",
+   "q": "LeTAO Main Store Otaru",
+   "when": "목 (B안)",
+   "note": "2층 카페 · 더블프로마주.",
+   "lat": 43.191311,
+   "lng": 141.007433
+  },
+  {
+   "id": "otaru_kitakaro",
+   "cat": "cafe",
+   "ko": "키타카로 오타루 본관",
+   "vi": "北菓楼 小樽本館",
+   "addr": "小樽市堺町",
+   "q": "Kitakaro Otaru Main Shop",
+   "when": "목 (B안)",
+   "note": "슈크림 · 공항 2층에서도 팔아요.",
+   "lat": 43.191783,
+   "lng": 141.007293
+  },
+  {
+   "id": "tokyu",
+   "cat": "shop",
+   "ko": "도큐백화점",
+   "vi": "さっぽろ東急百貨店",
+   "addr": "札幌市中央区北4条西2丁目",
+   "q": "Tokyu Department Store Sapporo",
+   "when": "화 18:40",
+   "note": "10:00~20:00 · 면세 10층 · 7층 유니클로·GU.",
+   "lat": 43.066264,
+   "lng": 141.352954
+  },
+  {
+   "id": "donki",
+   "cat": "shop",
+   "ko": "MEGA 돈키호테 다누키코지 본점",
+   "vi": "MEGAドン・キホーテ 札幌狸小路本店",
+   "addr": "札幌市中央区南3条西4丁目12-1",
+   "q": "MEGA Don Quijote Sapporo Tanukikoji",
+   "when": "목 19:15",
+   "note": "24시간 · 여권 챙기기.",
+   "lat": 43.05696,
+   "lng": 141.352564
+  },
+  {
+   "id": "cts_royce",
+   "cat": "shop",
+   "ko": "공항 국내선 2층 기념품 (로이즈 등)",
+   "vi": "ロイズ 新千歳空港店",
+   "addr": "新千歳空港 国内線ターミナルビル2F",
+   "q": "Royce' New Chitose Airport",
+   "when": "금 09:30",
+   "note": "로이즈 8:00~19:30, 키타카로·르타오 8:00~20:00.",
+   "lat": 42.787179,
+   "lng": 141.680453
+  },
+  {
+   "id": "consulate_kr",
+   "cat": "help",
+   "ko": "주삿포로 대한민국 총영사관",
+   "vi": "在札幌大韓民国総領事館",
+   "addr": "〒060-0002 札幌市中央区北2条西12丁目1-4",
+   "q": "Consulate General of the Republic of Korea in Sapporo",
+   "when": "여권 분실 때",
+   "note": "011-218-0288 · 근무시간 외 +82-2-3210-0404.",
+   "lat": 43.062386,
+   "lng": 141.338262
+  },
+  {
+   "id": "hosp_city",
+   "cat": "help",
+   "ko": "시립삿포로병원 (구급센터)",
+   "vi": "市立札幌病院",
+   "addr": "〒060-8604 札幌市中央区北11条西13丁目1-1",
+   "q": "Sapporo City General Hospital",
+   "when": "응급할 때",
+   "note": "011-726-2211 · 먼저 #7119나 119.",
+   "lat": 43.071104,
+   "lng": 141.334364
+  },
+  {
+   "id": "hosp_tokushukai",
+   "cat": "help",
+   "ko": "삿포로히가시 도쿠슈카이병원",
+   "vi": "札幌東徳洲会病院",
+   "addr": "〒065-0033 札幌市東区北33条東14丁目3-1",
+   "q": "Sapporo Higashi Tokushukai Hospital",
+   "when": "외국어 진료",
+   "note": "외국어 지원 · 가기 전에 전화.",
+   "lat": 43.10347,
+   "lng": 141.365836
+  }
+ ],
+ "routes": [
+  {
+   "label": "화 공항 → 호텔 (JR)",
+   "stops": [
+    "cts_dom",
+    "hotel"
+   ],
+   "mode": "transit"
+  },
+  {
+   "label": "화 오후 시계탑·TV타워",
+   "stops": [
+    "hotel",
+    "clock",
+    "kinotoya",
+    "tvtower"
+   ],
+   "mode": "walking"
+  },
+  {
+   "label": "화 저녁 도큐·수프카레",
+   "stops": [
+    "tvtower",
+    "hotel",
+    "tokyu",
+    "suage4",
+    "akapla"
+   ],
+   "mode": "walking"
+  },
+  {
+   "label": "수 비에이 투어 (버스)",
+   "stops": [
+    "sapporo_stn",
+    "biei_shirahige",
+    "biei_takushinkan",
+    "junpei",
+    "biei_shikisai"
+   ],
+   "mode": "driving"
+  },
+  {
+   "label": "목 온천: 호텔 → 조잔케이",
+   "stops": [
+    "hotel",
+    "jozankei_gensen_park"
+   ],
+   "mode": "transit"
+  },
+  {
+   "label": "목 온천: 족욕·온천 산책",
+   "stops": [
+    "jozankei_gensen_park",
+    "jozankei_kappa_tegyu",
+    "jozankei_futami_ashiyu",
+    "jozankei_millione"
+   ],
+   "mode": "walking"
+  },
+  {
+   "label": "목 오타루: 호텔 → 운하",
+   "stops": [
+    "hotel",
+    "otaru_canal"
+   ],
+   "mode": "transit"
+  },
+  {
+   "label": "목 오타루: 운하 → 오르골당",
+   "stops": [
+    "otaru_canal",
+    "otaru_sakaimachi",
+    "otaru_letao",
+    "otaru_orgel"
+   ],
+   "mode": "walking"
+  },
+  {
+   "label": "목 저녁: 게 요리 → 스스키노",
+   "stops": [
+    "kani_honke",
+    "susukino_nikka"
+   ],
+   "mode": "transit"
+  },
+  {
+   "label": "목 저녁: 다누키코지 산책",
+   "stops": [
+    "susukino_nikka",
+    "donki",
+    "momiriko"
+   ],
+   "mode": "walking"
+  },
+  {
+   "label": "금 호텔 → 공항 (JR)",
+   "stops": [
+    "hotel",
+    "cts_intl"
+   ],
+   "mode": "transit"
+  }
+ ]
+}

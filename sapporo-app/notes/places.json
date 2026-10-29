@@ -1,0 +1,1150 @@
+[
+ {
+  "id": "cts_intl",
+  "category": "stay",
+  "day": [
+   1,
+   4
+  ],
+  "ko": "신치토세 공항 국제선 터미널",
+  "ja": "新千歳空港 国際線旅客ターミナルビル",
+  "addr": "北海道千歳市美々",
+  "lat": 42.787446,
+  "lng": 141.676306,
+  "gmaps_name": "International Terminal",
+  "rating_google": null,
+  "hours": "도착로비 2층 / 출발 3층. 면세점·식당은 운항에 맞춰 영업",
+  "closed": "없음",
+  "price": "공항버스 국제선 84번 승차장 ¥1,500(₩12,700)",
+  "tip": "도착 후 2층 연결시설 무빙워크로 국내선까지 10~12분. 출국 때는 면세 키오스크를 수하물 위탁 전에(2026-11-01 시행).",
+  "from_hotel": "JR 쾌속 에어포트 37분 안팎+역내 도보 10~15분 / 공항버스 약 75분",
+  "sources": [
+   "https://www.hokkaido-airports.com/ja/new-chitose/spend/shop/api/shop.json",
+   "https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00028.html",
+   "https://www.chuo-bus.co.jp/airport/timetable/?ope=det&n=34&o=2&t=14"
+  ]
+ },
+ {
+  "id": "cts_dom",
+  "category": "stay",
+  "day": [
+   1,
+   4
+  ],
+  "ko": "신치토세 공항 국내선 터미널(3층 식당가·2층 기념품·지하1층 JR)",
+  "ja": "新千歳空港 国内線旅客ターミナルビル",
+  "addr": "北海道千歳市美々987-22",
+  "lat": 42.787521,
+  "lng": 141.680395,
+  "gmaps_name": "Domestic Terminal",
+  "rating_google": null,
+  "hours": "3층 식당 대부분 10~11시 ~20:00/21:00, 2층 기념품 8:00~20:00(로이즈 ~19:30)",
+  "closed": "없음",
+  "price": "JR 삿포로까지 ¥1,230(₩10,400), U시트 +¥1,000(티켓리스 +¥800)",
+  "tip": "엄마와 점심은 12:45 전후 좌석 많은 곳(마쓰오 68석, 하나부사 76석). 4일차 기념품은 여기서 사고 국제선으로 이동.",
+  "from_hotel": "JR 37분+삿포로역에서 호텔 택시 5분/지하 도보 12분",
+  "sources": [
+   "https://www.hokkaido-airports.com/ja/new-chitose/spend/shop/api/shop.json",
+   "https://www.jrhokkaido.co.jp/airport/index.html"
+  ]
+ },
+ {
+  "id": "cts_ramen_dojo",
+  "category": "food",
+  "day": [
+   1
+  ],
+  "ko": "홋카이도 라멘도장(대표: 에비소바 이치겐)",
+  "ja": "北海道ラーメン道場 / えびそば一幻",
+  "addr": "新千歳空港 国内線ターミナルビル3F",
+  "lat": 42.787969,
+  "lng": 141.680236,
+  "gmaps_name": "Hokkaido Ramen Dojo / Ichigen Ebisoba New Chitose Airport",
+  "rating_google": 3.9,
+  "hours": "이치겐 9:00~21:00(LO 20:30). 가게마다 다름",
+  "closed": "없음",
+  "price": "이치겐 そのままえびしお·あじわいえびみそ 각 ¥990(₩8,400)",
+  "tip": "10곳 넘게 모여 있음(大心, 白樺山荘, 梅光軒, けやき, 飛燕 등). 줄 짧은 집을 고르기.",
+  "from_hotel": "공항(1일차 점심)",
+  "sources": [
+   "https://www.hokkaido-airports.com/ja/new-chitose/spend/shop/146/"
+  ]
+ },
+ {
+  "id": "cts_matsuo",
+  "category": "food",
+  "day": [
+   1
+  ],
+  "ko": "마쓰오 징기스칸 신치토세공항점",
+  "ja": "松尾ジンギスカン 新千歳空港店",
+  "addr": "新千歳空港 国内線ターミナルビル3F",
+  "lat": 42.787969,
+  "lng": 141.680236,
+  "gmaps_name": null,
+  "rating_google": null,
+  "hours": "10:00~21:00(LO 20:30)",
+  "closed": "없음",
+  "price": "특상 램 세트 ¥2,900(₩24,600), 램 세트 ¥2,600(₩22,000), 밥 리필 가능",
+  "tip": "68석이라 엄마와 앉아서 먹기 편함. 냄새가 옷에 배니 겉옷은 비닐에.",
+  "from_hotel": "공항",
+  "sources": [
+   "https://www.hokkaido-airports.com/ja/new-chitose/spend/shop/120/"
+  ]
+ },
+ {
+  "id": "cts_garaku",
+  "category": "food",
+  "day": [
+   1
+  ],
+  "ko": "수프카레 가라쿠 신치토세공항점",
+  "ja": "スープカレーGARAKU 新千歳空港店",
+  "addr": "新千歳空港 国内線ターミナルビル3F",
+  "lat": 42.78807,
+  "lng": 141.681415,
+  "gmaps_name": "Soup Curry Garaku",
+  "rating_google": 3.8,
+  "hours": "9:00~21:00(LO 20:30)",
+  "closed": "없음",
+  "price": "치킨레그와 야채 ¥1,950(₩16,500), 아부리 가쿠니 ¥2,250, 야채 15종 ¥1,880",
+  "tip": "1일차 밤에 수프카레를 먹을 거면 점심은 다른 메뉴로.",
+  "from_hotel": "공항",
+  "sources": [
+   "https://www.hokkaido-airports.com/ja/new-chitose/spend/shop/312/"
+  ]
+ },
+ {
+  "id": "cts_kantaro",
+  "category": "food",
+  "day": [
+   1
+  ],
+  "ko": "하코다테 회전초밥 칸타로 신치토세공항점",
+  "ja": "函太郎 新千歳空港店",
+  "addr": "新千歳空港 国内線ターミナルビル3F",
+  "lat": 42.787343,
+  "lng": 141.680258,
+  "gmaps_name": "Hakodate Gourmet Conveyor Belt Sushi Kantaro New Chitose Airport Branch",
+  "rating_google": 3.9,
+  "hours": "11:00~20:30(LO 20:00)",
+  "closed": "없음",
+  "price": "이쿠라 군함 ¥616, 조개 3종 ¥946(₩8,000), 시메사바 ¥308",
+  "tip": "점심 피크에는 줄이 생김. 앉아서 먹는 스시는 北国の寿司 花ぶさ(특상 9점 ¥3,680) 대안.",
+  "from_hotel": "공항",
+  "sources": [
+   "https://www.hokkaido-airports.com/ja/new-chitose/spend/shop/241/",
+   "https://www.hokkaido-airports.com/ja/new-chitose/spend/shop/113/"
+  ]
+ },
+ {
+  "id": "cts_royce",
+  "category": "shop",
+  "day": [
+   4
+  ],
+  "ko": "로이즈 신치토세공항점(국내선 2층 기념품 거리)",
+  "ja": "ロイズ 新千歳空港店",
+  "addr": "新千歳空港 国内線ターミナルビル2F",
+  "lat": 42.787179,
+  "lng": 141.680453,
+  "gmaps_name": "Royce' in New Chitose Airport",
+  "rating_google": null,
+  "hours": "8:00~19:30 (키타카로·르타오·키노토야 8:00~20:00)",
+  "closed": "없음",
+  "price": "나마초콜릿·포테이토칩 초콜릿 등(가격 확인 못 함)",
+  "tip": "4일차 09:30~10:00 쇼핑 후 국제선으로 10~15분 걷기. 시로이코이비토는 2층 종합 기념품점이나 국제선 면세점에서(정확한 매장은 확인 못 함).",
+  "from_hotel": "공항",
+  "sources": [
+   "https://www.hokkaido-airports.com/ja/new-chitose/spend/shop/69/"
+  ]
+ },
+ {
+  "id": "hotel",
+  "category": "stay",
+  "day": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "ko": "삿포로 그랜드 호텔(숙소)",
+  "ja": "札幌グランドホテル",
+  "addr": "札幌市中央区北1条西4丁目",
+  "lat": 43.062687,
+  "lng": 141.350947,
+  "gmaps_name": "Sapporo Grand Hotel",
+  "rating_google": 4.2,
+  "hours": "체크인 15:00 / 체크아웃 11:00(플랜에 따라 다름). 조식 노던 테라스 6:30~10:00, 環樂 7:00~10:00 LO",
+  "closed": "24시간",
+  "price": "조식 뷔페 ¥4,000(₩33,900), 미자르 ¥3,200, 숙박세 1인 1박 ¥300~1,000",
+  "tip": "치카호 직결. 대욕장·스파·피트니스·코인세탁 없음. 체크인 전후 1층 클로크에 짐 보관. 공항버스는 서쪽 주차장 쪽.",
+  "from_hotel": "-",
+  "sources": [
+   "https://www.grand1934.com/faq/",
+   "https://www.grand1934.com/accommodation/breakfast/",
+   "https://www.city.sapporo.jp/citytax/shukuhakuzei/"
+  ]
+ },
+ {
+  "id": "clock",
+  "category": "see",
+  "day": [
+   1
+  ],
+  "ko": "삿포로시 시계탑",
+  "ja": "札幌市時計台",
+  "addr": "札幌市中央区北1条西2丁目",
+  "lat": 43.062577,
+  "lng": 141.353493,
+  "gmaps_name": "Sapporo Clock Tower",
+  "rating_google": 3.9,
+  "hours": "8:45~17:10(입장 17:00까지)",
+  "closed": "1/1~1/3",
+  "price": "어른 ¥350(₩3,000). TV타워 공통권 ¥1,300(₩11,000, ~2027-03-31)",
+  "tip": "정면 사진은 길 건너 맞은편 빌딩 '時計台撮影プラザ'·2층 테라스에서. 생각보다 작음.",
+  "from_hotel": "도보 약 3분(엄마 4분)",
+  "sources": [
+   "https://sapporoshi-tokeidai.jp/",
+   "https://www.tv-tower.co.jp/pricetime.html"
+  ]
+ },
+ {
+  "id": "kinotoya",
+  "category": "cafe",
+  "day": [
+   1
+  ],
+  "ko": "키노토야 오도리공원점·KINOTOYA cafe",
+  "ja": "きのとや 大通公園店・KINOTOYA cafe",
+  "addr": "札幌市中央区大通西3丁目7 北洋大通センター1F(大通BISSE)",
+  "lat": 43.061419,
+  "lng": 141.352291,
+  "gmaps_name": "Kinotoya cafe",
+  "rating_google": 4.2,
+  "hours": "10:00~20:00(서드파티 다수, 공식 확인 못 함), 모닝 10:00~11:30",
+  "closed": "없음(1/1 휴무라는 자료도 있음)",
+  "price": "오무파르페 ¥754(₩6,400), 파르페+커피 ¥1,200, 갓 구운 치즈타르트 ¥275, 우유 소프트 ¥550",
+  "tip": "치카호 13번 출구 직결이라 눈 안 맞고 감. 매장 안 좌석 약 61석.",
+  "from_hotel": "도보 약 3분(엄마 5분)",
+  "sources": [
+   "https://rurubu.jp/andmore/spot/80000013",
+   "https://m.blog.naver.com/PostView.naver?blogId=wjdgus610&logNo=224119207711",
+   "https://m.blog.naver.com/PostView.naver?blogId=kakaofficial&logNo=224080257816"
+  ]
+ },
+ {
+  "id": "odori_park",
+  "category": "see",
+  "day": [
+   1
+  ],
+  "ko": "오도리공원",
+  "ja": "大通公園",
+  "addr": "札幌市中央区大通西1~12丁目",
+  "lat": 43.060752,
+  "lng": 141.354431,
+  "gmaps_name": "Odori Park",
+  "rating_google": null,
+  "hours": "상시",
+  "closed": "없음",
+  "price": "무료",
+  "tip": "눈축제(2027-02-04~11)와 오도리 일루미네이션(~12/25)은 끝난 뒤. 3월에는 녹은 눈이 질척하니 짧게 걷기.",
+  "from_hotel": "도보 약 7분(엄마 9분)",
+  "sources": [
+   "https://www.hokkaido-np.co.jp/article/1336962/",
+   "https://www.visit-hokkaido.jp/event/detail/143"
+  ]
+ },
+ {
+  "id": "tvtower",
+  "category": "see",
+  "day": [
+   1
+  ],
+  "ko": "삿포로 TV타워 전망대",
+  "ja": "さっぽろテレビ塔",
+  "addr": "札幌市中央区大通西1丁目",
+  "lat": 43.061105,
+  "lng": 141.356425,
+  "gmaps_name": "Sapporo TV Tower",
+  "rating_google": 4.1,
+  "hours": "9:00~22:00(마지막 입장 21:50, 행사 때 변동)",
+  "closed": "없음(확인 못 함)",
+  "price": "어른 ¥1,200(₩10,200), 초중생 ¥600, 시계탑 공통권 ¥1,300",
+  "tip": "일몰 17:33에 맞춰 17:15~17:20 입장. 지하 오로라타운으로 연결.",
+  "from_hotel": "도보 약 8분(엄마 11분), 지하 이동 가능",
+  "sources": [
+   "https://www.tv-tower.co.jp/pricetime.html"
+  ]
+ },
+ {
+  "id": "akapla",
+  "category": "see",
+  "day": [
+   1,
+   2,
+   3
+  ],
+  "ko": "기타3조광장 아카프라(화이트 일루미네이션)",
+  "ja": "札幌市北3条広場(アカプラ)",
+  "addr": "札幌市中央区北2条西4丁目",
+  "lat": 43.064238,
+  "lng": 141.350382,
+  "gmaps_name": "Sapporo Kita 3-jo Plaza",
+  "rating_google": 4.2,
+  "hours": "일루미네이션 2026-11-20~2027-03-14, 점등 시간 확인 못 함(2025년 16:30~22:00)",
+  "closed": "-",
+  "price": "무료",
+  "tip": "호텔 바로 북쪽. 저녁 먹고 돌아오는 길에 보기. 삿포로역 남쪽 광장·미나미1조거리도 3/14까지.",
+  "from_hotel": "도보 약 3분(엄마 4분)",
+  "sources": [
+   "https://www.visit-hokkaido.jp/event/detail/143"
+  ]
+ },
+ {
+  "id": "suage4",
+  "category": "food",
+  "day": [
+   1
+  ],
+  "ko": "수프카레 스아게4(추천: 사용자 메모의 'SUAGE4')",
+  "ja": "Soup Curry Suage４",
+  "addr": "札幌市中央区北3条西3-1-1 大同生命ビルmiredo 2F",
+  "lat": 43.064699,
+  "lng": 141.35138,
+  "gmaps_name": "Soup Curry Suage4",
+  "rating_google": 4.2,
+  "hours": "매일 11:00~21:00(LO 20:30, 바쁘면 빨라짐)",
+  "closed": "없음(건물 휴무일에 따름)",
+  "price": "대표 카레 약 ¥1,500~2,000(₩12,700~₩17,000), 포장 용기 +¥140",
+  "tip": "예약 불가. 카드·PayPay·IC 가능. 도큐백화점 3분, 호텔 5분이라 1일차 저녁에 적합. 엄마는 매운맛 1~2단계로.",
+  "from_hotel": "도보 약 3분(엄마 5분)",
+  "sources": [
+   "https://suage.info/stores/suage4/",
+   "https://johnny88.jp/soupcurry-suage/"
+  ]
+ },
+ {
+  "id": "suage_plus",
+  "category": "food",
+  "day": [
+   1
+  ],
+  "ko": "수프카레 스아게 플러스(미나미4조)",
+  "ja": "Soup Curry Suage+（すあげプラス）",
+  "addr": "札幌市中央区南4条西5丁目 都志松ビル2F",
+  "lat": 43.055737,
+  "lng": 141.35127,
+  "gmaps_name": "Suage+ Soup Curry",
+  "rating_google": 4.3,
+  "hours": "평일 11:30~21:00(LO 20:00), 월·목 11:30~20:30(LO 19:30), 토일공휴일 11:00~21:00(LO 20:00)",
+  "closed": "없음",
+  "price": "대표 카레 약 ¥1,500~2,000, 에비 스프 +¥150",
+  "tip": "예약 불가, 카드 불가(현금·PayPay), 계단 2층, 줄이 밖까지. 화요일 1일차라면 19:30까지 도착.",
+  "from_hotel": "지하(치카호→폴타운) 이동 후 도보, 엄마 약 15분",
+  "sources": [
+   "https://suage.info/stores/suage-plus/"
+  ]
+ },
+ {
+  "id": "suage2",
+  "category": "food",
+  "day": [
+   1
+  ],
+  "ko": "수프카레 스아게2(백업)",
+  "ja": "Soup Curry Suage２",
+  "addr": "札幌市中央区南4条西5丁目8-8 アイビルⅡ 4F",
+  "lat": 43.055645,
+  "lng": 141.350853,
+  "gmaps_name": "Soup Curry Suage2",
+  "rating_google": null,
+  "hours": "월·화·수·금 17:00~21:00(LO 20:30), 토일 11:00~14:30·17:30~23:00",
+  "closed": "목요일",
+  "price": "Suage+와 비슷(확인 못 함)",
+  "tip": "Suage+ 줄이 길 때 바로 옆 건물. 카드 불가.",
+  "from_hotel": "엄마 약 15분",
+  "sources": [
+   "https://suage.info/stores/suage2/"
+  ]
+ },
+ {
+  "id": "garaku",
+  "category": "food",
+  "day": [
+   1
+  ],
+  "ko": "수프카레 가라쿠 본점(백업)",
+  "ja": "スープカレー GARAKU",
+  "addr": "札幌市中央区南3条東2丁目(Google 표기)",
+  "lat": 43.0584,
+  "lng": 141.3589,
+  "gmaps_name": "Soup Curry GARAKU Sapporo Main Restaurant",
+  "rating_google": 4.3,
+  "hours": "확인 못 함",
+  "closed": "확인 못 함",
+  "price": "약 ¥1,500~2,300(공항점 기준)",
+  "tip": "줄이 김. 엄마와 함께라면 Suage4가 더 편함.",
+  "from_hotel": "엄마 약 20분/택시",
+  "sources": [
+   "https://www.hokkaido-airports.com/ja/new-chitose/spend/shop/312/"
+  ]
+ },
+ {
+  "id": "tokyu",
+  "category": "shop",
+  "day": [
+   1
+  ],
+  "ko": "도큐백화점 삿포로점",
+  "ja": "さっぽろ東急百貨店",
+  "addr": "札幌市中央区北4条西2丁目",
+  "lat": 43.066264,
+  "lng": 141.352954,
+  "gmaps_name": "Tokyu Department Store Sapporo Store",
+  "rating_google": 3.9,
+  "hours": "10:00~20:00(10층 식당가 등 일부 제외)",
+  "closed": "1/1(서드파티)",
+  "price": "-",
+  "tip": "면세카운터 10층. 의류 1~4층, 유니클로·GU 7층. 20:00에 닫으니 저녁보다 먼저.",
+  "from_hotel": "도보 약 8분(엄마 10분)",
+  "sources": [
+   "https://www.tokyu-dept.co.jp/sapporo/",
+   "https://www.tokyu-dept.co.jp/sapporo/floor/index.html"
+  ]
+ },
+ {
+  "id": "biei_shirahige",
+  "category": "see",
+  "day": [
+   2
+  ],
+  "ko": "흰수염폭포",
+  "ja": "白ひげの滝",
+  "addr": "上川郡美瑛町白金",
+  "lat": 43.474559,
+  "lng": 142.639318,
+  "gmaps_name": "Shirahige Waterfall",
+  "rating_google": 4.4,
+  "hours": "상시(다리 위 관람)",
+  "closed": "없음",
+  "price": "무료",
+  "tip": "다리 위가 얼어 있음. 아이젠 필수. 주변에 타코야키·와규 노점.",
+  "from_hotel": "투어(삿포로에서 약 1시간 50분)",
+  "sources": [
+   "https://m.blog.naver.com/PostView.naver?blogId=hyegoomi&logNo=224265708879"
+  ]
+ },
+ {
+  "id": "biei_bluepond",
+  "category": "see",
+  "day": [
+   2
+  ],
+  "ko": "청의 호수(시로가네)",
+  "ja": "白金青い池",
+  "addr": "上川郡美瑛町白金",
+  "lat": 43.493474,
+  "lng": 142.614214,
+  "gmaps_name": "Shirogane Blue Pond (Aoiike)",
+  "rating_google": 4.3,
+  "hours": "겨울 라이트업 일몰~21:00(2025-26: 10/24~4/22, 3월 18:00 점등). 2026-27은 확인 못 함",
+  "closed": "악천후 때 라이트업 중지",
+  "price": "무료(일반차 주차 ¥1,000)",
+  "tip": "3월 낮에는 눈에 덮여 파란 물이 안 보임. 한국어 낮 투어는 대부분 제외.",
+  "from_hotel": "저녁 라이트업 투어(복귀 20:20~20:30)",
+  "sources": [
+   "https://www.biei-hokkaido.jp/ja/shirogane-blue-pond"
+  ]
+ },
+ {
+  "id": "biei_xmastree",
+  "category": "see",
+  "day": [
+   2
+  ],
+  "ko": "크리스마스트리 나무",
+  "ja": "クリスマスツリーの木",
+  "addr": "上川郡美瑛町美馬牛",
+  "lat": 43.554386,
+  "lng": 142.444217,
+  "gmaps_name": "Christmas tree",
+  "rating_google": 4.3,
+  "hours": "상시(농지 출입 금지)",
+  "closed": "-",
+  "price": "무료",
+  "tip": "대부분 투어가 30분 정차. 눈부시니 선글라스.",
+  "from_hotel": "투어",
+  "sources": [
+   "https://m.blog.naver.com/PostView.naver?blogId=yemongrass&logNo=224457640619"
+  ]
+ },
+ {
+  "id": "biei_takushinkan",
+  "category": "see",
+  "day": [
+   2
+  ],
+  "ko": "탁신관(마에다 신조 갤러리)·자작나무숲",
+  "ja": "拓真館",
+  "addr": "上川郡美瑛町字拓進",
+  "lat": 43.52988,
+  "lng": 142.489365,
+  "gmaps_name": "Takushinkan",
+  "rating_google": 4.3,
+  "hours": "겨울(11~3월) 10:00~16:00(서드파티)",
+  "closed": "4월 장기 휴관, 전시 교체 때 임시휴관(예: 2026-10-27~30)",
+  "price": "입장 무료",
+  "tip": "갤러리가 닫는 날에는 자작나무숲만 봄. 카페 SSAW는 예약 필수라는 후기.",
+  "from_hotel": "투어",
+  "sources": [
+   "https://rurubu.jp/andmore/spot/80001481",
+   "https://www.takushinkan.shop/"
+  ]
+ },
+ {
+  "id": "biei_shikisai",
+  "category": "see",
+  "day": [
+   2
+  ],
+  "ko": "시키사이노오카(겨울 스노랜드)",
+  "ja": "四季彩の丘",
+  "addr": "上川郡美瑛町新星",
+  "lat": 43.529173,
+  "lng": 142.465082,
+  "gmaps_name": "Panoramic Flower Gardens Shikisai-no-oka",
+  "rating_google": 4.2,
+  "hours": "2~4월 9:10~17:00(알파카 목장은 30분 일찍), 겨울 시즌 12월 초~3월 하순",
+  "closed": "12/31·1/1. 레스토랑 수요일 휴무(3/10 수)",
+  "price": "스노래프팅 ¥1,200(₩10,200), 썰매 ¥500, 스노모빌 숲 코스 1인 ¥15,000, 알파카 ¥500(현금만)",
+  "tip": "3/10은 레스토랑이 쉬므로 점심 장소로 쓰지 않기. 썰매는 엄마 허리·무릎을 생각해서 신중히.",
+  "from_hotel": "투어",
+  "sources": [
+   "https://www.shikisainooka.jp/winter/",
+   "https://www.shikisainooka.jp/about/guide/"
+  ]
+ },
+ {
+  "id": "biei_kenmary",
+  "category": "see",
+  "day": [
+   2
+  ],
+  "ko": "켄과메리 나무",
+  "ja": "ケンとメリーの木",
+  "addr": "上川郡美瑛町大久保協生",
+  "lat": 43.609183,
+  "lng": 142.464196,
+  "gmaps_name": "Tree of Ken and Mary",
+  "rating_google": null,
+  "hours": "상시",
+  "closed": "-",
+  "price": "무료",
+  "tip": "한국어 투어는 대부분 차창 관람.",
+  "from_hotel": "투어",
+  "sources": [
+   "https://m.blog.naver.com/PostView.naver?blogId=yemongrass&logNo=224457640619"
+  ]
+ },
+ {
+  "id": "junpei",
+  "category": "food",
+  "day": [
+   2
+  ],
+  "ko": "준페이(에비동)",
+  "ja": "洋食とCafe じゅんぺい",
+  "addr": "上川郡美瑛町本町4丁目4-10",
+  "lat": 43.58925,
+  "lng": 142.468077,
+  "gmaps_name": "Cafe Junpei",
+  "rating_google": 4.3,
+  "hours": "11:00~15:00(점심만)",
+  "closed": "월요일(3/10 수요일 영업)",
+  "price": "에비동 ¥1,800(₩15,300), 생맥주 ¥600. 투어사 도시락(새우 3마리) ¥1,728",
+  "tip": "개인 예약 불가, 피크에 1시간 넘게 대기. 매장 식사가 포함된 투어(인디고트래블·홋카이도랩)를 고르기. 카드 불가라는 정보가 있음(확인 못 함).",
+  "from_hotel": "투어",
+  "sources": [
+   "https://hamoni.jp/en/area/hokkaido/kamikawa/biei-2/list/cafe",
+   "https://m.blog.naver.com/PostView.naver?blogId=hyegoomi&logNo=224265708879",
+   "https://m.blog.naver.com/PostView.naver?blogId=yemongrass&logNo=224457640619"
+  ]
+ },
+ {
+  "id": "shiki_hanamaru",
+  "category": "food",
+  "day": [
+   2
+  ],
+  "ko": "시키하나마루 시계탑점(사용자 메모의 '하나마루 도케이다이점')",
+  "ja": "町のすし家 四季花まる 時計台店",
+  "addr": "札幌市中央区北1条西2丁目1 札幌時計台ビル1F",
+  "lat": 43.063023,
+  "lng": 141.353439,
+  "gmaps_name": "Shikihanamaru Tokeidai",
+  "rating_google": 4.1,
+  "hours": "일~목·공휴일 11:00~22:00(LO 21:30), 금·토·공휴일 전날 ~23:00(LO 22:30), 평일 런치 11:00~15:00",
+  "closed": "정기휴무 없음, 매달 화·수 임시휴무 공지(2027년 3월 확인 못 함)",
+  "price": "2점 ¥286~, 런치 세트 ¥1,600(₩13,600), 구운 대게 된장국 ¥1,100",
+  "tip": "회전초밥 아님(주문 즉시 제작). 전화 예약 011-231-0870(평일은 13:30 이후 시간대, 전월 1일부터). 발권기 한국어 지원, QR로 대기 확인. 이모모치 추천.",
+  "from_hotel": "도보 약 3분(엄마 4분)",
+  "sources": [
+   "https://www.sushi-hanamaru.com/store/details/s05.html",
+   "https://m.blog.naver.com/PostView.naver?blogId=lsypig88&logNo=224316268715"
+  ]
+ },
+ {
+  "id": "hanamaru_miredo",
+  "category": "food",
+  "day": [
+   2
+  ],
+  "ko": "회전초밥 네무로 하나마루 miredo점(백업)",
+  "ja": "回転寿司 根室花まる 大同生命札幌ビル miredo店",
+  "addr": "札幌市中央区北3条西3丁目1 大同生命札幌ビルB1F",
+  "lat": 43.064726,
+  "lng": 141.351701,
+  "gmaps_name": "Nemuro Hanamaru Daido Seimei Sapporo Building miredo",
+  "rating_google": 4.1,
+  "hours": "11:00~22:00(LO 21:45)",
+  "closed": "매달 임시휴무(2026년 10월 27 화·28 수)",
+  "price": "한 접시 ¥165~473(2026-10 후기)",
+  "tip": "예약 불가. 10:00부터 발권기, QR·LINE으로 호출.",
+  "from_hotel": "도보 약 4분(엄마 5분)",
+  "sources": [
+   "https://www.sushi-hanamaru.com/store/details/_miredo.html",
+   "https://m.blog.naver.com/PostView.naver?blogId=tokyomate&logNo=224435166737"
+  ]
+ },
+ {
+  "id": "donki",
+  "category": "shop",
+  "day": [
+   3
+  ],
+  "ko": "MEGA 돈키호테 삿포로 다누키코지 본점",
+  "ja": "MEGAドン・キホーテ 札幌狸小路本店",
+  "addr": "札幌市中央区南3条西4丁目12-1",
+  "lat": 43.05696,
+  "lng": 141.352564,
+  "gmaps_name": "MEGA Don Quijote Sapporo Tanukikoji Honten",
+  "rating_google": 3.8,
+  "hours": "24시간",
+  "closed": "없음",
+  "price": "면세: 같은 매장 하루 세금 제외 ¥5,000 이상, 2026-11-01부터 세금 포함 결제 후 출국 때 환급",
+  "tip": "2일차가 아니라 3일차 스스키노 저녁 뒤로. 영수증·여권을 잘 챙기고, 공항에서 수하물 위탁 전에 면세 키오스크. 층 구성·면세카운터 위치는 확인 못 함.",
+  "from_hotel": "지하(치카호→폴타운) 이용 시 엄마 약 14분, 택시 짧은 거리",
+  "sources": [
+   "https://livejapan.com/ja/in-japan/spot-lj0063717",
+   "https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00028.html"
+  ]
+ },
+ {
+  "id": "jozankei_gensen_park",
+  "category": "onsen",
+  "day": [
+   3
+  ],
+  "ko": "조잔케이 정산원천공원(무료 족욕)",
+  "ja": "定山源泉公園",
+  "addr": "札幌市南区定山渓温泉東3丁目",
+  "lat": 42.964978,
+  "lng": 141.163133,
+  "gmaps_name": "Jozankei Gensen Park",
+  "rating_google": 4.1,
+  "hours": "7:00~21:00",
+  "closed": "없음",
+  "price": "무료(수건 지참)",
+  "tip": "온천달걀 만드는 곳, 갓파 타일 지도. 근처 '足のふれあい太郎の湯'(7:00~20:00)에 수건 자판기 ¥300.",
+  "from_hotel": "갓파라이너 약 1시간",
+  "sources": [
+   "https://www.sapporo.travel/find/nature-and-parks/jozangensen-park/"
+  ]
+ },
+ {
+  "id": "jozankei_futami_ashiyu",
+  "category": "onsen",
+  "day": [
+   3
+  ],
+  "ko": "후타미 족욕(반실내)",
+  "ja": "四季のせせらぎ 二見の足湯",
+  "addr": "札幌市南区定山渓温泉西4丁目",
+  "lat": 42.964927,
+  "lng": 141.159935,
+  "gmaps_name": "Futami Foot Bath",
+  "rating_google": 4.5,
+  "hours": "확인 못 함",
+  "closed": "확인 못 함",
+  "price": "무료",
+  "tip": "눈·비 와도 이용할 수 있고 휠체어 가능. 엄마 쉬는 곳으로 좋음. 후타미 현수교 산책로는 겨울에 미끄러움.",
+  "from_hotel": "갓파라이너 약 1시간",
+  "sources": [
+   "https://www.sapporo.travel/find/nature-and-parks/jozangensen-park/"
+  ]
+ },
+ {
+  "id": "jozankei_kappa_tegyu",
+  "category": "onsen",
+  "day": [
+   3
+  ],
+  "ko": "갓파 가족 소원 손온천",
+  "ja": "かっぱ家族の願かけ手湯",
+  "addr": "札幌市南区定山渓温泉東3丁目(国道230号沿い)",
+  "lat": 42.965248,
+  "lng": 141.165233,
+  "gmaps_name": "かっぱ家族の願かけ手湯",
+  "rating_google": null,
+  "hours": "상시(확인 못 함)",
+  "closed": "확인 못 함",
+  "price": "무료",
+  "tip": "갓파 동상에 물을 끼얹고 소원을 비는 곳.",
+  "from_hotel": "갓파라이너 약 1시간",
+  "sources": [
+   "https://www.sapporo.travel/?p=12584"
+  ]
+ },
+ {
+  "id": "jozankei_millione",
+  "category": "onsen",
+  "day": [
+   3
+  ],
+  "ko": "만세이카쿠 호텔 밀리오네(당일입욕)",
+  "ja": "定山渓万世閣ホテルミリオーネ",
+  "addr": "札幌市南区定山渓温泉東3丁目",
+  "lat": 42.964368,
+  "lng": 141.163925,
+  "gmaps_name": "Jozankei Manseikaku Hotel Milione",
+  "rating_google": 3.9,
+  "hours": "당일입욕 12:00~20:00(접수 마감 18:00)",
+  "closed": "확인 못 함",
+  "price": "어른 ¥1,500(₩12,700), 수건 세트 ¥300. 갓파라이너 온천패스(왕복+1일권+입욕) ¥3,500(₩29,700)",
+  "tip": "3층 '美泉' 약 450㎡, 실내탕 4개+노천탕+사우나 2종, 스킨케어 비치. 문신 불가. 평일은 한산(2026-10 후기).",
+  "from_hotel": "갓파라이너 약 1시간",
+  "sources": [
+   "https://m.blog.naver.com/PostView.naver?blogId=didgowl123&logNo=224431214675"
+  ]
+ },
+ {
+  "id": "kappa_liner_stop",
+  "category": "help",
+  "day": [
+   3
+  ],
+  "ko": "조테쓰 갓파라이너 승차장(삿포로역앞 27번, 호쿠렌빌딩 앞)",
+  "ja": "じょうてつバス 札幌駅前27番のりば",
+  "addr": "札幌市中央区北4条西1丁目付近(ホクレンビル前)",
+  "lat": 43.066778,
+  "lng": 141.354333,
+  "gmaps_name": "블로그 좌표(43°04'00.4\"N 141°21'15.6\"E)",
+  "rating_google": null,
+  "hours": "삿포로발 9:10~16:00, 조잔케이발 8:45~17:06(2026-10 후기)",
+  "closed": "-",
+  "price": "온천패스 ¥3,500(예약은 한 달 전~전날 17:00)",
+  "tip": "26번과 헷갈리기 쉬움. 처음이면 15분 일찍. 오도리 서1초메(TV타워 옆)에서도 탈 수 있음.",
+  "from_hotel": "도보 약 8분(엄마 11분)",
+  "sources": [
+   "https://m.blog.naver.com/PostView.naver?blogId=didgowl123&logNo=224431214675",
+   "https://jotetsu.quicktrip.jp/"
+  ]
+ },
+ {
+  "id": "otaru_canal",
+  "category": "see",
+  "day": [
+   3
+  ],
+  "ko": "오타루 운하(아사쿠사바시)",
+  "ja": "小樽運河 浅草橋",
+  "addr": "小樽市港町5",
+  "lat": 43.197846,
+  "lng": 141.003275,
+  "gmaps_name": "Asakusa bridge",
+  "rating_google": 4.5,
+  "hours": "상시",
+  "closed": "-",
+  "price": "무료",
+  "tip": "유키아카리노미치는 2월이라 끝난 뒤. 비탈길·얼음길이 많아 아이젠 필수.",
+  "from_hotel": "JR 약 35~45분(운임 확인 못 함) 또는 투어",
+  "sources": [
+   "https://www.waug.com/ko/activities/161160"
+  ]
+ },
+ {
+  "id": "otaru_orgel",
+  "category": "shop",
+  "day": [
+   3
+  ],
+  "ko": "오타루 오르골당 본관",
+  "ja": "小樽オルゴール堂 本館",
+  "addr": "小樽市住吉町4-1",
+  "lat": 43.190529,
+  "lng": 141.007973,
+  "gmaps_name": "Otaru Music Box Museum",
+  "rating_google": null,
+  "hours": "9:00~18:00(2·3층 17:45)",
+  "closed": "없음",
+  "price": "입장 무료(공식 요금 표기 없음)",
+  "tip": "앞에 증기시계. 사카이마치 거리 남쪽 끝.",
+  "from_hotel": "오타루",
+  "sources": [
+   "https://www.otaru-orgel.co.jp/shop"
+  ]
+ },
+ {
+  "id": "otaru_letao",
+  "category": "cafe",
+  "day": [
+   3
+  ],
+  "ko": "르타오 본점",
+  "ja": "小樽洋菓子舗ルタオ 本店",
+  "addr": "小樽市堺町(번지 확인 못 함)",
+  "lat": 43.191311,
+  "lng": 141.007433,
+  "gmaps_name": "LeTAO Main Store",
+  "rating_google": 4.3,
+  "hours": "판매·2층 카페 9:00~18:00(카페 LO 17:30, 서드파티)",
+  "closed": "연중무휴",
+  "price": "더블프로마주(가격 확인 못 함)",
+  "tip": "카페는 1인 1주문. 오르골당 바로 앞.",
+  "from_hotel": "오타루",
+  "sources": [
+   "https://icotto.jp/restaurants/948"
+  ]
+ },
+ {
+  "id": "otaru_kitakaro",
+  "category": "cafe",
+  "day": [
+   3
+  ],
+  "ko": "키타카로 오타루 본관",
+  "ja": "北菓楼 小樽本館",
+  "addr": "小樽市堺町(번지 확인 못 함)",
+  "lat": 43.191783,
+  "lng": 141.007293,
+  "gmaps_name": "Kitakaro Otaru Main Shop",
+  "rating_google": 4.3,
+  "hours": "9:00~18:00(겨울, 서드파티)",
+  "closed": "확인 못 함",
+  "price": "확인 못 함",
+  "tip": "같은 상품을 공항 국내선 2층에서도 살 수 있음(8:00~20:00).",
+  "from_hotel": "오타루",
+  "sources": [
+   "https://www.mapple.net/region/a0102010400_g02000000/spot/",
+   "https://www.hokkaido-airports.com/ja/new-chitose/spend/shop/71/"
+  ]
+ },
+ {
+  "id": "otaru_sakaimachi",
+  "category": "see",
+  "day": [
+   3
+  ],
+  "ko": "사카이마치 거리",
+  "ja": "堺町通り商店街",
+  "addr": "小樽市堺町",
+  "lat": 43.191523,
+  "lng": 141.006825,
+  "gmaps_name": "Sakaimachi Street",
+  "rating_google": null,
+  "hours": "가게 대부분 9:00~18:00",
+  "closed": "-",
+  "price": "-",
+  "tip": "17:30부터 가게들이 닫기 시작함.",
+  "from_hotel": "오타루",
+  "sources": [
+   "https://www.waug.com/ko/activities/161160"
+  ]
+ },
+ {
+  "id": "susukino_nikka",
+  "category": "see",
+  "day": [
+   3
+  ],
+  "ko": "스스키노 교차로 니카 간판",
+  "ja": "すすきの交差点 ニッカウヰスキー看板",
+  "addr": "札幌市中央区南4条西3丁目",
+  "lat": 43.055457,
+  "lng": 141.35359,
+  "gmaps_name": "Nikka Whisky Sign",
+  "rating_google": 4.5,
+  "hours": "상시(조명은 밤)",
+  "closed": "-",
+  "price": "무료",
+  "tip": "호객꾼은 무시하기(호객 금지구역 조례). 지하 폴타운으로 오가기.",
+  "from_hotel": "지하 이용, 엄마 약 18분 / 지하철 남북선 2정거장",
+  "sources": [
+   "https://www.city.sapporo.jp/shimin/chiiki-bohan/kyakuhikikouitouboushijourei/kyakuhikiboushijourei.html"
+  ]
+ },
+ {
+  "id": "daruma",
+  "category": "food",
+  "day": [
+   3
+  ],
+  "ko": "징기스칸 다루마 본점",
+  "ja": "成吉思汗だるま 本店",
+  "addr": "札幌市中央区南5条西4丁目 1F",
+  "lat": 43.053836,
+  "lng": 141.352462,
+  "gmaps_name": "Jingisukan Daruma Main Shop",
+  "rating_google": null,
+  "hours": "17:00~05:00(LO 04:30, 2026 블로그)",
+  "closed": "12/31~1/2(서드파티)",
+  "price": "징기스칸 ¥1,280(2024 자료, 현재 확인 못 함)",
+  "tip": "예약 불가, 카운터 약 10~14석, 현금만(서드파티). 2026-03 후기 기준 16:30 도착→18:00 착석. 엄마와 함께라면 5.5점·6.4점 대기를 먼저 확인.",
+  "from_hotel": "엄마 약 20분 / 택시",
+  "sources": [
+   "https://m.blog.naver.com/PostView.naver?blogId=seizethed-ay&logNo=224446055874",
+   "https://www.arukikata.co.jp/webmagazine/259520/"
+  ]
+ },
+ {
+  "id": "ramen_yokocho",
+  "category": "food",
+  "day": [
+   3
+  ],
+  "ko": "원조 삿포로 라멘요코초",
+  "ja": "元祖さっぽろラーメン横丁",
+  "addr": "札幌市中央区南5条西3丁目 N・グランデビル1F",
+  "lat": 43.054793,
+  "lng": 141.354291,
+  "gmaps_name": "Ganso Ramen Yokocho Sapporo",
+  "rating_google": 4.1,
+  "hours": "가게마다 다름",
+  "closed": "가게마다 다름",
+  "price": "한 그릇 약 ¥1,000~(확인 못 함)",
+  "tip": "관광지형이라 평이 갈림. 1일차 공항 라멘도장에서 먹었다면 생략해도 됨.",
+  "from_hotel": "엄마 약 21분",
+  "sources": [
+   "https://www.visit-hokkaido.jp/spot/detail_11224.html"
+  ]
+ },
+ {
+  "id": "kani_honke",
+  "category": "food",
+  "day": [
+   3
+  ],
+  "ko": "삿포로 카니혼케 역앞 본점(게 요리)",
+  "ja": "札幌かに本家 駅前本店",
+  "addr": "札幌市中央区北3条西2丁目(Google 위치)",
+  "lat": 43.065629,
+  "lng": 141.352665,
+  "gmaps_name": "Kani Honke Sapporo Station Main Branch",
+  "rating_google": 4.1,
+  "hours": "11:30~22:00(LO 21:30)",
+  "closed": "확인 못 함",
+  "price": "확인 못 함",
+  "tip": "스스키노점은 공식 매장 목록에 없음. 예약 전화 011-222-0018.",
+  "from_hotel": "도보 약 6분(엄마 9분)",
+  "sources": [
+   "https://www.kani-honke.co.jp/location.html"
+  ]
+ },
+ {
+  "id": "honoka",
+  "category": "onsen",
+  "day": [
+   1,
+   2,
+   3
+  ],
+  "ko": "여성 전용 고미치노유 호노카",
+  "ja": "女性専用 こみちの湯 ほのか",
+  "addr": "札幌市中央区南3条西2丁目15-5 狸小路2丁目",
+  "lat": 43.057484,
+  "lng": 141.355128,
+  "gmaps_name": "Komichinoyu Honoka",
+  "rating_google": 3.8,
+  "hours": "24시간(서드파티)",
+  "closed": "연중무휴(서드파티)",
+  "price": "¥1,350~(₩11,400~, 니프티 온천)",
+  "tip": "여성 전용, 암반욕. 엄마 휴식용.",
+  "from_hotel": "엄마 약 17분 / 택시",
+  "sources": [
+   "https://www.asoview.com/note/509/",
+   "https://onsen.nifty.com/ft-joshikai/hokkaido/st-odori/"
+  ]
+ },
+ {
+  "id": "yukakyo",
+  "category": "onsen",
+  "day": [
+   3
+  ],
+  "ko": "스스키노 천연온천 유카쿄",
+  "ja": "すすきの天然温泉 湯香郷",
+  "addr": "札幌市中央区南7条西3丁目 ジャスマックプラザ",
+  "lat": 43.051835,
+  "lng": 141.355479,
+  "gmaps_name": "Susukino Tennen Onsen Toukakyou",
+  "rating_google": 4.1,
+  "hours": "10:00~24:00(최종 접수 23:00, 11:00 개장이라는 자료도 있음)",
+  "closed": "확인 못 함",
+  "price": "어른 ¥2,750(₩23,300)",
+  "tip": "천연온천, 노송나무 노천탕. 문신 규정은 확인 못 함. 011-513-8107.",
+  "from_hotel": "택시 권장(엄마 도보 약 29분)",
+  "sources": [
+   "https://onsen.nifty.com/niseko-onsen/onsen000043/",
+   "https://news.allabout.co.jp/articles/o/130644/"
+  ]
+ },
+ {
+  "id": "momiriko",
+  "category": "onsen",
+  "day": [
+   1,
+   2,
+   3
+  ],
+  "ko": "마사지 모미리코",
+  "ja": "リラクゼーションサロン もみりこ",
+  "addr": "札幌市中央区南3条西4丁目21-10 キラク堂ビル6F",
+  "lat": 43.056964,
+  "lng": 141.351558,
+  "gmaps_name": "Momileeco Massage",
+  "rating_google": 4.4,
+  "hours": "평일 11:00~23:00 / 주말 10:00~21:00",
+  "closed": "확인 못 함",
+  "price": "전신 60분 ¥5,670(₩48,100), 풋케어 60분 ¥6,300(₩53,400, 족욕 포함)",
+  "tip": "돈키호테에서 1분, 카드 가능, 개인룸(2026-08 내돈내산). 3일차 돈키호테 쇼핑 전에 예약 추천.",
+  "from_hotel": "엄마 약 13분",
+  "sources": [
+   "https://m.blog.naver.com/PostView.naver?blogId=diadesn&logNo=224374557440"
+  ]
+ },
+ {
+  "id": "riraku",
+  "category": "onsen",
+  "day": [
+   1,
+   2,
+   4
+  ],
+  "ko": "리라쿠루 삿포로역 북쪽 출구점",
+  "ja": "りらくる 札幌駅北口店",
+  "addr": "札幌市北区北7条西4丁目",
+  "lat": 43.069235,
+  "lng": 141.349581,
+  "gmaps_name": "Riracle Sapporoeki Kitaguchi-ten",
+  "rating_google": 4.5,
+  "hours": "확인 못 함",
+  "closed": "확인 못 함",
+  "price": "확인 못 함",
+  "tip": "2025-11 만족 후기. 2일차 투어 집합장소(북쪽 출구)와 가까움.",
+  "from_hotel": "엄마 약 15분",
+  "sources": [
+   "https://m.blog.naver.com/PostView.naver?blogId=alex0104&logNo=224071602743"
+  ]
+ },
+ {
+  "id": "consulate_kr",
+  "category": "help",
+  "day": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "ko": "주삿포로 대한민국 총영사관",
+  "ja": "在札幌大韓民国総領事館",
+  "addr": "〒060-0002 札幌市中央区北2条西12丁目1-4",
+  "lat": 43.062386,
+  "lng": 141.338262,
+  "gmaps_name": "CONSULATE GENERAL OF KOREA (REPUBLIC) IN SAPPORO, JAPAN",
+  "rating_google": null,
+  "hours": "근무시간 확인 못 함",
+  "closed": "토·일·공휴일(추정, 확인 못 함)",
+  "price": "-",
+  "tip": "대표 011-218-0288, FAX 011-218-8158. 근무시간 외에는 외교부 영사콜센터 +82-2-3210-0404(24시간).",
+  "from_hotel": "약 1km, 택시 권장",
+  "sources": [
+   "https://www.city.sapporo.jp/kokusai/consulate/consulate1.html"
+  ]
+ },
+ {
+  "id": "hosp_city",
+  "category": "help",
+  "day": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "ko": "시립삿포로병원(구명구급센터)",
+  "ja": "市立札幌病院",
+  "addr": "〒060-8604 札幌市中央区北11条西13丁目1-1",
+  "lat": 43.071104,
+  "lng": 141.334364,
+  "gmaps_name": "Sapporo City General Hospital",
+  "rating_google": null,
+  "hours": "외래는 평일 중심, 소개·예약제. 구급은 24시간(구명구급센터)",
+  "closed": "외래 토일공휴일",
+  "price": "해외여행자보험 서류를 챙길 것",
+  "tip": "011-726-2211. 먼저 #7119(011-272-7119, 간호사 24시간)나 119. 외국어 지원 수준은 확인 못 함.",
+  "from_hotel": "택시 약 10분",
+  "sources": [
+   "https://www.city.sapporo.jp/hospital/clinic/department/center/qq/qq_introduction.html"
+  ]
+ },
+ {
+  "id": "hosp_tokushukai",
+  "category": "help",
+  "day": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "ko": "삿포로히가시 도쿠슈카이병원(국제의료지원실)",
+  "ja": "札幌東徳洲会病院",
+  "addr": "〒065-0033 札幌市東区北33条東14丁目3-1",
+  "lat": 43.10347,
+  "lng": 141.365836,
+  "gmaps_name": "Sapporo Higashi Tokushukai Hospital",
+  "rating_google": null,
+  "hours": "확인 못 함",
+  "closed": "확인 못 함",
+  "price": "-",
+  "tip": "2013년부터 한국어 포함 10개 언어 통역 체계(2017년 자료, 현재는 확인 못 함). 전화 011-722-1110(사이트마다 달라 확인 필요).",
+  "from_hotel": "택시 약 15~20분",
+  "sources": [
+   "https://www.gov-online.go.jp/eng/publicity/book/hlj/html/201708/201708_07_jp.html"
+  ]
+ },
+ {
+  "id": "sapporo_stn",
+  "category": "help",
+  "day": [
+   1,
+   2,
+   4
+  ],
+  "ko": "JR 삿포로역(북쪽 출구 광장=비에이 투어 집합)",
+  "ja": "札幌駅",
+  "addr": "札幌市北区北6条西4丁目",
+  "lat": 43.068661,
+  "lng": 141.350755,
+  "gmaps_name": "Sapporo Station",
+  "rating_google": null,
+  "hours": "-",
+  "closed": "-",
+  "price": "공항 ¥1,230",
+  "tip": "호텔에서 치카호로 연결. 북쪽 광장 공중화장실 앞에서 투어 집합.",
+  "from_hotel": "지하 도보 약 9분(엄마 12분)",
+  "sources": [
+   "https://m.blog.naver.com/PostView.naver?blogId=hyegoomi&logNo=224265708879"
+  ]
+ }
+]

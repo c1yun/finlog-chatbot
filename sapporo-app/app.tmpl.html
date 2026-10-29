@@ -1,0 +1,508 @@
+<title>2027삿포로여행</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Gowun+Batang:wght@400;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Gowun+Batang:wght@400;700&display=swap"></noscript>
+<style>
+/* Layout: phone-first app for a snowy Sapporo trip. Sticky day bar on top, fixed five-tab bar at the bottom, one column of large-type cards. */
+:root {
+  --bg: #F2F5F8;        /* packed-snow grey */
+  --card: #FFFFFF;
+  --fg: #16202B;
+  --muted: #5B6877;
+  --rule: #DCE3EA;
+  --accent: #1F4E79;    /* Hokkaido winter-sky navy: navigation, links */
+  --accent-soft: #E4EDF6;
+  --time: #B3262E;      /* Sapporo red star: times and today badge (6.8:1 on white) */
+  --on-accent: #FFFFFF; /* text on accent-filled chips and buttons */
+  --warn-bg: #FFF4E0;
+  --warn-fg: #7A4B00;
+  --ok: #2E7D5B;
+  --font-body: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-display: "Gowun Batang", "Noto Serif KR", "Apple Myungjo", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0E141B; --card: #17202B; --fg: #EDF2F7; --muted: #A3B0BE; --rule: #2A3644;
+  --accent: #93BDEB; --accent-soft: #1D2E42; --time: #F0868B; --on-accent: #0E141B; --warn-bg: #3A2A12; --warn-fg: #F3D9A6; --ok: #7CC8A3; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0E141B; --card: #17202B; --fg: #EDF2F7; --muted: #A3B0BE; --rule: #2A3644;
+  --accent: #93BDEB; --accent-soft: #1D2E42; --time: #F0868B; --on-accent: #0E141B; --warn-bg: #3A2A12; --warn-fg: #F3D9A6; --ok: #7CC8A3; color-scheme: dark }
+
+html { height: 100%; }
+body { min-height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 18px/1.6 var(--font-body); -webkit-text-size-adjust: 100%; word-break: keep-all; overflow-wrap: anywhere; }
+.tel, .nowrap { white-space: nowrap; }
+.kv .v.num { white-space: normal; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--card); }
+* { box-sizing: border-box; }
+img { max-width: 100%; display: block; }
+a { color: var(--accent); }
+button { font: inherit; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+
+/* top bar */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--card); border-bottom: 1px solid var(--rule);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 10px 0; }
+.top-inner { max-width: 640px; margin: 0 auto; display: grid; gap: 8px; }
+.brand { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.brand h1 { font: 700 22px/1.2 var(--font-display); }
+.brand .sub { font-size: 14px; color: var(--muted); flex: 1 1 auto; }
+.daybar { display: flex; gap: 4px; overflow-x: auto; padding-top: 12px; padding-bottom: 10px; scrollbar-width: none; }
+.daybar::-webkit-scrollbar { display: none; }
+.daychip { flex: 1 1 0; min-width: 0; min-height: 56px; border: 1px solid var(--rule); border-radius: 12px; background: var(--bg); color: var(--fg);
+  display: grid; place-items: center; gap: 0; padding: 8px 2px 4px; cursor: pointer; position: relative; }
+.daychip .today { position: absolute; top: -11px; white-space: nowrap; left: 50%; transform: translateX(-50%); font-size: 13px; font-weight: 700; color: var(--on-accent); background: var(--time); border-radius: 999px; padding: 0 6px; line-height: 16px; }
+.daychip b { font-size: 17px; line-height: 1.1; }
+.daychip span { font-size: 15px; color: var(--muted); line-height: 1.2; }
+.daychip.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.daychip.on span { color: var(--on-accent); opacity: .85; }
+.seg { display: flex; gap: 6px; padding-bottom: 10px; }
+.seg button { flex: 1; min-height: 46px; border: 1px solid var(--rule); border-radius: 12px; background: var(--bg); color: var(--fg); font-weight: 700; font-size: 16px; cursor: pointer; }
+.seg button.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+/* content */
+.wrap { max-width: 640px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 14px calc(84px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 16px; }
+.wrap > * { min-width: 0; }
+.choice { display: grid; gap: 8px; }
+.choice-h { margin: 4px 0 -2px; font-size: 16px; font-weight: 700; color: var(--muted); }
+.choice button { min-height: 54px; border: 2px solid var(--rule); border-radius: 14px; background: var(--card); color: var(--fg); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2px 10px; padding: 8px 14px; cursor: pointer; text-align: left; }
+.choice button b { font-size: 18px; line-height: 1.25; }
+.choice button b::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; border: 2px solid currentColor; margin-right: 8px; vertical-align: 1px; }
+.choice button.on b::before { background: currentColor; }
+.choice button span { font-size: 15px; color: var(--muted); }
+.choice button.on { border-color: var(--accent); background: var(--accent); color: var(--on-accent); }
+.choice button.on span { color: var(--on-accent); opacity: .9; }
+.choice button:focus-visible { outline: 3px solid var(--time); outline-offset: 2px; }
+.dayhead { display: grid; gap: 6px; padding-block: 4px 2px; }
+.dayhead .date { font-size: 15px; color: var(--muted); font-weight: 500; }
+.dayhead h2 { font: 700 26px/1.3 var(--font-display); }
+.dayhead .summary { font-size: 17px; color: var(--muted); }
+.wx { display: inline-block; font-size: 15px; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 2px 10px; margin-left: 6px; vertical-align: middle; }
+.note { background: var(--warn-bg); color: var(--warn-fg); border-radius: 14px; padding: 12px 14px; font-size: 16px; line-height: 1.55; }
+.note b { font-size: 17px; }
+.note details summary { min-height: 44px; display: flex; align-items: center; gap: 6px; font-weight: 700; cursor: pointer; }
+.intro { margin: 0; font-size: 16px; color: var(--muted); }
+.sect-h { font: 700 20px/1.3 var(--font-display); padding-top: 6px; }
+.sect-h small { display: block; font: 400 14px/1.4 var(--font-body); color: var(--muted); }
+
+.stop { display: grid; grid-template-columns: 58px 1fr; gap: 10px; }
+.stop .t { font-weight: 700; font-size: 19px; color: var(--time); font-variant-numeric: tabular-nums; padding-top: 10px; line-height: 1.2; }
+.stop .t small { display: block; font-size: 15px; color: var(--fg); background: var(--accent-soft); border-radius: 999px; padding: 1px 8px; font-weight: 700; width: fit-content; margin-top: 4px; }
+.card { background: var(--card); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; min-width: 0; }
+.ph { position: relative; aspect-ratio: 16 / 10; max-width: 100%; background: var(--accent-soft); }
+.ph img { width: 100%; height: 100%; object-fit: cover; }
+.chips { position: absolute; left: 10px; bottom: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+.chips.flat { position: static; padding: 12px 14px 0; }
+.chips.flat .chip { background: var(--accent-soft); color: var(--fg); }
+.chip { font-size: 15px; font-weight: 700; background: rgba(255,255,255,.92); color: #17212C; border-radius: 999px; padding: 3px 9px; }
+.body { padding: 12px 14px 14px; display: grid; gap: 10px; }
+.body h3 { font-size: 21px; line-height: 1.3; }
+.vi { font-size: 16px; color: var(--fg); opacity: .85; line-height: 1.4; overflow-wrap: anywhere; word-break: normal; line-break: strict; }
+.kv .v.big { word-break: normal; line-break: strict; }
+.why { margin: 0; font-size: 17px; }
+.why b { color: var(--accent); }
+.meta { margin: 0; display: grid; grid-template-columns: 76px 1fr; gap: 6px 10px; font-size: 16px; }
+.meta dt { color: var(--muted); font-size: 15px; font-weight: 700; padding-top: 3px; }
+.meta dd { margin: 0; min-width: 0; line-height: 1.5; }
+.when { font-size: 16px; font-weight: 700; color: var(--time); }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn { min-height: 46px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--rule); background: var(--bg); color: var(--fg); font-weight: 700; font-size: 16px;
+  display: inline-flex; align-items: center; gap: 6px; text-decoration: none; cursor: pointer; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn.tel { font-variant-numeric: tabular-nums; }
+.btn:focus-visible, .tab:focus-visible, .daychip:focus-visible, .seg button:focus-visible { outline: 3px solid var(--time); outline-offset: 2px; }
+details.planb { background: var(--card); border: 1px solid var(--rule); border-radius: 14px; padding: 0 14px; }
+details.planb summary { cursor: pointer; font-weight: 700; font-size: 17px; padding: 12px 0; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+details.planb summary::after { content: "펼치기"; font-size: 15px; font-weight: 700; color: var(--accent); border: 1px solid var(--rule); border-radius: 999px; padding: 4px 12px; }
+.pb p { margin: 0 0 10px; }
+details.planb[open] summary::after { content: "접기"; }
+details.planb .pb { padding: 0 0 14px; font-size: 16px; }
+
+/* checklists */
+.check { background: var(--card); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
+.check label { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; padding: 12px 14px; border-bottom: 1px solid var(--rule); min-height: 54px; cursor: pointer; }
+.check label:last-child { border-bottom: 0; }
+.check input { width: 26px; height: 26px; margin: 2px 0 0; accent-color: var(--accent); }
+.check .n { font-size: 17px; font-weight: 500; }
+.check .s { font-size: 16px; color: var(--muted); line-height: 1.45; }
+.check label:has(+ details.more) { border-bottom: 0; padding-bottom: 2px; }
+.check details.more { padding: 0 14px 8px 56px; border-bottom: 1px solid var(--rule); }
+.check details.more:last-child { border-bottom: 0; }
+.check details.more summary { min-height: 44px; display: flex; align-items: center; font-size: 15px; font-weight: 700; color: var(--accent); cursor: pointer; }
+.check details.more p { margin: 0 0 6px; font-size: 16px; color: var(--muted); line-height: 1.5; }
+.check label.done .n { text-decoration: line-through; color: var(--muted); }
+.kv { background: var(--card); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
+.kv .row { display: grid; gap: 2px; padding: 12px 14px; border-bottom: 1px solid var(--rule); }
+.kv .row:last-child { border-bottom: 0; }
+.kv .k { font-size: 17px; font-weight: 700; }
+.kv .v { font-size: 16px; color: var(--muted); line-height: 1.5; }
+.kv .v.big { font-size: 19px; color: var(--fg); font-weight: 500; }
+.kv .row .actions { margin-top: 6px; }
+.routes { display: flex; flex-wrap: wrap; gap: 8px; }
+.routes .btn { flex: 1 1 140px; justify-content: center; text-align: center; line-height: 1.3; padding: 8px 12px; }
+.note a[download] { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
+.dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; vertical-align: 2px; }
+.when-line { color: var(--time); font-weight: 700; }
+.kv .v.num { color: var(--fg); font-size: 18px; font-variant-numeric: tabular-nums; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+td, th { padding: 8px 6px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+tr.total td { font-weight: 700; }
+.bn { display: block; font-size: 15px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+.credits { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.tiny { font-size: 13px; color: var(--muted); }
+.toast { white-space: nowrap; max-width: calc(100vw - 32px); display: flex; align-items: center; gap: 8px; position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 999px; font-size: 15px; z-index: 20; }
+
+/* bottom tabs */
+/* On hosts that pin their own badge to the bottom-right corner (netlify.app free tier), lift the tab bar above it instead of covering it. */
+body.badge-host .tabs { padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 64px); }
+body.badge-host .wrap { padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px)); }
+.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9; background: var(--card); border-top: 1px solid var(--rule);
+  padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.tabs-inner { max-width: 640px; margin: 0 auto; display: flex; }
+.tab { flex: 1; min-height: 60px; border: 0; background: none; color: var(--muted); display: grid; place-items: center; gap: 2px; padding: 6px 2px; cursor: pointer; font-weight: 500; font-size: 15px; }
+body.big .tab { font-size: 17px; }
+.tab svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.tab.on { color: var(--accent); font-weight: 700; background: var(--accent-soft); box-shadow: inset 0 3px 0 var(--accent); }
+@media (prefers-reduced-motion: no-preference) { .daychip, .tab, .seg button { transition: background .15s, color .15s; } }
+/* larger-type mode for mom: scales content, leaves the fixed bars alone */
+body.big .wrap, body.big .top-inner { zoom: 1.15; }
+.zoombtn { min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--rule); background: var(--bg); color: var(--fg); font-weight: 700; font-size: 15px; cursor: pointer; white-space: nowrap; }
+.zoombtn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+@media (max-width: 420px) { .stop { grid-template-columns: 1fr; gap: 4px; } .stop .t { padding-top: 0; display: flex; gap: 8px; align-items: baseline; } .stop .t small { display: inline-block; margin-top: 0; } }
+@media (max-width: 360px) { .meta { grid-template-columns: 1fr; gap: 2px; } .meta dt { padding-top: 8px; } }
+body.big .meta { grid-template-columns: 1fr; gap: 2px; } body.big .meta dt { padding-top: 8px; }
+.undo { min-height: 44px; background: none; border: 1px solid currentColor; color: inherit; border-radius: 999px; padding: 0 14px; font-weight: 700; cursor: pointer; }
+body.badge-host .toast { bottom: calc(144px + env(safe-area-inset-bottom, 0px)); }
+/* Opening cover: poster palette is fixed (a photo-backed page reads the same in both themes) */
+.cover { --c-ink: #13263A; --c-soft: #4A5D70; --c-red: #B3262E; --c-snow: #F4F8FC; --c-navy: #1F4E79;
+  position: fixed; inset: 0; z-index: 15; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end;
+  background: linear-gradient(180deg, #B9CDE0 0%, #DCE7F1 55%, var(--c-snow) 100%); color: var(--c-ink); }
+.cover[hidden], .cover [hidden] { display: none !important; }
+.cover-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+.cover.custom .cover-bg { filter: blur(22px) brightness(.85); transform: scale(1.15); }
+.cover-img { position: absolute; left: 0; top: calc(env(safe-area-inset-top, 0px) + 28px); width: 100%; height: calc(100% - 252px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); max-height: none; object-fit: contain; filter: drop-shadow(0 8px 24px rgba(0,0,0,.35)); }
+.cover-veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(244,248,252,0) 30%, rgba(244,248,252,.78) 58%, var(--c-snow) 84%); }
+.cover.custom .cover-veil { display: none; }
+.snow { position: absolute; inset: 0; pointer-events: none; opacity: .9;
+  background-image: radial-gradient(circle at 20% 30%, #fff 0 2px, transparent 3px), radial-gradient(circle at 70% 60%, #fff 0 1.5px, transparent 2.5px),
+    radial-gradient(circle at 40% 80%, rgba(255,255,255,.95) 0 3px, transparent 4px), radial-gradient(circle at 85% 15%, #fff 0 1.5px, transparent 2.5px);
+  background-size: 180px 180px, 120px 120px, 260px 260px, 90px 90px; animation: snowfall 22s linear infinite; }
+@keyframes snowfall { from { background-position: 0 0, 0 0, 0 0, 0 0; } to { background-position: 180px 540px, -120px 480px, 0 520px, 90px 450px; } }
+@media (prefers-reduced-motion: reduce) { .snow { animation: none; } }
+.cover-credit { position: absolute; z-index: 1; top: calc(env(safe-area-inset-top, 0px) + 4px); right: max(10px, env(safe-area-inset-right, 0px)); margin: 0; font-size: 12px; color: #fff; background: rgba(19,38,58,.6); border-radius: 999px; padding: 1px 8px; }
+.cover-body { position: relative; width: 100%; max-width: 560px; margin: 0 auto; text-align: center;
+  padding: 0 max(24px, env(safe-area-inset-right, 0px)) calc(18px + env(safe-area-inset-bottom, 0px)) max(24px, env(safe-area-inset-left, 0px)); }
+.cover.custom .cover-body { background: rgba(244,248,252,.94); border-radius: 22px 22px 0 0; padding-top: 16px; max-width: none; }
+.cover.custom .cover-txt { display: none; }
+.cover-mini { display: none; margin: 0; font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: .04em; color: var(--c-ink); }
+.cover.custom .cover-mini { display: block; }
+.cover.custom .cover-date { margin-top: 8px; }
+.cover-kicker { margin: 0 0 6px; font-size: 16px; letter-spacing: .28em; color: var(--c-soft); font-weight: 700; }
+.cover-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(46px, 14vw, 66px); line-height: 1.12; letter-spacing: .06em; color: var(--c-ink); }
+.cover-title em { font-style: normal; color: var(--c-navy); }
+.cover-sub { margin: 10px 0 0; font-family: var(--font-display); font-size: 19px; letter-spacing: .12em; color: var(--c-ink); }
+.cover-date { margin: 14px 0 16px; font-size: 17px; font-weight: 700; color: var(--c-ink); display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 10px; }
+.cover-dday { display: inline-block; background: var(--c-red); color: #fff; border-radius: 999px; padding: 2px 12px; font-size: 15px; white-space: nowrap; }
+.cover-go { width: 100%; min-height: 58px; border: 0; border-radius: 16px; background: var(--c-navy); color: #fff; font-size: 20px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 18px rgba(19,38,58,.22); }
+.cover-go:focus-visible, .cover-link:focus-visible { outline: 3px solid var(--c-red); outline-offset: 3px; }
+.cover-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 0 14px; margin-top: 6px; }
+.cover-link { min-height: 44px; padding: 0 6px; background: none; border: 0; color: var(--c-navy); font-size: 15px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+body.cover-on { overflow: hidden; }
+body.cover-on .toast { z-index: 30; bottom: auto; top: calc(env(safe-area-inset-top, 0px) + 44px); }
+</style>
+
+<header class="top"><div class="top-inner" id="top"></div></header>
+<main class="wrap" id="main"></main>
+<nav class="tabs" aria-label="메뉴"><div class="tabs-inner" id="tabs"></div></nav>
+<section class="cover" id="cover" aria-label="표지" hidden>
+  <img class="cover-bg" id="coverBg" alt="">
+  <img class="cover-img" id="coverImg" alt="표지 사진" hidden>
+  <div class="snow" aria-hidden="true"></div>
+  <div class="cover-veil"></div>
+  <p class="cover-credit" id="coverCredit"></p>
+  <div class="cover-body">
+    <div class="cover-txt">
+      <p class="cover-kicker">엄마와 둘이 떠나는</p>
+      <h1 class="cover-title">엄마의<br><em>겨울연가</em></h1>
+      <p class="cover-sub">삿포로 · 비에이 · 오타루</p>
+    </div>
+    <p class="cover-mini">엄마와 둘이 떠나는 삿포로 3박 4일</p>
+    <p class="cover-date"><span class="nowrap">2027. 3. 9 화 – 3. 12 금</span><span class="cover-dday" id="coverDday"></span></p>
+    <button class="cover-go" id="coverGo" type="button">여행 일정 보기</button>
+    <div class="cover-links"><button class="cover-link" id="coverPick" type="button">표지 사진 바꾸기</button><button class="cover-link" id="coverReset" type="button" hidden>원래 표지로</button></div>
+    <input type="file" id="coverFile" accept="image/*" hidden>
+  </div>
+</section>
+
+<script>
+const DATA = /*DATA*/{};
+const LISTS = /*LISTS*/{};
+const MANUAL = /*MANUAL*/{};
+const IMG = /*IMG*/{};
+const CREDITS = /*CREDITS*/{};
+const MAP = /*MAP*/{};
+
+const TABS = [
+  { id: 'schedule', label: '일정', icon: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>' },
+  { id: 'food', label: '먹기', icon: '<svg viewBox="0 0 24 24"><path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M8 7c0-2 2-2 2-4M13 7c0-2 2-2 2-4"/></svg>' },
+  { id: 'shop', label: '쇼핑', icon: '<svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>' },
+  { id: 'todo', label: '할 것', icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 6-4 0 2-6z"/></svg>' },
+  { id: 'lists', label: '준비·정보', icon: '<svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>' },
+];
+const SUB = { shopping: '살 것', packing: '준비물', map: '지도', info: '정보' };
+const CAT = MANUAL.cat || {};
+const DAY_KO = { TUE: '화', WED: '수', THU: '목', FRI: '금' };
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('sp:' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('sp:' + k, JSON.stringify(v)); } catch (e) {} },
+};
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const img = k => IMG[k] ? `<img src="${IMG[k]}" alt="" loading="lazy">` : '';
+const TRIP = ['TUE', 'WED', 'THU', 'FRI'];
+function mapQuery(s, day) {
+  const fix = (MANUAL.mapFix || {})[(day ? dayKey(day) : '') + ' ' + (s.time || '')] || {};
+  if (fix.nomap || s.nomap) return null;
+  let q = fix.map || s.map || '';
+  if (!q) {
+    let v = s.vi || '';
+    if (v.includes('→')) v = v.split('→').pop();
+    v = v.replace(/\(([^)]*)\)/g, (m, g) => /^\s*\d/.test(g) ? ' ' + g + ' ' : ' ');
+    v = v.replace(/[가-힣][^,·]*/g, ' ').replace(/\s*·\s*/g, ' ').replace(/\s+/g, ' ').trim();
+    q = v;
+  }
+  if (!q) return null;
+  const hasCity = /Sapporo|札幌|Otaru|小樽|Biei|美瑛|Furano|富良野|Chitose|千歳|Jozankei|定山渓|Hokkaido|北海道/i.test(q);
+  const city = (hasCity || /^-?\d+\.\d+,\s*-?\d+\.\d+$/.test(q)) ? '' : (fix.city || s.city || 'Sapporo');
+  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(city ? q + ' ' + city : q);
+}
+const mapUrl = (vi, title, city) => mapQuery({ vi: vi || title, city }, null);
+const telHref = p => 'tel:' + String(p).replace(/[^\d+#]/g, '').replace(/#/g, '%23');
+function toast(msg, undo) {
+  document.querySelectorAll('.toast').forEach(x => x.remove());
+  const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = msg;
+  if (undo) { const b = document.createElement('button'); b.type = 'button'; b.className = 'undo'; b.textContent = '되돌리기'; b.addEventListener('click', () => { undo(); t.remove(); }); t.appendChild(b); }
+  document.body.appendChild(t); setTimeout(() => t.remove(), undo ? 6000 : 1600);
+}
+function copyText(txt, el) {
+  const done = () => toast('복사했어요');
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done).catch(() => fallback());
+  else fallback();
+  function fallback() { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast('길게 눌러 복사하세요'); }
+}
+
+// all days: Thu + Tue from MANUAL, Fri–Mon parsed from the pamphlet
+const DAYS = [MANUAL.thu, ...DATA.days, MANUAL.tue].filter(Boolean);
+const dayKey = d => d.date.slice(0, 3);
+function stopCard(s, day, opts = {}) {
+  const meta = Object.entries(s.meta || {}).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`).join('');
+  const murl = mapQuery(s, day);
+  return `<article class="card">
+    ${s.img && IMG[s.img] ? `<div class="ph">${img(s.img)}${s.chips && s.chips.length ? `<div class="chips">${s.chips.map(c => `<span class="chip">${esc(c)}</span>`).join('')}</div>` : ''}</div>` : (s.chips && s.chips.length ? `<div class="chips flat">${s.chips.map(c => `<span class="chip">${esc(c)}</span>`).join('')}</div>` : '')}
+    <div class="body">
+      ${opts.when ? `<div class="when">${esc(opts.when)}</div>` : ''}
+      <h3>${esc(s.title)}</h3>
+      ${s.vi ? `<div class="vi" data-copy>${esc(s.vi)}</div>` : ''}
+      ${murl || s.tel ? `<div class="actions">${murl ? `<a class="btn primary" target="_blank" rel="noopener" href="${murl}">지도 열기</a>${s.vi ? '<button class="btn" type="button" data-copybtn>일본어로 복사</button>' : ''}` : ''}${s.tel ? `<a class="btn tel" href="${telHref(s.tel)}">전화 ${esc(s.tel)}</a>` : ''}</div>` : ''}
+      ${s.why ? `<p class="why">${s.why}</p>` : ''}
+      ${meta ? `<dl class="meta">${meta}</dl>` : ''}
+    </div></article>`;
+}
+
+function isoToday() { const n = new Date(); return n.getFullYear() + '-' + String(n.getMonth() + 1).padStart(2, '0') + '-' + String(n.getDate()).padStart(2, '0'); }
+function renderSchedule(main, top) {
+  const saved = store.get('day', null); const iso = isoToday(); const today = todayKey(); const inTrip = !!DAY_BY_ISO[iso];
+  let cur = (saved && typeof saved === 'object' && saved.on === iso && saved.k) || (inTrip ? today : null) || (saved && typeof saved === 'object' ? saved.k : saved) || today;
+  if (!DAYS.some(d => dayKey(d) === cur)) cur = 'TUE';
+  top.innerHTML = `<div class="brand"><h1>엄마와 삿포로 4일</h1></div>
+    <div class="daybar" role="tablist">${DAYS.map(d => `<button class="daychip${dayKey(d) === cur ? ' on' : ''}" role="tab" aria-selected="${dayKey(d) === cur}" data-day="${dayKey(d)}">${inTrip && dayKey(d) === today ? '<span class="today">오늘</span>' : ''}<b>${DAY_KO[dayKey(d)]}</b><span>${esc(d.date.replace(/^[A-Z]{3} · /, ''))}</span></button>`).join('')}</div>`;
+  top.querySelectorAll('.daychip').forEach(b => b.addEventListener('click', () => { store.set('day', { k: b.dataset.day, on: isoToday() }); route(); const nb = top.querySelector(`[data-day="${b.dataset.day}"]`); if (nb) nb.focus({ preventScroll: true }); }));
+  const onChip = top.querySelector('.daychip.on'); if (onChip && onChip.scrollIntoView) onChip.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+  const d = DAYS.find(x => dayKey(x) === cur);
+  const ch = d.choices || null; let pick = null;
+  if (ch) { pick = store.get('choice:' + dayKey(d), ch[0].k); if (!ch.some(c => c.k === pick)) pick = ch[0].k; }
+  const stops = (d.stops || []).filter(s => !s.opt || !pick || (Array.isArray(s.opt) ? s.opt.includes(pick) : s.opt === pick));
+  if (pick) stops.sort((a, b) => a.time.localeCompare(b.time));
+  const choiceHtml = ch ? `<p class="choice-h">오늘 갈 곳을 하나 골라요</p><div class="choice" role="radiogroup" aria-label="오늘 갈 곳 고르기">${ch.map(c => `<button type="button" role="radio" aria-checked="${c.k === pick}" class="${c.k === pick ? 'on' : ''}" data-choice="${c.k}"><b>${esc(c.label)}</b><span>${esc(c.sub || '')}</span></button>`).join('')}</div>` : '';
+  main.innerHTML = `<div class="dayhead"><div class="date">${esc(d.long || d.date)}</div><h2>${esc(d.title)}${d.wx ? `<span class="wx">${esc(d.wx)}</span>` : ''}</h2>${d.summary ? `<div class="summary">${esc(d.summary)}</div>` : ''}</div>
+    ${(d.notes || []).map(n => `<div class="note">${n}</div>`).join('')}
+    ${choiceHtml}
+    ${stops.map(s => `<div class="stop"><div class="t">${esc(s.time)}${s.variant ? `<small>${esc(s.variant)}</small>` : ''}</div>${stopCard(s, d)}</div>`).join('')}
+    ${d.planb ? `<details class="planb"><summary>눈 오거나 사정이 생기면</summary><div class="pb">${d.planb.split(/\s+(?=<b>)/).filter(Boolean).map(x => `<p>${x}</p>`).join('')}</div></details>` : ''}`;
+  main.querySelectorAll('[data-choice]').forEach(b => b.addEventListener('click', () => {
+    store.set('choice:' + dayKey(d), b.dataset.choice); route();
+    const c = document.querySelector('.choice'); if (c) { c.scrollIntoView({ block: 'start' }); window.scrollBy(0, -(document.querySelector('.top').offsetHeight + 8)); }
+    const nb = document.querySelector(`[data-choice="${b.dataset.choice}"]`); if (nb) nb.focus({ preventScroll: true });
+  }));
+  wireCopy(main);
+}
+const DAY_BY_ISO = { '2027-03-09': 'TUE', '2027-03-10': 'WED', '2027-03-11': 'THU', '2027-03-12': 'FRI' };
+function todayKey() { const iso = isoToday(); if (DAY_BY_ISO[iso]) return DAY_BY_ISO[iso]; return iso < '2027-03-09' ? 'TUE' : 'FRI'; }
+function wireCopy(root) {
+  root.querySelectorAll('[data-copybtn]').forEach(b => b.addEventListener('click', () => { const box = b.closest('.body, .row') || root; const el = box.querySelector('[data-copy]'); if (el) copyText(el.textContent, el); }));
+}
+
+// category pages built from the schedule plus manual extras
+function entriesFor(cat) {
+  const out = [];
+  DAYS.forEach(d => (d.stops || []).forEach(s => {
+    const c = (CAT.byKey || {})[s.img] || (CAT.byTitle || {})[s.title];
+    const plan = s.opt && !Array.isArray(s.opt) && d.choices ? ' · ' + ((d.choices.find(x => x.k === s.opt) || {}).label || '') : '';
+    if (c && c.cat === cat) out.push({ ...s, group: c.group || '', when: DAY_KO[dayKey(d)] + ' ' + s.time + plan + (s.variant ? ' ' + s.variant : ''), day: d, sortKey: TRIP.indexOf(dayKey(d)) + s.time });
+  }));
+  (MANUAL.extra || []).filter(e => e.cat === cat).forEach(e => out.push({ ...e, day: DAYS.find(d => dayKey(d) === (e.dayKey || 'FRI')), sortKey: TRIP.indexOf(e.dayKey || 'FRI') + (e.time || '99:99') }));
+  return out;
+}
+function renderCategory(main, top, cat, title, intro, groups) {
+  top.innerHTML = `<div class="brand"><h1>${esc(title)}</h1></div><div style="height:10px"></div>`;
+  const items = entriesFor(cat);
+  const order = groups || [...new Set(items.map(i => i.group))];
+  const introHtml = `<p class="intro">${esc(intro)}</p>`;
+  main.innerHTML = order.map(g => {
+    const its = items.filter(i => (i.group || '') === g).sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+    if (!its.length) return '';
+    return `<h2 class="sect-h">${esc(g)}</h2>` + its.map(s => stopCard(s, s.day, { when: s.when })).join('');
+  }).join('') + (MANUAL.catNotes && MANUAL.catNotes[cat] ? `<div class="note">${MANUAL.catNotes[cat]}</div>` : '');
+  main.insertAdjacentHTML('afterbegin', introHtml + (cat === 'shop' ? '<div class="actions"><a class="btn" href="#shopping">무엇을 살지 — 살 것 목록 보기</a></div>' : ''));
+  wireCopy(main);
+}
+
+function renderLists(main, top, sub) {
+  top.innerHTML = `<div class="brand"><h1>준비·정보</h1></div>
+    <div class="seg">${Object.entries(SUB).map(([k, v]) => `<button type="button" data-sub="${k}" class="${k === sub ? 'on' : ''}">${v}</button>`).join('')}</div>`;
+  top.querySelectorAll('[data-sub]').forEach(b => b.addEventListener('click', () => { location.hash = b.dataset.sub; }));
+  const keepNote = '<p class="intro">체크한 것은 이 폰에만 저장돼요.</p>';
+  const SN = LISTS.shoppingNote;
+  const shopNote = SN ? `<div class="note"><b>${esc(SN.name)}</b><br>${esc(SN.price || '')}<details><summary>자세히 보기</summary>${esc([SN.where, SN.note, SN.when].filter(Boolean).join(' '))}</details></div>` : '';
+  if (sub === 'shopping') main.innerHTML = keepNote + shopNote + checklist('shop', (LISTS.shopping || []).map((it, i) => ({ id: 'shop' + i, n: it.name, s: [it.price, it.when].filter(Boolean).join(' · '), more: [it.where ? '파는 곳: ' + it.where : '', it.note].filter(Boolean).join(' ') }))) + resetBtn('shop');
+  else if (sub === 'packing') main.innerHTML = keepNote + (LISTS.packing || []).map((g, gi) => `<h2 class="sect-h">${esc(g.group)}</h2>` + checklist('pack', (g.items || []).map((it, i) => ({ id: 'pack' + gi + '_' + i, n: it.name, s: it.note || '' })))).join('') + resetBtn('pack');
+  else if (sub === 'map') main.innerHTML = renderMapView();
+  else { main.innerHTML = renderInfo(); const sc = main.querySelector('#showCover'); if (sc) sc.addEventListener('click', showCover); }
+  main.querySelectorAll('.check input').forEach(cb => {
+    const key = 'chk:' + cb.dataset.id; cb.checked = !!store.get(key, false); cb.closest('label').classList.toggle('done', cb.checked);
+    cb.addEventListener('change', () => { store.set(key, cb.checked); cb.closest('label').classList.toggle('done', cb.checked); });
+  });
+  main.querySelectorAll('[data-reset]').forEach(b => b.addEventListener('click', () => {
+    const was = [];
+    main.querySelectorAll('.check input').forEach(cb => { if (cb.dataset.id.startsWith(b.dataset.reset) && cb.checked) { was.push(cb); cb.checked = false; store.set('chk:' + cb.dataset.id, false); cb.closest('label').classList.remove('done'); } });
+    if (!was.length) { toast('지울 체크가 없어요'); return; }
+    toast('체크 ' + was.length + '개를 지웠어요', () => { was.forEach(cb => { cb.checked = true; store.set('chk:' + cb.dataset.id, true); cb.closest('label').classList.add('done'); }); });
+  }));
+  wireCopy(main);
+}
+const checklist = (prefix, items) => `<div class="check">${items.map(it => `<label><input type="checkbox" id="cb_${it.id}" data-id="${it.id}"><span><span class="n">${esc(it.n)}</span>${it.s ? `<br><span class="s">${esc(it.s)}</span>` : ''}</span></label>${it.more ? `<details class="more"><summary>자세히</summary><p>${esc(it.more)}</p></details>` : ''}`).join('')}</div>`;
+const resetBtn = p => `<div class="actions"><button class="btn" type="button" data-reset="${p}">체크 모두 지우기</button></div>`;
+
+function renderInfo() {
+  const I = LISTS.info || {}; const H = I.hotel || MANUAL.hotel || {};
+  const tels = p => { const all = String(p || '').match(/[+#]?\d[\d-]*\d/g) || []; const nums = all.filter(x => !x.startsWith('#') && x.replace(/\D/g, '').length >= 3 && !(all.length > 1 && x.startsWith('+81'))); return nums.map(x => `<a class="btn tel" href="${telHref(x)}">전화 ${esc(x)}</a>`).join(''); };
+  const kv = rows => `<div class="kv">${rows.map(r => {
+    if (r.vi) return `<div class="row"><div class="k">${esc(r.ko)}</div><div class="v big" data-copy>${esc(r.vi)}</div><div class="v">${esc(r.read || '')}</div></div>`;
+    const t = tels(r.phone);
+    return `<div class="row"><div class="k">${esc(r.name || r.k)}</div>${r.phone ? `<div class="v num" data-copy>${String(r.phone).split(/\s*\/\s*/).map(x => `<span class="nowrap">${esc(x)}</span>`).join(' / ')}</div>` : ''}<div class="v">${esc(r.note || r.v || '')}</div>${t ? `<div class="actions">${t}</div>` : ''}</div>`; }).join('')}</div>`;
+  const budget = (DATA.budget || []);
+  return `
+    ${I.emergency && I.emergency.length ? `<h2 class="sect-h">급할 때 <small>이 화면을 그대로 보여 줘도 돼요</small></h2>${kv(I.emergency)}` : ''}
+    <h2 class="sect-h">숙소</h2>
+    <div class="kv"><div class="row"><div class="k">${esc(H.name || '')}</div><div class="v big" data-copy>${esc(H.addr || '')}</div>${H.checkin ? `<div class="v">${esc(H.checkin)}</div>` : ''}<div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="${mapUrl(H.map || H.addr, H.name, 'Sapporo')}">호텔 지도 열기</a><button class="btn" type="button" data-copybtn>주소 복사</button>${tels(H.phone)}</div></div>
+      ${(H.notes || []).map(n => `<div class="row"><div class="v">${esc(n)}</div></div>`).join('')}
+      ${(MANUAL.hotelNotes || []).map(n => `<div class="row"><div class="v">${n}</div></div>`).join('')}</div>
+    ${I.health && I.health.length ? `<h2 class="sect-h">건강</h2>${kv(I.health)}` : ''}
+    ${I.transport && I.transport.length ? `<h2 class="sect-h">이동</h2>${kv(I.transport)}` : ''}
+    ${I.money && I.money.length ? `<h2 class="sect-h">돈</h2>${kv(I.money)}` : ''}
+    ${I.phrases && I.phrases.length ? `<h2 class="sect-h">한마디 일본어</h2>${kv(I.phrases)}` : ''}
+    ${budget.length ? `<h2 class="sect-h">예산 <small>2인 기준</small></h2><div class="card"><div class="tbl"><table>${budget.map(b => `<tr class="${b.total ? 'total' : ''}"><td>${esc(b.item)}${b.note ? `<small class="bn">${esc(b.note)}</small>` : ''}</td><td class="r">${esc(b.krw)}</td></tr>`).join('')}</table></div></div>` : ''}
+    ${(DATA.skips || []).length ? `<h2 class="sect-h">일부러 뺀 곳</h2><div class="kv">${DATA.skips.map(s => `<div class="row"><div class="k">${esc(s.name)}</div><div class="v">${esc(s.why)}</div></div>`).join('')}</div>` : ''}
+    <div class="actions"><button class="btn" type="button" id="showCover">표지 다시 보기</button></div>
+    <details class="planb"><summary>사진 출처</summary><div class="pb credits">${Object.entries(CREDITS).map(([k, c]) => `${esc(c.title || k)} — ${esc(c.author || '')} (${esc(c.license || 'Flickr')})`).join(' · ')}</div></details>`;
+}
+
+function renderMapView() {
+  const cats = MAP.cats || [], P = MAP.places || [], byId = {};
+  P.forEach(p => { byId[p.id] = p; });
+  const one = p => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.q);
+  const route = r => { const q = r.stops.map(id => byId[id].q); const u = new URLSearchParams({ api: '1', origin: q[0], destination: q[q.length - 1], travelmode: r.mode || 'walking' }); if (q.length > 2) u.set('waypoints', q.slice(1, -1).join('|')); return 'https://www.google.com/maps/dir/?' + u.toString(); };
+  const hosted = /\.netlify\.app$|\.github\.io$/.test(location.hostname);
+  return `<div class="note"><b>구간별 길 안내를 구글 지도로</b><br>버튼을 누르면 구글 지도에 그 구간의 길이 순서대로 나와요. 화요일은 공항에서, 나머지 날은 호텔이나 역에서 출발해요.</div>
+    <div class="routes">${(MAP.routes || []).map(r => `<a class="btn primary" target="_blank" rel="noopener" href="${route(r)}">${esc(r.label)}</a>`).join('')}</div>
+    ${cats.map(c => { const its = P.filter(p => p.cat === c.k); if (!its.length) return '';
+      return `<h2 class="sect-h"><span class="dot" style="background:${c.color}"></span>${esc(c.label)} <small>${its.length}곳</small></h2><div class="kv">${its.map(p => `<div class="row"><div class="k">${esc(p.ko)}</div><div class="v when-line">${esc(p.when)}</div><div class="v" data-copy>${esc(p.vi)} · ${esc(p.addr)}</div><div class="v">${esc(p.note)}</div><div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="${one(p)}">지도 열기</a><button class="btn" type="button" data-copybtn>주소 복사</button></div></div>`).join('')}</div>`; }).join('')}
+    <div class="note"><b>내 구글 지도에 전부 한 번에 표시하기</b> (PC에서 1분)<br>① ${hosted ? '<a href="sapporo-places.kml" download>지도 파일(KML) 받기</a>' : '카톡으로 받은 지도 파일 <span class="nowrap">sapporo-places.kml</span> 준비'}<br>② <span class="nowrap">google.com/mymaps</span> → 새 지도 만들기 → 가져오기 → 파일 올리기<br>③ 폰 구글 지도 앱 → 저장됨 → 지도에서 색깔별 핀으로 보여요.</div>`;
+}
+function applyZoom() { document.body.classList.toggle('big', !!store.get('big', false)); }
+function zoomBtn() { return `<button class="zoombtn" type="button" id="zoomToggle" aria-pressed="${store.get('big', false) ? 'true' : 'false'}" aria-label="큰 글자 켜기/끄기">${store.get('big', false) ? '글자 작게' : '글자 크게'}</button>`; }
+function route() {
+  applyZoom();
+  document.querySelectorAll('.toast').forEach(x => x.remove());
+  try { document.body.classList.toggle('badge-host', /\.netlify\.app$/.test(location.hostname)); } catch (e) {}
+  const h = (location.hash || '#schedule').replace('#', '');
+  const tab = SUB[h] ? 'lists' : (TABS.some(t => t.id === h) ? h : 'schedule');
+  document.getElementById('tabs').innerHTML = TABS.map(t => `<button class="tab${t.id === tab ? ' on' : ''}" type="button" data-tab="${t.id}" aria-current="${t.id === tab ? 'page' : 'false'}">${t.icon}<span>${t.label}</span></button>`).join('');
+  document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => { const target = b.dataset.tab === 'lists' ? (store.get('sub', 'shopping')) : b.dataset.tab; if ((location.hash || '#schedule').replace('#', '') === target) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; } location.hash = target; }));
+  const main = document.getElementById('main'), top = document.getElementById('top');
+  if (tab === 'schedule') renderSchedule(main, top);
+  else if (tab === 'food') renderCategory(main, top, 'food', '먹기', '아침·점심·저녁과 카페, 날짜순', MANUAL.groups && MANUAL.groups.food);
+  else if (tab === 'shop') renderCategory(main, top, 'shop', '쇼핑', '어디서 무엇을 살지, 날짜순', MANUAL.groups && MANUAL.groups.shop);
+  else if (tab === 'todo') renderCategory(main, top, 'todo', '할 것', '보고 걷고 배우는 것들', MANUAL.groups && MANUAL.groups.todo);
+  else { const sub = SUB[h] ? h : store.get('sub', 'shopping'); store.set('sub', sub); renderLists(main, top, sub); }
+  const brand = top.querySelector('.brand');
+  if (brand) { brand.insertAdjacentHTML('beforeend', zoomBtn()); document.getElementById('zoomToggle').addEventListener('click', e => { store.set('big', !store.get('big', false)); applyZoom(); e.currentTarget.setAttribute('aria-pressed', store.get('big', false) ? 'true' : 'false'); e.currentTarget.textContent = store.get('big', false) ? '글자 작게' : '글자 크게'; }); }
+  const tb = document.querySelector(`.tab[data-tab="${tab}"]`); if (tb && document.activeElement && document.activeElement.tagName === 'BODY') { /* keep natural focus */ }
+  window.scrollTo({ top: 0 });
+}
+window.addEventListener('hashchange', route);
+// Opening cover: shown once per app launch. A photo chosen on this phone replaces the default photo, on this phone only.
+const COVER_KEY = (MANUAL.cover && MANUAL.cover.img) || 'poster';
+function ddayText() {
+  const [y, m, d] = isoToday().split('-').map(Number), t = Date.UTC(y, m - 1, d);
+  const n = Math.round((Date.UTC(2027, 2, 9) - t) / 864e5);
+  if (n > 0) return '출발까지 ' + n + '일';
+  if (t <= Date.UTC(2027, 2, 12)) return '여행 ' + (1 - n) + '일째';
+  return '다녀온 여행';
+}
+function paintCover() {
+  const c = document.getElementById('cover'), own = store.get('coverImg', null), bg = document.getElementById('coverBg'), im = document.getElementById('coverImg');
+  const src = own || IMG[COVER_KEY] || '';
+  const whole = !!own || (!!IMG[COVER_KEY] && (MANUAL.cover || {}).mode === 'poster');
+  c.classList.toggle('custom', whole);
+  if (src) { bg.src = src; bg.hidden = false; } else bg.hidden = true;
+  im.hidden = !whole; if (whole) im.src = src;
+  const cr = CREDITS[COVER_KEY];
+  document.getElementById('coverCredit').textContent = own || !cr ? '' : ((MANUAL.cover || {}).credit || `사진 ${cr.author || ''} · ${cr.license || ''}`);
+  document.getElementById('coverReset').hidden = !own;
+  document.getElementById('coverDday').textContent = ddayText();
+}
+function showCover() {
+  paintCover();
+  document.getElementById('cover').hidden = false; document.body.classList.add('cover-on');
+}
+function hideCover() {
+  document.getElementById('cover').hidden = true; document.body.classList.remove('cover-on');
+  if ((location.hash || '#schedule') !== '#schedule') location.hash = 'schedule'; else window.scrollTo({ top: 0 });
+  try { sessionStorage.setItem('sp:cover', '1'); } catch (e) {}
+}
+function useCoverPhoto(file) {
+  if (!file) return;
+  const im = new Image(), url = URL.createObjectURL(file);
+  im.onload = () => {
+    const k = Math.min(1, 1200 / Math.max(im.naturalWidth, im.naturalHeight)), cv = document.createElement('canvas');
+    cv.width = Math.round(im.naturalWidth * k); cv.height = Math.round(im.naturalHeight * k);
+    cv.getContext('2d').drawImage(im, 0, 0, cv.width, cv.height); URL.revokeObjectURL(url);
+    const data = cv.toDataURL('image/jpeg', 0.85);
+    store.set('coverImg', data);
+    if (store.get('coverImg', null) === data) { paintCover(); toast('표지 사진을 바꿨어요'); }
+    else { paintCover(); document.getElementById('cover').classList.add('custom'); const ci = document.getElementById('coverImg'); ci.src = data; ci.hidden = false; document.getElementById('coverBg').src = data; toast('이 폰에 저장이 안 돼서 이번만 보여요'); }
+  };
+  im.onerror = () => { URL.revokeObjectURL(url); toast('이 사진은 열 수 없어요'); };
+  im.src = url;
+}
+document.getElementById('coverGo').addEventListener('click', hideCover);
+document.getElementById('coverPick').addEventListener('click', () => document.getElementById('coverFile').click());
+document.getElementById('coverFile').addEventListener('change', e => { useCoverPhoto(e.target.files && e.target.files[0]); e.target.value = ''; });
+document.getElementById('coverReset').addEventListener('click', () => { try { localStorage.removeItem('sp:coverImg'); } catch (e) {} paintCover(); toast('원래 표지로 돌렸어요'); });
+let coverSeen = false; try { coverSeen = sessionStorage.getItem('sp:cover') === '1'; } catch (e) {}
+if (!coverSeen) showCover();
+route();
+</script>
