@@ -46,13 +46,13 @@ h1, h2, h3 { margin: 0; text-wrap: balance; }
 .brand { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 .brand h1 { font: 700 22px/1.2 var(--font-display); }
 .brand .sub { font-size: 14px; color: var(--muted); flex: 1 1 auto; }
-.daybar { display: flex; gap: 4px; overflow-x: auto; padding-top: 9px; padding-bottom: 10px; scrollbar-width: none; }
+.daybar { display: flex; gap: 4px; overflow-x: auto; padding-top: 12px; padding-bottom: 10px; scrollbar-width: none; }
 .daybar::-webkit-scrollbar { display: none; }
 .daychip { flex: 1 1 0; min-width: 0; min-height: 56px; border: 1px solid var(--rule); border-radius: 12px; background: var(--bg); color: var(--fg);
-  display: grid; place-items: center; gap: 0; padding: 4px 2px; cursor: pointer; position: relative; }
-.daychip .today { position: absolute; top: -9px; white-space: nowrap; left: 50%; transform: translateX(-50%); font-size: 11px; font-weight: 700; color: var(--on-accent); background: var(--time); border-radius: 999px; padding: 0 6px; line-height: 16px; }
+  display: grid; place-items: center; gap: 0; padding: 8px 2px 4px; cursor: pointer; position: relative; }
+.daychip .today { position: absolute; top: -11px; white-space: nowrap; left: 50%; transform: translateX(-50%); font-size: 13px; font-weight: 700; color: var(--on-accent); background: var(--time); border-radius: 999px; padding: 0 6px; line-height: 16px; }
 .daychip b { font-size: 17px; line-height: 1.1; }
-.daychip span { font-size: 14px; color: var(--muted); line-height: 1.2; }
+.daychip span { font-size: 15px; color: var(--muted); line-height: 1.2; }
 .daychip.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .daychip.on span { color: var(--on-accent); opacity: .85; }
 .seg { display: flex; gap: 6px; padding-bottom: 10px; }
@@ -67,7 +67,7 @@ h1, h2, h3 { margin: 0; text-wrap: balance; }
 .dayhead .date { font-size: 15px; color: var(--muted); font-weight: 500; }
 .dayhead h2 { font: 700 26px/1.3 var(--font-display); }
 .dayhead .summary { font-size: 17px; color: var(--muted); }
-.wx { display: inline-block; font-size: 14px; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 2px 10px; margin-left: 6px; vertical-align: middle; }
+.wx { display: inline-block; font-size: 15px; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 2px 10px; margin-left: 6px; vertical-align: middle; }
 .note { background: var(--warn-bg); color: var(--warn-fg); border-radius: 14px; padding: 12px 14px; font-size: 16px; line-height: 1.55; }
 .note b { font-size: 17px; }
 .note details summary { min-height: 44px; display: flex; align-items: center; gap: 6px; font-weight: 700; cursor: pointer; }
@@ -84,16 +84,16 @@ h1, h2, h3 { margin: 0; text-wrap: balance; }
 .chips { position: absolute; left: 10px; bottom: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
 .chips.flat { position: static; padding: 12px 14px 0; }
 .chips.flat .chip { background: var(--accent-soft); color: var(--fg); }
-.chip { font-size: 14px; font-weight: 700; background: rgba(255,255,255,.92); color: #17212C; border-radius: 999px; padding: 3px 9px; }
+.chip { font-size: 15px; font-weight: 700; background: rgba(255,255,255,.92); color: #17212C; border-radius: 999px; padding: 3px 9px; }
 .body { padding: 12px 14px 14px; display: grid; gap: 10px; }
 .body h3 { font-size: 21px; line-height: 1.3; }
 .vi { font-size: 16px; color: var(--fg); opacity: .85; line-height: 1.4; overflow-wrap: anywhere; }
 .why { margin: 0; font-size: 17px; }
 .why b { color: var(--accent); }
-.meta { margin: 0; display: grid; grid-template-columns: 64px 1fr; gap: 6px 10px; font-size: 16px; }
+.meta { margin: 0; display: grid; grid-template-columns: 76px 1fr; gap: 6px 10px; font-size: 16px; }
 .meta dt { color: var(--muted); font-size: 15px; font-weight: 700; padding-top: 3px; }
 .meta dd { margin: 0; min-width: 0; line-height: 1.5; }
-.when { font-size: 14px; font-weight: 700; color: var(--time); }
+.when { font-size: 16px; font-weight: 700; color: var(--time); }
 .actions { display: flex; gap: 8px; flex-wrap: wrap; }
 .btn { min-height: 46px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--rule); background: var(--bg); color: var(--fg); font-weight: 700; font-size: 16px;
   display: inline-flex; align-items: center; gap: 6px; text-decoration: none; cursor: pointer; }
@@ -114,6 +114,11 @@ details.planb .pb { padding: 0 0 14px; font-size: 16px; }
 .check input { width: 26px; height: 26px; margin: 2px 0 0; accent-color: var(--accent); }
 .check .n { font-size: 17px; font-weight: 500; }
 .check .s { font-size: 16px; color: var(--muted); line-height: 1.45; }
+.check label:has(+ details.more) { border-bottom: 0; padding-bottom: 2px; }
+.check details.more { padding: 0 14px 8px 56px; border-bottom: 1px solid var(--rule); }
+.check details.more:last-child { border-bottom: 0; }
+.check details.more summary { min-height: 44px; display: flex; align-items: center; font-size: 15px; font-weight: 700; color: var(--accent); cursor: pointer; }
+.check details.more p { margin: 0 0 6px; font-size: 16px; color: var(--muted); line-height: 1.5; }
 .check label.done .n { text-decoration: line-through; color: var(--muted); }
 .kv { background: var(--card); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
 .kv .row { display: grid; gap: 2px; padding: 12px 14px; border-bottom: 1px solid var(--rule); }
@@ -133,6 +138,7 @@ table { border-collapse: collapse; width: 100%; font-size: 15px; }
 td, th { padding: 8px 6px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
 td.r { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
 tr.total td { font-weight: 700; }
+.bn { display: block; font-size: 15px; color: var(--muted); font-weight: 400; margin-top: 2px; }
 .credits { font-size: 12px; color: var(--muted); line-height: 1.5; }
 .tiny { font-size: 13px; color: var(--muted); }
 .toast { white-space: nowrap; max-width: calc(100vw - 32px); display: flex; align-items: center; gap: 8px; position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 999px; font-size: 15px; z-index: 20; }
@@ -266,9 +272,9 @@ function entriesFor(cat) {
   const out = [];
   DAYS.forEach(d => (d.stops || []).forEach(s => {
     const c = (CAT.byKey || {})[s.img] || (CAT.byTitle || {})[s.title];
-    if (c && c.cat === cat) out.push({ ...s, group: c.group || '', when: DAY_KO[dayKey(d)] + ' ' + s.time + (s.variant ? ' ' + s.variant : ''), day: d });
+    if (c && c.cat === cat) out.push({ ...s, group: c.group || '', when: DAY_KO[dayKey(d)] + ' ' + s.time + (s.variant ? ' ' + s.variant : ''), day: d, sortKey: TRIP.indexOf(dayKey(d)) + s.time });
   }));
-  (MANUAL.extra || []).filter(e => e.cat === cat).forEach(e => out.push({ ...e, day: DAYS.find(d => dayKey(d) === (e.dayKey || 'FRI')) }));
+  (MANUAL.extra || []).filter(e => e.cat === cat).forEach(e => out.push({ ...e, day: DAYS.find(d => dayKey(d) === (e.dayKey || 'FRI')), sortKey: TRIP.indexOf(e.dayKey || 'FRI') + (e.time || '99:99') }));
   return out;
 }
 function renderCategory(main, top, cat, title, intro, groups) {
@@ -277,7 +283,7 @@ function renderCategory(main, top, cat, title, intro, groups) {
   const order = groups || [...new Set(items.map(i => i.group))];
   const introHtml = `<p class="intro">${esc(intro)}</p>`;
   main.innerHTML = order.map(g => {
-    const its = items.filter(i => (i.group || '') === g);
+    const its = items.filter(i => (i.group || '') === g).sort((a, b) => a.sortKey.localeCompare(b.sortKey));
     if (!its.length) return '';
     return `<h2 class="sect-h">${esc(g)}</h2>` + its.map(s => stopCard(s, s.day, { when: s.when })).join('');
   }).join('') + (MANUAL.catNotes && MANUAL.catNotes[cat] ? `<div class="note">${MANUAL.catNotes[cat]}</div>` : '');
@@ -290,7 +296,7 @@ function renderLists(main, top, sub) {
     <div class="seg">${Object.entries(SUB).map(([k, v]) => `<button type="button" data-sub="${k}" class="${k === sub ? 'on' : ''}">${v}</button>`).join('')}</div>`;
   top.querySelectorAll('[data-sub]').forEach(b => b.addEventListener('click', () => { location.hash = b.dataset.sub; }));
   const keepNote = '<p class="intro">체크한 것은 이 폰에만 저장돼요.</p>';
-  if (sub === 'shopping') main.innerHTML = keepNote + checklist('shop', (LISTS.shopping || []).map((it, i) => ({ id: 'shop' + i, n: it.name, s: [it.where, it.price, it.when, it.note].filter(Boolean).join(' · ') }))) + resetBtn('shop');
+  if (sub === 'shopping') main.innerHTML = keepNote + checklist('shop', (LISTS.shopping || []).map((it, i) => ({ id: 'shop' + i, n: it.name, s: [it.price, it.when].filter(Boolean).join(' · '), more: [it.where ? '파는 곳: ' + it.where : '', it.note].filter(Boolean).join(' ') }))) + resetBtn('shop');
   else if (sub === 'packing') main.innerHTML = keepNote + (LISTS.packing || []).map((g, gi) => `<h2 class="sect-h">${esc(g.group)}</h2>` + checklist('pack', (g.items || []).map((it, i) => ({ id: 'pack' + gi + '_' + i, n: it.name, s: it.note || '' })))).join('') + resetBtn('pack');
   else if (sub === 'map') main.innerHTML = renderMapView();
   else main.innerHTML = renderInfo();
@@ -306,7 +312,7 @@ function renderLists(main, top, sub) {
   }));
   wireCopy(main);
 }
-const checklist = (prefix, items) => `<div class="check">${items.map(it => `<label><input type="checkbox" id="cb_${it.id}" data-id="${it.id}"><span><span class="n">${esc(it.n)}</span>${it.s ? `<br><span class="s">${esc(it.s)}</span>` : ''}</span></label>`).join('')}</div>`;
+const checklist = (prefix, items) => `<div class="check">${items.map(it => `<label><input type="checkbox" id="cb_${it.id}" data-id="${it.id}"><span><span class="n">${esc(it.n)}</span>${it.s ? `<br><span class="s">${esc(it.s)}</span>` : ''}</span></label>${it.more ? `<details class="more"><summary>자세히</summary><p>${esc(it.more)}</p></details>` : ''}`).join('')}</div>`;
 const resetBtn = p => `<div class="actions"><button class="btn" type="button" data-reset="${p}">체크 모두 지우기</button></div>`;
 
 function renderInfo() {
@@ -327,7 +333,7 @@ function renderInfo() {
     ${I.transport && I.transport.length ? `<h2 class="sect-h">이동</h2>${kv(I.transport)}` : ''}
     ${I.money && I.money.length ? `<h2 class="sect-h">돈</h2>${kv(I.money)}` : ''}
     ${I.phrases && I.phrases.length ? `<h2 class="sect-h">한마디 베트남어</h2>${kv(I.phrases)}` : ''}
-    ${budget.length ? `<h2 class="sect-h">예산 <small>2인 기준</small></h2><div class="card"><div class="tbl"><table>${budget.map(b => `<tr class="${b.total ? 'total' : ''}"><td>${esc(b.item)}</td><td class="r">${esc(b.krw)}</td></tr>`).join('')}</table></div></div>` : ''}
+    ${budget.length ? `<h2 class="sect-h">예산 <small>2인 기준</small></h2><div class="card"><div class="tbl"><table>${budget.map(b => `<tr class="${b.total ? 'total' : ''}"><td>${esc(b.item)}${b.note ? `<small class="bn">${esc(b.note)}</small>` : ''}</td><td class="r">${esc(b.krw)}</td></tr>`).join('')}</table></div></div>` : ''}
     ${(DATA.skips || []).length ? `<h2 class="sect-h">일부러 뺀 곳</h2><div class="kv">${DATA.skips.map(s => `<div class="row"><div class="k">${esc(s.name)}</div><div class="v">${esc(s.why)}</div></div>`).join('')}</div>` : ''}
     <details class="planb"><summary>사진 출처</summary><div class="pb credits">${Object.entries(CREDITS).map(([k, c]) => `${esc(c.title || k)} — ${esc(c.author || '')} (${esc(c.license || 'Flickr')})`).join(' · ')}</div></details>`;
 }
@@ -345,7 +351,7 @@ function renderMapView() {
     <div class="note"><b>내 구글 지도에 전부 한 번에 표시하기</b> (PC에서 1분)<br>① ${hosted ? '<a href="danang-places.kml" download>지도 파일(KML) 받기</a>' : '카톡으로 받은 지도 파일 <span class="nowrap">danang-places.kml</span> 준비'}<br>② <span class="nowrap">google.com/mymaps</span> → 새 지도 만들기 → 가져오기 → 파일 올리기<br>③ 폰 구글 지도 앱 → 저장됨 → 지도에서 색깔별 핀으로 보여요.</div>`;
 }
 function applyZoom() { document.body.classList.toggle('big', !!store.get('big', false)); }
-function zoomBtn() { return `<button class="zoombtn" type="button" id="zoomToggle" aria-pressed="${store.get('big', false) ? 'true' : 'false'}" aria-label="큰 글자 켜기/끄기">큰 글자</button>`; }
+function zoomBtn() { return `<button class="zoombtn" type="button" id="zoomToggle" aria-pressed="${store.get('big', false) ? 'true' : 'false'}" aria-label="큰 글자 켜기/끄기">${store.get('big', false) ? '글자 작게' : '글자 크게'}</button>`; }
 function route() {
   applyZoom();
   document.querySelectorAll('.toast').forEach(x => x.remove());
@@ -361,7 +367,7 @@ function route() {
   else if (tab === 'todo') renderCategory(main, top, 'todo', '할 것', '보고 걷고 배우는 것들', MANUAL.groups && MANUAL.groups.todo);
   else { const sub = SUB[h] ? h : store.get('sub', 'shopping'); store.set('sub', sub); renderLists(main, top, sub); }
   const brand = top.querySelector('.brand');
-  if (brand) { brand.insertAdjacentHTML('beforeend', zoomBtn()); document.getElementById('zoomToggle').addEventListener('click', e => { store.set('big', !store.get('big', false)); applyZoom(); e.currentTarget.setAttribute('aria-pressed', store.get('big', false) ? 'true' : 'false'); }); }
+  if (brand) { brand.insertAdjacentHTML('beforeend', zoomBtn()); document.getElementById('zoomToggle').addEventListener('click', e => { store.set('big', !store.get('big', false)); applyZoom(); e.currentTarget.setAttribute('aria-pressed', store.get('big', false) ? 'true' : 'false'); e.currentTarget.textContent = store.get('big', false) ? '글자 작게' : '글자 크게'; }); }
   const tb = document.querySelector(`.tab[data-tab="${tab}"]`); if (tb && document.activeElement && document.activeElement.tagName === 'BODY') { /* keep natural focus */ }
   window.scrollTo({ top: 0 });
 }
