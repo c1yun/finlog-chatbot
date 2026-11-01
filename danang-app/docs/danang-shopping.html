@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>다낭 쇼핑 시세표</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@700&display=swap" rel="stylesheet">
+<style>
+/* Layout: one reading column; summary first, then a places table and three price tables that stack into cards on a phone. */
+:root {
+  --paper: #f4f6f2;
+  --card: #ffffff;
+  --ink: #1b2422;
+  --muted: #586763;
+  --rule: #dce2dc;
+  --jade: #0c6a51;      /* accent: headings, links, place names */
+  --jade-soft: #e1efe8;
+  --gold: #9a5a12;      /* "잘 산 값" target prices */
+  --gold-soft: #fbefdc;
+  --warn: #a8261d;
+  --font-body: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-display: "Noto Serif KR", "Apple Myungjo", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111816; --card: #19221f; --ink: #e6eeea; --muted: #9db0a9; --rule: #2b3532;
+  --jade: #6fd1ad; --jade-soft: #1b2f28; --gold: #f2b66b; --gold-soft: #33281a; --warn: #ff8f85; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111816; --card: #19221f; --ink: #e6eeea; --muted: #9db0a9; --rule: #2b3532;
+  --jade: #6fd1ad; --jade-soft: #1b2f28; --gold: #f2b66b; --gold-soft: #33281a; --warn: #ff8f85; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.6 var(--font-body); word-break: keep-all; overflow-wrap: anywhere; }
+main { max-width: 1040px; margin: 0 auto; padding: 28px 16px 56px; display: grid; gap: 28px; }
+h1, h2 { font-family: var(--font-display); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.15; }
+h2 { font-size: 22px; color: var(--jade); }
+h3 { margin: 0; font-size: 17px; }
+a { color: var(--jade); }
+a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+p { margin: 0; }
+.lede { color: var(--muted); max-width: 64ch; }
+header { display: grid; gap: 12px; }
+.fx { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { background: var(--card); border: 1px solid var(--rule); border-radius: 999px; padding: 4px 12px; font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pill b { color: var(--gold); }
+.note { font-size: 14px; color: var(--muted); }
+
+.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.sum { background: var(--card); border: 1px solid var(--rule); border-left: 4px solid var(--jade); border-radius: 12px; padding: 12px 14px; display: grid; gap: 4px; }
+.sum .what { font-weight: 700; }
+.sum .where { color: var(--jade); font-weight: 700; }
+.sum .why { font-size: 14px; color: var(--muted); }
+
+section { display: grid; gap: 12px; }
+.tbl { overflow-x: auto; background: var(--card); border: 1px solid var(--rule); border-radius: 14px; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+caption { text-align: left; padding: 12px 14px 0; font-weight: 700; font-size: 16px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--rule); }
+thead th { font-size: 13px; color: var(--muted); font-weight: 700; background: var(--card); }
+tbody tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 700; }
+.place { color: var(--jade); }
+.sub { display: block; font-weight: 400; font-size: 13px; color: var(--muted); }
+.good { color: var(--gold); font-weight: 700; font-variant-numeric: tabular-nums; }
+.num { font-variant-numeric: tabular-nums; }
+.tag { display: inline-block; font-size: 12px; font-weight: 700; border-radius: 999px; padding: 1px 8px; margin: 2px 4px 2px 0; white-space: nowrap; }
+.tag.haggle { background: var(--gold-soft); color: var(--gold); }
+.tag.fixed { background: var(--jade-soft); color: var(--jade); }
+.tag.skip { background: transparent; border: 1px solid var(--warn); color: var(--warn); }
+.dim { color: var(--muted); }
+.price-tbl td:nth-child(2) { background: var(--gold-soft); }
+
+.tips { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.tip { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 12px 14px; display: grid; gap: 6px; }
+.tip ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 15px; }
+.src { font-size: 14px; color: var(--muted); display: grid; gap: 10px; }
+.src ul { margin: 4px 0 0; padding-left: 18px; display: grid; gap: 2px; }
+
+/* phone: each table row becomes a card with labelled cells */
+@media (max-width: 640px) {
+  .tbl { overflow: visible; background: transparent; border: 0; }
+  caption { padding: 0 0 8px; }
+  table, tbody, tr, td { display: block; width: 100%; }
+  thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  tr { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; margin-bottom: 10px; padding: 4px 0; }
+  td { border-bottom: 0; padding: 4px 14px; }
+  td:first-child { font-size: 16px; padding-top: 10px; }
+  td[data-label]::before { content: attr(data-label); display: block; font-size: 12px; font-weight: 700; color: var(--muted); }
+  .price-tbl td:nth-child(2) { background: var(--gold-soft); border-radius: 8px; margin: 2px 8px; width: auto; padding: 6px 8px; }
+  td:empty { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>다낭 쇼핑 시세표</h1>
+  <p class="lede">2026년 8~10월 네이버 블로그 글 360여 개, 카페 글 230여 개의 실구매 기록과 최근 유튜브 쇼핑 영상을 모아 정리했습니다. 체험단·협찬 글은 뺐습니다. <b>노란 칸</b>은 한시장에서 흥정했을 때 “이 정도면 잘 샀다”는 값입니다.</p>
+  <div class="fx" aria-label="환산표">
+    <span class="pill">1만동 ≈ <b>520원</b></span>
+    <span class="pill">5만동 ≈ <b>2,600원</b></span>
+    <span class="pill">10만동 ≈ <b>5,200원</b></span>
+    <span class="pill">30만동 ≈ <b>1.6만 원</b></span>
+    <span class="pill">100만동 ≈ <b>5.2만 원</b></span>
+  </div>
+  <p class="note">환율: 10월 30일 한시장 금은방 환전 5만 원 = 96만 동. 가격은 매장·행사·환율에 따라 달라집니다.</p>
+</header>
+
+<section aria-labelledby="h-sum">
+  <h2 id="h-sum">한눈에: 무엇을 어디서</h2>
+  <div class="summary">
+    <div class="sum"><span class="what">아오자이 · 크록스 · 옷 · 가방 · 속옷</span><span class="where">한시장 2층</span><span class="why">흥정. 부른 값의 50~70%에서 시작</span></div>
+    <div class="sum"><span class="what">과자 · 소스 · 라면 · 커피 스틱</span><span class="where">롯데마트 · 고마트</span><span class="why">정찰제. 5+1, 3+1 행사를 노리기</span></div>
+    <div class="sum"><span class="what">건망고 · 캐슈넛 · 망고젤리</span><span class="where">한시장 1층이 가장 쌈</span><span class="why">편하게 사려면 마트 (1.5~2배)</span></div>
+    <div class="sum"><span class="what">하트치약 · 해리포터 치약</span><span class="where">약국 · 동마켓</span><span class="why">하트치약 5만~6.5만동, 정찰제</span></div>
+    <div class="sum"><span class="what">선물용 커피 · 쿠키 · 비누</span><span class="where">엘스토어</span><span class="why">에어컨·시식·포장 좋음, 대신 비쌈</span></div>
+  </div>
+</section>
+
+<section aria-labelledby="h-places">
+  <h2 id="h-places">쇼핑 장소</h2>
+  <div class="tbl">
+  <table>
+    <thead><tr><th>장소</th><th>가는 법 · 시간</th><th>주로 사는 것</th><th>가격 방식</th><th>알아둘 점</th></tr></thead>
+    <tbody>
+      <tr><td class="place">한시장 <span class="sub">Chợ Hàn</span></td><td data-label="가는 법 · 시간">호텔에서 걸어서 5~10분 · 7~19시</td><td data-label="주로 사는 것">1층 건망고·견과·젤리·커피 / 2층 아오자이·크록스·옷·가방·속옷</td><td data-label="가격 방식"><span class="tag haggle">흥정</span></td><td data-label="알아둘 점">에어컨이 없어 오전이 편해요. 옷·신발·가방은 2층이 강점이라는 후기가 많아요.</td></tr>
+      <tr><td class="place">롯데마트 다낭</td><td data-label="가는 법 · 시간">그랩 10~15분</td><td data-label="주로 사는 것">과자·소스·라면·커피·건망고·견과(대용량)</td><td data-label="가격 방식"><span class="tag fixed">정찰제</span></td><td data-label="알아둘 점">기념품은 4층. 'BUY 5 FREE 1', 3+1 행사가 자주 있어요. 계산 줄이 길어요.</td></tr>
+      <tr><td class="place">고마트 <span class="sub">GO! 다낭, 옛 빅씨</span></td><td data-label="가는 법 · 시간">그랩 5~10분</td><td data-label="주로 사는 것">롯데마트와 비슷한 품목</td><td data-label="가격 방식"><span class="tag fixed">정찰제</span></td><td data-label="알아둘 점">롯데보다 100~200원 싼 품목이 있지만 종류는 적어요. 거스름돈·불친절 후기가 있어 영수증을 확인하세요.</td></tr>
+      <tr><td class="place">윈마트 <span class="sub">빈컴플라자 지하</span></td><td data-label="가는 법 · 시간">그랩 5분 (강 건너)</td><td data-label="주로 사는 것">과자·견과·치약 행사 상품</td><td data-label="가격 방식"><span class="tag fixed">정찰제</span></td><td data-label="알아둘 점">행사가가 붙으면 롯데마트보다 싼 품목이 있어요.</td></tr>
+      <tr><td class="place">엘스토어 <span class="sub">L'Store · 02 Nguyễn Thái Học</span></td><td data-label="가는 법 · 시간">한시장 옆, 걸어서 10분 · 8:30~21시</td><td data-label="주로 사는 것">망고·소금·코코넛 커피, 쿠키, 비누·스크럽, 건과일</td><td data-label="가격 방식"><span class="tag fixed">정찰제</span></td><td data-label="알아둘 점">에어컨·시식·선물 포장이 좋아요. 같은 양이면 마트·한시장보다 비싸요.</td></tr>
+      <tr><td class="place">동마켓 <span class="sub">Đông Market · 80 Dương Tự Minh</span></td><td data-label="가는 법 · 시간">미케비치 쪽, 그랩 10분</td><td data-label="주로 사는 것">한국인 인기 기념품, 옷·가방, 3층 약국</td><td data-label="가격 방식"><span class="tag fixed">정찰제</span></td><td data-label="알아둘 점">하트치약이 싼 편(5.9만동). 가방은 사물함에 맡기고 들어가요. 유튜버 제휴 할인을 내건 홍보형 매장이에요.</td></tr>
+      <tr><td class="place">한시장 주변 약국 <span class="sub">하나약국 등</span></td><td data-label="가는 법 · 시간">걸어서</td><td data-label="주로 사는 것">하트치약·해리포터 치약·연고·파스</td><td data-label="가격 방식"><span class="tag fixed">정찰제</span></td><td data-label="알아둘 점">하트치약 5만~6.5만동. 롯데마트에는 재고가 없을 때가 많아요.</td></tr>
+      <tr><td class="place">이온몰 다낭 <span class="sub">새로 연 쇼핑몰</span></td><td data-label="가는 법 · 시간">그랩 · 10~22시</td><td data-label="주로 사는 것">유니클로·무인양품, 푸드코트</td><td data-label="가격 방식"><span class="tag fixed">정찰제</span></td><td data-label="알아둘 점">비 오는 날 실내 일정으로 좋아요.</td></tr>
+      <tr><td class="place">호이안 야시장</td><td data-label="가는 법 · 시간">일요일 호이안 일정에</td><td data-label="주로 사는 것">롱샴·키플링 스타일 가방, 바지, 뜨개 인형</td><td data-label="가격 방식"><span class="tag haggle">흥정</span></td><td data-label="알아둘 점">부른 값의 절반부터 시작하라는 후기가 많아요.</td></tr>
+      <tr><td class="place">피할 곳</td><td data-label="가는 법 · 시간"></td><td data-label="주로 사는 것">선짜 야시장 · 헬리오 야시장 · 공항 기념품점</td><td data-label="가격 방식"><span class="tag skip">비추천</span></td><td data-label="알아둘 점">선짜 야시장은 흥정이 안 되고 비싸다는 후기, 헬리오는 2025년 9월부터 휴업, 공항은 급할 때만.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section aria-labelledby="h-food">
+  <h2 id="h-food">먹거리 · 커피 · 소스</h2>
+  <div class="tbl">
+  <table class="price-tbl">
+    <thead><tr><th>품목</th><th>한시장 (잘 산 값)</th><th>마트 · 정찰제 매장</th><th>메모</th></tr></thead>
+    <tbody>
+      <tr><td>탑젤리 망고젤리 <span class="sub">320g 1봉</span></td><td data-label="한시장 (잘 산 값)"><span class="good">2.4만</span><span class="dim"> · 보통 2.5만~3만동</span></td><td data-label="마트 · 정찰제 매장" class="num">롯데 4.4만~4.75만 · 875g 10.5만</td><td data-label="메모">“다른 걸 25만동 넘게 사야 판다”는 가게는 그냥 나오세요.</td></tr>
+      <tr><td>체리쉬 망고 푸딩젤리 <span class="sub">850g</span></td><td data-label="한시장 (잘 산 값)"><span class="dim">소포장 2.5만~3만</span></td><td data-label="마트 · 정찰제 매장" class="num">동마켓 5.89만 · 롯데 6.69만 · 윈마트 6.9만~7.5만</td><td data-label="메모">대용량은 동마켓이 가장 쌌다는 비교 후기.</td></tr>
+      <tr><td>건망고</td><td data-label="한시장 (잘 산 값)"><span class="good">500g 8만</span><span class="dim"> · 보통 8만~12만 · 1kg 13만~24만</span></td><td data-label="마트 · 정찰제 매장" class="num">THD 100g 3.93만 · 고마트 소포장 묶음 5.6만 · 엘스토어 소포장 7만</td><td data-label="메모">유통기한과 실제 중량을 꼭 확인하세요.</td></tr>
+      <tr><td>캐슈넛</td><td data-label="한시장 (잘 산 값)"><span class="good">500g 7만~10만</span><span class="dim"> · 보통 9만~12만</span></td><td data-label="마트 · 정찰제 매장" class="num">250g 고마트 11.5만 · 롯데 12.4만 · 윈마트 13.6만 / 500g 엘스토어 23만</td><td data-label="메모">한시장이 가장 싸요. 진공포장인지 보세요.</td></tr>
+      <tr><td>마카다미아</td><td data-label="한시장 (잘 산 값)"><span class="good">500g 8만~10만</span><span class="dim"> · 보통 10만~18만</span></td><td data-label="마트 · 정찰제 매장" class="num">롯데 250g 12.85만 · 고마트 13만 · 엘스토어 500g 18만 · 동마켓 깐 것 250g 18.9만</td><td data-label="메모">통마카다미아는 껍질 무게가 커요.</td></tr>
+      <tr><td>코코넛 과자 · 칩</td><td data-label="한시장 (잘 산 값)"><span class="good">1봉 1.5만~2만</span></td><td data-label="마트 · 정찰제 매장" class="num">동마켓 120g 1.5만 · 롯데 코코넛 쿠키 2.5만~3.7만 · 엘스토어 코코넛칩 병 7만</td><td data-label="메모">나눠 줄 선물로 인기.</td></tr>
+      <tr><td>G7 커피믹스</td><td data-label="한시장 (잘 산 값)">20개입 3.5만~4.5만</td><td data-label="마트 · 정찰제 매장" class="num">롯데 블랙 50개입 12만</td><td data-label="메모">시장·마트 가격 차이가 거의 없어요.</td></tr>
+      <tr><td>콘삭 다람쥐 커피</td><td data-label="한시장 (잘 산 값)"></td><td data-label="마트 · 정찰제 매장" class="num">롯데 드립 3.5만 · 10개입 5.8만~6만</td><td data-label="메모">진짜 다람쥐 커피가 아니라 상표 이름이에요.</td></tr>
+      <tr><td>코코넛 커피 <span class="sub">아치카페 스틱</span></td><td data-label="한시장 (잘 산 값)"></td><td data-label="마트 · 정찰제 매장" class="num">롯데 6.7만~7.65만</td><td data-label="메모">엘스토어 자체 코코넛 커피는 20만동(고급 포장).</td></tr>
+      <tr><td>망고커피 <span class="sub">10개입</span></td><td data-label="한시장 (잘 산 값)"></td><td data-label="마트 · 정찰제 매장" class="num">엘스토어 21만 · 롯데 13.9만 (3+1이면 박스당 10.4만)</td><td data-label="메모">엘스토어에서 시음해 보고 사는 사람이 많아요.</td></tr>
+      <tr><td>위즐(족제비) 커피</td><td data-label="한시장 (잘 산 값)"></td><td data-label="마트 · 정찰제 매장" class="num">엘스토어 다크 25만 · 마일드 28만</td><td data-label="메모">시장의 ‘루왁’은 가짜가 많아요 (65만 부르다 30만까지 내린 사례).</td></tr>
+      <tr><td>하오하오 라면</td><td data-label="한시장 (잘 산 값)"></td><td data-label="마트 · 정찰제 매장" class="num">롯데 봉지 4,100 · 컵 9,400~9,700</td><td data-label="메모"></td></tr>
+      <tr><td>친수 칠리소스 · 간장</td><td data-label="한시장 (잘 산 값)"></td><td data-label="마트 · 정찰제 매장" class="num">칠리소스 1.3만~1.8만 · 마늘고추간장 330ml 2.45만</td><td data-label="메모">병은 위탁 짐에.</td></tr>
+      <tr><td>새우소금</td><td data-label="한시장 (잘 산 값)"></td><td data-label="마트 · 정찰제 매장" class="num">동마켓 1.65만 · 롯데 1.67만~1.79만</td><td data-label="메모">과일에 찍어 먹는 소금.</td></tr>
+      <tr><td>피시소스 <span class="sub">느억맘 290~300g</span></td><td data-label="한시장 (잘 산 값)"></td><td data-label="마트 · 정찰제 매장" class="num">롯데 2.35만~3.49만</td><td data-label="메모">새지 않게 지퍼백에 싸서 위탁 짐에.</td></tr>
+      <tr><td>라이스페이퍼</td><td data-label="한시장 (잘 산 값)"></td><td data-label="마트 · 정찰제 매장" class="num">롯데 1.65만~2.55만</td><td data-label="메모"></td></tr>
+      <tr><td>생과일 <span class="sub">1kg</span></td><td data-label="한시장 (잘 산 값)"><span class="good">망고 3만~4만</span><span class="dim"> · 애플망고 4만~5만 · 망고스틴 6만~10만</span></td><td data-label="마트 · 정찰제 매장" class="num">윈마트 망고 2만~3만</td><td data-label="메모">손질은 눈앞에서 보고 무게도 확인. 상한 과일을 받은 후기가 있어요.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section aria-labelledby="h-pharm">
+  <h2 id="h-pharm">치약 · 약국 · 생활용품</h2>
+  <div class="tbl">
+  <table class="price-tbl">
+    <thead><tr><th>품목</th><th>한시장 (잘 산 값)</th><th>마트 · 정찰제 매장</th><th>메모</th></tr></thead>
+    <tbody>
+      <tr><td>하트치약 <span class="sub">콜게이트 1개</span></td><td data-label="한시장 (잘 산 값)"><span class="good">3개 14만~17만</span></td><td data-label="마트 · 정찰제 매장" class="num">약국 5만~6.5만 · 동마켓 5.9만 · 빈컴 윈마트 행사 3.7만~4만 (종류 확인)</td><td data-label="메모">롯데마트 앞 약국 3개 세트 22.5만은 비싼 편.</td></tr>
+      <tr><td>해리포터 치약</td><td data-label="한시장 (잘 산 값)"></td><td data-label="마트 · 정찰제 매장" class="num">엘스토어 9만 · 동마켓 9.5만</td><td data-label="메모">요즘 새로 뜬 품목.</td></tr>
+      <tr><td>베리·수박 치약</td><td data-label="한시장 (잘 산 값)"></td><td data-label="마트 · 정찰제 매장" class="num">동마켓 4.9만 · 엘스토어 4.8만 · 고마트 5.2만</td><td data-label="메모"></td></tr>
+      <tr><td>바나나보트 선크림</td><td data-label="한시장 (잘 산 값)"></td><td data-label="마트 · 정찰제 매장" class="num">엘스토어 18만</td><td data-label="메모"></td></tr>
+      <tr><td>천연 비누 <span class="sub">노니·장미·시나몬</span></td><td data-label="한시장 (잘 산 값)"></td><td data-label="마트 · 정찰제 매장" class="num">엘스토어 4.5만~5.5만</td><td data-label="메모">가볍고 나눠 주기 좋아요.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section aria-labelledby="h-wear">
+  <h2 id="h-wear">옷 · 신발 · 가방 <span class="dim" style="font-size:15px;font-family:var(--font-body)">(한시장 2층 중심)</span></h2>
+  <div class="tbl">
+  <table class="price-tbl">
+    <thead><tr><th>품목</th><th>한시장 (잘 산 값)</th><th>다른 곳 · 처음 부르는 값</th><th>메모</th></tr></thead>
+    <tbody>
+      <tr><td>맞춤 아오자이</td><td data-label="한시장 (잘 산 값)"><span class="good">30만</span><span class="dim"> · 레이스·실크 35만~40만</span></td><td data-label="다른 곳 · 처음 부르는 값" class="num">기성복 15만~25만 · 대여 15만</td><td data-label="메모">1~2시간 제작, 호텔 배달 5만~10만. “맞춤 30만 통일”이라는 가게 후기 다수.</td></tr>
+      <tr><td>원피스 · 로브</td><td data-label="한시장 (잘 산 값)"><span class="good">6만~12만</span></td><td data-label="다른 곳 · 처음 부르는 값" class="num">처음엔 17만 부름 · 롯데마트 2층 19.5만</td><td data-label="메모">여러 벌 사면 쉽게 깎아 줘요.</td></tr>
+      <tr><td>티셔츠 <span class="sub">나이키·스투시 스타일</span></td><td data-label="한시장 (잘 산 값)"><span class="good">5만~10만</span></td><td data-label="다른 곳 · 처음 부르는 값" class="num">처음엔 15만~20만 · 야시장도 10만 부름</td><td data-label="메모">반미 티셔츠 20만 → 10만에 산 후기.</td></tr>
+      <tr><td>코끼리 바지</td><td data-label="한시장 (잘 산 값)"><span class="good">짧은 것 3만 · 긴 것 5만</span></td><td data-label="다른 곳 · 처음 부르는 값" class="num">야시장 5만</td><td data-label="메모">정찰제로 파는 가게도 있어요.</td></tr>
+      <tr><td>바람막이 · 경량패딩</td><td data-label="한시장 (잘 산 값)"><span class="good">바람막이 15만</span><span class="dim"> · 패딩 35만</span></td><td data-label="다른 곳 · 처음 부르는 값" class="num">패딩 35만~40만 부름</td><td data-label="메모">입어 보고 안쪽 택·박음질까지 확인.</td></tr>
+      <tr><td>크록스 스타일</td><td data-label="한시장 (잘 산 값)"><span class="good">기본 13만~15만</span><span class="dim"> · 통굽·발레·털 20만~25만</span></td><td data-label="다른 곳 · 처음 부르는 값" class="num">지비츠 세트 7만~10만</td><td data-label="메모">양쪽 다 신어 보고 사세요. 여러 켤레면 1켤레 14만까지.</td></tr>
+      <tr><td>라탄백</td><td data-label="한시장 (잘 산 값)"><span class="good">소 6만 · 중 9만 · 대 12만</span></td><td data-label="다른 곳 · 처음 부르는 값" class="num">보통 소 6만~10만 · 중 10만~18만 · 대 15만~25만</td><td data-label="메모">라탄 모자는 10만에 산 후기.</td></tr>
+      <tr><td>롱샴 스타일 가방</td><td data-label="한시장 (잘 산 값)"><span class="good">25만~36만</span></td><td data-label="다른 곳 · 처음 부르는 값" class="num">호이안 야시장 미니 10만</td><td data-label="메모">가방은 20만동이 넘으면 한국 가격과 비슷해진다는 의견도 있어요.</td></tr>
+      <tr><td>속옷 · 양말</td><td data-label="한시장 (잘 산 값)"><span class="good">질러팬티 10장 29만~30만</span></td><td data-label="다른 곳 · 처음 부르는 값" class="num">나이키 양말 10켤레 8만~10만</td><td data-label="메모">정품 구별법은 아래 유튜브 참고.</td></tr>
+      <tr><td>캐리어 <span class="sub">24인치</span></td><td data-label="한시장 (잘 산 값)"><span class="good">35만~45만</span></td><td data-label="다른 곳 · 처음 부르는 값" class="num">20인치 30만 · 28인치 45만~55만</td><td data-label="메모">바퀴·손잡이·지퍼를 직접 확인. 흠이 있어야 깎여요.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section aria-labelledby="h-tips">
+  <h2 id="h-tips">흥정 · 주의할 점</h2>
+  <div class="tips">
+    <div class="tip"><h3>한시장 흥정</h3><ul>
+      <li>같은 물건을 2~3곳에서 물어보고 사세요.</li>
+      <li>부른 값의 50~70%에서 시작하고, 여러 개를 묶어서 흥정하세요.</li>
+      <li>“우리 집밖에 없다”는 흥정 멘트예요. 옆옆 가게가 더 싼 경우가 많아요.</li>
+      <li>1만·2만·5만동으로 나눠 들고 가세요. 큰 돈을 꺼내면 값을 다시 올리기도 해요.</li>
+    </ul></div>
+    <div class="tip"><h3>정찰제 매장</h3><ul>
+      <li>롯데마트·윈마트·엘스토어·동마켓·약국은 깎지 말고 행사(5+1, 3+1)를 보세요.</li>
+      <li>카드가 되는 곳이 많아요. 고마트는 영수증과 거스름돈을 확인하세요.</li>
+    </ul></div>
+    <div class="tip"><h3>엄마와 함께라면</h3><ul>
+      <li>한시장은 오전 일찍, 1층 식품은 마트에서 편하게.</li>
+      <li>몇천 동 차이는 몇백 원이에요. 덥고 지치면 정찰제 매장으로.</li>
+      <li>소스·피시소스 병은 위탁 짐에, 생초콜릿·젤리는 보냉 신경 쓰기.</li>
+    </ul></div>
+  </div>
+</section>
+
+<section aria-labelledby="h-src" class="src">
+  <h2 id="h-src">출처</h2>
+  <p>블로그·카페는 실구매 가격 위주로 읽었고, 유튜브는 영상 설명과 목차로 요즘 많이 사는 품목·매장을 확인했습니다. 유튜브 화면 속 가격은 읽지 못했습니다.</p>
+  <div>
+    <h3>블로그 (네이버, 2026년)</h3>
+    <ul>
+      <li><a href="https://blog.naver.com/sorez7/224392388916">한시장 시세표·잘 산 가격 (8/27)</a> · <a href="https://blog.naver.com/nookytory/224443129015">건망고·캐슈넛 실구매 (10/15)</a> · <a href="https://blog.naver.com/cherie_bbing/224365121951">114번 맞춤 아오자이 30만동 (8/6)</a></li>
+      <li><a href="https://blog.naver.com/gkduswn0075/224408138179">루왁 커피 흥정·과일 (9/12)</a> · <a href="https://blog.naver.com/di0neesos/224420972811">반미 티셔츠 흥정 (9/24)</a> · <a href="https://blog.naver.com/gogo_gny0/224377428319">원피스·크록스 (8/13)</a> · <a href="https://blog.naver.com/kild1001/224404775499">가방 흥정 (9/8)</a></li>
+      <li><a href="https://blog.naver.com/shinseulgi94/224405535549">한시장 매장별 실구매 (9/9)</a> · <a href="https://blog.naver.com/fave_zip/224393089240">크록스·망고 (8/28)</a> · <a href="https://blog.naver.com/anniesouthkorea/224378380718">탑젤리 끼워팔기 (8/14)</a> · <a href="https://blog.naver.com/lovely_jwship/224416558521">과일 주의 (9/19)</a></li>
+      <li><a href="https://blog.naver.com/skli0612/224419140789">롯데마트 가격 (9/22)</a> · <a href="https://blog.naver.com/codaeri_fire/224429209153">롯데마트 가격 (10/2)</a> · <a href="https://blog.naver.com/findingacorn/224435776732">롯데마트 견과·젤리 (10/9)</a> · <a href="https://blog.naver.com/li_bcd/224452655309">롯데마트 소스·라이스페이퍼 (10/25)</a></li>
+      <li><a href="https://blog.naver.com/sundolee__/224452340493">고마트 층별 가격 (10/31)</a> · <a href="https://blog.naver.com/bokjjeong/224444219872">빈컴 윈마트 (10/17)</a> · <a href="https://blog.naver.com/jiniyam1113/224406886722">윈마트·고마트 비교 (9/10)</a></li>
+      <li><a href="https://blog.naver.com/lovaileen/224368534757">엘스토어 가격 (8/5)</a> · <a href="https://blog.naver.com/withsonme/224380435743">엘스토어 영수증 (8/16)</a> · <a href="https://blog.naver.com/tnwjd2691/224394513851">엘스토어 망고커피 (8/29)</a> · <a href="https://blog.naver.com/19enmkx1/224448041510">엘스토어 (10/26)</a></li>
+      <li><a href="https://blog.naver.com/hh_1454131/224450973520">동마켓 치약·새우소금 비교 (10/23)</a> · <a href="https://blog.naver.com/kimlily519/224448931469">동마켓 견과 (10/21)</a> · <a href="https://blog.naver.com/shinseulgi94/224435888307">호이안 야시장 (10/9)</a> · <a href="https://blog.naver.com/sunda_y_morning/224422624164">호이안 야시장 가방 (9/25)</a></li>
+    </ul>
+  </div>
+  <div>
+    <h3>카페</h3>
+    <ul>
+      <li><a href="https://cafe.naver.com/happyibook/6339329">한시장 환전 시세 (10/30)</a> · <a href="https://cafe.naver.com/happyibook/6336743">하트치약 한시장 vs 하나약국</a> · <a href="https://cafe.naver.com/happyibook/6326766">망고커피 엘스토어 vs 롯데마트</a></li>
+      <li><a href="https://cafe.naver.com/happyibook/6337831">경량패딩 35만~40만동</a> · <a href="https://cafe.naver.com/happyibook/6327432">고마트 불친절 후기</a> · <a href="https://cafe.naver.com/happyibook/6306262">선짜 야시장 비추</a></li>
+    </ul>
+  </div>
+  <div>
+    <h3>유튜브</h3>
+    <ul>
+      <li><a href="https://www.youtube.com/watch?v=-c1SKTvG9g8">별별리뷰 · 2026 한시장 쇼핑 가이드 (10월)</a> · <a href="https://www.youtube.com/watch?v=Mor9uc84S0I">재잘재희 · 노협찬 한시장 물가 (10월)</a> · <a href="https://www.youtube.com/watch?v=jKnKn9UcoME">또까 · 한시장 vs 롯데마트 vs 고마트 (10월)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=RTUD6tafmRs">망고크루 · 롯데마트 쇼핑리스트 가을판 (10월)</a> · <a href="https://www.youtube.com/watch?v=bWatsTg-SU4">트립온 · 롯데마트 vs GO!마트 15가지 (9월)</a> · <a href="https://www.youtube.com/watch?v=OUJsBojenfY">여행로그 · 쇼핑샵 13곳 (7월)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=ZHs9SCD6Lx4">여행로그 · 한시장 2026 가격·질러팬티 구별 (7월)</a> · <a href="https://www.youtube.com/watch?v=qXrEAVR96lI">별별리뷰 · 다낭 이온몰 (10월)</a></li>
+    </ul>
+  </div>
+</section>
+</main>
+</body>
+</html>
