@@ -88,6 +88,9 @@ h1, h2, h3 { margin: 0; text-wrap: balance; }
 .note b { font-size: 17px; }
 .note details summary { min-height: 44px; display: flex; align-items: center; gap: 6px; font-weight: 700; cursor: pointer; }
 .intro { margin: 0; font-size: 16px; color: var(--muted); }
+.guide-card { display: grid; gap: 4px; margin: 0 0 16px; padding: 14px 16px; border-radius: 14px; background: var(--accent); color: var(--on-accent); text-decoration: none; }
+.guide-card b { font-size: 18px; }
+.guide-card span { font-size: 15px; opacity: .92; }
 .sect-h { font: 700 20px/1.3 var(--font-display); padding-top: 6px; }
 .sect-h small { display: block; font: 400 14px/1.4 var(--font-body); color: var(--muted); }
 
@@ -312,7 +315,8 @@ function renderLists(main, top, sub) {
     <div class="seg">${Object.entries(SUB).map(([k, v]) => `<button type="button" data-sub="${k}" class="${k === sub ? 'on' : ''}">${v}</button>`).join('')}</div>`;
   top.querySelectorAll('[data-sub]').forEach(b => b.addEventListener('click', () => { location.hash = b.dataset.sub; }));
   const keepNote = '<p class="intro">체크한 것은 이 폰에만 저장돼요.</p>';
-  if (sub === 'shopping') main.innerHTML = keepNote + checklist('shop', (LISTS.shopping || []).map((it, i) => ({ id: 'shop' + i, n: it.name, s: [it.price, it.when].filter(Boolean).join(' · '), more: [it.where ? '파는 곳: ' + it.where : '', it.note].filter(Boolean).join(' ') }))) + resetBtn('shop');
+  const shopGuide = '<a class="guide-card" href="https://mom-danang.netlify.app/shopping.html"><b>다낭 쇼핑 시세표 열기 →</b><span>오늘 쇼핑 동선·체크리스트, 품목별 적정가 76개, 쇼핑 장소 32곳, 흥정 한마디</span></a>';
+  if (sub === 'shopping') main.innerHTML = shopGuide + keepNote + checklist('shop', (LISTS.shopping || []).map((it, i) => ({ id: 'shop' + i, n: it.name, s: [it.price, it.when].filter(Boolean).join(' · '), more: [it.where ? '파는 곳: ' + it.where : '', it.note].filter(Boolean).join(' ') }))) + resetBtn('shop');
   else if (sub === 'packing') main.innerHTML = keepNote + (LISTS.packing || []).map((g, gi) => `<h2 class="sect-h">${esc(g.group)}</h2>` + checklist('pack', (g.items || []).map((it, i) => ({ id: 'pack' + gi + '_' + i, n: it.name, s: it.note || '' })))).join('') + resetBtn('pack');
   else if (sub === 'map') main.innerHTML = renderMapView();
   else main.innerHTML = renderInfo();

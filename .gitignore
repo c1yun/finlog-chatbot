@@ -5,3 +5,6 @@ node_modules/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# shopping guide PDF is delivered directly, not stored in the public repo
+danang-app/docs/*.pdf

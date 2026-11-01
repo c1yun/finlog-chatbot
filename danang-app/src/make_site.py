@@ -32,6 +32,13 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navi
 app = app.replace('<meta name="claude:viewport-fit-sides" content="cover">\n', '').replace('<title>엄마와 다낭 5일</title>', '<title>2026다낭여행</title>', 1)
 open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8').write(head + body_start + app + tail)
 
+# shopping guide page (built from docs/danang-shopping.html) with a link back to the app
+shop = open(os.path.join(H, '..', 'docs', 'danang-shopping.html'), encoding='utf-8').read()
+shop = shop.replace('</head>', '<meta name="robots" content="noindex">\n<link rel="icon" href="icon-192.png" type="image/png">\n<style>.back{display:inline-block;font-weight:700;text-decoration:none;font-size:15px}@media print{.back{display:none}}</style>\n</head>', 1)
+shop = shop.replace('<header class="wrap top">\n  <h1>', '<header class="wrap top">\n  <a class="back" href="./index.html#shopping">← 다낭 앱으로</a>\n  <h1>', 1)
+assert 'class="back"' in shop
+open(os.path.join(OUT, 'shopping.html'), 'w', encoding='utf-8').write(shop)
+
 open(os.path.join(OUT, 'manifest.webmanifest'), 'w', encoding='utf-8').write('''{
   "name": "2026다낭여행",
   "short_name": "2026다낭여행",
@@ -51,16 +58,17 @@ open(os.path.join(OUT, 'manifest.webmanifest'), 'w', encoding='utf-8').write('''
 }
 ''')
 open(os.path.join(OUT, 'sw.js'), 'w', encoding='utf-8').write('''// Offline cache. The whole app is one HTML file: serve it cache-first (stale-while-revalidate) so weak hotel wifi never leaves a blank screen.
-const CACHE = 'danang-app-v2';
+const CACHE = 'danang-app-v3';
 const SHELL = './index.html';
-const ASSETS = [SHELL, './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
+const SHOP = './shopping.html';
+const ASSETS = [SHELL, SHOP, './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
   if (url.origin !== location.origin) return; // fonts and map links go straight to the network
-  const key = e.request.mode === 'navigate' ? SHELL : e.request;
+  const key = e.request.mode === 'navigate' ? (url.pathname.endsWith('/shopping.html') ? SHOP : SHELL) : e.request;
   e.respondWith(caches.open(CACHE).then(async c => {
     const cached = await c.match(key, { ignoreSearch: true });
     const net = fetch(e.request).then(r => { if (r && r.ok) c.put(key, r.clone()); return r; }).catch(() => null);
