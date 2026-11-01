@@ -124,13 +124,46 @@ td:first-child { font-weight: 700; }
   .sum { padding: 10px 12px; gap: 2px; }
   .summary { gap: 8px; }
 }
+
+/* today plan */
+.ready { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 14px; }
+.ready span { background: var(--card); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 10px; }
+.ready .rk { background: var(--jade); color: var(--card); border-color: var(--jade); font-weight: 700; }
+.ready .calc { border-color: var(--gold); color: var(--gold); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.step { display: grid; grid-template-columns: 112px 1fr; gap: 0; background: var(--card); border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; }
+.when { background: var(--jade-soft); color: var(--jade); padding: 14px 12px; display: grid; align-content: start; gap: 2px; }
+.when b { font-size: 16px; font-variant-numeric: tabular-nums; }
+.when span { font-size: 13px; font-weight: 700; }
+.step .body { padding: 14px 16px; display: grid; gap: 8px; align-content: start; }
+.step h3 { font-size: 18px; }
+.first { font-size: 15px; }
+.hint { font-size: 14px; color: var(--muted); border-left: 3px solid var(--gold); padding-left: 10px; }
+.chk { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.chk label { display: flex; gap: 10px; align-items: flex-start; padding: 7px 6px; border-radius: 8px; cursor: pointer; }
+.chk label:hover { background: var(--paper); }
+.chk input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--jade); flex: none; }
+.chk span { font-weight: 700; }
+.chk small { font-weight: 400; font-size: 13px; color: var(--muted); }
+.chk em { display: block; font-style: normal; font-weight: 500; color: var(--gold); font-size: 14px; font-variant-numeric: tabular-nums; }
+.chk input:checked + span { opacity: .45; text-decoration: line-through; }
+.pick { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pick > div { border: 1px solid var(--rule); border-radius: 12px; padding: 10px 12px; display: grid; gap: 4px; align-content: start; }
+.talk { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 8px; }
+.talk div { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 10px 14px; display: grid; gap: 2px; }
+.talk span { color: var(--jade); font-size: 15px; }
+@media (max-width: 640px) {
+  .step { grid-template-columns: 1fr; }
+  .when { grid-auto-flow: column; justify-content: start; gap: 10px; align-items: baseline; padding: 10px 14px; }
+  .pick { grid-template-columns: 1fr; }
+}
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
 <header class="wrap top">
   <h1>다낭 쇼핑 시세표</h1>
-  <p class="lede">2026년 8~10월 네이버 블로그·카페 실구매 기록에, 보내 주신 구글 지도 캡처 16장과 유튜브 11개를 합쳐 다시 정리했습니다. 체험단·협찬 글은 뺐습니다.</p>
+  <p class="lede">2026년 8~10월 네이버 블로그·카페 실구매 기록에, 보내 주신 구글 지도 캡처 16장, 유튜브 12개, 별별리뷰 한시장 시세표를 합쳐 정리했습니다. 체험단·협찬 글은 뺐습니다.</p>
   <div class="fx" aria-label="환산표">
     <span class="pill">1만동 ≈ <b>520원</b></span>
     <span class="pill">5만동 ≈ <b>2,600원</b></span>
@@ -143,13 +176,131 @@ td:first-child { font-weight: 700; }
 
 <nav class="tabs" aria-label="페이지">
   <div class="wrap">
-    <a href="#food" data-view="food">① 먹거리·약국<small>쇼핑리스트·적정가</small></a>
-    <a href="#wear" data-view="wear">② 옷·가방<small>쇼핑리스트·적정가</small></a>
-    <a href="#places" data-view="places">③ 쇼핑 장소<small>장소별 특징</small></a>
+    <a href="#today" data-view="today">오늘 쇼핑<small>동선·체크</small></a>
+    <a href="#food" data-view="food">① 먹거리<small>적정가</small></a>
+    <a href="#wear" data-view="wear">② 옷·가방<small>적정가</small></a>
+    <a href="#places" data-view="places">③ 장소<small>특징</small></a>
   </div>
 </nav>
 
 <main>
+<!-- 오늘 쇼핑 -->
+<div class="view wrap" id="today">
+  <div class="vhead">
+    <span class="k">오늘 쇼핑 플랜 · 11월 1일 (일)</span>
+    <h2 style="font-size:26px;color:var(--ink)">오전엔 한시장, 오후엔 에어컨 매장과 마트</h2>
+    <p class="lede">호텔(코트야드, 58 Bạch Đằng)에서 걸어서 시작해요. 가격은 <b style="color:var(--gold)">이 값이면 잘 산 값</b>이고, 사고 나면 체크하세요. 체크는 이 폰에 저장돼요.</p>
+  </div>
+
+  <div class="ready">
+    <span class="rk">챙길 것</span>
+    <span>현금 1만·2만·5만·10만동 나눠서</span><span>카드 (정찰제 매장)</span><span>에코백</span><span>물·모자</span>
+    <span class="calc">동 → 원: <b>0 하나 빼고 ÷ 2</b> (10만동 → 약 5천 원)</span>
+  </div>
+
+  <ol class="steps">
+    <li class="step">
+      <div class="when"><b>10:30~12:30</b><span>오전</span></div>
+      <div class="body">
+        <h3>한시장 <span class="tag haggle">흥정</span> <span class="dim" style="font-weight:400;font-size:14px">호텔에서 강변 따라 걸어서 5분 · 119 Trần Phú</span></h3>
+        <p class="first">① 먼저 <b>2층 아오자이 맞춤부터 맡기기</b> (1~2시간 걸려요) — 수선비 포함인지, 몇 시에 찾는지 확인</p>
+        <ul class="chk">
+          <li><label><input type="checkbox" data-k="aodai"><span>맞춤 아오자이 <em>95번 기본 25만·레이스 32만 / 114번 30만·40만 / 87번 37만 (수선 포함)</em></span></label></li>
+        </ul>
+        <p class="first">② 2층 쇼핑 <span class="dim">(숫자 = 가게 번호)</span></p>
+        <ul class="chk">
+          <li><label><input type="checkbox" data-k="crocs"><span>크록스 <em>253·254번 12만~13만 · 털크록스 20만~23만</em></span></label></li>
+          <li><label><input type="checkbox" data-k="under"><span>질러팬티·브라·양말 <em>165번 팬티 1장 3만 · 브라 5만 · 나이키 양말 10켤레 8만</em></span></label></li>
+          <li><label><input type="checkbox" data-k="dress"><span>원피스 <em>132번 기본 10만 · 129·241·243번 12만~25만 · 197번 린넨 20만~28만</em></span></label></li>
+          <li><label><input type="checkbox" data-k="hawaii"><span>하와이안 <em>221번 원피스 8만 · 남자 셔츠 12만 · 폴로셔츠 17만</em></span></label></li>
+          <li><label><input type="checkbox" data-k="pants"><span>코끼리바지 <em>203번 여성 3만 · 남성 4만</em></span></label></li>
+          <li><label><input type="checkbox" data-k="tee"><span>티셔츠·반바지 <em>145번 스투시 반팔 11만 · 141번 말본 반바지 12만</em></span></label></li>
+          <li><label><input type="checkbox" data-k="bag"><span>가방·모자 <em>라탄백 소 6만·중 9만·대 12만 · 라탄모자 12만 · 키플링·바오바오 30만 · 301번 캐리어 35만</em></span></label></li>
+        </ul>
+        <p class="first">③ 1층 먹거리 <span class="dim">(가장 싼 곳)</span></p>
+        <ul class="chk">
+          <li><label><input type="checkbox" data-k="nuts"><span>견과 <em>마카다미아 500g 8만~10만 · 캐슈넛 500g 7만~10만</em></span></label></li>
+          <li><label><input type="checkbox" data-k="mangod"><span>건망고 <em>500g 6만~9만 (유통기한·중량 확인)</em></span></label></li>
+          <li><label><input type="checkbox" data-k="jelly"><span>탑젤리 망고젤리 <em>320g 2.4만~3만</em></span></label></li>
+          <li><label><input type="checkbox" data-k="mango"><span>생망고 <em>77번 1kg 3만 (무게는 눈앞에서)</em></span></label></li>
+          <li><label><input type="checkbox" data-k="pearl"><span>진주 <em>21번 목걸이 30만 · 반지 12만</em></span></label></li>
+        </ul>
+        <p class="hint">수선 부스는 2층 오른쪽 끝. 2~3곳 물어보고, 부른 값의 50~70%에서 시작해서 위 가격 근처면 사세요.</p>
+      </div>
+    </li>
+
+    <li class="step">
+      <div class="when"><b>12:30~14:00</b><span>점심·쉬기</span></div>
+      <div class="body">
+        <h3>점심 먹고 시원한 곳에서 쉬기</h3>
+        <p>콩카페 2층 강변 자리 (코코넛 커피, 현금 준비) 또는 찐 카페. 다 쉬었으면 한시장에서 <b>아오자이 찾기</b>.</p>
+      </div>
+    </li>
+
+    <li class="step">
+      <div class="when"><b>14:00~16:00</b><span>오후 ①</span></div>
+      <div class="body">
+        <h3>걸어서 정찰제 매장 <span class="tag fixed">정찰제·에어컨</span></h3>
+        <p class="dim" style="font-size:14px">한시장 → Trần Phú 거리 남쪽으로 → 엘스토어 → 뷰모리 순서</p>
+        <ul class="chk">
+          <li><label><input type="checkbox" data-k="central"><span>센트럴마켓 <small>167 Trần Phú</small> <em>라탄백·원피스 구경, 망고커피 5스틱 4.9만</em></span></label></li>
+          <li><label><input type="checkbox" data-k="bubu"><span>부부샵 &amp; 마담홍 <small>147 Trần Phú</small> <em>차·꿀·코코넛 과자 (포장 고급)</em></span></label></li>
+          <li><label><input type="checkbox" data-k="hana"><span>하나약국 <small>149 Trần Phú · 한국인 운영</small> <em>하트치약 5만~6.5만 · 비판텐 6.7만~6.9만 · 해리포터 치약 9.8만 · 호랑이 연고 3.5만~4만</em></span></label></li>
+          <li><label><input type="checkbox" data-k="lstore"><span>엘스토어 <small>02 Nguyễn Thái Học</small> <em>커피 시음 · 천연 비누 4.5만~5.5만 · 2층 마그넷</em></span></label></li>
+          <li><label><input type="checkbox" data-k="viewmory"><span>뷰모리 <small>58 Yên Bái · 한국인 운영</small> <em>마카다미아 250g 10.5만 · 캐슈넛 250g 12만 · 망고잼 11만 → 호텔 배달 3만동</em></span></label></li>
+        </ul>
+        <p class="hint">가방을 흥정 없이 보고 싶으면: 멜리어 (111 Trần Phú, 현금만, 19시 마감) · 타발로 (44 Nguyễn Thái Học, 카드 가능).</p>
+      </div>
+    </li>
+
+    <li class="step">
+      <div class="when"><b>16:30~19:00</b><span>오후 ②</span></div>
+      <div class="body">
+        <h3>그랩으로 마트 한 곳 <span class="tag fixed">정찰제</span></h3>
+        <div class="pick">
+          <div><b>A · 롯데마트</b> <span class="dim">6 Nại Nam · 그랩 10~15분 · 22시까지</span>
+            <ul class="chk">
+              <li><label><input type="checkbox" data-k="lotte1"><span>과자 <em>칼치즈 2.65만 · 아하 치즈과자 2.39만 · 안 쌀과자 1.59만</em></span></label></li>
+              <li><label><input type="checkbox" data-k="lotte2"><span>커피 <em>G7 · 콘삭 10개입 5.8만~6만 · 망고커피 3+1 (박스당 10.4만)</em></span></label></li>
+              <li><label><input type="checkbox" data-k="lotte3"><span>소스·라면 <em>칠리소스 1.3만~1.8만 · 새우소금 1.7만 · 하오하오 4,100</em></span></label></li>
+              <li><label><input type="checkbox" data-k="pop"><span>걸어서 5분 다낭팝 <em>치약 · 질러팬티 10장 30만 · 롱샴 미니 9.9만</em></span></label></li>
+            </ul>
+          </div>
+          <div><b>B · 동마켓</b> <span class="dim">80 Dương Tự Minh · 3층 · 22시까지</span>
+            <ul class="chk">
+              <li><label><input type="checkbox" data-k="dong1"><span>별별리뷰 구독자 20% 할인 <em>영상 설명 기준 — 계산 전에 유튜브 구독 화면 보여 주기</em></span></label></li>
+              <li><label><input type="checkbox" data-k="dong2"><span>치약·젤리 <em>하트치약 5.9만 · 체리쉬 850g 5.89만 · 해리포터 치약 9.5만</em></span></label></li>
+              <li><label><input type="checkbox" data-k="dong3"><span>과자·견과 <em>코코넛 과자 120g 1.5만 · 새우소금 1.65만</em></span></label></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li class="step">
+      <div class="when"><b>21:00</b><span>밤</span></div>
+      <div class="body">
+        <h3>용다리 불·물 쇼 (토·일)</h3>
+        <p>오늘은 일요일이라 쇼가 있어요. 강변 따라 걸어서 20분, 그랩 5분.</p>
+      </div>
+    </li>
+  </ol>
+
+  <section aria-labelledby="h-talk">
+    <h2 id="h-talk">흥정 한마디</h2>
+    <div class="talk">
+      <div><b>얼마예요?</b><span>Bao nhiêu tiền? · 바오 니에우 띠엔</span></div>
+      <div><b>너무 비싸요</b><span>Mắc quá! · 막 꽈</span></div>
+      <div><b>깎아 주세요</b><span>Bớt đi · 벗 디</span></div>
+      <div><b>두 개면 얼마예요?</b><span>Hai cái bao nhiêu? · 하이 까이 바오 니에우</span></div>
+      <div><b>카드 돼요?</b><span>Quẹt thẻ được không? · 꾸엣 테 드억 콩</span></div>
+      <div><b>괜찮아요 (안 살게요)</b><span>Thôi · 토이 — 돌아서면 값이 내려가요</span></div>
+    </div>
+    <p class="note">숫자는 계산기나 휴대폰에 찍어 달라고 하세요. 가격표의 “100k”는 10만동이에요.</p>
+  </section>
+  <p class="foot">한시장 가게 번호와 가격은 별별리뷰(조이블리) 한시장 시세표와 2026년 블로그 후기를 합친 값이에요. 출처는 <a href="#h-src">③ 장소 탭 맨 아래</a>.</p>
+</div>
+
 <!-- ① 먹거리 · 커피 · 약국 -->
 <div class="view wrap" id="food">
   <div class="vhead">
@@ -173,7 +324,7 @@ td:first-child { font-weight: 700; }
 <tr><td>동결건조 과일 <span class="sub">망고 · 망고스틴</span></td><td data-label="적정가 (이 값이면 OK)"></td><td data-label="매장별 실구매가" class="num">뷰모리 동결건조 망고 40g 7만 · 센트럴마켓 동결건조 망고스틴 30만</td><td data-label="메모">바삭한 과자 식감. 가볍고 부피가 작아 선물용.</td></tr>
 <tr><td>망고잼 · 캐슈넛버터</td><td data-label="적정가 (이 값이면 OK)"><span class="good">망고잼 10만 안팎</span><span class="won">≈ 5,200~5,700원</span></td><td data-label="매장별 실구매가" class="num">뷰모리 망고잼 180g 10만~11만 · 캐슈넛버터 17만~18.5만</td><td data-label="메모">뷰모리에서 맛보고 살 수 있어요.</td></tr>
 <tr><td>꿀 <span class="sub">320ml</span></td><td data-label="적정가 (이 값이면 OK)"></td><td data-label="매장별 실구매가" class="num">뷰모리 목청꿀 49만 · 석청꿀 52만 · 약초꿀 83만 (210ml 44만~)</td><td data-label="메모">비싼 편이라 특별 선물용.</td></tr>
-<tr><td>생과일 <span class="sub">1kg</span></td><td data-label="적정가 (이 값이면 OK)"><span class="good">망고 3만~4만</span><span class="won">≈ 1,600~2,100원</span></td><td data-label="매장별 실구매가" class="num">애플망고 4만~5만 · 망고스틴 6만~10만 (한시장) · 윈마트 망고 2만~3만</td><td data-label="메모">무게를 눈앞에서 확인. 상한 과일이 섞였다는 후기가 있어요.</td></tr>
+<tr><td>생과일 <span class="sub">1kg</span></td><td data-label="적정가 (이 값이면 OK)"><span class="good">망고 3만~4만</span><span class="won">≈ 1,600~2,100원</span></td><td data-label="매장별 실구매가" class="num">한시장 1층 77번 망고 1kg 3만 · 애플망고 4만~5만 · 망고스틴 6만~10만 · 윈마트 망고 2만~3만</td><td data-label="메모">무게를 눈앞에서 확인. 상한 과일이 섞였다는 후기가 있어요.</td></tr>
 </tbody></table></div>
 </section>
 <section aria-labelledby="h-snack"><h2 id="h-snack">과자 · 젤리 · 간식</h2>
@@ -259,11 +410,11 @@ td:first-child { font-weight: 700; }
   <nav class="jump" aria-label="이 탭 안에서 이동"><a href="#h-clothes">옷</a><a href="#h-under">속옷 · 양말</a><a href="#h-shoes">신발</a><a href="#h-bags">가방 · 캐리어</a><a href="#h-gift">기념품 · 소품</a></nav>
   <section aria-labelledby="h-clothes"><h2 id="h-clothes">옷</h2>
 <div class="tbl"><table class="price-tbl"><thead><tr><th>품목</th><th>적정가 (이 값이면 OK)</th><th>매장별 실구매가</th><th>메모</th></tr></thead><tbody>
-<tr><td>맞춤 아오자이</td><td data-label="적정가 (이 값이면 OK)"><span class="good">30만</span><span class="won">≈ 1.6만 원</span></td><td data-label="매장별 실구매가" class="num">레이스·실크 35만~40만 · 기성복 15만~25만 · 대여 15만</td><td data-label="메모">1~2시간이면 완성, 호텔 배달 5만~10만. 114번 가게 “맞춤 30만 통일” 후기가 여럿. 가장 먼저 맡기고 다른 쇼핑을.</td></tr>
-<tr><td>원피스 · 로브</td><td data-label="적정가 (이 값이면 OK)"><span class="good">6만~12만</span><span class="won">≈ 3,100~6,200원</span></td><td data-label="매장별 실구매가" class="num">처음엔 17만 부름 · 롯데마트 2층 19.5만</td><td data-label="메모">센트럴마켓·부부샵 같은 정찰제샵은 더 비싸지만 품질이 좋다는 평.</td></tr>
+<tr><td>맞춤 아오자이</td><td data-label="적정가 (이 값이면 OK)"><span class="good">25만~30만</span><span class="won">≈ 1.3만~1.6만 원</span></td><td data-label="매장별 실구매가" class="num">95번 기본 25만·레이스 32만 · 114번 기본 30만·레이스 40만 · 87번 37만(실크 느낌, 수선 포함) · 기성복 15만~25만 · 대여 15만</td><td data-label="메모">1~2시간이면 완성, 호텔 배달 5만~10만. 수선비 포함인지 꼭 확인. 가장 먼저 맡기고 다른 쇼핑을.</td></tr>
+<tr><td>원피스 · 로브</td><td data-label="적정가 (이 값이면 OK)"><span class="good">10만~25만</span><span class="won">≈ 5,200원~1.3만 원</span></td><td data-label="매장별 실구매가" class="num">132번 기본 10만 · 129·241·243번 12만~25만 (품질별) · 197번 린넨 20만~28만 · 221번 하와이안 8만 · 롯데마트 2층 19.5만</td><td data-label="메모">센트럴마켓·부부샵 같은 정찰제샵은 더 비싸지만 품질이 좋다는 평.</td></tr>
 <tr><td>티셔츠 <span class="sub">나이키·스투시 스타일</span></td><td data-label="적정가 (이 값이면 OK)"><span class="good">5만~10만</span><span class="won">≈ 2,600~5,200원</span></td><td data-label="매장별 실구매가" class="num">한시장 141번 가격표: 룰루레몬·나이키 8만 · 스투시 15만 (2벌 25만) / 반미 티셔츠 20만 → 10만</td><td data-label="메모">처음엔 15만~20만을 불러요.</td></tr>
-<tr><td>하와이안 셔츠</td><td data-label="적정가 (이 값이면 OK)"></td><td data-label="매장별 실구매가" class="num">용마켓 성인 12만 · 어린이 10만 · 여성 상하 세트 18만</td><td data-label="메모"></td></tr>
-<tr><td>코끼리 · 냉장고 바지</td><td data-label="적정가 (이 값이면 OK)"><span class="good">짧은 것 3만 · 긴 것 5만</span><span class="won">≈ 1,600~2,600원</span></td><td data-label="매장별 실구매가" class="num">다낭팝 냉장고바지 4.5만 · 야시장 5만</td><td data-label="메모">정찰제로 파는 가게도 있어요.</td></tr>
+<tr><td>하와이안 셔츠</td><td data-label="적정가 (이 값이면 OK)"><span class="good">12만</span><span class="won">≈ 6,200원</span></td><td data-label="매장별 실구매가" class="num">한시장 221번 남자 12만 · 커플룩 20만 · 폴로셔츠 17만 / 용마켓 성인 12만 · 어린이 10만</td><td data-label="메모"></td></tr>
+<tr><td>코끼리 · 냉장고 바지</td><td data-label="적정가 (이 값이면 OK)"><span class="good">3만~5만</span><span class="won">≈ 1,600~2,600원</span></td><td data-label="매장별 실구매가" class="num">한시장 203번 여성 3만 · 남성 4만 · 다낭팝 냉장고바지 4.5만 · 야시장 5만</td><td data-label="메모">정찰제로 파는 가게도 있어요.</td></tr>
 <tr><td>그랩 티 · 잠바</td><td data-label="적정가 (이 값이면 OK)"></td><td data-label="매장별 실구매가" class="num">다낭팝 반팔 14만 · 잠바 15.9만 (4XL까지)</td><td data-label="메모"></td></tr>
 <tr><td>바람막이 · 경량패딩</td><td data-label="적정가 (이 값이면 OK)"><span class="good">바람막이 15만 · 패딩 35만</span><span class="won">≈ 7,800원~1.8만 원</span></td><td data-label="매장별 실구매가" class="num">패딩 35만~40만 부름</td><td data-label="메모">입어 보고 안쪽 택·박음질까지 확인.</td></tr>
 <tr><td>고급 이미테이션 옷 <span class="sub">크림샵 · 용마켓</span></td><td data-label="적정가 (이 값이면 OK)"></td><td data-label="매장별 실구매가" class="num">크림샵: 폴로 모자 40만 · 스투시 반팔 54만 · 아미·메종키츠네 70만 · 꼼데 가디건 84만 · 아미 셔츠 100만 / 용마켓: 스투시 맨투맨 50만 · 폴로 반팔 70만 · 아크네 가디건 100만</td><td data-label="메모">시장 물건보다 3~7배 비싸요. 품질을 보고 고르는 곳.</td></tr>
@@ -271,26 +422,26 @@ td:first-child { font-weight: 700; }
 </section>
 <section aria-labelledby="h-under"><h2 id="h-under">속옷 · 양말</h2>
 <div class="tbl"><table class="price-tbl"><thead><tr><th>품목</th><th>적정가 (이 값이면 OK)</th><th>매장별 실구매가</th><th>메모</th></tr></thead><tbody>
-<tr><td>질러팬티</td><td data-label="적정가 (이 값이면 OK)"><span class="good">10장 29만~30만</span><span class="won">≈ 1.5만~1.6만 원</span></td><td data-label="매장별 실구매가" class="num">한시장 162번 정찰제 10장 29만·1장 3만 · 다낭팝 10장 30만 · 멜리어 10장 35만</td><td data-label="메모">50장 넘게 사면 27만까지 깎은 사례. 정품 구별법은 여행로그 유튜브에.</td></tr>
+<tr><td>질러팬티</td><td data-label="적정가 (이 값이면 OK)"><span class="good">10장 29만~30만</span><span class="won">≈ 1.5만~1.6만 원</span></td><td data-label="매장별 실구매가" class="num">한시장 162번 정찰제 10장 29만·1장 3만 · 165번 1장 3만·브라 5만 · 다낭팝 10장 30만 · 멜리어 10장 35만</td><td data-label="메모">50장 넘게 사면 27만까지 깎은 사례. 정품 구별법은 여행로그 유튜브에.</td></tr>
 <tr><td>브라</td><td data-label="적정가 (이 값이면 OK)"></td><td data-label="매장별 실구매가" class="num">멜리어 단추브라 9만 · 일반 13만</td><td data-label="메모"></td></tr>
 <tr><td>나이키 스타일 양말 <span class="sub">10켤레</span></td><td data-label="적정가 (이 값이면 OK)"><span class="good">8만~10만</span><span class="won">≈ 4,200~5,200원</span></td><td data-label="매장별 실구매가" class="num"></td><td data-label="메모"></td></tr>
 </tbody></table></div>
 </section>
 <section aria-labelledby="h-shoes"><h2 id="h-shoes">신발</h2>
 <div class="tbl"><table class="price-tbl"><thead><tr><th>품목</th><th>적정가 (이 값이면 OK)</th><th>매장별 실구매가</th><th>메모</th></tr></thead><tbody>
-<tr><td>크록스 스타일</td><td data-label="적정가 (이 값이면 OK)"><span class="good">기본 13만~15만</span><span class="won">≈ 6,800~7,800원</span></td><td data-label="매장별 실구매가" class="num">통굽·발레·털 20만~25만 · 256번 25만 → 24만</td><td data-label="메모">양쪽 다 신어 보고 사세요. 여러 켤레면 1켤레 14만까지.</td></tr>
+<tr><td>크록스 스타일</td><td data-label="적정가 (이 값이면 OK)"><span class="good">기본 12만~15만</span><span class="won">≈ 6,200~7,800원</span></td><td data-label="매장별 실구매가" class="num">253·254번 12만~13만 · 털크록스 20만~23만 · 통굽·발레 20만~25만 · 256번 25만 → 24만</td><td data-label="메모">양쪽 다 신어 보고 사세요. 여러 켤레면 1켤레 14만까지.</td></tr>
 <tr><td>지비츠 <span class="sub">세트</span></td><td data-label="적정가 (이 값이면 OK)"><span class="good">4만</span><span class="won">≈ 2,100원</span></td><td data-label="매장별 실구매가" class="num">처음엔 7만~10만 부름</td><td data-label="메모">여러 세트면 1만동쯤 더 깎아 줘요.</td></tr>
 </tbody></table></div>
 </section>
 <section aria-labelledby="h-bags"><h2 id="h-bags">가방 · 캐리어</h2>
 <div class="tbl"><table class="price-tbl"><thead><tr><th>품목</th><th>적정가 (이 값이면 OK)</th><th>매장별 실구매가</th><th>메모</th></tr></thead><tbody>
-<tr><td>라탄백</td><td data-label="적정가 (이 값이면 OK)"><span class="good">소 6만 · 중 9만 · 대 12만</span><span class="won">≈ 3,100~6,200원</span></td><td data-label="매장별 실구매가" class="num">보통 소 6만~10만 · 중 10만~18만 · 대 15만~25만 · 멜리어 12만~25만</td><td data-label="메모">라탄 모자는 10만에 산 후기.</td></tr>
+<tr><td>라탄백 · 모자</td><td data-label="적정가 (이 값이면 OK)"><span class="good">소 6만 · 중 9만 · 대 12만</span><span class="won">≈ 3,100~6,200원</span></td><td data-label="매장별 실구매가" class="num">보통 소 6만~10만 · 중 10만~18만 · 대 15만~25만 · 멜리어 12만~25만 · 니트가방 18만~20만</td><td data-label="메모">라탄 모자 10만~12만 · 캡모자 9만.</td></tr>
 <tr><td>롱샴 스타일</td><td data-label="적정가 (이 값이면 OK)"><span class="good">미니 10만~13만 · 중 25만~39만</span><span class="won">≈ 5,200원~2만 원</span></td><td data-label="매장별 실구매가" class="num">한시장 278번 미니 10만 · 다낭팝 미니 9.9만 · 멜리어 미니 13만·중 30만~39만·대 42만·에퓌르 XS 49만~52만 · 타발로 42.9만~47.9만</td><td data-label="메모">20만동이 넘으면 한국 아울렛 정품 값과 비교해 보세요.</td></tr>
 <tr><td>룰루레몬 스타일 가방</td><td data-label="적정가 (이 값이면 OK)"><span class="good">20만~30만</span><span class="won">≈ 1만~1.6만 원</span></td><td data-label="매장별 실구매가" class="num">멜리어 20만~25만 · 타발로 37.9만 (단품 20% 할인하면 30.3만, 2+1 행사)</td><td data-label="메모"></td></tr>
 <tr><td>알로 스타일 가방</td><td data-label="적정가 (이 값이면 OK)"><span class="good">24만~30만</span><span class="won">≈ 1.2만~1.6만 원</span></td><td data-label="매장별 실구매가" class="num">한시장 278번 30만 · 멜리어 24만~35만 · 타발로 37.9만 · 쇼퍼백 42.9만 · 알로 모자 22.9만</td><td data-label="메모"></td></tr>
-<tr><td>키플링 · 바오바오 · 고야드 스타일</td><td data-label="적정가 (이 값이면 OK)"></td><td data-label="매장별 실구매가" class="num">멜리어 키플링 22만~39만 · 바오바오 30만~42만 · 고야드 미니앙주 59만 · 폴렌느 미니 숄더 59만</td><td data-label="메모">멜리어는 정찰제라 깎아 주지 않아요.</td></tr>
-<tr><td>노스페이스 · 베이프 · 휴먼메이드 가방</td><td data-label="적정가 (이 값이면 OK)"></td><td data-label="매장별 실구매가" class="num">타발로 노스페이스 25만 · 용마켓 베이프 30만 · 몽벨 50만 · 휴먼메이드 60만</td><td data-label="메모"></td></tr>
-<tr><td>캐리어 <span class="sub">24인치</span></td><td data-label="적정가 (이 값이면 OK)"><span class="good">35만~45만</span><span class="won">≈ 1.8만~2.3만 원</span></td><td data-label="매장별 실구매가" class="num">20인치 30만 · 28인치 45만~55만 · 멜리어 36만~73만 (크기별) · 다낭팝 (자체 보증수리 최대 5년)</td><td data-label="메모">바퀴·손잡이·지퍼를 직접 확인. 흠이 있어야 깎여요.</td></tr>
+<tr><td>키플링 · 바오바오 · 고야드 스타일</td><td data-label="적정가 (이 값이면 OK)"></td><td data-label="매장별 실구매가" class="num">한시장 키플링 30만 · 301번 바오바오 30만~35만 / 멜리어 키플링 22만~39만 · 바오바오 30만~42만 · 고야드 미니앙주 59만</td><td data-label="메모">멜리어는 정찰제라 깎아 주지 않아요.</td></tr>
+<tr><td>노스페이스 · 베이프 · 휴먼메이드 가방</td><td data-label="적정가 (이 값이면 OK)"></td><td data-label="매장별 실구매가" class="num">한시장 노스페이스 백팩 30만 (큰 것 55만) · 276번 운동백 23만 · 타발로 노스페이스 25만 · 용마켓 베이프 30만 · 휴먼메이드 60만</td><td data-label="메모"></td></tr>
+<tr><td>캐리어 <span class="sub">24인치</span></td><td data-label="적정가 (이 값이면 OK)"><span class="good">35만~45만</span><span class="won">≈ 1.8만~2.3만 원</span></td><td data-label="매장별 실구매가" class="num">한시장 301번 35만 · 20인치 30만 · 28인치 45만~55만 · 멜리어 36만~73만 (크기별) · 다낭팝 (자체 보증수리 최대 5년)</td><td data-label="메모">바퀴·손잡이·지퍼를 직접 확인. 흠이 있어야 깎여요.</td></tr>
 </tbody></table></div>
 </section>
 <section aria-labelledby="h-gift"><h2 id="h-gift">기념품 · 소품</h2>
@@ -298,7 +449,8 @@ td:first-child { font-weight: 700; }
 <tr><td>마그넷</td><td data-label="적정가 (이 값이면 OK)"><span class="good">4만~6.5만</span><span class="won">≈ 2,100~3,400원</span></td><td data-label="매장별 실구매가" class="num">로컬기프트 4만~6.5만 · 입체 자석(반쎄오 등) 16만~20만 · 엘스토어 2층</td><td data-label="메모">로컬기프트 마그넷이 한시장 것보다 예쁘다는 평.</td></tr>
 <tr><td>도자기 그릇 · 수저받침</td><td data-label="적정가 (이 값이면 OK)"></td><td data-label="매장별 실구매가" class="num">로컬기프트 쌀국수 그릇 18만 · 수저받침 3.5만~5.5만 · 종지 5만~7만 · 코코넛볼 3만~6만</td><td data-label="메모">깨지지 않게 꼼꼼히 포장해 줘요.</td></tr>
 <tr><td>핸드메이드 가방</td><td data-label="적정가 (이 값이면 OK)"></td><td data-label="매장별 실구매가" class="num">로컬기프트 33만</td><td data-label="메모"></td></tr>
-<tr><td>스카프 · 방도</td><td data-label="적정가 (이 값이면 OK)"><span class="good">스카프 8만 · 목도리 16만</span><span class="won">≈ 4,200~8,300원</span></td><td data-label="매장별 실구매가" class="num">처음엔 30만~40만 부름 · 멜리어 방도 5만~7만 (묶어 주기 1만~2만)</td><td data-label="메모"></td></tr>
+<tr><td>스카프 · 방도</td><td data-label="적정가 (이 값이면 OK)"><span class="good">스카프 8만 · 목도리 10만~20만</span><span class="won">≈ 4,200원~1만 원</span></td><td data-label="매장별 실구매가" class="num">처음엔 30만~40만 부름 · 멜리어 방도 5만~7만 (묶어 주기 1만~2만)</td><td data-label="메모"></td></tr>
+<tr><td>뜨개 인형 · 진주</td><td data-label="적정가 (이 값이면 OK)"></td><td data-label="매장별 실구매가" class="num">뜨개 인형 6만~22만 · 한시장 1층 21번 진주 목걸이 30만 · 반지 12만</td><td data-label="메모"></td></tr>
 </tbody></table></div>
 </section>
   <section aria-labelledby="h-tips">
@@ -380,7 +532,7 @@ td:first-child { font-weight: 700; }
 <tr><td><span class="place">고마트</span><span class="sub">GO! 다낭 (옛 빅씨)</span><span class="meta"><span class="tag fixed">정찰제</span><a class="map" href="https://www.google.com/maps/search/?api=1&query=GO%21%20%C4%90%C3%A0%20N%E1%BA%B5ng" target="_blank" rel="noopener">지도 ↗</a></span></td><td data-label="시간 · 결제"></td><td data-label="이런 걸 사요">롯데마트와 비슷한 품목</td><td data-label="특징">일부 품목이 100~200원 싸지만 종류는 적어요. 불친절·거스름돈 후기가 있어 영수증 확인.</td></tr>
 <tr><td><span class="place">윈마트</span><span class="sub">빈컴플라자 지하</span><span class="meta"><span class="tag fixed">정찰제</span><a class="map" href="https://www.google.com/maps/search/?api=1&query=Vincom%20Plaza%20%C4%90%C3%A0%20N%E1%BA%B5ng%20WinMart" target="_blank" rel="noopener">지도 ↗</a></span></td><td data-label="시간 · 결제"></td><td data-label="이런 걸 사요">과자·견과·치약 행사 상품</td><td data-label="특징">행사가가 붙으면 롯데보다 싼 품목이 있어요 (하트치약 3.7만~4만).</td></tr>
 <tr><td><span class="place">용마켓</span><span class="sub">Dragon Market · 49 Trần Bạch Đằng (미케 쪽)</span><span class="meta"><span class="tag fixed">정찰제</span><a class="map" href="https://www.google.com/maps/search/?api=1&query=Dragon%20Market%2049%20Tr%E1%BA%A7n%20B%E1%BA%A1ch%20%C4%90%E1%BA%B1ng%20%C4%90%C3%A0%20N%E1%BA%B5ng" target="_blank" rel="noopener">지도 ↗</a></span></td><td data-label="시간 · 결제">10~22시</td><td data-label="이런 걸 사요">기념품·과자·옷·가방·다우니</td><td data-label="특징">5% 할인 쿠폰을 챙겨 가세요. 롯데보다 싼 간식이 있었다는 후기.</td></tr>
-<tr><td><span class="place">동마켓</span><span class="sub">Đông Market · 80 Dương Tự Minh</span><span class="meta"><span class="tag fixed">정찰제</span><a class="map" href="https://www.google.com/maps/search/?api=1&query=%C4%90%C3%B4ng%20Market%2080%20D%C6%B0%C6%A1ng%20T%E1%BB%B1%20Minh%20%C4%90%C3%A0%20N%E1%BA%B5ng" target="_blank" rel="noopener">지도 ↗</a></span></td><td data-label="시간 · 결제"></td><td data-label="이런 걸 사요">한국인 인기 기념품, 옷·가방, 3층 약국</td><td data-label="특징">하트치약 5.9만, 체리쉬 5.89만으로 싼 편. 가방은 사물함에 맡기고 들어가요.</td></tr>
+<tr><td><span class="place">동마켓</span><span class="sub">Đông Market · 80 Dương Tự Minh</span><span class="meta"><span class="tag fixed">정찰제</span><a class="map" href="https://www.google.com/maps/search/?api=1&query=%C4%90%C3%B4ng%20Market%2080%20D%C6%B0%C6%A1ng%20T%E1%BB%B1%20Minh%20%C4%90%C3%A0%20N%E1%BA%B5ng" target="_blank" rel="noopener">지도 ↗</a></span></td><td data-label="시간 · 결제">~22시</td><td data-label="이런 걸 사요">한국인 인기 기념품, 과자·커피·견과, 옷·가방, 3층 약국</td><td data-label="특징">3층 규모로 커졌어요. 하트치약 5.9만, 체리쉬 5.89만으로 싼 편. 별별리뷰 구독자 20% 할인 (영상 설명 기준). 가방은 사물함에 맡기고 들어가요.</td></tr>
 <tr><td><span class="place">이온몰</span><span class="sub">AEON MALL · 46 Điện Biên Phủ (공항에서 차로 5분)</span><span class="meta"><span class="tag fixed">정찰제</span><a class="map" href="https://www.google.com/maps/search/?api=1&query=AEON%20MALL%20%C4%90%C3%A0%20N%E1%BA%B5ng%20Thanh%20Kh%C3%AA" target="_blank" rel="noopener">지도 ↗</a></span></td><td data-label="시간 · 결제">10~22시 (1층 슈퍼 9시)</td><td data-label="이런 걸 사요">1층 슈퍼, 2~3층 옷·생활용품, 4층 푸드코트</td><td data-label="특징">2026년 7월 개장. 1층 안내데스크에서 짐 보관, ATM 있음. 마지막 날 공항 가기 전에 들르기 좋아요.</td></tr>
 </tbody></table></div>
 </section>
@@ -405,8 +557,10 @@ td:first-child { font-weight: 700; }
     <h2 id="h-src">출처</h2>
     <p>블로그·카페는 실구매 가격 위주로 읽었고, 유튜브는 제목·설명·목차로 매장과 품목을 확인했습니다. <b>유튜브 화면 속 가격표는 읽지 못했어요</b> (유튜브가 로그인 확인을 요구해 영상 내용에 접근할 수 없었습니다). 시세표 장면을 캡처해 보내 주시면 그대로 반영할게요.</p>
     <div>
-      <h3>보내 주신 유튜브</h3>
+      <h3>보내 주신 자료</h3>
       <ul>
+        <li>별별리뷰(조이블리) 한시장 시세표 PDF — 가게 번호와 가격 일부를 골라 반영 (지도 그림은 옮기지 않았어요)</li>
+        <li><a href="https://www.youtube.com/watch?v=QH2hSOBdyhs">별별리뷰 · 동마켓</a> — 3층 규모, 밤 10시까지, 별별리뷰 구독자 20% 할인 (영상 설명 기준)</li>
         <li><a href="https://www.youtube.com/watch?v=QFpCrI6fdNg">망고크루 · 한시장 추천·비추천템</a> — 목차로 품목(크록스·캐리어·아오자이·하와이안 셔츠·스포츠 의류·속옷)과 화장실 위치 확인</li>
         <li><a href="https://www.youtube.com/watch?v=OUJsBojenfY">여행로그 · 쇼핑샵 13곳</a> — 서프라이즈몰·센트럴마켓·부부샵·하나약국·블루약국·크림샵·멜리어·타발로·다낭팝·용마켓 목록</li>
         <li><a href="https://www.youtube.com/watch?v=-QATiR6wYH0">나만따라해 · 한시장·선짜 vs 헬리오 야시장</a> — 야시장 비교, ATM 인출</li>
@@ -454,13 +608,13 @@ td:first-child { font-weight: 700; }
 
 <script>
 (function () {
-  var views = ['food', 'wear', 'places'];
+  var views = ['today', 'food', 'wear', 'places'];
   var tabs = document.querySelectorAll('.tabs a[data-view]');
   function route(scroll) {
     var id = decodeURIComponent(location.hash.slice(1));
     var target = id ? document.getElementById(id) : null;
     var host = target ? target.closest('.view') : null;
-    var view = host ? host.id : 'food';
+    var view = host ? host.id : 'today';
     views.forEach(function (v) { document.getElementById(v).hidden = (v !== view); });
     tabs.forEach(function (a) {
       if (a.getAttribute('data-view') === view) a.setAttribute('aria-current', 'page');
@@ -471,6 +625,16 @@ td:first-child { font-weight: 700; }
     else window.scrollTo(0, 0);
   }
   window.addEventListener('hashchange', function () { route(true); });
+  var KEY = 'dn-shop-check';
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
+  document.querySelectorAll('.chk input[data-k]').forEach(function (cb) {
+    cb.checked = !!saved[cb.getAttribute('data-k')];
+    cb.addEventListener('change', function () {
+      saved[cb.getAttribute('data-k')] = cb.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
   route(!!location.hash);
 })();
 </script>
