@@ -514,6 +514,13 @@ function sec4Improve() {
   out.push(p(`**문제** ${S.problem}`, { size: BODY }));
   out.push(tbl(cw([30, 70]), [[headc('카드 항목'), headc('적는 내용')], ...S.fields.map((f, i) => [{ t: `${i + 1}`, align: CENTER, fill: C.gray }, f])], { size: TABLE, padV: 26 }));
   if (S.fieldsNote) out.push(note(S.fieldsNote));
+  if (S.baseline) {
+    const B = S.baseline;
+    out.push(h3('지금 공고가 채운 칸(기준선, 대표 공고 10건)'));
+    out.push(tbl(cw([16, ...B.head.map(() => 10.5), 10.5]), [[headc('기업'), ...B.head.map((x) => headc(x)), headc('점수(/7)')],
+      ...B.rows.map((r) => [{ t: r[0], bold: true, fill: C.gray, align: CENTER }, ...r.slice(1, 8).map((x) => ({ t: x, align: CENTER })), { t: r[8], align: CENTER, bold: true }])], { size: 15, padV: 18, padH: 40 }));
+    out.push(note(B.note));
+  }
   out.push(p(`**실행 주체** ${S.owner}  **확인 지표** ${S.metric}`, { size: 18 }));
 
   out.push(h2('2  전공별 직무 카드 (TOP3와 경계 기업)'));
