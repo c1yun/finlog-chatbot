@@ -5,6 +5,7 @@
 - 확인 득점·확인 배점 → 환산점수 = 확인 득점 ÷ 확인 배점 × 100, 하한 = 확인 득점, 상한 = 하한 + 미확인 배점
 - 정보 충족률 = 확인 배점 ÷ 100 (70% 미만은 TOP3 후보 제외)
 - 2인 평가: 항목 판정은 두 평가자의 평균. _채점조정.md의 제3 평가자 판정이 있으면 그 항목은 조정값을 쓴다.
+- 규칙 통일 재채점(_재채점_*.md, 2026-11-03 '찾지 못함은 미확인'): 기업·항목별 최종 판정이 있으면 위 값보다 앞선다.
 """
 import json
 import re
@@ -77,6 +78,21 @@ def parse_adjust(path):
     return res
 
 
+def parse_recheck():
+    """_재채점_*.md: '| 기업 | 세부 항목(배점) | 최종 판정 | ...' 행 → {기업: {항목: 판정 또는 None}}"""
+    res = {}
+    for path in sorted(NOTES.glob('_재채점_*.md')):
+        for line in path.read_text(encoding='utf-8').splitlines():
+            if not line.startswith('|'):
+                continue
+            cells = [clean(c) for c in line.strip().strip('|').split('|')]
+            if len(cells) < 3 or cells[0] not in ORDER or cells[1] not in ITEMS:
+                continue
+            m = re.match(r'^(\d+(?:\.\d+)?)', cells[2])
+            res.setdefault(cells[0], {})[ITEMS[cells[1]][1]] = float(m.group(1)) if m else None
+    return res
+
+
 def compute(judg):
     """judg: {항목: 판정 또는 None} → 영역별·전체 점수"""
     areas = []
@@ -103,6 +119,7 @@ def compute(judg):
 
 def main():
     out = {}
+    recheck = parse_recheck()
     for key in ORDER:
         fa = NOTES / f'{key}_채점A.md'
         if not fa.exists():
@@ -111,6 +128,7 @@ def main():
         fb = NOTES / f'{key}_채점B.md'
         B = parse(fb) if fb.exists() else None
         adj = parse_adjust(NOTES / f'{key}_채점조정.md')
+        adj.update(recheck.get(key, {}))
         rec = {'A': compute(A)}
         if B:
             rec['B'] = compute(B)
