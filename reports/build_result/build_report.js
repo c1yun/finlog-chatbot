@@ -448,7 +448,15 @@ function sec3Survey() {
   if (fk) out.push(img(fk, 14, { alt: '간판 효과: 조건별 평균 지원 의향과 95% 신뢰구간' }));
   const sig = (x) => (x.ci_welch[0] > 0 || x.ci_welch[1] < 0);
   out.push(p(`응답자마다 카드 평균을 구해 두 조건을 비교했다(웰치 t검정, 부트스트랩 구간 ${fmt(kr.ci_boot[0], 2)}~${fmt(kr.ci_boot[1], 2)}). 부울경 기업 카드의 차이는 ${sig(kr) ? '0을 포함하지 않아 통계적으로 구분되는 차이다' : '0을 포함해 이번 표본으로는 차이가 있다고 말하기 어렵다'}. 이 표본으로 찾아낼 수 있는 최소 차이(유의수준 5%, 검정력 80%)는 약 ${fmt(SV.kanban.mde.raw, 2)}점(효과 크기 ${fmt(SV.kanban.mde.d, 2)})이다. 보여 줌 효과의 지역·수도권 차이(이중차분)는 ${fmt(SV.kanban.did.est, 2)}점(${fmt(SV.kanban.did.ci[0], 2)}~${fmt(SV.kanban.did.ci[1], 2)})이다.`, { size: BODY }));
-  if (META.literature) out.push(p(META.literature, { size: BODY }));
+  if (META.literature) {
+    // 부울경 카드 간판 효과의 방향(95% CI)으로 문장을 고른다: 유의한 하락 = discount, 유의한 상승 = local, 0 포함 = none
+    const L = META.literature;
+    const pat = kr.ci_welch[1] < 0 ? 'discount' : kr.ci_welch[0] > 0 ? 'local' : 'none';
+    const P = L.patterns[pat];
+    const metroUp = km.ci_welch[0] > 0 ? P.metroUp : '';
+    out.push(h3('선행연구·지역 통계와 함께 읽기'));
+    out.push(p(`${L.base} ${P.s1}.${metroUp ? `${metroUp}.` : ''} ${L.stats} ${P.s2}. ${L.limits} (출처는 부록 7)`, { size: BODY }));
+  }
 
   out.push(h3('기업별 학생 선호 (가린 조건)'));
   const fp = figPath('pref');
@@ -640,6 +648,13 @@ function appendix() {
   // 부록 6 계획서 대비 변경
   out.push(h1('부록 6  연구계획서 대비 변경', { pageBreak: true }));
   out.push(tbl(cw([14, 20, 26, 22, 18]), [[headc('항목'), headc('계획'), headc('실제'), headc('이유'), headc('영향')], ...META.changes.map((r) => r.map((x, i) => (i === 0 ? { t: x, bold: true, fill: C.gray } : fillText(x))))], { size: 15, padV: 24, padH: 50 }));
+
+  // 부록 7 선행연구·통계 출처(Ⅲ장 해석 단락)
+  if (META.literature && META.literature.refs) {
+    out.push(h1('부록 7  선행연구·통계 출처 (Ⅲ장 해석)', { before: 300 }));
+    META.literature.refs.forEach((r) => out.push(p(r, { size: 16, after: 40, indent: { left: 300, hanging: 300 } })));
+    out.push(note('7% 임금 양보는 원 논문(Cable & Turban, 2003)의 표를 직접 보지 못해 Lievens & Slaughter(2016)의 요약을 재인용했다. 동남지방통계청은 2025년 동남지방데이터청으로 이름이 바뀌어 자료별 표기를 따랐다.'));
+  }
   return out;
 }
 

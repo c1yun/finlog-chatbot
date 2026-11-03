@@ -138,6 +138,44 @@ module.exports = {
       ] },
   ],
 
-  // 선행연구 해석 단락(심층리서치 결과로 채움)
-  literature: null,
+  // 선행연구·지역 통계와 함께 읽는 해석 단락. 근거: reports/간판 효과 선행연구와 부울경 청년 통계.md(2026. 11. 3.)
+  // build_report.js가 설문 결과(부울경 카드의 간판 효과 방향과 신뢰구간)에 맞는 문장을 고른다.
+  literature: {
+    base: '채용 연구는 구직자가 기업명을 보면 그 기업의 인지도·평판·이미지로 보이지 않는 직무 조건을 추론한다고 본다(Cable & Turban, 2001). 평판이 좋은 기업일수록 실제 지원자가 많고(Turban & Cable, 2003), 구직자는 그런 기업에서 일하려고 약 7% 낮은 임금도 받아들인다(Cable & Turban, 2003; Lievens & Slaughter, 2016에서 재인용). 반면 급여·승진·업무를 함께 보여 주면 기업 인지도의 상대적 중요도는 17.6%로 급여(44.6%)보다 훨씬 작고(Petry et al., 2022), 근무지는 이름과 별개로 보상과 함께 가장 주목받는 조건이다(Barber & Roehling, 1993).',
+    patterns: {
+      discount: {
+        s1: '이번 결과는 덜 알려진 부울경 기업이 같은 조건이어도 이름이 보이면 할인된다는 선행연구와 같은 방향이다',
+        metroUp: ' 수도권 대기업 카드는 이름을 보여 주면 오히려 높아져, 평판이 조건의 신호로 쓰인다는 결과와도 맞는다',
+        s2: '지역 청년이 떠나는 이유의 일부가 조건 자체보다 그 조건이 기업 이름으로 전달되지 않는 정보 구조에 있음을 시사한다',
+      },
+      none: {
+        s1: '이번 표본에서는 이름을 보여 줘도 부울경 기업 카드의 지원 의향이 뚜렷하게 달라지지 않았다. 직무 정보를 구체적으로 보여 주면 기업 인지도의 독자적 영향이 줄어든다는 결과(Allen et al., 2007)와 어긋나지 않는다. 다만 이 표본으로 찾아낼 수 있는 최소 차이보다 작은 효과는 있을 수 있다',
+        metroUp: ' 수도권 대기업 카드만 이름을 보여 주면 높아져, 이름의 신호 효과는 알려진 기업 쪽에서 주로 나타났다',
+        s2: '조건을 같은 형식으로 보여 줄 때 지역기업이 크게 할인되지는 않았다는 뜻이므로, 남은 격차는 조건 자체(가린 조건 안의 부울경 카드와 수도권 카드의 점수 차)에서 찾아야 한다',
+      },
+      local: {
+        s1: '이번 결과는 부울경 학생에게 지역 근무지가 가족·생활권과 가까운 장점으로 읽혔을 가능성을 보여 준다(탐색적 해석; Garver et al., 2019; Buenstorf et al., 2016)',
+        metroUp: ' 수도권 대기업 카드도 이름을 보여 주면 높아졌다',
+        s2: '지역 근무지를 감추기보다 통근·생활권 정보와 함께 드러내는 편이 낫다는 근거가 된다',
+      },
+    },
+    stats: '동남권 대학 졸업자 가운데 300인 이상 사업체에 취업한 사람의 38.0%가 졸업 후 약 1년 반 안에 동남권을 떠났다는 통계(동남지방통계청, 2023)와, 부산 구직자의 69.5%가 임금·복지가 기대에 맞으면 지역 중소기업에 취업할 수 있다고 답한 조사(부산상공회의소, 2022)와 함께 읽으면, 이 결과는',
+    limits: '다만 이번 조사는 기업명과 근무지역을 함께 가렸으므로 두 효과를 나눌 수 없고, 측정한 값은 실제 지원이 아닌 지원 의향이며(Highhouse et al., 2003), 가상 응답과 실제 지원 단계의 효과는 다를 수 있다(Uggerslev et al., 2012). 실제 기업의 같은 조건 카드에서 이름과 근무지역 공개만 바꾼 동료심사 연구는 이번 문헌 검색에서 확인되지 않아, 이 설계는 브랜드 조작 실험과 컨조인트 연구의 유사 설계로 소개한다.',
+    refs: [
+      'Allen, D. G., Mahto, R. V., & Otondo, R. F. (2007). Web-based recruitment: Effects of information, organizational brand, and attitudes toward a Web site on applicant attraction. Journal of Applied Psychology, 92(6), 1696–1708. https://doi.org/10.1037/0021-9010.92.6.1696',
+      'Barber, A. E., & Roehling, M. V. (1993). Job postings and the decision to interview: A verbal protocol analysis. Journal of Applied Psychology, 78(5), 845–856. https://doi.org/10.1037/0021-9010.78.5.845',
+      'Buenstorf, G., Geissler, M., & Krabel, S. (2016). Locations of labor market entry by German university graduates: Is (regional) beauty in the eye of the beholder? Review of Regional Research, 36(1), 29–49. https://doi.org/10.1007/s10037-015-0102-z',
+      'Cable, D. M., & Turban, D. B. (2001). Establishing the dimensions, sources and value of job seekers\' employer knowledge during recruitment. Research in Personnel and Human Resources Management, 20, 115–163. https://doi.org/10.1016/S0742-7301(01)20002-4',
+      'Cable, D. M., & Turban, D. B. (2003). The value of organizational reputation in the recruitment context: A brand-equity perspective. Journal of Applied Social Psychology, 33(11), 2244–2266. https://doi.org/10.1111/j.1559-1816.2003.tb01883.x',
+      'Garver, M. S., Goffnett, S. P., Williams, Z., Divine, R. L., & Davis, C. F. (2019). Analysis of the job preferences for undergraduate supply chain students. Operations and Supply Chain Management, 12(1), 31–41. https://doi.org/10.31387/oscm0360220',
+      'Highhouse, S., Lievens, F., & Sinar, E. F. (2003). Measuring attraction to organizations. Educational and Psychological Measurement, 63(6), 986–1001. https://doi.org/10.1177/0013164403258403',
+      'Lievens, F., & Slaughter, J. E. (2016). Employer image and employer branding: What we know and what we need to know. Annual Review of Organizational Psychology and Organizational Behavior, 3, 407–440. https://doi.org/10.1146/annurev-orgpsych-041015-062501',
+      'Petry, T., Treisch, C., & Peters, M. (2022). Designing job ads to stimulate the decision to apply: A discrete choice experiment with business students. The International Journal of Human Resource Management, 33(15), 3019–3055. https://doi.org/10.1080/09585192.2021.1891112',
+      'Turban, D. B., & Cable, D. M. (2003). Firm reputation and applicant pool characteristics. Journal of Organizational Behavior, 24(6), 733–751. https://doi.org/10.1002/job.215',
+      'Uggerslev, K. L., Fassina, N. E., & Kraichy, D. (2012). Recruiting through the stages: A meta-analytic test of predictors of applicant attraction at different stages of the recruiting process. Personnel Psychology, 65(3), 597–660. https://doi.org/10.1111/j.1744-6570.2012.01254.x',
+      '동남지방통계청. (2023. 11. 8.). 동남권 청년인구의 유출과 이주의사: 대졸자 직업이동 경로조사를 중심으로 [보도자료]. https://mods.go.kr/board.es?mid=a60301010100&bid=11802&act=view&list_no=427938',
+      '동남지방데이터청. (2026. 2. 12.). 2025년 동남권 인구이동통계 [보도자료]. https://mods.go.kr/board.es?mid=a60301010100&bid=11802&act=view&list_no=444802',
+      '부산상공회의소. (2022). 부산지역 MZ세대 구직자와 기업의 일자리 인식 조사. 더팩트 2022. 6. 15. 보도. https://news.tf.co.kr/read/ogmeta/1945328.htm',
+    ],
+  },
 };
