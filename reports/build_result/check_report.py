@@ -37,7 +37,14 @@ def texts(c):
     out += [('pending', s) for s in c['pending']]
     out.append(('reputation', c['reputation']))
     out.append(('finance.note', c['finance'].get('note', '')))
+    v = c.get('values') or {}
+    out += [(f'values:{x}', v.get(x, '')) for x in VALUE_KEYS]
+    out += [(f'settle:{r[0]}', r[1]) for r in c.get('settle', [])]
     return out
+
+
+VALUE_KEYS = ('label', 'items', 'basis', 'hiring', 'job')
+LEVELS = ('확인', '일부 확인', '검색 요약', '미확인', '추정')
 
 
 for f in sorted((HERE / 'companies').glob('*.json')):
@@ -62,6 +69,19 @@ for f in sorted((HERE / 'companies').glob('*.json')):
     for label, v in c['intro']:
         if label not in ('홈페이지',) and not REF.search(v):
             warn(k, f'intro:{label}: 출처 번호 없음')
+    # 핵심가치(values)·정주 조건(settle): 근거·연결 문장의 출처 번호, 확인 수준 표기
+    if 'values' in c:
+        for x in VALUE_KEYS:
+            if x not in c['values']:
+                warn(k, f'values.{x} 칸 없음')
+        for x in ('basis', 'hiring', 'job'):
+            if c['values'].get(x) and not REF.search(c['values'][x]):
+                warn(k, f'values.{x}: 출처 번호 없음')
+    for r in c.get('settle', []):
+        if len(r) != 3 or r[2] not in LEVELS:
+            warn(k, f'settle:{r[0]}: 형식(항목, 내용, 확인 수준) 또는 확인 수준 표기 오류')
+        elif r[2] not in ('미확인', '추정') and not REF.search(r[1]):
+            warn(k, f'settle:{r[0]}: 출처 번호 없음')
     used = {int(x) for _, s in texts(c) for x in REF.findall(s)}
     unused = [i for i in range(1, n + 1) if i not in used]
     if unused:

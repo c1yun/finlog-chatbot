@@ -277,7 +277,7 @@ function companySection(k, i) {
     const V = c.values;
     out.push(circ('핵심가치와 직무', '핵심가치 및 직무분석'));
     out.push(dash(`${V.label}: ${V.items} (${V.basis}).`));
-    if (V.hiring) out.push(dot(`채용과의 연결: ${V.hiring}${/[.다]$/.test(V.hiring) ? '' : '.'}`));
+    if (V.hiring) out.push(dot(`채용·교육과의 연결: ${V.hiring}${/[.다]$/.test(V.hiring) ? '' : '.'}`));
     if (V.job) out.push(dot(`대표 직무와의 연결: ${V.job}`));
   }
   if (c.settle && c.settle.length) {
