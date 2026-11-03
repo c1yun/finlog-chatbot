@@ -416,7 +416,7 @@ function sec2() {
         { t: String(adj), align: CENTER }]);
     });
     out.push(tbl(cw([22, 22, 18, 18, 20]), ar, { size: 16, padV: 30 }));
-    out.push(note(`${withB.length}개 기업 × 세부 항목 기준이다. 판정은 0~5점이며, 영역 득점 차가 2점 이상이거나 한쪽만 확인한 항목은 원문을 다시 대조해 정했고, 2026. 11. 3.에는 자료 부재로 낮춘 판정 8건을 규칙에 맞게 고쳤다(부록 2의 †).`));
+    out.push(note(`${withB.length}개 기업 × 세부 항목 기준이다. 판정은 0~5점이며, 영역 득점 차가 2점 이상이거나 한쪽만 확인한 항목은 원문을 다시 대조해 정했고, 2026. 11. 3.에는 자료 부재로 낮춘 판정 8건을 규칙에 맞게 고쳤고, 같은 날 재조사에서 나온 새 사실(공고 재게시·요건 변경 등) 10건은 채점자 두 명이 따로 다시 판정해 평균했다(부록 2의 †). 모두 설문 결과를 보기 전에 정했다.`));
   }
   return out;
 }
@@ -608,7 +608,7 @@ function appendix() {
   mrows.push([{ t: '환산점수', span: 2, fill: C.label, bold: true, align: CENTER }, ...ks.map((k) => ({ t: fmt(final(k).scaled), align: CENTER, bold: true, fill: C.yellow }))]);
   mrows.push([{ t: '정보 충족률', span: 2, fill: C.label, bold: true, align: CENTER }, ...ks.map((k) => ({ t: pct(final(k).fill), align: CENTER }))]);
   out.push(tbl(cw([10, 22, ...ks.map(() => 68 / ks.length)]), mrows, { size: 15, padV: 24, padH: 30 }));
-  if (anyB) out.push(note('†는 원문을 다시 대조했거나(채점조정) 자료 부재 규칙을 통일하며(2026. 11. 3. 재채점) 고친 항목이다. 근거는 연구 노트의 채점조정·재채점 파일에 있다.'));
+  if (anyB) out.push(note('†는 원문을 다시 대조했거나(채점조정), 자료 부재 규칙을 통일했거나(2026. 11. 3. 재채점), 11. 3. 재조사의 새 사실을 두 채점자가 다시 판정해(같은 날) 고친 항목이다. 근거는 연구 노트의 채점조정·재채점 파일에 있고, 모두 설문 결과를 보기 전에 정했다.'));
 
   out.push(h1('부록 3  공개 원칙과 이용 시 주의', { before: 360 }));
   META.disclaimer.forEach((t) => out.push(bullet(t, { size: 18 })));
