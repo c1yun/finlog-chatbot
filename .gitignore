@@ -15,3 +15,8 @@ reports/survey/secrets.local.json
 
 # 파이썬 캐시
 __pycache__/
+
+# 학생 사용 과제: 공고 원본 화면·폼 스크립트·원자료는 커밋하지 않음
+reports/usage_task/sources/
+reports/usage_task/dist/
+reports/usage_task/private/
