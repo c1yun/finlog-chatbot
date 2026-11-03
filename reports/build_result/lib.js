@@ -1,4 +1,5 @@
 // 연구계획서 docx 생성용 공통 헬퍼
+const fs = require('fs');
 const D = require('docx');
 const {
   Paragraph, TextRun, Table, TableRow, TableCell, WidthType, AlignmentType, BorderStyle,
@@ -173,4 +174,20 @@ function tbl(widths, rows, o = {}) {
   });
 }
 
-module.exports = { exact, D, FONT, W, C, cw, runs, p, bullet, h1, h2, h3, lead, note, gap, pageBreak, tbl, mk, NONE, LINE };
+// PNG 그림: 너비(cm)를 주면 파일 머리에서 크기를 읽어 비율을 맞춘다
+function img(file, widthCm, o = {}) {
+  const buf = fs.readFileSync(file);
+  if (buf.readUInt32BE(12) !== 0x49484452) throw new Error(`PNG가 아님: ${file}`);
+  const w = buf.readUInt32BE(16);
+  const h = buf.readUInt32BE(20);
+  const wpx = Math.round((widthCm / 2.54) * 96);
+  const hpx = Math.round((wpx * h) / w);
+  return new Paragraph({
+    alignment: o.align || AlignmentType.CENTER,
+    spacing: { before: o.before ?? 60, after: o.after ?? 60 },
+    keepNext: o.keepNext,
+    children: [new D.ImageRun({ type: 'png', data: buf, transformation: { width: wpx, height: hpx }, altText: o.alt ? { title: o.alt, description: o.alt, name: o.alt } : undefined })],
+  });
+}
+
+module.exports = { exact, D, FONT, W, C, cw, runs, p, bullet, h1, h2, h3, lead, note, gap, pageBreak, tbl, mk, img, NONE, LINE };
