@@ -166,6 +166,7 @@ const t = ctx.exportTidy();
 const tidy = ss.sheets.tidy.data;
 const H = tidy[0];
 assert.deepStrictEqual(plain(H), LOCK.tidy_header, 'tidy 머리글 = lock');
+assert(ss.sheets.tidy.format === '@' && ss.sheets.tidy_text.format === '@', '정리 시트는 글자 서식(자동 변환 없음)');
 const col = (r, h) => r[H.indexOf(h)];
 const rows = tidy.slice(1);
 assert.strictEqual(rows.length, 13, 'tidy 13행');

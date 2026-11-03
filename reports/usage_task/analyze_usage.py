@@ -143,7 +143,7 @@ def _pid(v: str, lock: dict):
     return _num(v, 'pid', 1, lock['pid']['max'], integer=True)
 
 
-_KO_TS = re.compile(r'^(\d{4})\.\s*(\d{1,2})\.\s*(\d{1,2})\.?\s*(오전|오후)?\s*(\d{1,2}):(\d{2})(?::(\d{2}))?')
+_KO_TS = re.compile(r'^(\d{4})\.\s*(\d{1,2})\.\s*(\d{1,2})\.?(?:\s*(오전|오후)?\s*(\d{1,2}):(\d{2})(?::(\d{2}))?)?')
 _ISO_TS = re.compile(r'^(\d{4})-(\d{1,2})-(\d{1,2})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?')
 _US_TS = re.compile(r'^(\d{1,2})/(\d{1,2})/(\d{4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?')
 
@@ -154,8 +154,8 @@ def parse_ts(v: str) -> str:
     m = _KO_TS.match(s)
     if m:
         y, mo, d, ampm, hh, mm = m.group(1, 2, 3, 4, 5, 6)
-        h = int(hh) % 12 + (12 if ampm == '오후' else 0) if ampm else int(hh)
-        return f'{int(y):04d}-{int(mo):02d}-{int(d):02d} {h:02d}:{int(mm):02d}'
+        h = int(hh or 0) % 12 + (12 if ampm == '오후' else 0) if ampm else int(hh or 0)
+        return f'{int(y):04d}-{int(mo):02d}-{int(d):02d} {h:02d}:{int(mm or 0):02d}'
     m = _ISO_TS.match(s)
     if m:
         y, mo, d, hh, mm = m.group(1, 2, 3, 4, 5)

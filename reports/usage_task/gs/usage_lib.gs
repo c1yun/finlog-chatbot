@@ -153,7 +153,9 @@ function writeTable_(ss, name, header, rows) {
   var sh = sheet_(ss, name);
   sh.clear();
   var all = [header].concat(rows);
-  sh.getRange(1, 1, all.length, header.length).setValues(all);
+  var rng = sh.getRange(1, 1, all.length, header.length);
+  rng.setNumberFormat('@'); // 글자 그대로 둔다(시각·해시가 날짜·숫자로, '='로 시작하는 답이 수식으로 바뀌지 않게)
+  rng.setValues(all);
 }
 
 function writeSheets_(form, items) {

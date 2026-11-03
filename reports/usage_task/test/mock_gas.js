@@ -130,6 +130,7 @@ class Sheet {
   getRange(r, c, nr, nc) {
     const sh = this;
     return {
+      setNumberFormat(f) { sh.format = f; return this; },
       setValues(v) {
         if (v.length !== nr) throw new Error(`setValues 행 수 ${v.length} ≠ ${nr}`);
         v.forEach((row, i) => { if (row.length !== nc) throw new Error(`setValues ${sh.name} ${i + 1}행 열 수 ${row.length} ≠ ${nc}`); sh.data[r - 1 + i] = row.slice(); });

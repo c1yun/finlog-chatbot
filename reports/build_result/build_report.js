@@ -515,6 +515,7 @@ function sec4Improve() {
 
   out.push(h2('3  학생 사용 과제 결과'));
   const U = FUP.usage;
+  if (U && U.status !== 'final' && !DRAFT) throw new Error(`사용 과제 결과가 본실시 결과(status "final")가 아니다(status=${U.status}). 미리보기(--draft)로만 쓸 수 있다.`);
   if (U && U.text) {
     out.push(p(U.text, { size: BODY }));
     if (U.rows) out.push(tbl(cw([28, 24, 24, 24]), [[headc('구분'), headc('직무 카드'), headc('기존 채용정보'), headc('차이')], ...U.rows], { size: TABLE, padV: 26 }));
