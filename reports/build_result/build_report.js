@@ -186,6 +186,10 @@ function cover() {
 
   out.push(h3('연구 방법'));
   META.method.forEach((t) => out.push(bullet(fillText(t), { size: 18 })));
+  if (META.criteriaMap) {
+    out.push(h3('심사기준과 보고서 위치'));
+    out.push(tbl(cw([22, 78]), [[headc('심사기준(2026. 11. 3. 안내)'), headc('이 보고서에서 다룬 곳')], ...META.criteriaMap.map(([a, b]) => [{ t: a, bold: true, fill: C.gray }, b])], { size: 16, padV: 22, padH: 60 }));
+  }
   return out;
 }
 
@@ -267,6 +271,19 @@ function companySection(k, i) {
     jrows.push([{ t: l, fill: C.gray, bold: true, align: CENTER }, ...J.map((j) => ({ t: j[f] || '–' }))]);
   });
   out.push(tbl(jw, jrows, { size: TABLE - 1, padV: 30 }));
+
+  // 핵심가치와 직무 · 지역 정주 조건 (2026. 11. 3. 안내 심사기준)
+  if (c.values) {
+    const V = c.values;
+    out.push(circ('핵심가치와 직무', '핵심가치 및 직무분석'));
+    out.push(dash(`${V.label}: ${V.items} (${V.basis}).`));
+    if (V.hiring) out.push(dot(`채용과의 연결: ${V.hiring}${/[.다]$/.test(V.hiring) ? '' : '.'}`));
+    if (V.job) out.push(dot(`대표 직무와의 연결: ${V.job}`));
+  }
+  if (c.settle && c.settle.length) {
+    out.push(circ('지역 정주 조건', '지역정주형 취업전략'));
+    out.push(tbl(cw([13, 73, 14]), [[headc('항목'), headc('내용'), headc('확인')], ...c.settle.map(([a, b, st]) => [{ t: a, fill: C.gray, bold: true, align: CENTER }, b, { t: st, align: CENTER, size: 15 }])], { size: TABLE - 1, padV: 24 }));
+  }
 
   // 평가 점수와 학생 선호
   const S = final(k);
@@ -529,6 +546,19 @@ function sec4Improve() {
     out.push(tbl(cw([16, 84]), g.rows.map(([a, b]) => [lab(a), b]), { size: TABLE - 1, padV: 24 }));
   });
   if (!META.plan8Common) out.push(p(miss('8주 안내 통합본'), { size: 18 }));
+
+  // 5 지역정주형 취업전략: 10곳의 근무지·거리·통근·주거를 한 표로 모은다(기업 원고의 settle에서)
+  const withSettle = ORDER.filter((k) => COMP[k] && COMP[k].settle && COMP[k].settle.length);
+  if (withSettle.length) {
+    out.push(h2('5  지역정주형 취업전략'));
+    if (META.settleLead) out.push(p(META.settleLead, { size: BODY }));
+    const cell = (k, label) => { const r = COMP[k].settle.find((x) => x[0] === label); return r ? r[1].replace(/\s*\[\d+\](\[\d+\])*/g, '') : '–'; };
+    const rows = [[headc('기업'), headc('부산대에서(자동차)'), headc('통근'), headc('주거')]];
+    withSettle.forEach((k) => rows.push([{ t: k, bold: true, fill: C.gray, align: CENTER }, { t: cell(k, '거리'), size: 15 }, { t: cell(k, '통근'), size: 15 }, { t: cell(k, '주거'), size: 15 }]));
+    out.push(tbl(cw([13, 21, 33, 33]), rows, { size: 15, padV: 22, padH: 50 }));
+    out.push(note('출처와 확인 수준은 기업별 장의 \'지역 정주 조건\' 표에 있다. 거리·시간은 경로 계산 서비스(OSRM, 교통 상황 미반영)로 구한 대략값이다.'));
+    (META.settleStrategy || []).forEach((t) => out.push(bullet(t, { size: 18 })));
+  }
   return out;
 }
 
