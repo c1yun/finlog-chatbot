@@ -513,6 +513,7 @@ function sec4Improve() {
   out.push(h2(`1  공통 제안: ${S.title}`, { before: 0 }));
   out.push(p(`**문제** ${S.problem}`, { size: BODY }));
   out.push(tbl(cw([30, 70]), [[headc('카드 항목'), headc('적는 내용')], ...S.fields.map((f, i) => [{ t: `${i + 1}`, align: CENTER, fill: C.gray }, f])], { size: TABLE, padV: 26 }));
+  if (S.fieldsNote) out.push(note(S.fieldsNote));
   out.push(p(`**실행 주체** ${S.owner}  **확인 지표** ${S.metric}`, { size: 18 }));
 
   out.push(h2('2  전공별 직무 카드 (TOP3와 경계 기업)'));
