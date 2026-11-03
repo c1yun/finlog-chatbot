@@ -41,7 +41,8 @@ const SV_SYN_DIR = path.join(__dirname, '..', 'survey', 'out_nonlive', 'syntheti
 let SV = loadJSON(path.join(SV_LIVE_DIR, 'survey_results.json'));
 let SV_DIR = SV_LIVE_DIR;
 let SV_NONLIVE = false;
-if (!SV && DRAFT) {
+const NO_SYN = process.argv.includes('--no-synth'); // 미완성본: 합성 설문 결과 없이 빈 자리로 둔다
+if (!SV && DRAFT && !NO_SYN) {
   SV = loadJSON(path.join(SV_SYN_DIR, 'survey_results.json'));
   SV_DIR = SV_SYN_DIR;
   SV_NONLIVE = !!SV;
