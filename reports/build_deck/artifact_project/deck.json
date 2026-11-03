@@ -1,0 +1,90 @@
+{
+ "v": 4,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-03T09:00:00Z"
+ },
+ "lists": "css",
+ "title": "간판떼고 지역기업 TOP10 발표자료",
+ "order": [
+  "cover",
+  "answer",
+  "problem",
+  "geo",
+  "card",
+  "heatmap",
+  "range",
+  "top3all",
+  "others",
+  "gap",
+  "idea",
+  "majors",
+  "plan8",
+  "closing",
+  "b-index",
+  "map",
+  "a-survey",
+  "a-cards",
+  "blind",
+  "b-method",
+  "b-rubric",
+  "b-sensitivity",
+  "b-weights",
+  "final",
+  "c-select",
+  "c-vs",
+  "top1",
+  "top2",
+  "top3",
+  "c-dh",
+  "c-tk",
+  "c-gmb",
+  "c-bhi",
+  "c-sw",
+  "c-pa",
+  "c-tkg",
+  "c-jt",
+  "c-hs",
+  "c-nx",
+  "e-grid",
+  "e-raters",
+  "e-reputation",
+  "e-sources",
+  "f-interview",
+  "b-fill"
+ ],
+ "sections": {
+  "s1": {
+   "description": "결론을 먼저 말하고, 왜 간판을 떼고 보는지와 카드 실험을 설명한다.",
+   "start": "cover"
+  },
+  "s2": {
+   "description": "같은 잣대로 10곳을 비교해 상위 후보와 그 근거를 보인다.",
+   "start": "heatmap"
+  },
+  "s3": {
+   "description": "개선 아이디어, 전공 연결, 8주 준비 전략으로 쓸모를 보인다.",
+   "start": "gap"
+  },
+  "s4": {
+   "description": "질의응답용 백업 자료: 실험, 채점, 순위, 기업 1쪽, 격자·출처, 인터뷰.",
+   "start": "b-index"
+  }
+ },
+ "faces": {
+  "gothic-a1": {
+   "family": "Gothic A1",
+   "href": "https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;700&display=swap"
+  }
+ },
+ "designSystems": [
+  {
+   "title": "간판떼고 PNU 부울경 디자인 시스템",
+   "namespace": "ganpanpnu",
+   "artifact": "https://claude.ai/artifact/YUBTnjKm9WWJNk9Xb9xma8",
+   "version": null,
+   "copiedAt": "2026-11-03T13:40:00Z"
+  }
+ ],
+ "cover": "cover"
+}
