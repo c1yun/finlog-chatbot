@@ -15,8 +15,15 @@
 
 설문 후에는 `report_meta.js`의 TOP3 이유와 `build_report.js`의 '적합성' 열(현재 '설문 후')을 학생 선호 점수로 채운다.
 
-## 설문·인터뷰 도구
+## 설문조사지·인터뷰지
 
-`간판떼고_설문·인터뷰 도구.docx/.pdf`는 `build_tools.js`로 만든다. 문안은 `tool_meta.js`, 카드는 `cards_regional.json`(R01~R10)·`cards_metro.json`(M01~M10, A·B 세트), 기업별 인터뷰 질문은 `interview_q.json`이다. 카드의 공개형과 비공개형은 기업명·근무지역만 다르다.
+설문과 인터뷰 문서는 두 개로 나눴다(예전 합본 「설문·인터뷰 도구」는 2026. 11. 3.에 대체).
 
-빌드 순서: `node build_tools.js out.docx && python3 postprocess.py out.docx && python3 render_pdf.py out.docx out.pdf`
+| 문서 | 빌더 | 입력 |
+|---|---|---|
+| `간판떼고_설문조사지.docx/.pdf` | `build_survey_doc.js` | `../survey/form_text.js`(문항), `../survey/survey_doc_meta.js`(설명), `../survey/spec.lock.json`(배정·순서), `cards_*.json` |
+| `간판떼고_인터뷰지.docx/.pdf` | `build_interview_doc.js` | `tool_meta.js`(인터뷰 문안), `interview_q.json`(기업별 질문), `report_meta.js`(평판 판정) |
+
+설문조사지는 구글 폼 생성기(`../survey/build_form_gs.js`)와 같은 문안·카드를 읽으므로 배포본과 문항이 같다. 문안을 고치면 `node ../survey/build_form_gs.js pilot|launch`를 먼저 다시 돌려 `spec.lock.json`을 갱신한다.
+
+빌드 순서: `node build_survey_doc.js out.docx && python3 postprocess.py out.docx && python3 render_pdf.py out.docx out.pdf` (인터뷰지는 `build_interview_doc.js`)

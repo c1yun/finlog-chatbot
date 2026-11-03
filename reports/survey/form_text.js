@@ -1,4 +1,4 @@
-// 설문 문안의 단일 원본. 구글 폼 생성기(build_form_gs.js)와 설문조사지 문서(build_tools.js)가 함께 읽는다.
+// 설문 문안의 단일 원본. 구글 폼 생성기(build_form_gs.js)와 설문조사지 문서(build_result/build_survey_doc.js)가 함께 읽는다.
 // {contact}·{prize}·{deadline}·{minutes}·{url}은 생성 단계에서 채운다(연락처는 secrets.local.json, 공개 저장소에 두지 않음).
 module.exports = {
   title: '지역·수도권 기업 직무 선호 조사',
