@@ -228,6 +228,7 @@ const lock = {
   spec_hash: specHash,
   order: SPEC.order,
   codes: CODE,
+  jobs: Object.fromEntries(SPEC.order.map((n) => [n, SPEC.companies[n].job])),
   groups: SPEC.groups,
   format_names: SPEC.format_names,
   consent: { title: C1.title, yes: C1.choices[0], no: C1.choices[1] },
