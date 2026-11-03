@@ -1,5 +1,5 @@
 {
- "spec_hash": "98b0ab314c6cf69d",
+ "spec_hash": "6aec1f1daf72f60f",
  "order": [
   "동화엔텍",
   "태광후지킨"
@@ -288,8 +288,8 @@
   "동화엔텍": {
    "card": {
     "file": "materials/동화엔텍_카드.txt",
-    "sha256_16": "a7527c40beb66de7",
-    "chars": 513,
+    "sha256_16": "8a5098c0a554ab24",
+    "chars": 544,
     "sections": 1
    },
    "posting": {
