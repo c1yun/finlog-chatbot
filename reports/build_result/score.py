@@ -11,7 +11,7 @@ import re
 import sys
 from pathlib import Path
 
-NOTES = Path('/home/user/finlog-chatbot/research_notes/결과보고서 기업 분석')
+NOTES = Path(__file__).resolve().parents[2] / 'research_notes' / '결과보고서 기업 분석'
 OUT = Path(__file__).with_name('scores.json')
 
 ORDER = ['조광요턴', '동화엔텍', '태광후지킨', '파나시아', '송원산업',

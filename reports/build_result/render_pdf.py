@@ -8,7 +8,13 @@ import tempfile
 import zipfile
 from pathlib import Path
 
-SOFFICE = '/root/.claude/skills/synced/7b640a9f-9cbd-48a9-acca-1642989da127_c040d038-8908-4f82-9132-90701161c8c9/docx/scripts/office/soffice.py'
+_CANDIDATES = [
+    '/root/.claude/skills/synced/7b640a9f-9cbd-48a9-acca-1642989da127_c040d038-8908-4f82-9132-90701161c8c9/docx/scripts/office/soffice.py',
+    '/mnt/skills/public/docx/scripts/office/soffice.py',
+]
+SOFFICE = next((c for c in _CANDIDATES if Path(c).exists()), None)
+if SOFFICE is None:
+    sys.exit('soffice.py 래퍼를 찾지 못했다: ' + ', '.join(_CANDIDATES))
 
 src = Path(sys.argv[1]).resolve()
 out_pdf = Path(sys.argv[2]).resolve()

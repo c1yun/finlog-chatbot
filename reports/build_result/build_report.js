@@ -13,7 +13,7 @@ const META = require('./report_meta');
 
 const OUT = process.argv[2] || path.join(__dirname, 'out.docx');
 const CENTER = AlignmentType.CENTER;
-const NOTES = '/home/user/finlog-chatbot/research_notes/결과보고서 기업 분석/';
+const NOTES = require('path').join(__dirname, '..', '..', 'research_notes', '결과보고서 기업 분석') + '/';
 const ORDER = ['조광요턴', '동화엔텍', '태광후지킨', '파나시아', '송원산업',
   '지엠비코리아', '해성디에스', '넥센타이어', 'BHI', 'TKG태광'];
 const NUM = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩'];

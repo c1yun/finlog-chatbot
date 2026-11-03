@@ -5,3 +5,10 @@ node_modules/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# 공모전 빌드: 의존성·설문 원자료(공개 저장소이므로 커밋 금지)
+reports/node_modules/
+reports/survey/private/
+reports/survey/dist/
+reports/survey/out_nonlive/
+reports/survey/secrets.local.json
