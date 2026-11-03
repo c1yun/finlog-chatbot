@@ -12,3 +12,6 @@ reports/survey/private/
 reports/survey/dist/
 reports/survey/out_nonlive/
 reports/survey/secrets.local.json
+
+# 파이썬 캐시
+__pycache__/
