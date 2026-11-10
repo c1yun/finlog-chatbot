@@ -1,0 +1,14 @@
+[
+  {
+    "file": "reports/build_result/companies/동화엔텍.json",
+    "path": "settle[2][1]",
+    "old": "부산대에서 자동차 약 36km·약 35분(경로 계산 OSRM, 교통 미반영, 근무지 좌표는 녹산산단261로 도로 근사)",
+    "new": "부산대에서 자동차 약 36~54km·약 35분~1시간(경로 계산 OSRM 35.8km·35분, Valhalla 53.7km·59분, 둘 다 실시간 교통 미반영, 근무지 좌표는 녹산산단261로 도로 근사)",
+    "verdict": "불일치",
+    "reason": "두 번째 경로 엔진(Valhalla)이 같은 좌표에서 53.7km·59분을 내 OSRM 값 하나로 쓰기 어렵다. 지도 서비스로는 확인하지 못했다",
+    "sources": [
+      "https://router.project-osrm.org/route/v1/driving/129.0784068,35.2343498;128.8460549,35.0934138?overview=false",
+      "https://valhalla1.openstreetmap.de/"
+    ]
+  }
+]
