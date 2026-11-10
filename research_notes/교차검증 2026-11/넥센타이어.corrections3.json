@@ -1,0 +1,14 @@
+[
+  {
+    "file": "reports/build_result/companies/넥센타이어.json",
+    "path": "settle[0][1]",
+    "old": "교통비·유류비 지원은 찾지 못했다.",
+    "new": "사람인 기업정보의 복리후생 목록에 '차량유류비지급'이 있으나 회사 공식 자료에서는 교통비·유류비 지원을 찾지 못했다.",
+    "verdict": "불일치",
+    "reason": "채용 포털 기업정보에 유류비 지급 항목이 있음(회사 공식 자료에는 없음, 반영 여부는 팀 결정)",
+    "sources": [
+      "https://www.saramin.co.kr/zf_user/company-info/view?csn=bVdIMFlleDRXQW9TbEY4QVBJU204QT09",
+      "https://www.nexenuniverse.com/experience/woliba"
+    ]
+  }
+]
