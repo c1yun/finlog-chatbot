@@ -1,0 +1,16 @@
+{
+ "asOf": "2026. 11. 10.",
+ "note": "채용 포털 기업정보가 표시한 대졸 신입 초임(만 원). 2026. 11. 10.에 각 페이지를 직접 열어 읽었다. posting은 회사 공고가 밝힌 초임, ref는 공고 값의 가운데 값(포털 값과 견줄 때 씀).",
+ "rows": {
+  "조광요턴": {"posting": "4,000~4,200", "ref": 4100, "jk": 3400, "inc": 6290, "jss": 4658, "cert": "청끌 급여"},
+  "동화엔텍": {"posting": null, "ref": null, "jk": 3600, "inc": 5980, "jss": 4914, "cert": "청끌 급여"},
+  "태광후지킨": {"posting": null, "ref": null, "jk": 4032, "inc": 3950, "jss": 3974, "cert": "청끌 급여"},
+  "파나시아": {"posting": "3,600~3,700", "ref": 3650, "jk": null, "inc": 4870, "jss": null, "cert": "청끌 급여"},
+  "송원산업": {"posting": "6,000 이상", "ref": 6000, "jk": 4300, "inc": 5040, "jss": 5034, "cert": null},
+  "지엠비코리아": {"posting": null, "ref": null, "jk": null, "inc": 4340, "jss": 4883, "cert": null},
+  "해성디에스": {"posting": null, "ref": null, "jk": null, "inc": 3960, "jss": 4127, "cert": null},
+  "넥센타이어": {"posting": null, "ref": null, "jk": 4800, "inc": 5550, "jss": 4713, "cert": null},
+  "BHI": {"posting": "기본급 6,000", "ref": 6000, "jk": 6000, "inc": 3720, "jss": 4264, "cert": null},
+  "TKG태광": {"posting": "4,300", "ref": 4300, "jk": 5089, "inc": 4430, "jss": 4300, "cert": null}
+ }
+}

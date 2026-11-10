@@ -1,0 +1,27 @@
+[
+  {
+    "file": "reports/build_result/companies/태광후지킨.json",
+    "path": "jobs[0].pay",
+    "old": "공개 정보 없음(공고상 '면접 후 결정'). 상여금·성과급·야근",
+    "new": "공고는 '면접 후 결정'으로 숫자가 없다. 잡코리아 기업정보는 대졸초임 4,032만원으로 표시하고(산출 근거 표시 없음, 2026. 11. 10. 확인), 회사는 부산시 청끌기업 '급여' 부문(기준: 신입임금 월 300만원 이상, 임직원 평균연봉 4,500만원 이상)에 2024~2026년 선정됐다. 직무별 금액은 공개되지 않았다. 상여금·성과급·야근",
+    "verdict": "불일치",
+    "reason": "대졸초임 표시(잡코리아)와 지자체 인증의 임금 기준이 공개돼 있어 '공개 정보 없음'이 사실과 다르다. corrections2의 같은 항목을 대체",
+    "sources": [
+      "https://www.jobkorea.co.kr/Recruit/Co_Read/C/18170735",
+      "https://www.busan.go.kr/nbtnewsBU/1724328",
+      "https://busanjob.net/yjob/view.do?no=920"
+    ]
+  },
+  {
+    "file": "reports/build_result/cards_regional.json",
+    "path": "[2].fields.확인된 보상",
+    "old": "연간 금액 공개 정보 없음(공고 '면접 후 결정')",
+    "new": "공고는 '면접 후 결정', 채용 포털 기업정보의 대졸초임 표시 약 4,000만원, 부산시 청끌기업 '급여' 부문(신입임금 월 300만원 이상 기준) 선정",
+    "verdict": "불일치",
+    "reason": "대졸초임 표시와 인증 기준이 공개돼 있다. 설문 설계상 카드 문구를 바꿀지는 상위 판단. corrections2의 같은 항목을 대체",
+    "sources": [
+      "https://www.jobkorea.co.kr/Recruit/Co_Read/C/18170735",
+      "https://www.busan.go.kr/nbtnewsBU/1724328"
+    ]
+  }
+]

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """제출본(--desk) 그림 두 장을 만든다. build_report.js가 figs/_desk_fig_data.json을 쓴 뒤 부른다.
 
-- figs/desk_range.png   10곳의 환산점수와 범위(미확인 0점~만점)
+- figs/desk_range.png   10곳의 점수와 범위(원문 미확인 0점~만점)
 - figs/desk_commute.png 부산대에서 근무지까지 자동차 소요 시간·거리와 통근버스·기숙사 공개 여부
 흑백으로 인쇄해도 읽히도록 TOP 3는 색과 함께 굵은 글씨·★로, 값은 숫자로 직접 적는다.
 """
@@ -63,8 +63,8 @@ def fig_range(rows):
     ax.tick_params(axis='both', length=0)
     ax.set_xlabel('기업 평가 점수(100점 만점)', fontsize=8.5, color=SUB, labelpad=4)
     handles = [
-        Line2D([], [], marker='o', color='none', markerfacecolor=NAVY, markeredgecolor='white', markersize=8, label='환산점수(★ 짙은 점은 TOP 3)'),
-        Line2D([], [], marker='|', color=RANGE, lw=2.4, markersize=7, markeredgewidth=1.6, label='확인하지 못한 항목을 0점~만점으로 둘 때의 범위'),
+        Line2D([], [], marker='o', color='none', markerfacecolor=NAVY, markeredgecolor='white', markersize=8, label='점수(★ 짙은 점은 TOP 3)'),
+        Line2D([], [], marker='|', color=RANGE, lw=2.4, markersize=7, markeredgewidth=1.6, label='공고·공시에서 확인하지 못한 항목을 0점~만점으로 둘 때의 범위'),
     ]
     leg = fig.legend(handles=handles, loc='upper right', bbox_to_anchor=(0.998, 1.0), ncol=2, frameon=False, fontsize=7.8, handletextpad=0.5, columnspacing=1.6)
     for t in leg.get_texts():
