@@ -1,0 +1,61 @@
+[
+  {
+    "file": "reports/build_result/companies/태광후지킨.json",
+    "path": "jobs[0].pay",
+    "old": "공개 정보 없음(공고상 '면접 후 결정'). 상여금·성과급·야근",
+    "new": "공고는 '면접 후 결정'. 부산일자리정보망 청끌기업 목록은 선정 근거로 '신입사원 평균초임 월 300만원 이상, 임직원 평균연봉 연 4,500만원 이상'을 적는다(직무별 금액이 아닌 하한선, 기준 연도 표시 없음, 2026. 11. 10. 확인). 상여금·성과급·야근",
+    "verdict": "불일치",
+    "reason": "부산시가 운영하는 청끌기업 목록에 신입 평균초임 하한선이 공개돼 있어 '공개 정보 없음'이 사실과 다르다",
+    "sources": [
+      "https://busanjob.net/yjob/view.do?no=920",
+      "https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=55295780&infoTypeCd=CSI&infoTypeGroup=tb_workinfogubun"
+    ]
+  },
+  {
+    "file": "reports/build_result/cards_regional.json",
+    "path": "[2].fields.확인된 보상",
+    "old": "연간 금액 공개 정보 없음(공고 '면접 후 결정')",
+    "new": "공고는 '면접 후 결정', 부산시 청끌기업 목록의 선정 근거는 '신입사원 평균초임 월 300만원 이상'",
+    "verdict": "불일치",
+    "reason": "부산일자리정보망 청끌기업 목록에 신입 평균초임 하한선이 공개돼 있다(설문 설계상 카드 문구를 바꿀지는 상위 판단)",
+    "sources": [
+      "https://busanjob.net/yjob/view.do?no=920"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/태광후지킨.json",
+    "path": "intro[3][1]",
+    "old": "제2공장은 부산 강서구 녹산산단",
+    "new": "녹산공장은 부산 강서구 녹산산단",
+    "verdict": "불일치",
+    "reason": "홈페이지 명칭은 '녹산공장'이고, 2021년 보도에서 '제2공장'은 화전 공장을 가리켰다",
+    "sources": [
+      "https://www.tk-fujikin.com/company/company-overview/",
+      "https://www.viva100.com/article/202105183739401"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/태광후지킨.json",
+    "path": "analysis[0].points[0].sub[0]",
+    "old": "제2공장은 녹산산단",
+    "new": "녹산공장은 녹산산단",
+    "verdict": "불일치",
+    "reason": "홈페이지 명칭은 '녹산공장'이고, 2021년 보도에서 '제2공장'은 화전 공장을 가리켰다",
+    "sources": [
+      "https://www.tk-fujikin.com/company/company-overview/",
+      "https://www.viva100.com/article/202105183739401"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/태광후지킨.json",
+    "path": "settle[2][1]",
+    "old": "자동차 약 32km·약 32분(경로 계산 OSRM, 교통 미반영",
+    "new": "자동차 약 32~34km·약 32~59분(경로 계산 OSRM 약 32분·Valhalla 약 59분, 실시간 교통 미반영",
+    "verdict": "불일치",
+    "reason": "두 번째 경로 계산기(Valhalla)는 34.1km·약 59분으로 소요 시간이 크게 다르다",
+    "sources": [
+      "https://router.project-osrm.org/route/v1/driving/129.0795,35.2316;128.8800,35.1010?overview=false",
+      "https://valhalla1.openstreetmap.de/route?json=%7B%22locations%22%3A%5B%7B%22lat%22%3A35.2316%2C%22lon%22%3A129.0795%7D%2C%7B%22lat%22%3A35.1010%2C%22lon%22%3A128.8800%7D%5D%2C%22costing%22%3A%22auto%22%2C%22units%22%3A%22kilometers%22%7D"
+    ]
+  }
+]
