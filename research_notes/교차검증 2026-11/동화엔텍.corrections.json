@@ -1,0 +1,75 @@
+[
+  {
+    "file": "reports/build_result/companies/동화엔텍.json",
+    "path": "intro[7][1]",
+    "old": "연결 2025년 3,906.1억 원",
+    "new": "연결 2025년 4,089.2억 원",
+    "verdict": "불일치",
+    "reason": "연결손익계산서의 매출액은 408,924,334,978원이고 3,906.1억 원은 그중 '제품매출액'만의 값이다",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260422000370",
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250416000427",
+      "https://www.hankyung.com/article/2025111938961"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/동화엔텍.json",
+    "path": "finance.note",
+    "old": "연결 매출은 2025년 3,906.1억 원이다",
+    "new": "연결 매출은 2025년 4,089.2억 원이다",
+    "verdict": "불일치",
+    "reason": "연결손익계산서 'I. 매출액' 408,924,334,978원(제품 3,906.1억 + 상품 181.6억 + 기타 1.5억)",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260422000370",
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250416000427"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/동화엔텍.json",
+    "path": "analysis[0].points[1].t",
+    "old": "연결 매출은 3,906.1억 원이고",
+    "new": "연결 매출은 4,089.2억 원이고",
+    "verdict": "불일치",
+    "reason": "연결손익계산서 'I. 매출액' 408,924,334,978원",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260422000370",
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250416000427"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/동화엔텍.json",
+    "path": "analysis[1].points[1].t",
+    "old": "FGSS·PCHE는 2023년 과기정통부 '첨단기술·제품'으로 승인되었고",
+    "new": "FGSS·PCHE는 2023년 산업통상자원부의 '첨단기술·제품' 확인을 받았고",
+    "verdict": "불일치",
+    "reason": "홈페이지 연혁은 2023. 1. '첨단기술·제품 확인서(산업통상자원부)'로 적고, 과기정통부 장관 승인은 2025. 11. 첨단기술기업 지정에 해당한다",
+    "sources": [
+      "https://www.dh.co.kr/about_us/history.php",
+      "https://www.dh.co.kr/sustainable_management/2026지속가능경영보고서.pdf",
+      "https://www.newsis.com/view/NISX20251118_0003407530"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/동화엔텍.json",
+    "path": "intro[5][1]",
+    "old": "ESS(에너지저장장치)",
+    "new": "ESS(Energy Saving System, 에너지 절감 장치)",
+    "verdict": "불일치",
+    "reason": "회사 보고서와 홈페이지 연혁 모두 ESS를 Energy Saving System(에너지세이빙시스템)으로 적는다",
+    "sources": [
+      "https://www.dh.co.kr/sustainable_management/2026지속가능경영보고서.pdf",
+      "https://www.dh.co.kr/about_us/history.php"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/동화엔텍.json",
+    "path": "pending[1]",
+    "old": "가 자사 직원인지 사내 협력사 직원인지",
+    "new": "가 모두 '사내 협력사' 열에 적혀 있는데, 그 재해 내용과 재발 방지 조치",
+    "verdict": "불일치",
+    "reason": "보고서 28쪽 표의 열이 화전 / 녹산·지사 / 사내 협력사로 나뉘고 재해자 3명·1명은 사내 협력사 열에 있다",
+    "sources": [
+      "https://www.dh.co.kr/sustainable_management/2026지속가능경영보고서.pdf"
+    ]
+  }
+]
