@@ -151,8 +151,9 @@ function build() {
   props_().setProperty('FORM_ID', form.getId());
   props_().setProperty('SS_ID', ss.getId());
   props_().setProperty('LOT_ID', lot.getId());
-  verify();
   report_();
+  verify();
+  Logger.log('다 만들었습니다. 위 응답 링크로 시험 응답을 해 본 뒤 launch 를 실행하세요.');
 }
 
 function report_() {
@@ -193,7 +194,7 @@ function launch() {
   form.deleteAllResponses();
   form.setLimitOneResponsePerUser(true); // 구글 로그인이 필요해진다(이메일은 저장하지 않음)
   try { form.setRequireLogin(true); } catch (e) { Logger.log('학교 계정 전용 설정은 건너뜁니다(개인 계정으로 만든 폼): ' + e); }
-  form.setAcceptingResponses(true);
+  try { form.setAcceptingResponses(true); } catch (e) { Logger.log('응답 받기 설정은 폼 편집 화면에서 확인하세요: ' + e); }
   props_().setProperty('LAUNCHED_AT', new Date().toISOString());
   Logger.log('본조사를 시작했습니다. 시험 응답은 지웠습니다.');
   report_();
@@ -201,7 +202,7 @@ function launch() {
 
 function closeSurvey() {
   var form = FormApp.openById(props_().getProperty('FORM_ID'));
-  form.setAcceptingResponses(false);
+  try { form.setAcceptingResponses(false); } catch (e) { Logger.log('폼 편집 화면에서 응답 받기를 직접 꺼 주세요: ' + e); }
   try { form.setCustomClosedFormMessage('조사가 끝났습니다. 참여해 주셔서 감사합니다.'); } catch (e) {}
   Logger.log('응답 받기를 닫았습니다. 응답 수: ' + form.getResponses().length);
 }
