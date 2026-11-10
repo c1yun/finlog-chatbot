@@ -311,7 +311,7 @@ function companySection(k, i) {
     const missAll = S.areas.flatMap((a) => a.items.filter((x) => x.j === null).map((x) => `${x.name}(${x.w}점)`));
     out.push(circ('평가 점수', '세부 판정은 부록 2'));
     out.push(dash(`**기업 평가 ${fmt(S.scaled)}점 · 10곳 중 ${R.rank[k]}위${R.top3.includes(k) ? '(TOP 3)' : ''}.** 영역별 득점률: ${rate}.`));
-    out.push(dot(missAll.length ? `자료를 찾지 못해 점수에서 뺀 항목(*): ${missAll.join(', ')}. 이 항목을 0점~만점으로 넣으면 ${fmt(S.low)}~${fmt(S.high)}점이다.` : '18개 항목을 모두 확인해 뺀 항목이 없다.'));
+    out.push(dot(missAll.length ? `확인하지 못해 점수에서 뺀 항목(*): ${missAll.join(', ')}. 이 항목을 0점~만점으로 넣으면 ${fmt(S.low)}~${fmt(S.high)}점이다.` : '18개 항목을 모두 확인해 뺀 항목이 없다.'));
   } else if (S) {
     out.push(circ(DESK ? '평가 점수' : '평가 점수와 학생 선호', hasB(k) ? '최종 판정 · 부록 2' : '1차 채점 · 부록 2'));
     const sr = [[headc('영역 (배점)'), headc('확인 배점'), headc('득점'), headc('영역 환산'), headc('미확인 항목')]];
@@ -496,7 +496,7 @@ function agreementTable() {
     });
     out.push(tbl(cw([22, 22, 18, 18, 20]), ar, { size: 16, padV: 30 }));
     const agNote = `${withB.length}개 기업 × 세부 항목 기준이다. 판정은 0~5점이며, 영역 득점 차가 2점 이상이거나 한쪽만 확인한 항목은 원문을 다시 대조해 정했고, 2026. 11. 3.에는 자료 부재로 낮춘 판정 8건을 규칙에 맞게 고쳤고, 같은 날 재조사에서 나온 새 사실(공고 재게시·요건 변경 등) 10건은 두 번 따로 다시 판정해 평균했다(부록 2의 †). 모두 설문 결과를 보기 전에 정했다.`;
-    out.push(note(DESK ? `${deskText(agNote)} 2026. 11. 10. 교차검증에서 근거가 바뀐 8건도 같은 방식으로 다시 판정했다(3건 수정).` : agNote));
+    out.push(note(DESK ? `${deskText(agNote)} 2026. 11. 10. 교차검증과 2차 출처 보강에서 근거가 바뀐 11건도 같은 방식으로 다시 판정했다(3건 수정, 2건은 두 채점안이 갈려 기존 판정 유지).` : agNote));
   }
   return out;
 }
@@ -776,7 +776,9 @@ function scenarioScores(opt) {
     (opt.src ? SC[k][opt.src] : final(k)).areas.forEach((a) => {
       const mul = opt.w ? opt.w[a.name] / a.w : 1;
       a.items.forEach((it) => {
-        const j = it.j === null ? (opt.fill === null || opt.fill === undefined ? null : opt.fill) : it.j;
+        const ov = opt.override && opt.override[k] && Object.prototype.hasOwnProperty.call(opt.override[k], it.name) ? opt.override[k][it.name] : undefined;
+        const base = ov === undefined ? it.j : ov;
+        const j = base === null ? (opt.fill === null || opt.fill === undefined ? null : opt.fill) : base;
         if (j === null) return;
         got += it.w * mul * (j / 5);
         conf += it.w * mul;
@@ -790,6 +792,8 @@ function scenarioScores(opt) {
 }
 // ───────── 제출본(공개자료 단독) 전용 장 ─────────
 // 받침이 있으면 '이다', 없으면 '다'(한글 끝 글자 기준, 영문 약어는 '다')
+const hasJong = (w) => { const c = w.charCodeAt(w.length - 1); return c >= 0xAC00 && c <= 0xD7A3 && (c - 0xAC00) % 28 !== 0; };
+const eun = (w) => `${w}${hasJong(w) ? '은' : '는'}`;
 const ida = (w) => { const c = w.charCodeAt(w.length - 1); return c >= 0xAC00 && c <= 0xD7A3 && (c - 0xAC00) % 28 !== 0 ? '이다' : '다'; };
 const itemOf = (k, area, name) => final(k).areas.find((x) => x.name === area).items.find((x) => x.name === name);
 const lowOrder = () => [...R.eligible].sort((a, b) => final(b).low - final(a).low || final(b).scaled - final(a).scaled);
@@ -919,7 +923,7 @@ function top3Desk() {
 
   out.push(h3('선정 방법'));
   const allFit = t3.every((k) => META.rep[k] === '적합');
-  const repSentence = allFit ? '이번 TOP 3 세 곳은 모두 평판 점검 \'적합\'이다.' : `이번 TOP 3 가운데 ${t3.filter((k) => META.rep[k] !== '적합').join('·')}는 \'주의\'이며, 사실과 회사 입장은 기업별 분석의 평판 점검에 적었다.`;
+  const repSentence = allFit ? '이번 TOP 3 세 곳은 모두 평판 점검 \'적합\'이다.' : `이번 TOP 3 가운데 ${eun(t3.filter((k) => META.rep[k] !== '적합').join('·'))} \'주의\'이며, 사실과 회사 입장은 기업별 분석의 평판 점검에 적었다.`;
   MD.selectionRule.forEach((t) => out.push(bullet(deskText(t).replace('{repSentence}', repSentence), { size: 18 })));
 
   out.push(h3(MD.robustTitle));
@@ -930,14 +934,21 @@ function top3Desk() {
   const low3 = low.slice(0, 3);
   const noPay = t3.filter((k) => itemOf(k, '보상·근무', '보상').j === null);
   if (low3.join() !== t3.join()) {
-    out.push(bullet(`**경합** 미확인 항목을 0점으로 두는 하한 순위는 ${low3.map((k) => `${k}(${fmt(final(k).low)})`).join(', ')} 순이다. 환산점수 순위와 달라, 연구계획서 규칙에 따라 ${sameSet(low3, t3) ? '순서가' : '2·3위 자리가'} 경합임을 밝힌다.${noPay.length ? ` ${noPay.join('·')}는 신입 보상(10점)을 공고에서 확인하지 못해 하한이 낮다. 이 조건이 확인되면 순위가 달라질 수 있다.` : ''}`, { size: 18 }));
+    out.push(bullet(`**경합** 미확인 항목을 0점으로 두는 하한 순위는 ${low3.map((k) => `${k}(${fmt(final(k).low)})`).join(', ')} 순이다. 환산점수 순위와 달라, 연구계획서 규칙에 따라 ${sameSet(low3, t3) ? '순서가' : '2·3위 자리가'} 경합임을 밝힌다.${noPay.length ? ` ${eun(noPay.join('·'))} 신입 보상(10점)을 확인하지 못해 하한이 낮다. 이 조건이 확인되면 순위가 달라질 수 있다.` : ''}`, { size: 18 }));
   }
   const rk = (src) => { const o = [...ORDER].sort((a, b) => SC[b][src].scaled - SC[a][src].scaled); return o; };
   if (hasB(t3[0])) {
     const oa = rk('A'); const ob = rk('B');
     const ra = oa.indexOf(t3[0]) + 1; const rb = ob.indexOf(t3[0]) + 1;
     const adj = SC[t3[0]].adjusted || [];
-    out.push(bullet(`**채점안에 따른 차이** 두 채점안을 따로 계산하면 1~3위는 1차 채점안 ${oa.slice(0, 3).join('·')}, 2차 채점안 ${ob.slice(0, 3).join('·')}다. 최종 판정은 두 채점안의 평균에 원문 재대조와 새 사실 재판정을 반영한 값이다.${ra !== 1 || rb !== 1 ? ` ${t3[0]}는 두 채점안에서 각각 ${ra}위·${rb}위였고, 재대조·재판정으로 고친 항목(${adj.join(', ')})을 반영해 1위가 됐다.` : ''}`, { size: 18 }));
+    out.push(bullet(`**채점안에 따른 차이** 두 채점안을 따로 계산하면 1~3위는 1차 채점안 ${oa.slice(0, 3).join('·')}, 2차 채점안 ${ob.slice(0, 3).join('·')}다. 최종 판정은 두 채점안의 평균에 원문 재대조와 새 사실 재판정을 반영한 값이다.${ra !== 1 || rb !== 1 ? ` ${eun(t3[0])} 두 채점안에서 각각 ${ra}위·${rb}위였고, 재대조·재판정으로 고친 항목(${adj.join(', ')})을 반영해 1위가 됐다.` : ''}`, { size: 18 }));
+  }
+  const pf = payFloorScenario();
+  if (pf.length && pf[0][1].override) {
+    const alt = scenarioScores(pf[0][1]);
+    const ks = Object.keys(pf[0][1].override);
+    const scored = ks.every((k) => itemOf(k, '보상·근무', '보상').j !== null);
+    out.push(bullet(`**갈린 판정 하나** 부산시 청끌기업 목록은 ${ks.join('·')}을 '급여' 부문에 올리고 선정 근거로 '신입사원 평균초임 월 300만원 이상'을 적는다. 회사가 밝힌 금액이 아니고 같은 부문 20개 기업에 공통인 기준이어서, 이 사실을 보상 판정에 쓸지를 두고 두 채점안이 갈렸다(하나는 미확인 유지, 하나는 3점). ${scored ? '이 보고서는 3점으로 판정했다. 미확인으로 두면' : '합의되지 않아 이 보고서는 보상을 미확인으로 두었다. 3점으로 넣으면'} ${ks.map((k) => `${k} ${fmt(alt.res[k])}점`).join(', ')}이 되어 TOP 3가 ${alt.top3.join('·')}${sameSet(alt.top3, t3) ? '로 같다' : '로 바뀐다'}(${CH.apxSens}).`, { size: 18 }));
   }
   out.push(bullet(`**가정을 바꾸면** 미확인 처리와 영역 배점을 바꾼 결과는 ${CH.apxSens}에 있다. ${MD.robustTail}`, { size: 18 }));
   return out;
@@ -1038,6 +1049,15 @@ function signature(o = {}) {
   ];
 }
 
+// 부산시 청끌기업 '급여' 부문 선정 근거(신입 평균초임 월 300만 원 이상)를 보상 판정에 쓰느냐에 따른 차이
+function payFloorScenario() {
+  const ks = ['동화엔텍', '태광후지킨'];
+  const cur = ks.map((k) => itemOf(k, '보상·근무', '보상').j);
+  if (cur.every((j) => j === null)) return [['청끌기업 초임 하한선을 보상 3점으로', { override: Object.fromEntries(ks.map((k) => [k, { 보상: 3 }])) }]];
+  if (cur.every((j) => j !== null)) return [['청끌기업 초임 하한선을 쓰지 않음(보상 미확인)', { override: Object.fromEntries(ks.map((k) => [k, { 보상: null }])) }]];
+  return [];
+}
+
 // 제출본 부록: 1 기준표, 2 세부 판정과 일치율, 3 민감도, 4 계획 대비 변경, 5 사실 교차검증, 6 공개 원칙, 7 출처
 function appendixDeskAll() {
   const out = [...rubricBlock(), ...judgmentBlock(), ...agreementTable()];
@@ -1053,6 +1073,7 @@ function appendixDeskAll() {
     ['미확인 = 0점(하한)', { fill: 0 }],
     ['직무 20 · 보상 30', { w: wOf({ '직무 연계': 20, '보상·근무': 30 }) }],
     ['6개 영역 같은 비중', { w: eq }],
+    ...payFloorScenario(),
     ['1차 채점안만', { src: 'A' }],
     ['2차 채점안만', { src: 'B' }],
   ].map(([label, o]) => ({ label, ...scenarioScores(o) }));
