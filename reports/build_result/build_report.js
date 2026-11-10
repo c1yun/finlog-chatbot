@@ -794,6 +794,11 @@ function scenarioScores(opt) {
 // 받침이 있으면 '이다', 없으면 '다'(한글 끝 글자 기준, 영문 약어는 '다')
 const hasJong = (w) => { const c = w.charCodeAt(w.length - 1); return c >= 0xAC00 && c <= 0xD7A3 && (c - 0xAC00) % 28 !== 0; };
 const eun = (w) => `${w}${hasJong(w) ? '은' : '는'}`;
+const iga = (w) => `${w}${hasJong(w) ? '이' : '가'}`;
+const wa = (w) => `${w}${hasJong(w) ? '과' : '와'}`;
+const eul = (w) => `${w}${hasJong(w) ? '을' : '를'}`;
+// '로/으로': 받침이 없거나 ㄹ 받침이면 '로'
+const ro = (w) => { const c = w.charCodeAt(w.length - 1); const j = c >= 0xAC00 && c <= 0xD7A3 ? (c - 0xAC00) % 28 : 0; return `${w}${j === 0 || j === 8 ? '로' : '으로'}`; };
 const ida = (w) => { const c = w.charCodeAt(w.length - 1); return c >= 0xAC00 && c <= 0xD7A3 && (c - 0xAC00) % 28 !== 0 ? '이다' : '다'; };
 const itemOf = (k, area, name) => final(k).areas.find((x) => x.name === area).items.find((x) => x.name === name);
 const lowOrder = () => [...R.eligible].sort((a, b) => final(b).low - final(a).low || final(b).scaled - final(a).scaled);
@@ -835,9 +840,12 @@ function coverDesk() {
   const gap34 = fmt(final(t3[2]).scaled - final(fourth).scaled);
   const gap12 = fmt(final(t3[0]).scaled - final(t3[1]).scaled);
   const low3 = lowOrder().slice(0, 3);
-  const lowSentence = sameSet(low3, t3)
-    ? (low3.join() === t3.join() ? '확인하지 못한 항목을 0점으로 쳐도 세 곳과 순서는 같다.' : `확인하지 못한 항목을 0점으로 치면 세 곳은 같고 순서가 ${low3.join('·')}로 바뀐다.`)
-    : `확인하지 못한 항목을 0점으로 치면 3위 안의 기업이 ${low3.join('·')}로 바뀐다.`;
+  const mid3 = scenarioScores({ fill: 3 }).top3;
+  const midPart = sameSet(mid3, t3) ? '확인하지 못한 항목을 보통(3점)으로 두어도 세 곳은 같다.' : `확인하지 못한 항목을 보통(3점)으로 두면 세 곳이 ${ro(mid3.join('·'))} 바뀐다.`;
+  const lowPart = sameSet(low3, t3)
+    ? (low3.join() === t3.join() ? '0점으로 쳐도 세 곳과 순서는 같다.' : `0점으로 치면 세 곳은 같고 순서가 ${ro(low3.join('·'))} 바뀐다.`)
+    : `0점으로 치면 ${ro(low3.join('·'))} 바뀐다.`;
+  const lowSentence = `${midPart} ${lowPart}`;
   out.push(p(`**질문** ${MD.question}`, { size: BODY + 1, after: 70 }));
   out.push(lead(deskText(MD.summaryLead).replace('{top3}다', `${t3.map((k, i) => `${i + 1}위 ${k}`).join(', ')}${ida(t3[2])}`)));
   const rows = [[headc('순위'), headc(['기업', '대표 학사 신입 직무']), headc(['점수', '(범위)']), headc('선정 이유(요약)'), headc('지원 전에 확인할 것')]];
@@ -929,13 +937,21 @@ function top3Desk() {
   out.push(h3(MD.robustTitle));
   const fourth = R.eligible.filter((k) => !t3.includes(k))[0];
   const g = (a, b) => fmt(final(a).scaled - final(b).scaled);
-  out.push(bullet(`**접전** 1위 ${t3[0]}와 2위 ${t3[1]}의 차이는 ${g(t3[0], t3[1])}점, 3위 ${t3[2]}와 4위 ${fourth}의 차이는 ${g(t3[2], fourth)}점이다. 10점짜리 항목의 판정이 반 단계(0.5)만 달라져도 1점이 움직이므로, 이 차이는 순위를 확정할 만큼 크지 않다.`, { size: 18 }));
+  out.push(bullet(`**접전** 1위 ${wa(t3[0])} 2위 ${t3[1]}의 차이는 ${g(t3[0], t3[1])}점, 3위 ${wa(t3[2])} 4위 ${fourth}의 차이는 ${g(t3[2], fourth)}점이다. 10점짜리 항목의 판정이 반 단계(0.5)만 달라져도 1점이 움직이므로, 이 차이는 순위를 확정할 만큼 크지 않다.`, { size: 18 }));
   const low = lowOrder();
   const low3 = low.slice(0, 3);
   const noPay = t3.filter((k) => itemOf(k, '보상·근무', '보상').j === null);
-  if (low3.join() !== t3.join()) {
-    out.push(bullet(`**경합** 미확인 항목을 0점으로 두는 하한 순위는 ${low3.map((k) => `${k}(${fmt(final(k).low)})`).join(', ')} 순이다. 환산점수 순위와 달라, 연구계획서 규칙에 따라 ${sameSet(low3, t3) ? '순서가' : '2·3위 자리가'} 경합임을 밝힌다.${noPay.length ? ` ${eun(noPay.join('·'))} 신입 보상(10점)을 확인하지 못해 하한이 낮다. 이 조건이 확인되면 순위가 달라질 수 있다.` : ''}`, { size: 18 }));
-  }
+  // 미확인 항목을 어떻게 두느냐에 따른 1~4위(정보를 덜 공개한 회사가 유리해지는 문제를 드러내는 표)
+  const VIEWS = [['점수에서 뺀다(환산점수, 이 보고서의 기준)', {}], ['보통(3점)으로 둔다', { fill: 3 }], ['0점으로 둔다(하한)', { fill: 0 }]].map(([label, o]) => ({ label, ...scenarioScores(o) }));
+  const vr = [[headc('확인하지 못한 항목을'), headc('1위'), headc('2위'), headc('3위'), headc('4위')]];
+  VIEWS.forEach((v, i) => {
+    const o = [...ORDER].sort((a, b) => v.res[b] - v.res[a]).slice(0, 4);
+    vr.push([{ t: v.label, bold: i === 0, fill: C.gray }, ...o.map((k, j) => ({ t: `${k} ${fmt(v.res[k])}`, align: CENTER, fill: j < 3 && t3.includes(k) ? C.yellow : undefined }))]);
+  });
+  out.push(tbl(cw([34, 16.5, 16.5, 16.5, 16.5]), vr, { size: 16, padV: 26, padH: 50 }));
+  out.push(note(`노란 칸은 이 보고서의 TOP 3다. 10곳의 미확인 배점은 모두 ${ORDER.reduce((n, k) => n + (100 - final(k).conf), 0)}점(1,000점 가운데)이고, 그 가운데 ${ORDER.filter((k) => itemOf(k, '보상·근무', '보상').j === null).length * 10}점이 신입 보상이다.`));
+  const mid3 = VIEWS[1].top3;
+  out.push(bullet(`**미확인 처리** 환산점수는 확인하지 못한 항목을 점수에서 빼므로, 조건을 덜 공개한 회사가 유리해질 수 있다. 그래서 미확인을 보통(3점)으로 둔 순위와 0점으로 둔 순위를 함께 보였다. 보통(3점)으로 두면 TOP 3가 ${sameSet(mid3, t3) ? '같고' : `${ro(mid3.join('·'))} 바뀌고`}, 0점으로 두면 ${sameSet(low3, t3) ? '세 곳이 같다' : `${iga(low3.join('·'))} 된다`}.${low3.join() !== t3.join() ? ` 하한 순위가 환산점수 순위와 달라, 연구계획서 규칙에 따라 ${sameSet(low3, t3) ? '순서가' : '2·3위 자리가'} 경합임을 밝힌다.` : ''}${noPay.length ? ` ${eun(noPay.join('·'))} 신입 보상(10점)을 확인하지 못해 하한이 낮다.` : ''}`, { size: 18 }));
   const rk = (src) => { const o = [...ORDER].sort((a, b) => SC[b][src].scaled - SC[a][src].scaled); return o; };
   if (hasB(t3[0])) {
     const oa = rk('A'); const ob = rk('B');
@@ -948,9 +964,9 @@ function top3Desk() {
     const alt = scenarioScores(pf[0][1]);
     const ks = Object.keys(pf[0][1].override);
     const scored = ks.every((k) => itemOf(k, '보상·근무', '보상').j !== null);
-    out.push(bullet(`**갈린 판정 하나** 부산시 청끌기업 목록은 ${ks.join('·')}을 '급여' 부문에 올리고 선정 근거로 '신입사원 평균초임 월 300만원 이상'을 적는다. 회사가 밝힌 금액이 아니고 같은 부문 20개 기업에 공통인 기준이어서, 이 사실을 보상 판정에 쓸지를 두고 두 채점안이 갈렸다(하나는 미확인 유지, 하나는 3점). ${scored ? '이 보고서는 3점으로 판정했다. 미확인으로 두면' : '합의되지 않아 이 보고서는 보상을 미확인으로 두었다. 3점으로 넣으면'} ${ks.map((k) => `${k} ${fmt(alt.res[k])}점`).join(', ')}이 되어 TOP 3가 ${alt.top3.join('·')}${sameSet(alt.top3, t3) ? '로 같다' : '로 바뀐다'}(${CH.apxSens}).`, { size: 18 }));
+    out.push(bullet(`**갈린 판정 하나** 부산시 청끌기업 목록은 ${eul(ks.join('·'))} '급여' 부문에 올리고 선정 근거로 '신입사원 평균초임 월 300만원 이상'을 적는다. 회사가 밝힌 금액이 아니고 같은 부문 20개 기업에 공통인 기준이어서, 이 사실을 보상 판정에 쓸지를 두고 두 채점안이 갈렸다(하나는 미확인 유지, 하나는 3점). ${scored ? '이 보고서는 3점으로 판정했다. 미확인으로 두면' : '합의되지 않아 이 보고서는 보상을 미확인으로 두었다. 3점으로 넣으면'} ${ks.map((k) => `${k} ${fmt(alt.res[k])}점`).join(', ')}이 되어 TOP 3가 ${ro(alt.top3.join('·'))} ${sameSet(alt.top3, t3) ? '같다' : '바뀐다'}(${CH.apxSens}). 미확인을 보통(3점)으로 두는 기준에서는 이 판정이 어느 쪽이든 결과가 같다.`, { size: 18 }));
   }
-  out.push(bullet(`**가정을 바꾸면** 미확인 처리와 영역 배점을 바꾼 결과는 ${CH.apxSens}에 있다. ${MD.robustTail}`, { size: 18 }));
+  out.push(bullet(`**가정을 바꾸면** 영역 배점을 바꾼 결과는 ${CH.apxSens}에 있다. ${MD.robustTail}`, { size: 18 }));
   return out;
 }
 
@@ -1091,7 +1107,7 @@ function appendixDeskAll() {
   const changed = SCN.filter((sc) => !sameSet(sc.top3, SCN[0].top3));
   const reordered = SCN.filter((sc) => sc.top3.join() !== SCN[0].top3.join() && sameSet(sc.top3, SCN[0].top3));
   out.push(bullet(`기본을 뺀 ${SCN.length - 1}가지 가정 가운데 TOP 3의 세 기업이 그대로인 경우는 ${SCN.length - 1 - changed.length}가지다${reordered.length ? `(이 가운데 ${reordered.map((x) => `'${x.label}'`).join(', ')}에서는 세 곳 안의 순서가 바뀐다)` : ''}.`, { size: 18 }));
-  changed.forEach((sc) => out.push(bullet(`'${sc.label}'로 두면 TOP 3가 ${sc.top3.join(' · ')}가 된다.`, { size: 18 })));
+  changed.forEach((sc) => out.push(bullet(`'${sc.label}' 가정에서는 TOP 3가 ${iga(sc.top3.join(' · '))} 된다.`, { size: 18 })));
   MD.sensNotes.forEach((t) => out.push(bullet(t, { size: 18 })));
 
   out.push(h1('부록 4  연구계획서 대비 변경', { before: 300 }));
