@@ -1,0 +1,100 @@
+[
+ {
+  "file": "reports/build_result/cards_regional.json",
+  "path": "[key=송원산업].fields.확인된 보상",
+  "old": "연봉 6,000만 원 이상(추천채용 공고마다 같은 문구)",
+  "new": "연봉 6,000만 원 이상(2025. 10.~2026. 2. 추천채용 공고 4건의 문구)",
+  "verdict": "불일치",
+  "reason": "2024. 10. 24. 추천채용 공고는 '6,000만 원/년'으로 '이상'이 없어 '공고마다 같은 문구'가 아니다",
+  "sources": [
+   "https://chem.pusan.ac.kr/bbs/chem/709/1317206/artclView.do",
+   "https://chem.pusan.ac.kr/bbs/chem/709/1317402/artclView.do",
+   "https://chem.pusan.ac.kr/bbs/chem/709/1317361/artclView.do"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/송원산업.json",
+  "path": "intro[10][1]",
+  "old": "울산 공장에서 일할 화학 전공 신입을 부산대 화학과 추천채용으로 최근 24개월(2024. 10.~2026. 2.)에 다섯 차례 모집해",
+  "new": "화학 전공 신입을 부산대 화학과 추천채용으로 최근 24개월(2024. 10.~2026. 2.)에 다섯 차례 모집해(근무지를 울산으로 적은 공고는 2025. 10.·2025. 12. 30.·2026. 2. 세 차례)",
+  "verdict": "불일치",
+  "reason": "다섯 공고 중 2025. 12. 9.은 서울 영업만, 2024. 10. 24.은 근무지 미기재",
+  "sources": [
+   "https://chem.pusan.ac.kr/bbs/chem/709/1317386/artclView.do",
+   "https://chem.pusan.ac.kr/bbs/chem/709/1317206/artclView.do",
+   "https://chem.pusan.ac.kr/bbs/chem/709/1317361/artclView.do"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/송원산업.json",
+  "path": "analysis[4].points[1].t",
+  "old": "편의시설은 구내식당·샤워시설·기숙사·통근버스다 [3][4]",
+  "new": "편의시설은 구내식당·샤워시설·기숙사·통근버스다 [4][11]",
+  "verdict": "불일치",
+  "reason": "2026. 2. 공고[3]에는 편의시설 칸이 없고 2025. 10. 공고[4]와 2026. 11. 공채[11]에 있다",
+  "sources": [
+   "https://chem.pusan.ac.kr/bbs/chem/709/1317402/artclView.do",
+   "https://chem.pusan.ac.kr/bbs/chem/709/1317361/artclView.do",
+   "https://www.saramin.co.kr/zf_user/jobs/relay/view-detail?rec_idx=55428211"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/송원산업.json",
+  "path": "analysis[5].points[1].sub[0]",
+  "old": "같은 해 11월 울산시·고용노동부가 화학물질관리법 위반으로 경고 또는 고발 조치한 12개 사업장에 포함됐다고 보도됐다 [10]",
+  "new": "같은 해 11월 보도에 따르면 울산시·고용노동부가 화학물질관리법 위반으로 '경고 및 고발' 조처한 12개 사에 포함됐다 [10]",
+  "verdict": "불일치",
+  "reason": "기사 문구는 '경고 및 고발'이고, 11월은 보도 시점(조치 시점은 기사에 없음)",
+  "sources": [
+   "https://www.kmib.co.kr/article/view.asp?arcid=0016485602",
+   "https://www.seoul.co.kr/news/society/2021/11/19/20211119500140"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/송원산업.json",
+  "path": "reputation",
+  "old": "같은 해 11월 울산시·고용노동부가 화학물질관리법 위반으로 경고 또는 고발 조치한 12개 사업장에 포함됐다고 보도됐다. 송원산업에",
+  "new": "같은 해 11월 보도에 따르면 울산시·고용노동부가 화학물질관리법 위반으로 '경고 및 고발' 조처한 12개 사에 포함됐다. 송원산업에",
+  "verdict": "불일치",
+  "reason": "기사 문구는 '경고 및 고발'이고, 11월은 보도 시점",
+  "sources": [
+   "https://www.kmib.co.kr/article/view.asp?arcid=0016485602",
+   "https://www.seoul.co.kr/news/society/2021/11/19/20211119500140"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/송원산업.json",
+  "path": "sources[9][1]",
+  "old": "(경고 또는 고발 조치 12곳)",
+  "new": "('경고 및 고발' 조처 12개 사)",
+  "verdict": "불일치",
+  "reason": "기사 원문 문구와 맞춤",
+  "sources": [
+   "https://www.kmib.co.kr/article/view.asp?arcid=0016485602",
+   "https://www.seoul.co.kr/news/society/2021/11/19/20211119500140"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/송원산업.json",
+  "path": "values.basis",
+  "old": "Annual Report 2024 74쪽",
+  "new": "Annual Report 2024 PDF 74쪽(인쇄 쪽수 146)",
+  "verdict": "불일치",
+  "reason": "해당 문장은 PDF 74번째 쪽이며 인쇄 쪽수는 146",
+  "sources": [
+   "https://www.songwon.com/assets/files/media-gallery/pdf/SONGWON_Annual_Report_2024.pdf"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/송원산업.json",
+  "path": "analysis[1].points[1].t",
+  "old": "부설연구소 인원은 30명(연구전담 22명)이고",
+  "new": "부설연구소 인원은 2025년 말 30명(연구전담 22명), 2026. 6. 말 31명(연구전담 26명)이고",
+  "verdict": "기준일 지남",
+  "reason": "2026 반기보고서에서 31명(연구전담 26명)으로 바뀜",
+  "sources": [
+   "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260304000913",
+   "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260813000597"
+  ]
+ }
+]
