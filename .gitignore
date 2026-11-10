@@ -20,3 +20,4 @@ __pycache__/
 reports/usage_task/sources/
 reports/usage_task/dist/
 reports/usage_task/private/
+reports/build_result/figs/_desk_fig_data.json

@@ -1,0 +1,124 @@
+{
+ "date": "2026. 11. 10.",
+ "rows": [
+  {
+   "n": 91,
+   "two": 47,
+   "one": 35,
+   "mismatch": 2,
+   "na": 5,
+   "stale": 2,
+   "label": "조광요턴",
+   "second": null
+  },
+  {
+   "n": 87,
+   "two": 27,
+   "one": 54,
+   "mismatch": 6,
+   "na": 0,
+   "stale": 0,
+   "label": "동화엔텍",
+   "second": null
+  },
+  {
+   "n": 70,
+   "two": 20,
+   "one": 42,
+   "mismatch": 3,
+   "na": 2,
+   "stale": 3,
+   "label": "태광후지킨",
+   "second": null
+  },
+  {
+   "n": 85,
+   "two": 49,
+   "one": 25,
+   "mismatch": 9,
+   "na": 0,
+   "stale": 2,
+   "label": "파나시아",
+   "second": null
+  },
+  {
+   "n": 75,
+   "two": 37,
+   "one": 32,
+   "mismatch": 5,
+   "na": 0,
+   "stale": 1,
+   "label": "송원산업",
+   "second": null
+  },
+  {
+   "n": 97,
+   "two": 39,
+   "one": 53,
+   "mismatch": 3,
+   "na": 1,
+   "stale": 1,
+   "label": "지엠비코리아",
+   "second": null
+  },
+  {
+   "n": 78,
+   "two": 33,
+   "one": 42,
+   "mismatch": 2,
+   "na": 0,
+   "stale": 1,
+   "label": "해성디에스",
+   "second": null
+  },
+  {
+   "n": 74,
+   "two": 36,
+   "one": 29,
+   "mismatch": 3,
+   "na": 4,
+   "stale": 2,
+   "label": "넥센타이어",
+   "second": null
+  },
+  {
+   "n": 73,
+   "two": 38,
+   "one": 29,
+   "mismatch": 2,
+   "na": 0,
+   "stale": 4,
+   "label": "BHI",
+   "second": null
+  },
+  {
+   "n": 83,
+   "two": 38,
+   "one": 35,
+   "mismatch": 7,
+   "na": 2,
+   "stale": 1,
+   "label": "TKG태광",
+   "second": null
+  },
+  {
+   "n": 60,
+   "two": 28,
+   "one": 27,
+   "mismatch": 4,
+   "na": 0,
+   "stale": 1,
+   "label": "통계·인용·공모전 사실",
+   "second": null
+  }
+ ],
+ "total": {
+  "n": 873,
+  "two": 392,
+  "one": 403,
+  "mismatch": 46,
+  "na": 14,
+  "stale": 18,
+  "second": null
+ }
+}
