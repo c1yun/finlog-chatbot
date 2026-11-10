@@ -796,17 +796,24 @@ const lowOrder = () => [...R.eligible].sort((a, b) => final(b).low - final(a).lo
 const sameSet = (a, b) => [...a].sort().join() === [...b].sort().join();
 function writeDeskFigs() {
   const range = R.byFinal.map((k, i) => ({ name: k, rank: i + 1, scaled: final(k).scaled, low: final(k).low, high: final(k).high, top: R.top3.includes(k), rep: META.rep[k] }));
-  const commute = MD.settleTable.map(([k, place, bus, dorm]) => {
-    const row = COMP[k].settle.find((x) => x[0] === '거리');
-    const m = /약 (\d+)km·약 (\d+)분/.exec(row ? row[1] : '');
-    if (!m) throw new Error(`${k}: 거리 문장에서 km·분을 읽지 못했다`);
-    return { name: k, place, km: Number(m[1]), min: Number(m[2]), bus, dorm };
-  });
+  const commute = MD.settleTable.map(([k, place, bus, dorm]) => ({ name: k, place, ...commuteOf(k), bus, dorm }));
   fs.mkdirSync(path.join(__dirname, 'figs'), { recursive: true });
   fs.writeFileSync(path.join(__dirname, 'figs', '_desk_fig_data.json'), JSON.stringify({ range, commute }, null, 1));
   require('child_process').execFileSync('python3', [path.join(__dirname, 'make_desk_figs.py')], { stdio: 'inherit' });
 }
 const FIG = (name) => path.join(__dirname, 'figs', name);
+// 기업 원고의 '거리' 행(두 경로 계산기의 범위)에서 km·분을 읽는다
+function commuteOf(k) {
+  const row = COMP[k].settle.find((x) => x[0] === '거리');
+  const m = /약 (\d+)~(\d+)km·약 (\d+)~(\d+)분/.exec(row ? row[1] : '');
+  if (!m) throw new Error(`${k}: 거리 문장에서 km·분 범위를 읽지 못했다`);
+  return { km1: Number(m[1]), km2: Number(m[2]), min1: Number(m[3]), min2: Number(m[4]) };
+}
+function commuteLead() {
+  const rng = (ks) => { const a = ks.map(commuteOf); return `약 ${Math.min(...a.map((x) => x.min1))}~${Math.max(...a.map((x) => x.min2))}분`; };
+  return MD.settleLead.replace('{near}', rng(['TKG태광', '넥센타이어'])).replace('{gangseo}', rng(['파나시아', '태광후지킨', '조광요턴', '동화엔텍']))
+    .replace('{mid}', rng(['해성디에스', '지엠비코리아', '송원산업'])).replace('{far}', rng(['BHI']));
+}
 const XV = DESK ? loadJSON(path.join(__dirname, 'xv_summary.json')) : null;
 function xvSentence() {
   if (!XV) return miss('교차검증 요약(xv_summary.json)');
@@ -1008,7 +1015,7 @@ function sec5Desk() {
   out.push(note('기업별 8주 준비 전략은 기업별 분석에 있다. 주차는 공고가 올라온 날을 기준으로 거꾸로 세는 상대 일정이다.'));
 
   out.push(h2('3  통근·주거와 지역에 남는 경로'));
-  out.push(p(META.settleLead, { size: BODY }));
+  out.push(p(commuteLead(), { size: BODY }));
   out.push(img(FIG('desk_commute.png'), 16.2, { alt: '부산대에서 10곳 근무지까지 자동차 소요 시간과 거리, 통근버스·기숙사 공개 여부' }));
   out.push(note(MD.figCommuteCaption, { before: 0 }));
   const sr = [[headc('기업'), headc('근무지'), headc(['통근', '버스']), headc('기숙사'), headc('그 밖의 통근·주거 지원'), headc('지역 채용 경로')]];

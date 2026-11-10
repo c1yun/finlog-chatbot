@@ -1,0 +1,85 @@
+{
+ "origin": {
+  "name": "부산대학교(부산 금정구)",
+  "lat": 35.2343498,
+  "lon": 129.0784068
+ },
+ "computed": "2026-11-10",
+ "engines": {
+  "osrm": "https://router.project-osrm.org (driving)",
+  "valhalla": "https://valhalla1.openstreetmap.de (auto)"
+ },
+ "note": "둘 다 실시간 교통을 반영하지 않는다. 도착 좌표는 근무지 주소의 도로 중심 근사값이다.",
+ "routes": {
+  "넥센타이어": {
+   "valhalla_km": 24.6,
+   "valhalla_min": 34,
+   "osrm_km": 21.4,
+   "osrm_min": 23,
+   "dest": "충렬로, 유산동, 강서동, 양산시, 경상남도, 50573, 대한민국"
+  },
+  "TKG태광": {
+   "valhalla_km": 24.7,
+   "valhalla_min": 38,
+   "osrm_km": 19.1,
+   "osrm_min": 21,
+   "dest": "김해대로2635번길, 김해안동공단, 안동, 수안리, 김해시, 경상남도, "
+  },
+  "송원산업": {
+   "valhalla_km": 61.0,
+   "valhalla_min": 72,
+   "osrm_km": 51.6,
+   "osrm_min": 50,
+   "dest": "장생포로, 매암동, 야음장생포동, 남구, 울산광역시, 44780, 대한민"
+  },
+  "해성디에스": {
+   "valhalla_km": 65.7,
+   "valhalla_min": 67,
+   "osrm_km": 49.3,
+   "osrm_min": 46,
+   "dest": "웅남로, 창원국가산업단지, 웅남동, 성산구, 창원시, 경상남도, 5156"
+  },
+  "지엠비코리아": {
+   "valhalla_km": 50.1,
+   "valhalla_min": 60,
+   "osrm_km": 45.8,
+   "osrm_min": 43,
+   "dest": "웅남로, 외동, 성산구, 창원시, 경상남도, 51554, 대한민국"
+  },
+  "조광요턴": {
+   "valhalla_km": 40.4,
+   "valhalla_min": 54,
+   "osrm_km": 34.5,
+   "osrm_min": 35,
+   "dest": "과학산단1로, 지사동, 녹산동, 강서구, 부산광역시, 46743, 대한민"
+  },
+  "동화엔텍": {
+   "valhalla_km": 53.7,
+   "valhalla_min": 59,
+   "osrm_km": 35.8,
+   "osrm_min": 35,
+   "dest": "녹산산단261로, 녹산국가산업단지, 녹산동, 강서구, 부산광역시, 467"
+  },
+  "태광후지킨": {
+   "valhalla_km": 33.5,
+   "valhalla_min": 57,
+   "osrm_km": 31.8,
+   "osrm_min": 32,
+   "dest": "화전산단3로, 화전동, 녹산동, 강서구, 부산광역시, 46735, 대한민"
+  },
+  "파나시아": {
+   "valhalla_km": 41.3,
+   "valhalla_min": 54,
+   "osrm_km": 29.7,
+   "osrm_min": 31,
+   "dest": "미음산단3로, 미음동, 녹산동, 강서구, 부산광역시, 46744, 대한민"
+  },
+  "BHI": {
+   "valhalla_km": 82.4,
+   "valhalla_min": 69,
+   "osrm_km": 76.2,
+   "osrm_min": 62,
+   "dest": "장백로, 장지리, 함안군, 경상남도, 52065, 대한민국"
+  }
+ }
+}

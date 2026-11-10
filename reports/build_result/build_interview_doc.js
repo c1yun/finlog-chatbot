@@ -44,15 +44,15 @@ function outreach() {
 
 function companyQuestions() {
   const out = [h1('Ⅱ. 기업별 질문', { pageBreak: true })];
-  out.push(lead('공개자료로 채우지 못한 칸(결과보고서의 \'회사 답변·인터뷰 확인\' 칸)을 우선한다. \'인사담당자\' 행은 서면 질의 메일의 질문 1~4와 같다. \'평판 확인\'은 평판 \'주의\' 기업에만 있으며, 출처를 밝히고 회사 입장을 묻는다.'));
+  out.push(lead('결과보고서 기업별 분석 끝의 \'공개자료로 확인하지 못한 것\'과 같은 항목을 질문으로 풀었다. \'인사담당자\' 행은 서면 질의 메일의 질문 1~4와 같다. \'평판 확인\'은 평판 \'주의\' 기업에만 있으며, 출처를 밝히고 회사 입장을 묻는다.'));
   ORDER.forEach((k, i) => {
     const q = IQ[k];
-    out.push(h3(`${NUM[i]} ${k}  (평판 ${REP[k]})`, { before: 110 }));
+    out.push(h3(`${NUM[i]} ${k}  (평판 ${REP[k]})`, { before: 80 }));
     const rows = [];
     (q.hr || []).forEach((x) => rows.push(['인사담당자', x]));
     (q.staff || []).forEach((x) => rows.push(['현직자', x]));
     (q.rep || []).forEach((x) => rows.push(['평판 확인', x]));
-    out.push(tbl(cw([14, 86]), rows.map(([a, b], j) => [{ t: a, fill: a === '평판 확인' ? C.yellow : C.gray, bold: true, align: CENTER }, `${j + 1}. ${b}`]), { size: 16, padV: 28 }));
+    out.push(tbl(cw([14, 86]), rows.map(([a, b], j) => [{ t: a, fill: a === '평판 확인' ? C.yellow : C.gray, bold: true, align: CENTER }, `${j + 1}. ${b}`]), { size: 16, padV: 20 }));
   });
   return out;
 }

@@ -36,10 +36,11 @@ def first(path):
 
 
 def second(path):
+    # 2차 결과는 '<기업>.2차.md'에 있거나, 없으면 '<기업>.md' 끝의 '2차 출처 보강' 절에 있다
     if not path.exists():
-        return None
+        path = path.with_name(path.name.replace('.2차.md', '.md'))
     text = path.read_text(encoding='utf-8')
-    line = next((l for l in text.splitlines() if '2차 확인' in l and '원천 1개' in l and re.search(r'\d', l)), None)
+    line = next((l for l in text.splitlines() if '확인(1) 총' in l and '2차 확인' in l and '원천 1개' in l), None)
     if not line:
         return None
     r = {
@@ -48,6 +49,8 @@ def second(path):
     }
     if None in (r['n'], r['confirmed'], r['single_origin'], r['not_found'], r['mismatch']):
         return None
+    if r['confirmed'] + r['single_origin'] + r['not_found'] + r['mismatch'] + r['unreviewed'] != r['n']:
+        raise SystemExit(f'2차 통계 합이 맞지 않는다: {path.name} {r}')
     return r
 
 

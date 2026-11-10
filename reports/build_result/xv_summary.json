@@ -9,7 +9,14 @@
    "na": 5,
    "stale": 2,
    "label": "조광요턴",
-   "second": null
+   "second": {
+    "n": 35,
+    "confirmed": 11,
+    "single_origin": 20,
+    "not_found": 4,
+    "mismatch": 0,
+    "unreviewed": 0
+   }
   },
   {
    "n": 87,
@@ -19,7 +26,14 @@
    "na": 0,
    "stale": 0,
    "label": "동화엔텍",
-   "second": null
+   "second": {
+    "n": 54,
+    "confirmed": 8,
+    "single_origin": 36,
+    "not_found": 9,
+    "mismatch": 1,
+    "unreviewed": 0
+   }
   },
   {
    "n": 70,
@@ -29,7 +43,14 @@
    "na": 2,
    "stale": 3,
    "label": "태광후지킨",
-   "second": null
+   "second": {
+    "n": 42,
+    "confirmed": 7,
+    "single_origin": 27,
+    "not_found": 5,
+    "mismatch": 3,
+    "unreviewed": 0
+   }
   },
   {
    "n": 85,
@@ -39,7 +60,14 @@
    "na": 0,
    "stale": 2,
    "label": "파나시아",
-   "second": null
+   "second": {
+    "n": 25,
+    "confirmed": 10,
+    "single_origin": 11,
+    "not_found": 4,
+    "mismatch": 0,
+    "unreviewed": 0
+   }
   },
   {
    "n": 75,
@@ -49,7 +77,14 @@
    "na": 0,
    "stale": 1,
    "label": "송원산업",
-   "second": null
+   "second": {
+    "n": 32,
+    "confirmed": 13,
+    "single_origin": 12,
+    "not_found": 5,
+    "mismatch": 1,
+    "unreviewed": 1
+   }
   },
   {
    "n": 97,
@@ -59,7 +94,14 @@
    "na": 1,
    "stale": 1,
    "label": "지엠비코리아",
-   "second": null
+   "second": {
+    "n": 53,
+    "confirmed": 14,
+    "single_origin": 23,
+    "not_found": 16,
+    "mismatch": 0,
+    "unreviewed": 0
+   }
   },
   {
    "n": 78,
@@ -69,7 +111,14 @@
    "na": 0,
    "stale": 1,
    "label": "해성디에스",
-   "second": null
+   "second": {
+    "n": 42,
+    "confirmed": 22,
+    "single_origin": 7,
+    "not_found": 13,
+    "mismatch": 0,
+    "unreviewed": 0
+   }
   },
   {
    "n": 74,
@@ -79,7 +128,14 @@
    "na": 4,
    "stale": 2,
    "label": "넥센타이어",
-   "second": null
+   "second": {
+    "n": 29,
+    "confirmed": 18,
+    "single_origin": 8,
+    "not_found": 1,
+    "mismatch": 2,
+    "unreviewed": 0
+   }
   },
   {
    "n": 73,
@@ -89,7 +145,14 @@
    "na": 0,
    "stale": 4,
    "label": "BHI",
-   "second": null
+   "second": {
+    "n": 29,
+    "confirmed": 3,
+    "single_origin": 20,
+    "not_found": 5,
+    "mismatch": 1,
+    "unreviewed": 0
+   }
   },
   {
    "n": 83,
@@ -99,7 +162,14 @@
    "na": 2,
    "stale": 1,
    "label": "TKG태광",
-   "second": null
+   "second": {
+    "n": 35,
+    "confirmed": 14,
+    "single_origin": 17,
+    "not_found": 4,
+    "mismatch": 0,
+    "unreviewed": 0
+   }
   },
   {
    "n": 60,
@@ -119,6 +189,14 @@
   "mismatch": 46,
   "na": 14,
   "stale": 18,
-  "second": null
+  "second": {
+   "n": 376,
+   "confirmed": 120,
+   "single_origin": 181,
+   "not_found": 66,
+   "mismatch": 8,
+   "unreviewed": 1,
+   "files": 10
+  }
  }
 }

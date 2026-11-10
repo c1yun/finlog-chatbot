@@ -1,0 +1,63 @@
+[
+  {
+    "file": "reports/build_result/companies/넥센타이어.json",
+    "path": "analysis[4].points[0].t",
+    "old": "신입은 정규직으로 뽑고 수습 기간은 3개월이다 [3].",
+    "new": "신입은 3개월 수습 기간 평가 뒤 정규직으로 전환한다 [3].",
+    "verdict": "불일치",
+    "reason": "공고 포스터 원문은 '신입 사원: 3개월 수습 기간 평가 후 정규직 전환'(한국교통대 게시본은 줄여 옮긴 글)",
+    "sources": [
+      "https://biz.korea.ac.kr/cdc/eng/recruitment/recruitment_view?no=13872",
+      "https://biz.korea.ac.kr/ft_board/image_view.html?fd=recruitment&ptype=cdc&nm=2025112015231089783427_re.jpg",
+      "https://www.ut.ac.kr/cop/bbs/BBSMSTR_000000000173/selectBoardArticle.do?nttId=1084005"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/넥센타이어.json",
+    "path": "jobs[0].type",
+    "old": "(양산공장) [1][3]\",\n      \"type\": \"신입 정규직, 수습 3개월 [3]\"",
+    "new": "(양산공장) [1][3]\",\n      \"type\": \"신입, 3개월 수습 평가 후 정규직 전환 [3]\"",
+    "verdict": "불일치",
+    "reason": "위와 같음. 같은 값이 jobs[1].type에도 있어 old·new는 파일 원문 기준으로 place 끝부분까지 포함함(값만 바꾸면 '신입, 3개월 수습 평가 후 정규직 전환 [3]')",
+    "sources": [
+      "https://biz.korea.ac.kr/cdc/eng/recruitment/recruitment_view?no=13872",
+      "https://biz.korea.ac.kr/ft_board/image_view.html?fd=recruitment&ptype=cdc&nm=2025112015231089783427_re.jpg"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/넥센타이어.json",
+    "path": "jobs[1].type",
+    "old": "(창녕공장) [3][4]\",\n      \"type\": \"신입 정규직, 수습 3개월 [3]\"",
+    "new": "(창녕공장) [3][4]\",\n      \"type\": \"신입, 3개월 수습 평가 후 정규직 전환 [3]\"",
+    "verdict": "불일치",
+    "reason": "위와 같음(파일 원문 기준 문자열)",
+    "sources": [
+      "https://biz.korea.ac.kr/cdc/eng/recruitment/recruitment_view?no=13872",
+      "https://biz.korea.ac.kr/ft_board/image_view.html?fd=recruitment&ptype=cdc&nm=2025112015231089783427_re.jpg"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/넥센타이어.json",
+    "path": "jobs[1].req",
+    "old": "이공계·산업공학 관련 전공. 어학·자격 요건은 공고에 없다 [3].",
+    "new": "이공계·산업공학 관련 전공. 우대: 영어 회화·번역 가능자. 자격증 요건은 공고에 없다 [3].",
+    "verdict": "불일치",
+    "reason": "공고 포스터 원문의 창녕 생산관리 우대사항에 '영어 회화/번역 가능자'가 있음(한국교통대 게시본에서 빠짐)",
+    "sources": [
+      "https://biz.korea.ac.kr/cdc/eng/recruitment/recruitment_view?no=13872",
+      "https://biz.korea.ac.kr/ft_board/image_view.html?fd=recruitment&ptype=cdc&nm=2025112015231089783427_re.jpg"
+    ]
+  },
+  {
+    "file": "reports/build_result/cards_regional.json",
+    "path": "[7].fields.고용형태와 요건",
+    "old": "신입 정규직(수습 3개월)",
+    "new": "신입(3개월 수습 평가 후 정규직 전환)",
+    "verdict": "불일치",
+    "reason": "공고 포스터 원문은 '3개월 수습 기간 평가 후 정규직 전환'",
+    "sources": [
+      "https://biz.korea.ac.kr/cdc/eng/recruitment/recruitment_view?no=13872",
+      "https://biz.korea.ac.kr/ft_board/image_view.html?fd=recruitment&ptype=cdc&nm=2025112015231089783427_re.jpg"
+    ]
+  }
+]

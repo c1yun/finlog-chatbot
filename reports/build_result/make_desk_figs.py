@@ -85,21 +85,22 @@ def mark(ax, x, y, m):
 
 
 def fig_commute(rows):
-    rows = sorted(rows, key=lambda r: (r['min'], r['km']))
+    rows = sorted(rows, key=lambda r: (r['min1'], r['min2']))
     n = len(rows)
     fig, ax = plt.subplots(figsize=(7.4, 0.33 * n + 0.8), dpi=240)
-    X_BUS, X_DORM = 84, 95
+    X_BUS, X_DORM = 107, 118
     for i, r in enumerate(rows):
         y = n - 1 - i
-        ax.barh(y, r['min'], height=0.5, color=STEEL, zorder=2)
-        ax.text(r['min'] + 1.2, y, f"약 {r['min']}분 · {r['km']}km", va='center', ha='left', fontsize=8.8, color=INK)
+        ax.hlines(y, 0, r['min1'], color=GRID, lw=1.2, zorder=1)
+        ax.barh(y, r['min2'] - r['min1'], left=r['min1'], height=0.42, color=STEEL, zorder=2)
+        ax.text(r['min2'] + 1.4, y, f"약 {r['min1']}~{r['min2']}분 · {r['km1']}~{r['km2']}km", va='center', ha='left', fontsize=8.6, color=INK)
         mark(ax, X_BUS, y, r['bus'])
         mark(ax, X_DORM, y, r['dorm'])
     ax.text(X_BUS, n - 0.25, '통근버스', va='bottom', ha='center', fontsize=8.5, color=SUB, fontweight='bold')
     ax.text(X_DORM, n - 0.25, '기숙사', va='bottom', ha='center', fontsize=8.5, color=SUB, fontweight='bold')
     ax.set_yticks(range(n))
     ax.set_yticklabels([f"{r['name']} · {r['place']}" for r in rows][::-1], fontsize=9.3, color=INK)
-    ax.set_xlim(0, 101)
+    ax.set_xlim(0, 124)
     ticks = [0, 20, 40, 60]
     ax.set_xticks(ticks)
     ax.set_xticklabels([f'{t}분' for t in ticks], fontsize=8.5, color=SUB)
@@ -111,11 +112,12 @@ def fig_commute(rows):
     ax.spines['bottom'].set_color(GRID)
     ax.tick_params(axis='both', length=0)
     handles = [
+        Line2D([], [], color=STEEL, lw=6, label='두 경로 계산기의 범위'),
         Line2D([], [], marker='o', color='none', markerfacecolor=INK, markeredgecolor=INK, markersize=6.5, label='회사가 공고·공식 자료에 밝힘'),
         Line2D([], [], marker='o', color='none', markerfacecolor=INK, markerfacecoloralt='white', fillstyle='left', markeredgecolor=INK, markersize=6.5, label='일부만 확인'),
         Line2D([], [], marker='_', color='none', markeredgecolor=INK, markersize=7, markeredgewidth=1.4, label='공개자료에서 찾지 못함'),
     ]
-    leg = fig.legend(handles=handles, loc='lower right', bbox_to_anchor=(0.998, 0.0), ncol=3, frameon=False, fontsize=7.8, handletextpad=0.4, columnspacing=1.6)
+    leg = fig.legend(handles=handles, loc='lower right', bbox_to_anchor=(0.998, 0.0), ncol=4, frameon=False, fontsize=7.8, handletextpad=0.6, handlelength=1.4, columnspacing=1.4)
     for t in leg.get_texts():
         t.set_color(SUB)
     fig.subplots_adjust(left=0.215, right=0.995, top=0.94, bottom=0.14)
