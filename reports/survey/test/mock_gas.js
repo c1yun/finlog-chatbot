@@ -12,12 +12,14 @@ class Choice {
   constructor(value, nav) { this.value = value; this.nav = nav === undefined ? null : nav; }
   getValue() { return this.value; }
   getPageBreakItem() { return this.nav && typeof this.nav === 'object' ? this.nav : null; }
+  getGotoPage() { return this.getPageBreakItem(); } // 실제 API의 이름(Choice.getGotoPage)
   getPageNavigationType() { if (this.nav && typeof this.nav === 'object') return PageNavigationType.GO_TO_PAGE; return this.nav || PageNavigationType.CONTINUE; }
 }
 
 class Item {
   constructor(form, type) { this.form = form; this.type = type; this.id = newId(); this.title = ''; this.help = ''; this.required = false; this.choices = []; this.rows = []; this.cols = []; this.other = false; this.validation = null; this.goTo = null; }
   getId() { return this.id; }
+  getIndex() { return this.form.items.indexOf(this); }
   getType() { return this.type; }
   getTitle() { return this.title; }
   getHelpText() { return this.help; }
@@ -93,6 +95,7 @@ class Form {
   setCustomClosedFormMessage(m) { this.closed = m; return this; }
   setPublished(b) { this.settings.published = b; return this; }
   getPublishedUrl() { return `https://docs.google.com/forms/d/e/${this.id}/viewform`; }
+  shortenFormUrl(u) { return u.replace('docs.google.com/forms/d/e', 'forms.gle'); }
   getEditUrl() { return `https://docs.google.com/forms/d/${this.id}/edit`; }
   deleteAllResponses() { this.responses = []; return this; }
   getResponses() { return this.responses.slice(); }
