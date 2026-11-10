@@ -1,0 +1,68 @@
+[
+  {
+    "file": "reports/build_result/report_meta.js",
+    "old": "구직자 1,859명 조사에서 61%가 공고가 부실해 가고 싶던 기업 지원을 포기한 적이 있다고 답했다(진학사 캐치 2025, 뉴시스 보도 기준)",
+    "new": "구직자 1,859명 조사에서 55%가 채용공고만으로 지원 의사가 바뀐 적이 있다고 답했고, 그 가운데 61%는 공고가 부실해 선호하던 기업 지원을 포기한 적이 있었다(진학사 캐치 2025, 뉴시스·한경비즈니스 보도 기준)",
+    "verdict": "불일치",
+    "reason": "61%의 분모는 전체 1,859명이 아니라 '공고만으로 지원 의사가 바뀐 적이 있다'고 답한 55%다(두 기사 모두 '이 중/이들 중 61%').",
+    "sources": [
+      "https://www.newsis.com/view/NISX20250323_0003109331",
+      "https://magazine.hankyung.com/business/article/202503219336b"
+    ]
+  },
+  {
+    "file": "reports/간판 효과 선행연구와 부울경 청년 통계.md",
+    "old": "**56%**는 공고가 매력적이어서 잘 모르던 기업에 지원한 적이 있었고, **61%**는 공고가 부실해 가고 싶던 기업을 포기한 적이 있었다",
+    "new": "**55%**는 채용공고만으로 지원 의사가 바뀐 적이 있었고, 그 가운데 **61%**는 공고가 부실해 선호하던 기업을 포기한 적이, **56%**는 공고가 매력적이어서 잘 모르던 기업에 지원한 적이 있었다(복수 응답)",
+    "verdict": "불일치",
+    "reason": "61%·56%는 전체 응답자가 아니라 지원 의사가 바뀐 55% 안의 비율(복수 응답)로 보도됐다.",
+    "sources": [
+      "https://www.newsis.com/view/NISX20250323_0003109331",
+      "https://magazine.hankyung.com/business/article/202503219336b"
+    ]
+  },
+  {
+    "file": "reports/build_result/report_meta.js",
+    "old": "(2026. 4. 30. 보도자료와 별첨)",
+    "new": "(2026. 4. 29. 배포 보도자료와 별첨)",
+    "verdict": "불일치",
+    "reason": "공정위 보도자료의 보도시점·배포일은 2026. 4. 29.(수)이고 4. 30.은 조간 게재일이다.",
+    "sources": [
+      "research_notes/원문 검증/originals/P2/260430(조간) 2026년도 공시대상기업집단 등 지정결과 발표.pdf",
+      "https://eiec.kdi.re.kr/policy/materialView.do?num=280329"
+    ]
+  },
+  {
+    "file": "reports/build_result/report_meta.js",
+    "old": "Operations and Supply Chain Management, 12(1)",
+    "new": "Operations and Supply Chain Management: An International Journal, 12(1)",
+    "verdict": "불일치",
+    "reason": "학술지 정식 이름은 'Operations and Supply Chain Management: An International Journal'이다(권호·쪽·DOI는 맞음).",
+    "sources": [
+      "https://journal.oscm-forum.org/publication/article/analysis-of-the-job-preferences-for-undergraduate-supply-chain-students",
+      "https://api.crossref.org/works/10.31387/oscm0360220"
+    ]
+  },
+  {
+    "file": "reports/간판 효과 선행연구와 부울경 청년 통계.md",
+    "old": "3분기 청년 수치를 담은 동남권 분기 자료는 11월 3일 현재 게시되지 않았다. 전년에는 11월 5일에 공표됐다",
+    "new": "3분기 동남권 청년(20~39세) 순유출은 3,281명으로 전년 같은 분기(3,957명)보다 676명 줄었다(부산 999명, 울산 286명, 경남 1,996명). 1~3분기 누계는 12,818명으로 전년 같은 기간(14,573명)보다 12.0% 적다(계산)([동남지방데이터청 「2026년 3분기 동남권 인구이동통계」, 2026-11-04](https://mods.go.kr/board.es?mid=a60301010100&bid=11802&act=view&list_no=447812))",
+    "verdict": "기준일 지남",
+    "reason": "2026년 3분기 동남권 인구이동통계가 2026. 11. 4.에 공표됐다.",
+    "sources": [
+      "https://mods.go.kr/board.es?mid=a60301010100&bid=11802&act=view&list_no=447812",
+      "https://www.ulsanpress.net/news/articleView.html?idxno=586224"
+    ]
+  },
+  {
+    "file": "reports/간판 효과 선행연구와 부울경 청년 통계.md",
+    "old": "| 2026년 3분기 청년 수치 | 동남지방데이터청 3분기 자료가 나오면 PPT 1장을 갱신한다 | 11월 3일 현재 미공표, 전년에는 11월 5일 공표 |",
+    "new": "| 2026년 3분기 청년 수치 | 3분기 3,281명(전년 동분기 3,957명), 1~3분기 누계 12,818명(전년 동기 14,573명, 계산)으로 PPT 1장을 갱신한다 | 2026. 11. 4. 공표(동남지방데이터청 「2026년 3분기 동남권 인구이동통계」) |",
+    "verdict": "기준일 지남",
+    "reason": "2026년 3분기 동남권 인구이동통계가 2026. 11. 4.에 공표됐다.",
+    "sources": [
+      "https://mods.go.kr/board.es?mid=a60301010100&bid=11802&act=view&list_no=447812",
+      "https://www.ulsanpress.net/news/articleView.html?idxno=586224"
+    ]
+  }
+]
