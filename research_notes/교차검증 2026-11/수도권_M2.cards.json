@@ -1,0 +1,671 @@
+[
+ {
+  "pair": 6,
+  "regional": "지엠비코리아",
+  "company": "인지컨트롤스",
+  "replaced_by": null,
+  "hq": "경기도 시흥시 군자천로 171 (시화공단 2다 504호)",
+  "work_region": "경기 시흥시(군자천로 171)",
+  "job": "금형 개발(신입) — 사출 금형 개발·육성, 생산기술·공정 계열",
+  "fields": {
+   "직무와 업무": "금형 개발: 사출 금형 개발, 금형 육성, 개발문서 관리, 원가 분석, 협력사 개발",
+   "고용형태와 요건": "정규직(수습 3개월). 신입 지원 가능, 초대졸(2·3년제) 이상, 관련 전공. 어학·자격증 요건 없음. 수시모집",
+   "보상": "공고에 금액 없음(면접 후 결정)",
+   "근무·복지 조건": "근무지 시흥 본사. 근무시간 공고에 없음. 사내식당 3식, 통근·셔틀버스, 기숙사(초기 3+3개월), 하기휴가 5일, 신입 멘토링 6개월",
+   "회사 사업과 규모": "자동차 열관리(냉각)·배터리·엔진 부품 제조. 2025년 연결 매출 7,179억 원(별도 4,475억), 직원 559명, 유가증권 상장 중견기업"
+  },
+  "posting": {
+   "title": "[인지컨트롤스(주)] 금형 개발 부문 모집(신입/경력)",
+   "period": "2026-10-15 ~ 채용 시 마감",
+   "status": "진행 중",
+   "urls": [
+    "https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=55295065",
+    "https://career.rememberapp.co.kr/job/posting/346287"
+   ]
+  },
+  "size": {
+   "sales": "2025년 연결 7,179억 원, 별도 4,475억 원 (매출 5,000억~1조 원 구간, 별도는 1,000억~5,000억 원)",
+   "employees": "559명(2025-12-31), 526명(2026-06-30) (직원 500~1,000명)",
+   "listed": "유가증권시장 상장(1997-06-23)"
+  },
+  "group": "공시대상기업집단 아님. 공정위 2026. 4. 29. 지정 자료 별첨2(102개 집단)·별첨5(소속회사 3,538개) 명단에 인지 계열 없음. 사업보고서: 중견기업 해당",
+  "meets_criteria": true,
+  "caveats": [
+   "정기 공채가 아닌 수시모집(신입/경력 동시), 모집 인원 '0명', 채용 시 마감이라 설문 시점에 마감될 수 있음",
+   "학력 요건은 '초대졸 이상'으로 학사 전용이 아님. 직무명은 '금형 개발'이며 '생산기술' 명칭의 신입 공고는 없음(선행생산기술은 경력 4년 이상)",
+   "리멤버 사본(346287)은 학사 이상·경력 3년 이상·10/25 마감으로 사람인 원문과 조건이 다름",
+   "보상은 '면접 후 결정', 근무시간은 공고에 없음. 복리후생은 같은 회사 다른 게재본과 홈페이지 기준",
+   "신입 전공 요건이 공고 이미지('관련 전공')와 본문('관련전공 및 경력 무관')에서 다름",
+   "대체 후보(비테스코테크놀로지스코리아, 명화공업)는 검토하지 않았다"
+  ],
+  "sources": [
+   {
+    "fact": "본점 주소 경기 시흥시 군자천로 171",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323001493",
+     "https://www.inzi.co.kr/kr/sub/company/map.asp"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "금형 개발 신입 지원 가능, 초대졸 이상, 정규직 수습 3개월, 2026-10-15 게시·채용 시 마감",
+    "urls": [
+     "https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=55295065",
+     "https://pds.saramin.co.kr/recruit/recruit/202610/19/475c44_637b-1e3ab3_recruit.png"
+    ],
+    "verdict": "확인(1)"
+   },
+   {
+    "fact": "업무 내용(사출 금형 개발·금형 육성·개발문서 관리·원가 분석·협력사 개발)과 근무지 시흥",
+    "urls": [
+     "https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=55295065",
+     "https://career.rememberapp.co.kr/job/posting/346287"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "지원 자격(신입 가능 여부)이 게재처별로 다름",
+    "urls": [
+     "https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=55295065",
+     "https://career.rememberapp.co.kr/job/posting/346287"
+    ],
+    "verdict": "불일치"
+   },
+   {
+    "fact": "급여 금액 미기재(면접 후 결정)",
+    "urls": [
+     "https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=55295065",
+     "https://career.rememberapp.co.kr/job/posting/346287"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "근무시간",
+    "urls": [
+     "https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=55295065"
+    ],
+    "verdict": "확인 불가"
+   },
+   {
+    "fact": "복리후생(식당·통근버스·기숙사·하기휴가 등)",
+    "urls": [
+     "https://career.rememberapp.co.kr/job/posting/346287",
+     "https://www.inzi.co.kr/kr/sub/career/benefits.asp"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "2025년 매출 연결 717,902백만원·별도 447,480백만원",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323001493",
+     "https://www.inzi.co.kr/kr"
+    ],
+    "verdict": "확인(1)"
+   },
+   {
+    "fact": "직원 559명(2025-12-31), 526명(2026-06-30)",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323001493",
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814002667",
+     "https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=55295065"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "유가증권시장 상장",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323001493",
+     "https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=55295065"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "2026년 공시대상기업집단 비소속(공정위 지정 자료 별첨5 명단에 없음, 사업보고서 중견기업 해당)",
+    "urls": [
+     "https://eiec.kdi.re.kr/policy/materialView.do?num=280329",
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323001493"
+    ],
+    "verdict": "확인(2+)"
+   }
+  ]
+ },
+ {
+  "pair": 7,
+  "regional": "조광요턴",
+  "company": "노루페인트",
+  "replaced_by": null,
+  "hq": "경기도 안양시 만안구 박달로 351",
+  "work_region": "경기 안양시",
+  "job": "SPEC 영업(건설현장·건설회사·설계사무소 대상 도료 B2B 영업)",
+  "fields": {
+   "직무와 업무": "SPEC 영업. 건설(건축)현장, 건설회사·설계사무소, 공기업을 직접 만나 도료 SPEC 판촉을 한다.",
+   "고용형태와 요건": "신입/경력 모집. 4년제 대학 졸업, 화학·화공·건축공학·토목공학 관련 전공, 운전 가능자. 고용형태는 공고에 적혀 있지 않음.",
+   "보상": "공고에 금액 없음. 참고로 2025년 전 직원 1인 평균 급여는 8,325만 원(사업보고서).",
+   "근무·복지 조건": "근무지 경기 안양. 회사 안내 근무시간 8:30~17:30, 주 5일. 사내 식당·기숙사, 하기휴가 4일과 휴가비, 주택자금, 자녀학자금.",
+   "회사 사업과 규모": "도료 제조·판매. 유가증권시장 상장 중견기업. 2025년 매출 연결 7,711억 원(5,000억~1조 원), 직원 780명(500~1,000명)."
+  },
+  "posting": {
+   "title": "㈜노루페인트 채용(경영기획, 영업기획, SPEC 영업, 연구개발)",
+   "period": "2025-11-07(홈페이지 표기 11-11) ~ 2025-11-16",
+   "status": "마감",
+   "urls": [
+    "https://nrpaint.saramin.co.kr/apply_site/recruit/view/37413",
+    "https://www.noroopaint.com/kor/recruit/recruit_view.asp?idx=61"
+   ]
+  },
+  "size": {
+   "sales": "2025년 연결 7,711억 원, 별도 6,569억 원 (매출 5,000억~1조 원)",
+   "employees": "780명 (2025-12-31, 직원 500~1,000명)",
+   "listed": "유가증권시장 상장(2006-07-03)"
+  },
+  "group": "공시대상기업집단 아님. 노루그룹(계열 16개사)은 공정위 2026. 4. 29. 지정 자료 별첨2·별첨5 명단에 없음. 사업보고서: 중견기업 해당",
+  "meets_criteria": true,
+  "caveats": [
+   "공고가 2025-11-07~11-16 접수분이라 '최근 1년' 기준의 경계에 있다",
+   "원문 직무명은 'SPEC 영업'이다. '기술영업'이라는 표현은 원문에 없고 채용 포털의 분류다",
+   "고용형태(정규직 여부)와 보상 금액은 공고에 없다",
+   "평균 급여 8,325만 원은 전 직원 평균(평균 근속 12년 7개월)이라 신입 초임으로 쓰면 안 된다",
+   "2026-01 공고의 국내영업 신입 근무지는 부산/원주였다. 영업직이 모두 안양 근무는 아니다",
+   "2026년 '영업' 신입 공고 다수는 계열사 노루코일코팅(안양/포항/군산) 것이다",
+   "전세자금 금액이 공고(5천만 원)와 홈페이지(3천만 원)에서 다르므로 카드에는 금액을 적지 않는다",
+   "공고 출처 2개가 모두 회사 측 게재(채용 사이트, 홈페이지)이고 포털 사본은 열지 못했다",
+   "대체 후보(에스피삼화, KCC)는 검토하지 않았다. 2025-11 공고를 쓰지 않기로 하면 대체 후보 확인이 필요하다"
+  ],
+  "sources": [
+   {
+    "fact": "본점 주소",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260312000811",
+     "https://www.noroopaint.com/kor/recruit/recruit.asp"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "공고명·직무·자격·근무지",
+    "urls": [
+     "https://nrpaint.saramin.co.kr/apply_site/recruit/contents_data/37413",
+     "https://www.noroopaint.com/kor/recruit/recruit_view.asp?idx=61"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "접수 기간",
+    "urls": [
+     "https://nrpaint.saramin.co.kr/apply_site/recruit/list?page=2",
+     "https://www.noroopaint.com/kor/recruit/recruit.asp"
+    ],
+    "verdict": "불일치"
+   },
+   {
+    "fact": "고용형태",
+    "urls": [
+     "https://nrpaint.saramin.co.kr/apply_site/recruit/contents_data/37413"
+    ],
+    "verdict": "확인 불가"
+   },
+   {
+    "fact": "보상(금액 없음), 평균 급여",
+    "urls": [
+     "https://nrpaint.saramin.co.kr/apply_site/recruit/contents_data/37413",
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260312000811"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "근무시간",
+    "urls": [
+     "https://www.noroopaint.com/kor/company/personnel.asp"
+    ],
+    "verdict": "확인(1)"
+   },
+   {
+    "fact": "복리후생",
+    "urls": [
+     "https://www.noroopaint.com/kor/file/board/recruit/251111.png",
+     "https://www.noroopaint.com/kor/company/personnel.asp"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "2025 연결 매출",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260312000811",
+     "https://www.news1.kr/industry/sb-founded/6275110"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "직원 수, 상장",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260312000811"
+    ],
+    "verdict": "확인(1)"
+   },
+   {
+    "fact": "2026-01 국내영업 신입 근무지 부산/원주",
+    "urls": [
+     "https://www.noroopaint.com/kor/recruit/recruit_view.asp?idx=63",
+     "https://nrpaint.saramin.co.kr/apply_site/recruit/list?page=2"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "2026년 공시대상기업집단 비소속(공정위 지정 자료 별첨5 명단에 없음, 사업보고서 중견기업 해당)",
+    "urls": [
+     "https://eiec.kdi.re.kr/policy/materialView.do?num=280329",
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260312000811"
+    ],
+    "verdict": "확인(2+)"
+   }
+  ]
+ },
+ {
+  "pair": 8,
+  "regional": "넥센타이어",
+  "company": "한국타이어앤테크놀로지",
+  "replaced_by": null,
+  "hq": "경기도 성남시 분당구 판교로 286 (삼평동)",
+  "work_region": "경기 성남시 분당구(테크노플렉스, 판교)",
+  "job": "[마케팅/영업] SCM (2026년 하반기 Proactive Leaders 신입 채용)",
+  "fields": {
+   "직무와 업무": "SCM. 글로벌 공급망 전략 수립과 S&OP 운영, 수요계획 관리와 생산·판매·재고 분석, 공급계획 수립, 물류 네트워크 최적화와 창고·출하 관리",
+   "고용형태와 요건": "신입 공채(2027년 1월 입사). 4년제 대학 졸업자 또는 2027년 2월 졸업 예정자. TOEIC Speaking IM3 또는 OPIc IM2 이상. 상경·무역·통상·산업공학 전공 우대",
+   "보상": "공고에 금액 없음. 공고의 복리후생 칸에 '동종 업계 최고 수준의 신입사원 연봉'이라는 문구만 있음",
+   "근무·복지 조건": "근무지 테크노플렉스(판교). 근무시간은 공고에 없음. 식사 무료 지원, 통근버스, 복지포인트, 건강검진·의료비, 자사 타이어 90% 할인(사업장별로 다를 수 있음)",
+   "회사 사업과 규모": "타이어 제조. 2025년 매출 연결 21조 2,023억 원(한온시스템 포함), 별도 3조 6,484억 원. 직원 6,493명(2025년 말). 유가증권시장 상장. 한국앤컴퍼니그룹 소속"
+  },
+  "posting": {
+   "title": "2026년 하반기 Proactive Leaders 신입 채용 [경영지원/마케팅/영업/IT]",
+   "period": "2026-09-09 ~ 2026-09-27 23:59",
+   "status": "마감",
+   "urls": [
+    "https://hankooktire.recruiter.co.kr/career/jobs/127854",
+    "https://hankooktire.recruiter.co.kr/upload/4822/image/202609/7ffb38c4-091f-4fd8-9e65-d518312451d3.jpg",
+    "https://jasoseol.com/recruit/106130",
+    "https://linkareer.com/activity/349335"
+   ]
+  },
+  "size": {
+   "sales": "2025년 연결 21조 2,023억 원, 별도 3조 6,484억 원 (매출 1조 원 이상)",
+   "employees": "6,493명(2025-12-31), 6,537명(2026-06-30) (직원 5,000명 이상)",
+   "listed": "유가증권시장 상장(2012-10-04)"
+  },
+  "group": "소속. 2026년 공시대상기업집단 '한국앤컴퍼니그룹'(31위, 계열 26개사, 공정자산 21.37조 원). 근거: 공정위 2026. 4. 29. 지정 자료 별첨2·5, 사업보고서 계열회사 현황",
+  "meets_criteria": true,
+  "caveats": [
+   "대기업(대규모기업집단 소속)이므로 카드에 밝힌다. 넥센타이어와 규모 차이가 크다",
+   "직무가 생산관리가 아니라 SCM이고 공고 분류는 '마케팅/영업'이다",
+   "접수 기간은 9. 9.~9. 27.이다(기존 노트의 9. 8.은 틀림)",
+   "공고에 '정규직' 문구, 보상 금액, 근무시간이 없다. 적지 않거나 '공고에 없음'으로 쓴다",
+   "연결 매출 21조 원에는 2025년 편입된 한온시스템이 들어 있다. 타이어 부문만은 10조 3,186억 원(회사 보도자료)",
+   "근무지 판교는 SCM 직무 기준이다. 같은 공채의 다른 직무는 대전 등 근무가 있다",
+   "복리후생은 공고에 '사업장별 복리후생 내용은 상이할 수 있습니다'라는 단서가 있다"
+  ],
+  "sources": [
+   {
+    "fact": "본점 주소 경기도 성남시 분당구 판교로 286",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318000959",
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003878"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "공고명·접수 기간 2026-09-09~09-27",
+    "urls": [
+     "https://hankooktire.recruiter.co.kr/career/jobs/127854",
+     "https://jasoseol.com/recruit/106130",
+     "https://linkareer.com/activity/349335"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "SCM 근무지 테크노플렉스(판교)",
+    "urls": [
+     "https://hankooktire.recruiter.co.kr/upload/4822/image/202609/7ffb38c4-091f-4fd8-9e65-d518312451d3.jpg",
+     "https://linkareer.com/activity/349335"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "SCM 담당업무·우대사항",
+    "urls": [
+     "https://hankooktire.recruiter.co.kr/upload/4822/image/202609/7ffb38c4-091f-4fd8-9e65-d518312451d3.jpg"
+    ],
+    "verdict": "확인(1)"
+   },
+   {
+    "fact": "지원 자격(학력·병역·어학)",
+    "urls": [
+     "https://hankooktire.recruiter.co.kr/upload/4822/image/202609/7ffb38c4-091f-4fd8-9e65-d518312451d3.jpg",
+     "https://jasoseol.com/recruit/106130",
+     "https://linkareer.com/activity/349335"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "보상: 공고에 금액 없음",
+    "urls": [
+     "https://hankooktire.recruiter.co.kr/upload/4822/image/202609/7ffb38c4-091f-4fd8-9e65-d518312451d3.jpg",
+     "https://linkareer.com/activity/349335"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "근무시간",
+    "urls": [],
+    "verdict": "확인 불가"
+   },
+   {
+    "fact": "2025년 매출 연결 21조 2,023억 원 / 별도 3조 6,484억 원",
+    "urls": [
+     "https://dart.fss.or.kr/report/viewer.do?rcpNo=20260318000959&dcmNo=11139114&eleId=18&offset=449734&length=37907&dtd=dart4.xsd",
+     "https://www.hankooktire.com/kr/ko/company/media-list/media-detail.632667.html"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "직원 6,493명(2025-12-31)",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318000959",
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601001219"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "유가증권시장 상장",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318000959",
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601001219"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "2026년 공시대상기업집단 한국앤컴퍼니그룹(31위, 공정자산 21.37조 원) 소속",
+    "urls": [
+     "https://eiec.kdi.re.kr/policy/materialView.do?num=280329",
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318000959",
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601001219"
+    ],
+    "verdict": "확인(2+)"
+   }
+  ]
+ },
+ {
+  "pair": 9,
+  "regional": "BHI",
+  "company": "SGC E&C",
+  "replaced_by": null,
+  "hq": "서울특별시 서초구 양재대로 246 (염곡동, 송암빌딩)",
+  "work_region": "서울 서초구(본사, 양재) / 국내 현장 / 해외 현장",
+  "job": "플랜트 기계설계(화공·발전·산업플랜트 장치·기계 설계)",
+  "fields": {
+   "직무와 업무": "플랜트 장치(압력용기·열교환기·탱크)와 회전기계의 기본설계·상세설계, 사양서·데이터시트 작성, 구매 기술평가, 공사 지원",
+   "고용형태와 요건": "신입 공채(공고에 고용형태 문구 없음). 4년제 대학 졸업(예정), 기계공학계열, 병역필·면제. 영어회화·자격증·해외 현장 파견 가능자 우대",
+   "보상": "공고에 금액 없음. 회사 안내: 전 사원 연봉제, 경영실적에 따른 인센티브, 직책·자격증 수당, 해외 현장 근무 시 추가 수당",
+   "근무·복지 조건": "근무지 본사(양재)/국내 현장/해외 현장. 근무시간 기재 없음. 안식휴가, 자녀 학자금, 중식대 보조, 건강검진, 단체보험, 복지포인트",
+   "회사 사업과 규모": "플랜트·건설 EPC. 2025년 매출 연결 1조 3,420억 원(별도 9,379억 원), 직원 806명, 코스닥 상장, 오씨아이 기업집단 소속"
+  },
+  "posting": {
+   "title": "2026년 상반기 SGC 신입사원 공개채용",
+   "period": "2026. 4. 13.~4. 26.",
+   "status": "마감",
+   "urls": [
+    "https://sgc.careerlink.kr/jobs",
+    "https://jasoseol.com/recruit/103528"
+   ]
+  },
+  "size": {
+   "sales": "2025년 연결 1조 3,420억 원, 별도 9,379억 원 (매출 1조 원 이상, 연결 기준)",
+   "employees": "806명(2025. 12. 31.), 800명(2026. 6. 30.) (직원 500~1,000명)",
+   "listed": "코스닥 상장(1999. 12. 28.)"
+  },
+  "group": "소속. 2026년 공시대상기업집단 '오씨아이'(44위, 공정자산 13.19조 원, 상호출자제한기업집단). 근거: 공정위 2026. 4. 29. 지정 자료 별첨2·5, 사업보고서 IX",
+  "meets_criteria": true,
+  "caveats": [
+   "기준 1은 조건부 충족이다. 본점은 서울이지만 공고 근무지에 국내·해외 현장이 함께 적혀 있다",
+   "근무지는 서울 본사만이 아니라 '본사(양재)/국내현장/해외현장'으로 적어야 함",
+   "중견기업이 아님(사업보고서 '중견기업 미해당'). 대기업집단(오씨아이) 계열임을 밝힐 것",
+   "보상은 '공고에 금액 없음'. 1인 평균 급여 7,281만 원은 전 직원 평균이라 신입 초임으로 쓰지 말 것",
+   "고용형태(정규직·수습)는 공고에 문구가 없어 단정하지 말 것",
+   "매출은 연결·별도를 구분해 적을 것. 공고는 2026. 4. 26. 마감",
+   "복리후생·직무 상세는 공고가 아니라 회사 홈페이지·채용 사이트 안내에서 가져온 것",
+   "대체 후보 도화엔지니어링은 공고만 간단히 봤고 웰크론한텍은 확인하지 않았다"
+  ],
+  "sources": [
+   {
+    "fact": "본점 주소",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260311004333",
+     "https://www.sgcenc.co.kr/recruit/welfare.php"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "공고명·기간·자격·근무지",
+    "urls": [
+     "https://daoift3qrrnil.cloudfront.net/content_images/images/000/349/986/webp/image.webp?1775627735",
+     "https://jasoseol.com/recruit/103528",
+     "https://www.haijob.co.kr/posting/11977"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "기계설계 업무",
+    "urls": [
+     "https://jasoseol.com/recruit/103528",
+     "https://sgc.careerlink.kr/arch2"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "고용형태",
+    "urls": [
+     "https://jasoseol.com/recruit/103528"
+    ],
+    "verdict": "확인 불가"
+   },
+   {
+    "fact": "보상(금액 미기재, 연봉제)",
+    "urls": [
+     "https://jasoseol.com/recruit/103528",
+     "https://www.sgcenc.co.kr/recruit/personnel_sys.php"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "복리후생",
+    "urls": [
+     "https://www.sgcenc.co.kr/recruit/welfare.php",
+     "https://sgc.careerlink.kr/enc-insa"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "2025년 매출",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260311004333",
+     "https://www.newsway.co.kr/news/view?ud=2026022014484688006"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "직원 수",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260311004333",
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814000203"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "코스닥 상장",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260311004333"
+    ],
+    "verdict": "확인(1)"
+   },
+   {
+    "fact": "2026년 오씨아이 기업집단 소속",
+    "urls": [
+     "https://eiec.kdi.re.kr/policy/materialView.do?num=280329",
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814000203"
+    ],
+    "verdict": "확인(2+)"
+   }
+  ]
+ },
+ {
+  "pair": 10,
+  "regional": "파나시아",
+  "company": "안랩",
+  "replaced_by": null,
+  "hq": "경기도 성남시 분당구 판교역로 220",
+  "work_region": "경기 성남시 분당구(판교)",
+  "job": "보안컨설팅(정보보호 기술·관리 컨설팅), 2026 신입/경력 공개채용",
+  "fields": {
+   "직무와 업무": "웹·앱·인프라 장비·IoT 기술적 취약점 진단, ISMS·ISMS-P·ISO27001·주요정보통신기반시설·개인정보 영향평가 등 관리적 진단",
+   "고용형태와 요건": "정규직(채용 포털 기재). 4년제 대학 졸업 또는 2027년 2월 졸업예정, 정보보호 관련 학과. 정보처리기사·정보보안기사 우대",
+   "보상": "공고에 금액 없음(채용 포털 표기: 면접 후 결정, 회사 내규에 따름)",
+   "근무·복지 조건": "근무시간 기재 없음. 자율출퇴근제, 복지포인트, 자녀학자금, 건강검진·단체보험, 사내 헬스장. 출장 프로젝트 수행 문구 있음",
+   "회사 사업과 규모": "보안 소프트웨어·보안 서비스 기업(V3 등). 2025년 연결 매출 2,677억 원, 직원 1,257명(2025년 말), 코스닥 상장 중견기업"
+  },
+  "posting": {
+   "title": "2026 신입/경력 공개채용 (사업/STAFF) — 보안컨설팅",
+   "period": "2026-11-06 ~ 2026-11-29 23:59",
+   "status": "진행 중",
+   "urls": [
+    "https://ahnlab.recruiter.co.kr/career/jobs/132732",
+    "https://ahnlab.recruiter.co.kr/career/Recruiting_2026",
+    "https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=55491003",
+    "https://www.jobkorea.co.kr/Recruit/GI_Read/50308618",
+    "https://jasoseol.com/recruit/107053"
+   ]
+  },
+  "size": {
+   "sales": "2025년 연결 2,677억 원, 별도 2,365억 원 (매출 1,000억~5,000억 원)",
+   "employees": "1,257명(2025-12-31), 1,272명(2026-06-30) (직원 1,000~5,000명)",
+   "listed": "코스닥 상장(2001-09-11)"
+  },
+  "group": "공시대상기업집단 아님. 공정위 2026. 4. 29. 지정 자료 별첨2·별첨5 명단에 없음. 연결 자산총계 4,876억 원, 사업보고서: 중견기업 해당",
+  "meets_criteria": true,
+  "caveats": [
+   "업종이 다르다(파나시아 제조 ↔ 안랩 보안 전문기업). '같은 직무군' 비교로만 써야 한다",
+   "파나시아는 자기 회사 보안을 맡는 직무, 안랩 보안컨설팅은 고객사를 진단하는 직무다",
+   "정규직·판교 근무지는 사람인·잡코리아 기재이고 회사 원문 공고에는 고용형태·근무지·보상 문구가 없다",
+   "신입/경력 동시 모집이다. 2027년 1월 입사 가능자 대상",
+   "보상 금액이 공고에 없어 파나시아(초봉 3,600만~3,700만 원 공개)와 금액 비교를 할 수 없다",
+   "기존 노트의 9월 신입 채용은 마감됐고 직무 상세가 남아 있지 않다. 11. 12.은 채용설명회 날짜이고 지원 마감은 11. 29.이다"
+  ],
+  "sources": [
+   {
+    "fact": "본점 주소 경기도 성남시 분당구 판교역로 220",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000868",
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260813000644"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "공고 기간 2026-11-06~11-29, 접수 중",
+    "urls": [
+     "https://ahnlab.recruiter.co.kr/career/Recruiting_2026",
+     "https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=55491003",
+     "https://www.jobkorea.co.kr/Recruit/GI_Read/50308618"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "보안컨설팅 업무(기술적 취약점 진단, ISMS 등 관리적 진단)",
+    "urls": [
+     "https://ahnlab.recruiter.co.kr/career/Recruiting_2026",
+     "https://jasoseol.com/recruit/107053"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "공통 지원 자격(4년제 졸업 또는 2027년 2월 졸업예정, 병역, 해외여행)",
+    "urls": [
+     "https://ahnlab.recruiter.co.kr/career/jobs/132732",
+     "https://jasoseol.com/recruit/107053"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "보안컨설팅 직무별 요건(정보보호 관련 학과, 기사 자격 우대)",
+    "urls": [
+     "https://ahnlab.recruiter.co.kr/career/Recruiting_2026"
+    ],
+    "verdict": "확인(1)"
+   },
+   {
+    "fact": "고용형태 정규직",
+    "urls": [
+     "https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=55491003",
+     "https://www.jobkorea.co.kr/Recruit/GI_Read/50308618"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "근무지 성남시 분당구 판교역로 220",
+    "urls": [
+     "https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=55491003",
+     "https://www.jobkorea.co.kr/Recruit/GI_Read/50308618"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "보상 금액 미기재",
+    "urls": [
+     "https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=55491003",
+     "https://www.jobkorea.co.kr/Recruit/GI_Read/50308618"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "근무시간",
+    "urls": [],
+    "verdict": "확인 불가"
+   },
+   {
+    "fact": "복리후생 12개 항목",
+    "urls": [
+     "https://ahnlab.recruiter.co.kr/career/jobs/132732",
+     "https://jasoseol.com/recruit/107053"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "2025년 매출 연결 2,677억 원, 별도 2,365억 원",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000868",
+     "https://byline.network/2026/02/13-599/"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "직원 1,257명(2025-12-31), 1,272명(2026-06-30)",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000868",
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260813000644"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "코스닥 상장",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000868",
+     "https://www.jobkorea.co.kr/Recruit/GI_Read/50308618"
+    ],
+    "verdict": "확인(2+)"
+   },
+   {
+    "fact": "2026년 공시대상기업집단 비소속",
+    "urls": [
+     "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000868",
+     "https://eiec.kdi.re.kr/policy/materialView.do?num=280329"
+    ],
+    "verdict": "확인(2+)"
+   }
+  ]
+ }
+]

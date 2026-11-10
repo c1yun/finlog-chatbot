@@ -1,0 +1,249 @@
+[
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "analysis[5].points[1].t",
+    "old": "보안 담당 직원이 노동자를 발로 차는 영상이 보도됐고, 회사는 다음 날 그 직원을 해고하고 사과했다",
+    "new": "한국인 보안 담당자가 현지 노동자들 앞에서 바닥의 음식물 봉지를 발로 차고 큰 소리로 훈계하는 영상이 보도됐고(노동자들은 음식물이 튀고 손등이 긁혔다고 주장), 회사는 다음 날 그 직원을 해고하고 노동자들에게 사과했다",
+    "verdict": "불일치",
+    "reason": "두 보도 모두 '바닥에 있는 무언가(음식물 봉지)를 발로 찼다'고 적었고, 국민일보는 '여성 근로자를 발로 찼다'는 것을 잘못된 소문이라고 명시",
+    "sources": [
+      "http://news.kmib.co.kr/article/view.asp?arcid=0015604179",
+      "https://biz.chosun.com/site/data/html_dir/2021/03/06/2021030600706.html"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "swot.T[1]",
+    "old": "\"인도네시아 종속법인 공장 직원의 노동자 폭행 영상 보도",
+    "new": "\"인도네시아 종속법인 공장 보안 담당자가 노동자들 앞에서 음식물 봉지를 발로 차고 훈계한 영상 보도",
+    "verdict": "불일치",
+    "reason": "보도는 노동자를 직접 때리거나 찬 것이 아니라고 적음. 같은 문장이 reputation에도 있어 old 앞에 JSON 여는 따옴표를 포함해 구분함",
+    "sources": [
+      "http://news.kmib.co.kr/article/view.asp?arcid=0015604179",
+      "https://biz.chosun.com/site/data/html_dir/2021/03/06/2021030600706.html"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "reputation",
+    "old": "[3]. 인도네시아 종속법인 공장 직원의 노동자 폭행 영상 보도",
+    "new": "[3]. 인도네시아 종속법인 공장 보안 담당자가 노동자들 앞에서 음식물 봉지를 발로 차고 훈계한 영상 보도",
+    "verdict": "불일치",
+    "reason": "보도는 노동자를 직접 때리거나 찬 것이 아니라고 적음",
+    "sources": [
+      "http://news.kmib.co.kr/article/view.asp?arcid=0015604179",
+      "https://biz.chosun.com/site/data/html_dir/2021/03/06/2021030600706.html"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "intro[10][1]",
+    "old": "5회 열렸고 공고마다 신입 연봉과 근무시간이 적혀 비교할 수 있다",
+    "new": "학과 게시판 제목 검색 기준 7회 올라왔고(2025. 1. 건은 제목·게시일만 확인), 본문을 연 6회 모두 근무시간이, 그중 4회에 신입 연봉이 적혀 비교할 수 있다",
+    "verdict": "불일치",
+    "reason": "게시판 제목 검색에 2025. 1. 17.·2025. 12. 8. 추천채용 안내가 더 있고, 2025. 11.·12. 공고에는 연봉 표기가 없음",
+    "sources": [
+      "https://im.pusan.ac.kr/bbs/cse/2616/artclList.do",
+      "https://im.pusan.ac.kr/bbs/cse/2616/1750621/artclView.do",
+      "https://im.pusan.ac.kr/bbs/cse/2616/1748454/artclView.do"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "analysis[6].points[0].t",
+    "old": "5회 열렸고, 2025. 11. 공고는 추천 인원 제한이 없고",
+    "new": "학과 게시판 제목 검색 기준 7회 올라왔고(2025. 1.·2025. 12. 포함, 2025. 1. 건은 제목·게시일만 확인), 2025. 11. 공고는 추천 인원 제한이 없고",
+    "verdict": "불일치",
+    "reason": "게시판 제목 검색에 2025. 1. 17.(1705281)·2025. 12. 8.(1750621) 추천채용 안내가 더 있음",
+    "sources": [
+      "https://im.pusan.ac.kr/bbs/cse/2616/artclList.do",
+      "https://im.pusan.ac.kr/bbs/cse/2616/1750621/artclView.do"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "settle[3][1]",
+    "old": "5회 열렸고, 2025. 11. 공고는 추천자에게",
+    "new": "학과 게시판 제목 검색 기준 7회 올라왔고(2025. 1. 건은 제목·게시일만 확인), 2025. 11. 공고는 추천자에게",
+    "verdict": "불일치",
+    "reason": "게시판 제목 검색에 2025. 1.·2025. 12. 추천채용 안내가 더 있음",
+    "sources": [
+      "https://im.pusan.ac.kr/bbs/cse/2616/artclList.do",
+      "https://im.pusan.ac.kr/bbs/cse/2616/1750621/artclView.do"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "plan8.rows[0][1]",
+    "old": "부산대 추천채용(2024. 11.~2026. 1. 5회)",
+    "new": "부산대 추천채용(2024. 11.~2026. 1. 게시판 제목 기준 7회)",
+    "verdict": "불일치",
+    "reason": "게시판 제목 검색에 2025. 1.·2025. 12. 추천채용 안내가 더 있음",
+    "sources": [
+      "https://im.pusan.ac.kr/bbs/cse/2616/artclList.do",
+      "https://im.pusan.ac.kr/bbs/cse/2616/1750621/artclView.do"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "analysis[6].points[1].t",
+    "old": "4,200만 원(2025.)",
+    "new": "4,200만 원(2025. 4.·8.)",
+    "verdict": "불일치",
+    "reason": "2025년 추천채용 공고 가운데 연봉을 적은 것은 4월·8월 공고뿐이고 11월·12월 공고에는 연봉 표기가 없음",
+    "sources": [
+      "https://im.pusan.ac.kr/bbs/cse/2616/1717653/artclView.do",
+      "https://im.pusan.ac.kr/bbs/cse/2616/1735841/artclView.do",
+      "https://im.pusan.ac.kr/bbs/cse/2616/1748454/artclView.do"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "analysis[4].points[2].t",
+    "old": "블라인드 집계(2026. 10. 18.): 평점 3.2점, 리뷰 349건, 추천율 55%, 업계 대비 +0.5",
+    "new": "블라인드 집계(2026. 11. 10.): 평점 3.2점, 리뷰 352건, 추천율 54%, 업계 대비 +0.5",
+    "verdict": "기준일 지남",
+    "reason": "2026. 11. 10. 페이지 표기 '평점 3.2 업계 평균 대비 +0.5 리뷰 352 추천율 54%'",
+    "sources": [
+      "https://www.teamblind.com/kr/company/TKG%ED%83%9C%EA%B4%91/reviews"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "sources[8][1]",
+    "old": "업계 대비 수치만 사용, 2026. 10. 18. 확인",
+    "new": "업계 대비 수치만 사용, 2026. 11. 10. 확인",
+    "verdict": "기준일 지남",
+    "reason": "블라인드 수치를 11. 10. 값으로 바꿀 때 확인일도 함께 바꿈",
+    "sources": [
+      "https://www.teamblind.com/kr/company/TKG%ED%83%9C%EA%B4%91/reviews"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "jobs[0].when",
+    "old": "같은 직무 2026. 3. 12.~3. 29.",
+    "new": "같은 직무 2026. 3. 13.~3. 29.",
+    "verdict": "불일치",
+    "reason": "채용 사이트 목록의 공고 247588 접수 시작이 2026-03-13 00:00(KST)",
+    "sources": [
+      "https://tkg.recruiter.co.kr/career/job"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "jobs[1].place",
+    "old": "김해 본사(공고 근무지 표기: 경남)",
+    "new": "경남 김해시 김해대로 2635번길 26(본사, 공고 본문 표기)",
+    "verdict": "불일치",
+    "reason": "공고 261460 본문 '근무지: 경남 김해시 김해대로 2635번길 26'",
+    "sources": [
+      "https://tkg.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=261460"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "analysis[1].points[1].sub[1]",
+    "old": "연결 특허 142건 대부분은 배관재·소재 등 화학·소재 부문 것이다",
+    "new": "연결 특허는 142건이고 신발·배관재·C_PVC·소재 관련이다(부문별 건수는 공시되지 않았다)",
+    "verdict": "확인 불가",
+    "reason": "사업보고서는 '신발, 배관재 및 C_PVC, 소재 관련 국내외 특허는 총 142건'과 국가별 건수만 적어 '대부분 화학·소재'는 확인되지 않음",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250331003351"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "analysis[0].points[1].sub[0]",
+    "old": "생산은 베트남 5곳, 인도네시아 2곳, 인도·미얀마 각 1곳 등 9개 해외 종속법인이 맡는다(2025년)",
+    "new": "신발 업종 해외 종속법인은 베트남 5곳, 인도네시아 2곳, 인도·미얀마 각 1곳 등 9개다(2025년). 이 가운데 인도·미얀마 법인은 2025년 매출이 없다",
+    "verdict": "불일치",
+    "reason": "연결감사보고서 종속기업 요약재무에서 인도·미얀마 신발 법인의 2025년 매출이 '-'라 두 법인이 생산을 맡는다고 쓸 근거가 없음",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260330001165"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "analysis[2].points[2].sub[1]",
+    "old": "생산 거점은 베트남·인도네시아·인도·미얀마 4개국이고, 인도 법인은 2024년에 세웠다",
+    "new": "신발 종속법인은 베트남·인도네시아·인도·미얀마 4개국에 있고(인도·미얀마 법인은 2025년 매출 없음), 인도 법인은 2024년에 세웠다",
+    "verdict": "불일치",
+    "reason": "인도·미얀마 신발 법인의 2025년 매출이 '-'(연결감사보고서). 인도 법인 2024년 신규 설립은 사업보고서와 일치",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260330001165",
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250331003351"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "swot.O[0]",
+    "old": "2024년 인도 생산법인을 세우는 등 생산 거점이 늘었다",
+    "new": "2024년 인도에 신발 종속법인을 세웠다(2025년 매출은 아직 없다)",
+    "verdict": "불일치",
+    "reason": "인도 법인은 2025년 매출 '-', 자산 1억 3,500만 원으로 생산 거점이 늘었다고 쓸 근거가 없음",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260330001165",
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250331003351"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "plan8.rows[2][2]",
+    "old": "4개국 9개 생산법인 지도",
+    "new": "4개국 9개 신발 종속법인 지도",
+    "verdict": "불일치",
+    "reason": "인도·미얀마 법인은 2025년 매출이 없어 '생산법인'보다 공시 표기(신발 업종 종속기업)에 맞춤",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260330001165"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "summary",
+    "old": "해외 9개 생산법인의",
+    "new": "해외 9개 신발 종속법인의",
+    "verdict": "불일치",
+    "reason": "인도·미얀마 법인은 2025년 매출이 없어 공시 표기(신발 업종 종속기업)에 맞춤",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260330001165"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "analysis[3].points[0].sub[0]",
+    "old": "모든 공고가 '해외여행(출장)에 결격사유 없음'을 자격으로 둔다",
+    "new": "본문을 연 채용 사이트 공고 4건이 모두 '해외여행에 결격사유 없음'을 자격으로 두고, 추천채용 공고 4건에도 같은 조건이 있다",
+    "verdict": "확인 불가",
+    "reason": "28건 중 본문을 연 것은 4건이고, 2025. 11.·2026. 1. 추천채용 게시물에는 이 문구가 없어 '모든 공고'는 확인되지 않음",
+    "sources": [
+      "https://tkg.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=265497",
+      "https://tkg.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=261460",
+      "https://im.pusan.ac.kr/bbs/cse/2616/1748454/artclView.do",
+      "https://im.pusan.ac.kr/bbs/cse/2616/1756250/artclView.do"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/TKG태광.json",
+    "path": "ideas[0].problem",
+    "old": "모든 공고가 해외여행 결격 없음을 요구하고",
+    "new": "본문을 확인한 공고가 모두 해외여행 결격 없음을 요구하고",
+    "verdict": "확인 불가",
+    "reason": "'모든 공고'는 확인되지 않음(본문 확인 범위로 한정)",
+    "sources": [
+      "https://tkg.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=265497",
+      "https://tkg.recruiter.co.kr/app/jobnotice/view?systemKindCode=MRS2&jobnoticeSn=265492"
+    ]
+  },
+  {
+    "file": "reports/build_result/cards_regional.json",
+    "path": "R10(key=TKG태광).fields[\"사업과 경력 정보\"]",
+    "old": "생산은 해외 4개국 자회사 법인",
+    "new": "생산은 베트남·인도네시아 등 해외 자회사 법인",
+    "verdict": "불일치",
+    "reason": "신발 종속법인은 4개국에 있으나 인도·미얀마 법인은 2025년 매출이 없음(연결감사보고서)",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260330001165"
+    ]
+  }
+]

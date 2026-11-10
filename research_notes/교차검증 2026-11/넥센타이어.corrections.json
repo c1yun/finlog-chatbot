@@ -1,0 +1,113 @@
+[
+  {
+    "file": "reports/build_result/companies/넥센타이어.json",
+    "path": "analysis[2].points[2].sub[1]",
+    "old": "이 판정 차액과 원재료·운임 상승으로 2026년 2분기 연결 순이익은 2억 원(-98.9%)에 그쳤다 [6].",
+    "new": "이 판정 차액과 원재료·운임 상승으로 2026년 2분기 연결 영업이익은 343억 원(-19.5%)으로 줄었고, 순이익은 2억 원(-98.9%)에 그쳤다 [2][6].",
+    "verdict": "불일치",
+    "reason": "순이익 수치는 맞지만 [6]에는 순이익이 없고, 반덤핑 차액·원재료·운임은 영업이익 감소 요인으로 보도됨(순이익 급감은 법인세비용 영향으로 분석)",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003268",
+      "https://www.dailian.co.kr/news/view/1672313/",
+      "https://dealsite.co.kr/articles/166178",
+      "https://ceoscoredaily.com/page/view/2026080410311702931"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/넥센타이어.json",
+    "path": "analysis[1].points[2].sub[0]",
+    "old": "위험 요인은 미국 반덤핑 관세, 천연고무·유가와 해상운임 변동, 중국·인도 업체의 가격 경쟁이다 [1][5].",
+    "new": "위험 요인은 미국 반덤핑 관세, 천연고무·석유화학 원재료 가격과 해상운임 변동, 중국·인도 등 신흥국 업체와의 점유율 경쟁이다 [1][5][6].",
+    "verdict": "불일치",
+    "reason": "공시 표현은 '시장점유율 경쟁'이고 해상운임은 [6] 보도에서 나온 내용",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318001435",
+      "https://www.dailian.co.kr/news/view/1672313/"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/넥센타이어.json",
+    "path": "analysis[5].points[2].sub[0]",
+    "old": "최대주주는 ㈜넥센(46.48%)이고",
+    "new": "최대주주는 ㈜넥센(2026. 6. 30. 보통주 기준 46.48%, 2026. 11. 초 장내매수 뒤 45,664,178주)이고",
+    "verdict": "기준일 지남",
+    "reason": "2026. 11. 2.~11. 6. ㈜넥센이 271,755주를 장내매수해 보유 주식이 바뀜(2026. 11. 9. 공시)",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003268",
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261109000113",
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261109800372"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/넥센타이어.json",
+    "path": "analysis[5].points[3].t",
+    "old": "넥센타이어 주식 144만 5천 주(약 100억 원)를 기부했고",
+    "new": "넥센타이어 주식 약 100억 원어치를 기부했고(발표 당시 144만 5천 주, 2026. 8. 13. 실제 증여 154만 833주)",
+    "verdict": "기준일 지남",
+    "reason": "7월 발표 수량과 달리 2026. 8. 13. 실제 증여 주식은 1,540,833주로 공시됨",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260820000102",
+      "https://www.khan.co.kr/article/202607081652001",
+      "https://news.knn.co.kr/news/article/189801"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/넥센타이어.json",
+    "path": "analysis[4].points[1].sub[0]",
+    "old": "34년 연속 무분규는 국내 사업장 기준이다 [8].",
+    "new": "회사는 34년 연속 무분규라고 밝혔다(어느 사업장까지 포함하는지는 수상 보도와 회사 보고서에 없다) [8][14].",
+    "verdict": "확인 불가",
+    "reason": "'국내 사업장 기준'이라는 한정은 연 출처에 없고 [8]에는 34년 문구 자체가 없음",
+    "sources": [
+      "https://www.heraldk.com/article/2025123015093462540",
+      "https://nexen-front.s3.ap-northeast-2.amazonaws.com/esg_report/2026_06_30_esg_KOR.pdf",
+      "https://www.yna.co.kr/view/AKR20251121119400530"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/넥센타이어.json",
+    "path": "analysis[6].points[2].sub[0]",
+    "old": "접수 중인 공고는 상시 인재Pool·경력·사내 변호사 3건이다 [11].",
+    "new": "접수 중인 공고는 상시 인재Pool 등이다(공고 수는 확인 필요) [11].",
+    "verdict": "확인 불가",
+    "reason": "회사 채용 사이트를 열지 못해 3건을 다시 확인하지 못함(잡코리아 목록에서 인재Pool만 확인)",
+    "sources": [
+      "https://www.jobkorea.co.kr/company/1329131/recruit",
+      "https://jasoseol.com/companies/3571/careers"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/넥센타이어.json",
+    "path": "sources[7][1]",
+    "old": "(대기업 부문 대통령상)",
+    "new": "(대통령상)",
+    "verdict": "확인 불가",
+    "reason": "'대기업 부문' 문구가 연합뉴스·헤럴드경제 기사에 없음",
+    "sources": [
+      "https://www.yna.co.kr/view/AKR20251121119400530",
+      "https://www.heraldk.com/article/2025123015093462540"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/넥센타이어.json",
+    "path": "settle[2][1]",
+    "old": "부산대에서 양산공장까지 자동차 약 23km·약 23분(경로 계산 OSRM, 교통 미반영)",
+    "new": "부산대에서 양산공장까지 자동차 약 23km·약 23분(경로 계산 OSRM, 교통 미반영, 출발·도착 좌표 확인 필요)",
+    "verdict": "확인 불가",
+    "reason": "OSRM 재계산에서 27.5km·33분이 나와 23km·23분을 재현하지 못함(원 계산의 좌표 기록 없음)",
+    "sources": [
+      "https://router.project-osrm.org"
+    ]
+  },
+  {
+    "file": "reports/build_result/cards_regional.json",
+    "path": "[7].fields.근무·복지 조건",
+    "old": "육아휴직 사용 증가, 기숙사·통근버스 공개 정보 없음",
+    "new": "육아휴직 사용 증가, 통근버스 운영(양산·부산·창녕·대구·창원 지역, 노선·대상 공개 정보 없음), 기숙사 공개 정보 없음",
+    "verdict": "불일치",
+    "reason": "회사 운영 사이트가 통근버스 운영 지역을 공개하고 있고 보고서 본문도 그렇게 적음",
+    "sources": [
+      "https://www.nexenuniverse.com/experience/woliba"
+    ]
+  }
+]

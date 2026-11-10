@@ -1,0 +1,96 @@
+[
+  {
+    "file": "reports/build_result/companies/BHI.json",
+    "path": "intro[1][1]",
+    "old": "각자대표(2025. 12. 31. 기준, 2026. 3. 정기주총에 재선임 안건 상정) [1]",
+    "new": "각자대표(2026. 6. 30. 기준, 2026. 3. 28. 정기주총에서 두 사람 모두 사내이사로 재선임) [1][2]",
+    "verdict": "기준일 지남",
+    "reason": "2026-03-28 정기주총에서 이근흥·조원래 사내이사 선임 안건이 가결됐고 반기보고서(2026-06-30)에 두 사람이 대표이사로 올라 있음",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260330901393",
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814000764"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/BHI.json",
+    "path": "intro[9][1]",
+    "old": "2026. 10. 22. 공고는 신입 기본설계·EPC 토목과 경력무관 BOP 설계·생산 선행관리·생산기술 직무를 모집한다 [11]",
+    "new": "2026. 10. 22. 공고는 신입 기본설계·EPC 토목과 경력무관 BOP 설계를 모집한다(2026. 11. 9. 갱신본 기준, 생산 선행관리·생산기술은 경력 3년 이상으로 바뀜) [11]",
+    "verdict": "기준일 지남",
+    "reason": "공고 본문 이미지가 2026-11-09 교체돼 생산 선행관리·생산기술의 경력 사항이 '경력 무관'에서 '경력(직무 경력 3년↑)'으로 바뀜",
+    "sources": [
+      "https://www.jobkorea.co.kr/Recruit/GI_Read/50218339",
+      "https://file1.jobkorea.co.kr/Mng/2026/11/bumw00_1109_0001.jpg"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/BHI.json",
+    "path": "analysis[6].points[0].sub[1]",
+    "old": "2026. 10. 22. 공고의 생산 선행관리·생산기술(경력무관)은 기계·산업공학 전공을 요건으로 둬 산업공학과 학생도 지원할 수 있다 [11]",
+    "new": "2026. 10. 22. 공고의 생산 선행관리·생산기술은 기계·산업공학 전공을 요건으로 두지만, 2026. 11. 9. 갱신본에서 경력 3년 이상으로 바뀌어 신입은 지원할 수 없다 [11]",
+    "verdict": "기준일 지남",
+    "reason": "2026-11-09 갱신본에서 두 직무가 '생산선행관리/생산기술 직무 경력(3년↑)', 경력 사항 '경력'으로 바뀜",
+    "sources": [
+      "https://www.jobkorea.co.kr/Recruit/GI_Read/50218339",
+      "https://file1.jobkorea.co.kr/Mng/2026/11/bumw00_1109_0001.jpg"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/BHI.json",
+    "path": "sources[10][1]",
+    "old": "경력무관 설계-BOP·생산-선행관리·생산-기술",
+    "new": "경력무관 설계-BOP(생산-선행관리·생산-기술은 2026. 11. 9. 갱신본에서 경력 3년 이상으로 바뀜, 2026. 11. 10. 재확인)",
+    "verdict": "기준일 지남",
+    "reason": "출처 설명이 11. 3. 열람본 기준이라 11. 9. 갱신본과 다름",
+    "sources": [
+      "https://www.jobkorea.co.kr/Recruit/GI_Read/50218339",
+      "https://file1.jobkorea.co.kr/Mng/2026/11/bumw00_1109_0001.jpg"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/BHI.json",
+    "path": "swot.T[2]",
+    "old": "이스라엘·미국 법인이 2025년 손상차손을 냈다 [1]",
+    "new": "이스라엘·미국 법인 투자주식에 2025년 손상차손을 인식했다 [1]",
+    "verdict": "불일치",
+    "reason": "사업보고서 IV-3은 BHI가 종속기업 투자주식(BHI E&C ISRAEL 28.3억 원, BHI-FW 22.1억 원)에 손상차손을 인식했다고 적음. 두 법인이 낸 손상이 아님",
+    "sources": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000821"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/BHI.json",
+    "path": "analysis[4].points[2].t",
+    "old": "블라인드 집계(2026. 10. 18.): 평점 3.2점, 리뷰 139건, 추천율 46%, 업계 대비 +0.4 [9]",
+    "new": "블라인드 집계(2026. 11. 10.): 평점 3.2점, 리뷰 142건, 추천율 49%, 업계 대비 +0.4 [9]",
+    "verdict": "기준일 지남",
+    "reason": "2026-11-10 열람값은 리뷰 142건, 추천율 49%(평점 3.2, 업계 대비 +0.4는 같음)",
+    "sources": [
+      "https://www.teamblind.com/kr/company/BHI/reviews"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/BHI.json",
+    "path": "sources[8][1]",
+    "old": "평점·리뷰 수·추천율·업계 대비 수치만 사용, 2026. 10. 18. 확인",
+    "new": "평점·리뷰 수·추천율·업계 대비 수치만 사용, 2026. 11. 10. 확인",
+    "verdict": "기준일 지남",
+    "reason": "본문 블라인드 수치를 11. 10. 값으로 바꾸면 확인일도 함께 바꿔야 함",
+    "sources": [
+      "https://www.teamblind.com/kr/company/BHI/reviews"
+    ]
+  },
+  {
+    "file": "reports/build_result/companies/BHI.json",
+    "path": "ideas[1].problem",
+    "old": "공고는 양성교육 수료를 요구한다 [1][7]",
+    "new": "2026. 8. 공고는 양성교육 수료 또는 관련 자격증을 요구했다 [1][7]",
+    "verdict": "불일치",
+    "reason": "8. 21. 공고 문구는 '플랜트 전문인력 양성교육 수료 또는 관련 자격증 보유자'이고, 현재 열린 10. 22. 공고는 '관련 자격증 보유자'만 적음",
+    "sources": [
+      "https://www.jobkorea.co.kr/Recruit/GI_Read/49823774",
+      "https://file1.jobkorea.co.kr/Mng/2026/10/bumw00_1001_0.jpg",
+      "https://file1.jobkorea.co.kr/Mng/2026/11/bumw00_1109_0001.jpg"
+    ]
+  }
+]

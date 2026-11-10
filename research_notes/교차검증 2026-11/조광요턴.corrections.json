@@ -1,0 +1,86 @@
+[
+ {
+  "file": "reports/build_result/companies/조광요턴.json",
+  "path": "finance.note",
+  "old": "로 대부분 매입채무이고 차입금은",
+  "new": "로 대부분 매입채무와 기타채무(미지급금·미지급비용 포함)이고 차입금은",
+  "verdict": "불일치",
+  "reason": "2025 감사보고서 주석 12: 매입채무 269.8억 원은 부채 877.7억 원의 31%뿐이고, 미지급금 169.0억·미지급비용 264.3억 원을 합친 '매입채무및기타채무' 714.8억 원이 81%다",
+  "sources": [
+   "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000097",
+   "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250324000255"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/조광요턴.json",
+  "path": "analysis[4].points[2].sub[1]",
+  "old": "블라인드 집계(2026. 10. 19.): 평점 3.2점, 리뷰 55건, 추천율 56%, 업계 대비 +0.1 [9]",
+  "new": "블라인드 집계(2026. 11. 10.): 평점 3.3점, 리뷰 56건, 추천율 56%, 업계 평균 대비 +0.2 [9]",
+  "verdict": "기준일 지남",
+  "reason": "2026. 11. 10. 블라인드 페이지 표시값이 평점 3.3, 리뷰 56, 추천율 56%, 업계 평균 대비 +0.2로 바뀜(출처는 블라인드 한 곳뿐)",
+  "sources": [
+   "https://www.teamblind.com/kr/company/%EC%A1%B0%EA%B4%91%EC%9A%94%ED%84%B4/reviews"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/조광요턴.json",
+  "path": "sources[8][1]",
+  "old": "평점·리뷰 수·추천율·업계 대비 수치만 사용, 2026. 10. 19. 기준",
+  "new": "평점·리뷰 수·추천율·업계 대비 수치만 사용, 2026. 11. 10. 기준",
+  "verdict": "기준일 지남",
+  "reason": "위 블라인드 수치 갱신에 맞춘 출처 기준일",
+  "sources": [
+   "https://www.teamblind.com/kr/company/%EC%A1%B0%EA%B4%91%EC%9A%94%ED%84%B4/reviews"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/조광요턴.json",
+  "path": "intro[1][1]",
+  "old": "왕경춘, 홍민규(공동 표기, 2025 회계연도 감사보고서 기준) [1]",
+  "new": "왕경춘, 홍민규(공동 표기, 2025 회계연도 감사보고서 기준) [1]. 2026. 11. 기업정보(NICE평가정보)에는 마틴트레인입센·홍민규로 나와 변경 여부는 확인이 필요하다",
+  "verdict": "기준일 지남",
+  "reason": "감사보고서(2026. 3.) 표기는 맞지만 2026. 11. 10. NICE평가정보와 이를 받아 쓰는 사람인 기업정보의 대표자명이 '마틴트레인입센/홍민규'다. 등기·공시로는 확인하지 못해 '확인 필요'로 덧붙임",
+  "sources": [
+   "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260323000097",
+   "https://www.nicebizinfo.com/ep/EP0100M002GE.nice?kiscode=356794",
+   "https://www.saramin.co.kr/zf_user/company-info/view?csn=ZlJPRS9naDhiY0EyNXJCVFRBQlNhQT09"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/조광요턴.json",
+  "path": "analysis[6].points[1].t",
+  "old": "구매 공고는 전공 요건을 적지 않았고 외자구매·수출입·통관 업무가 붙어 경영·무역 계열 학생도 지원을 검토할 수 있다 [8]",
+  "new": "구매 공고는 지원요건에 전공 무관이라고 적었고 외자구매·수출입·통관 업무가 붙어 경영·무역 계열 학생도 지원을 검토할 수 있다 [8][11]",
+  "verdict": "불일치",
+  "reason": "2026. 9. 구매 공고 이미지의 지원요건 첫 줄이 '전공무관'이다(같은 원고 analysis[3]도 '전공 무관'으로 적음). 게재처는 사람인 한 곳",
+  "sources": [
+   "https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=55031257",
+   "https://www.saraminimage.co.kr/recruit/os_hk_26/04_jotun_img_260918.png"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/조광요턴.json",
+  "path": "intro[6][1]",
+  "old": "371명(고용24 기업정보, 2026. 10.)이다 [7]",
+  "new": "371명(고용24 기업정보, 2026. 10. 20. 열람, 공고 마감으로 재확인 불가)이다 [7]",
+  "verdict": "확인 불가",
+  "reason": "고용24 공고가 2026. 10. 26. 마감돼 원문·기업정보가 열리지 않고 사본(LinkedIn)에는 근로자 수가 없다. 다른 출처 값은 부산시 370명(2026. 3.), 사람인 361명(국민연금, 2026)",
+  "sources": [
+   "https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=KJ20282610080080&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet",
+   "https://www.busan.go.kr/nbtnewsBU/1724328",
+   "https://www.saramin.co.kr/zf_user/company-info/view?csn=ZlJPRS9naDhiY0EyNXJCVFRBQlNhQT09"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/조광요턴.json",
+  "path": "sources[6][1]",
+  "old": "기술영업·기술감리·R&D 모집, 2026. 10. 8. 등록, 2026. 10. 20. 열람(기업정보 포함)",
+  "new": "기술영업·기술감리·R&D 모집, 2026. 10. 8. 등록, 2026. 10. 20. 열람(기업정보 포함). 2026. 10. 26. 마감 뒤 원문은 열리지 않는다(2026. 11. 10. 확인). 직무·자격·학력·연봉·근무지는 LinkedIn 게재 사본으로 다시 확인했고, 근무시간(08:00~17:00)·고용형태·전형·통근버스 지역·기업정보는 10. 20. 열람 기록에만 근거한다",
+  "verdict": "확인 불가",
+  "reason": "원문 마감. 사본에 없는 항목은 이번에 다시 확인하지 못해 출처 설명에 그 한계를 적음(본문 문장은 유지)",
+  "sources": [
+   "https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=KJ20282610080080&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet",
+   "https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/4475960444"
+  ]
+ }
+]

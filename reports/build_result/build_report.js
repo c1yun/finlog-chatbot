@@ -3,6 +3,7 @@
 //       followup.json(인사 질의·인터뷰·팀원 대조·사용 과제 집계), report_meta.js(고정 문안), 조사지침(평가 기준표)
 // 사용: node build_report.js out.docx            ← 제출용(설문·질의 결과가 모두 있어야 함)
 //       node build_report.js out.docx --draft    ← 미리보기(빠진 자료는 표시만 하고 '제출 금지' 머리말)
+//       node build_report.js out.docx --desk     ← 공개자료만으로 쓴 제출본(설문·인터뷰 미반영, TOP3는 기업 평가로)
 const fs = require('fs');
 const path = require('path');
 const {
@@ -15,6 +16,8 @@ const META = require('./report_meta');
 
 const ARGS = process.argv.slice(2);
 const DRAFT = ARGS.includes('--draft');
+const DESK = ARGS.includes('--desk'); // 공개자료만으로 쓴 제출본(설문·인터뷰 결과를 반영하지 않음)
+if (DESK && DRAFT) throw new Error('--desk와 --draft는 함께 쓸 수 없다.');
 const OUT = ARGS.find((a) => !a.startsWith('--')) || path.join(__dirname, 'out.docx');
 const CENTER = AlignmentType.CENTER;
 const NOTES = path.join(__dirname, '..', '..', 'research_notes', '결과보고서 기업 분석') + '/';
@@ -38,7 +41,7 @@ function loadJSON(p) { return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, '
 // 본조사 결과는 analyze_survey.py가 reports/survey/results/에 쓴다(집계·그림만). 미리보기는 합성 결과로 대신한다.
 const SV_LIVE_DIR = path.join(__dirname, '..', 'survey', 'results');
 const SV_SYN_DIR = path.join(__dirname, '..', 'survey', 'out_nonlive', 'synthetic');
-let SV = loadJSON(path.join(SV_LIVE_DIR, 'survey_results.json'));
+let SV = DESK ? null : loadJSON(path.join(SV_LIVE_DIR, 'survey_results.json'));
 let SV_DIR = SV_LIVE_DIR;
 let SV_NONLIVE = false;
 const NO_SYN = process.argv.includes('--no-synth'); // 미완성본: 합성 설문 결과 없이 빈 자리로 둔다
@@ -50,6 +53,8 @@ if (!SV && DRAFT && !NO_SYN) {
 if (SV && SV.meta && SV.meta.data_source !== 'live') SV_NONLIVE = true;
 if (SV_NONLIVE && !DRAFT) throw new Error('시험·합성 설문 자료로는 제출용 보고서를 만들 수 없다(--draft로만 미리보기).');
 const FUP = loadJSON(path.join(__dirname, 'followup.json')) || {};
+const MD = DESK ? META.desk : null; // 제출본(공개자료 단독) 문안
+const CH = { improve: 'Ⅳ', apxChange: DESK ? '부록 5' : '부록 6', apxRefs: DESK ? '부록 6' : '부록 7' };
 
 // 조사지침에서 기업 기본 정보(본점·업종)와 18개 세부 항목 기준표를 읽는다
 const GUIDE = fs.readFileSync(NOTES + '_조사지침.md', 'utf-8').split('\n');
@@ -132,6 +137,7 @@ function ranking() {
   const byFinal = [...ks].sort((a, b) => final(b).scaled - final(a).scaled || final(b).low - final(a).low);
   const eligible = byFinal.filter((k) => final(k).fill >= 0.7);
   const rank = Object.fromEntries(byFinal.map((k, i) => [k, i + 1]));
+  if (DESK) return { mode: 'desk', by: {}, byFinal, top3: eligible.slice(0, 3), rank, eligible };
   miss('설문 결과(학생 선호)');
   return { mode: 'eval', by: {}, byFinal, top3: eligible.slice(0, 3), rank, eligible };
 }
@@ -154,6 +160,7 @@ function cover() {
 
   out.push(h2('보고서 요약', { before: 220 }));
   const t3 = R.top3;
+  if (DESK) return [...out, ...coverDesk()];
   if (SV) {
     const kr = SV.kanban.regional;
     const dir = kr.diff >= 0 ? '높았다' : '낮았다';
@@ -193,6 +200,45 @@ function cover() {
   return out;
 }
 
+// 제출본(공개자료 단독)의 요약: 결론, 핵심 결과, 순위표, 방법
+function deskText(t) {
+  // 설문을 반영하지 않는 제출본에서는 '설문 결과를 보기 전' 같은 말을 뺀다
+  return t.replace(/, 설문 결과를 보기 전\)/g, ')').replace(/\(설문 결과를 보기 전\)/g, '').replace(/ 모두 설문 결과를 보기 전에 정했다\./g, '').replace(/, 모두 설문 결과를 보기 전에 정했다\./g, '.').replace(/\s*\{verification\}/g, '').replace(/\{chChange\}/g, CH.apxChange);
+}
+function coverDesk() {
+  const out = [];
+  const t3 = R.top3;
+  const sc = (k) => fmt(final(k).scaled);
+  const fourth = R.eligible.filter((k) => !t3.includes(k))[0];
+  out.push(lead(deskText(MD.summaryLead).replace('{top3}', t3.map((k, i) => `${i + 1}위 ${k}(${sc(k)}점)`).join(', '))));
+  const gap34 = fmt(final(t3[2]).scaled - final(fourth).scaled);
+  const gap12 = fmt(final(t3[0]).scaled - final(t3[1]).scaled);
+  MD.keyFindings.forEach((t) => out.push(bullet(deskText(t).replace('{gap12}', gap12).replace('{gap34}', gap34).replace('{fourth}', `${fourth}(${sc(fourth)}점)`), { size: 18 })));
+  out.push(gap(4));
+  const rows = [[headc('순위'), headc('기업 (본점)'), headc('대표 학사 신입 직무'), headc(['기업 평가', '(범위)']), headc(['정보', '충족률']), headc('평판'), headc('분석')]];
+  R.byFinal.forEach((k, i) => {
+    const c = COMP[k];
+    const f = final(k);
+    const isTop = t3.includes(k);
+    rows.push([
+      { t: `${i + 1}${isTop ? ' ★' : ''}`, align: CENTER, bold: isTop, fill: isTop ? C.yellow : undefined },
+      { t: [`**${k}**`, INFO[k] ? INFO[k].place : ''], align: CENTER, fill: isTop ? C.yellow : undefined },
+      { t: c ? c.jobs.map((j) => shortJob(j.name)).join(', ') : '', size: 15 },
+      { t: [`**${fmt(f.scaled)}**`, `(${fmt(f.low)}~${fmt(f.high)})`], align: CENTER, fill: isTop ? C.yellow : undefined },
+      { t: pct(f.fill), align: CENTER },
+      { t: META.rep[k], align: CENTER, fill: META.rep[k] === '적합' ? GREEN : C.yellow },
+      { t: `Ⅰ장 ${NUM[ORDER.indexOf(k)]}`, align: CENTER, size: 15 },
+    ]);
+  });
+  out.push(tbl(cw([7, 17, 33, 14, 9, 9, 11]), rows, { size: 16, padV: 30, padH: 55 }));
+  out.push(note(MD.summaryNote));
+  out.push(h3('연구 방법'));
+  [...META.method.slice(0, 6), ...MD.methodExtra].forEach((t) => out.push(bullet(deskText(t), { size: 18 })));
+  out.push(h3('심사기준과 보고서 위치'));
+  out.push(tbl(cw([22, 78]), [[headc('심사기준(2026. 11. 3. 안내)'), headc('이 보고서에서 다룬 곳')], ...MD.criteriaMap.map(([a, b]) => [{ t: a, bold: true, fill: C.gray }, b])], { size: 16, padV: 22, padH: 60 }));
+  return out;
+}
+
 // ───────── Ⅰ. 기업별 분석 ─────────
 function eligibilityTable() {
   const out = [h3('참가 요건 확인 (2026. 11. 3.)', { before: 0 })];
@@ -203,7 +249,14 @@ function eligibilityTable() {
   return out;
 }
 
+// 제출본: 공개자료로 확인하지 못한 항목을 '지원 전에 확인할 질문'으로 싣는다(설문 관련 항목은 뺀다)
+function pendingBoxDesk(c) {
+  const items = (c.pending || []).filter((x) => !/^설문으로 확인/.test(x)).map((x) => x.replace(/^(인사 질의·인터뷰|인사 질의|인터뷰|자료)로 확인(\([^)]*\))?:\s*/, ''));
+  if (!items.length) return null;
+  return tbl([W], [[{ t: ['**공개자료로 확인하지 못한 것 — 지원 전에 회사에 확인할 질문**', ...items.map((x) => `- ${x}`)], fill: C.gray }]], { size: 16, padV: 60, padH: 120 });
+}
 function followupBox(k, c) {
+  if (DESK) return pendingBoxDesk(c);
   const F = c.followup;
   if (!F) {
     return tbl([W], [[{ t: [`**회사 답변·인터뷰 확인**`, `- ${miss(`${k} 인사 질의·인터뷰 결과`)}`, ...(c.pending || []).map((x) => `- (확인할 항목) ${x}`)], fill: PINK }]], { size: 16, padV: 60, padH: 120 });
@@ -288,7 +341,7 @@ function companySection(k, i) {
   // 평가 점수와 학생 선호
   const S = final(k);
   if (S) {
-    out.push(circ('평가 점수와 학생 선호', hasB(k) ? '두 채점 평균 · 부록 2' : '1차 채점 · 부록 2'));
+    out.push(circ(DESK ? '평가 점수' : '평가 점수와 학생 선호', hasB(k) ? '두 채점 평균 · 부록 2' : '1차 채점 · 부록 2'));
     const sr = [[headc('영역 (배점)'), headc('확인 배점'), headc('득점'), headc('영역 환산'), headc('미확인 항목')]];
     S.areas.forEach((a) => {
       const missItems = a.items.filter((x) => x.j === null).map((x) => `${x.name}(${x.w})`).join(', ');
@@ -323,6 +376,8 @@ function companySection(k, i) {
         { t: `**${fmt(finalScore(k))}점**`, align: CENTER, fill: C.yellow },
         { t: `기업 평가 × 0.7 + 학생 선호 × 0.3 · 전체 ${R.rank[k]}위`, size: 15, fill: C.yellow },
       ]);
+    } else if (DESK) {
+      sr.push([{ t: '순위', fill: C.label, bold: true, align: CENTER }, { t: `10곳 중 **${R.rank[k]}위**${R.top3.includes(k) ? ' (TOP 3)' : ''}`, span: 4 }]);
     } else {
       sr.push([{ t: '학생 선호', fill: C.label, bold: true, align: CENTER }, { t: miss('설문 결과(기업별)'), span: 4, fill: PINK }]);
     }
@@ -365,7 +420,8 @@ function companySection(k, i) {
 
   // 회사 답변·인터뷰 확인
   out.push(gap(8));
-  out.push(followupBox(k, c));
+  const fb = followupBox(k, c);
+  if (fb) out.push(fb);
   out.push(p(`**평판 점검(${META.rep[k]})** ${c.reputation}`, { size: 17, before: 80, after: 60 }));
 
   // 출처
@@ -393,7 +449,40 @@ function areaCell(f, name) {
   const a = f.areas.find((x) => x.name === name);
   return { t: `${fmt(a.got)}/${a.conf}${a.conf < a.w ? '*' : ''}`, align: CENTER };
 }
+// 양식 예시의 '적합성' 열: 부산대 전공 연결(8점)과 지역 고용·대학 연계(3점) 두 항목을 다시 보인다(총점에 이미 들어 있음)
+function fitCell(f) {
+  const pick = (area, item) => f.areas.find((x) => x.name === area).items.find((x) => x.name === item);
+  const a = pick('직무 연계', '전공·교과 연결과 요건 명확성');
+  const b = pick('ESG·지역', '지역 고용·대학 연계');
+  const got = (a.s || 0) + (b.s || 0);
+  const conf = (a.j === null ? 0 : a.w) + (b.j === null ? 0 : b.w);
+  return { t: `${fmt(got)}/${conf}${conf < a.w + b.w ? '*' : ''}`, align: CENTER };
+}
+function sec2Desk() {
+  const out = [h1('Ⅱ. 기업 10개 종합 비교표', { pageBreak: true })];
+  out.push(lead(MD.compareLead));
+  const head = [headc('기업'), ...COLS.map(([c, a]) => headc([c, `(${AREA_W[a]})`])), headc(['기타', '(ESG·지역 10)']), headc('평판'), headc(['적합성', '(참고, 11)']), headc(['총점', '(범위)'])];
+  const rows = [head];
+  R.byFinal.forEach((k, i) => {
+    const f = final(k);
+    const top = R.top3.includes(k);
+    const e = f.areas.find((x) => x.name === 'ESG·지역');
+    rows.push([
+      { t: [`**${i + 1}. ${k}**`, `(${NUM[ORDER.indexOf(k)]})`], fill: top ? C.yellow : C.gray, align: CENTER },
+      ...COLS.map(([, a]) => areaCell(f, a)),
+      { t: `${fmt(e.got)}/${e.conf}${e.conf < e.w ? '*' : ''}`, align: CENTER },
+      { t: META.rep[k], align: CENTER, fill: META.rep[k] === '적합' ? undefined : 'FFF8E1' },
+      fitCell(f),
+      { t: [`**${fmt(f.scaled)}**`, `(${fmt(f.low)}~${fmt(f.high)})`], align: CENTER, fill: top ? C.yellow : undefined },
+    ]);
+  });
+  out.push(tbl(cw([1600, 880, 880, 880, 880, 880, 1000, 800, 1000, 1200]), rows, { size: 16, padV: 32, padH: 50 }));
+  MD.compareNotes.forEach((t) => out.push(note(t)));
+  out.push(...agreementTable());
+  return out;
+}
 function sec2() {
+  if (DESK) return sec2Desk();
   const out = [h1('Ⅱ. 기업 10개 종합 비교표', { pageBreak: true })];
   out.push(lead(META.compareLead));
   const head = [headc('기업'), ...COLS.map(([c, a]) => headc([c, `(${AREA_W[a]})`])), headc(['적합성', '(학생 선호)']), headc(['기타', '(ESG 10·평판)']), headc(['총점', '(종합·기업 평가)'])];
@@ -413,7 +502,11 @@ function sec2() {
   });
   out.push(tbl(cw([1600, 900, 900, 900, 900, 900, 1110, 1080, 1210]), rows, { size: 16, padV: 32, padH: 50 }));
   META.compareNotes.forEach((t) => out.push(note(t)));
-
+  out.push(...agreementTable());
+  return out;
+}
+function agreementTable() {
+  const out = [];
   // 영역별 일치율(2인 평가)
   const withB = ORDER.filter((k) => hasB(k));
   if (withB.length) {
@@ -434,7 +527,8 @@ function sec2() {
         { t: String(adj), align: CENTER }]);
     });
     out.push(tbl(cw([22, 22, 18, 18, 20]), ar, { size: 16, padV: 30 }));
-    out.push(note(`${withB.length}개 기업 × 세부 항목 기준이다. 판정은 0~5점이며, 영역 득점 차가 2점 이상이거나 한쪽만 확인한 항목은 원문을 다시 대조해 정했고, 2026. 11. 3.에는 자료 부재로 낮춘 판정 8건을 규칙에 맞게 고쳤고, 같은 날 재조사에서 나온 새 사실(공고 재게시·요건 변경 등) 10건은 채점자 두 명이 따로 다시 판정해 평균했다(부록 2의 †). 모두 설문 결과를 보기 전에 정했다.`));
+    const agNote = `${withB.length}개 기업 × 세부 항목 기준이다. 판정은 0~5점이며, 영역 득점 차가 2점 이상이거나 한쪽만 확인한 항목은 원문을 다시 대조해 정했고, 2026. 11. 3.에는 자료 부재로 낮춘 판정 8건을 규칙에 맞게 고쳤고, 같은 날 재조사에서 나온 새 사실(공고 재게시·요건 변경 등) 10건은 채점자 두 명이 따로 다시 판정해 평균했다(부록 2의 †). 모두 설문 결과를 보기 전에 정했다.`;
+    out.push(note(DESK ? deskText(agNote) : agNote));
   }
   return out;
 }
@@ -447,7 +541,19 @@ function figPath(key) {
   const full = path.isAbsolute(f) ? f : path.join(SV_DIR, f);
   return fs.existsSync(full) ? full : null;
 }
+function sec3Desk() {
+  const T = MD.rationale;
+  const out = [h1(T.title, { pageBreak: true })];
+  out.push(lead(T.lead));
+  T.blocks.forEach((b) => {
+    out.push(h3(b.h));
+    (b.p || []).forEach((t) => out.push(p(t.replace(/\{apxRefs\}/g, CH.apxRefs), { size: BODY })));
+    (b.bullets || []).forEach((t) => out.push(bullet(t, { size: 18 })));
+  });
+  return out;
+}
 function sec3Survey() {
+  if (DESK) return sec3Desk();
   const out = [h1('Ⅲ. 간판 뗀 설문 결과', { pageBreak: true })];
   if (!SV) {
     out.push(tbl([W], [[{ t: miss('설문 결과 전체'), fill: PINK }]], { size: 17, padV: 80, padH: 120 }));
@@ -508,7 +614,7 @@ function srcLink(c, text) {
   return s && s[2] ? s[2] : '';
 }
 function sec4Improve() {
-  const out = [h1('Ⅳ. 개선안과 학생 사용 검증', { pageBreak: true })];
+  const out = [h1(DESK ? 'Ⅳ. 개선 아이디어와 취업 전략' : 'Ⅳ. 개선안과 학생 사용 검증', { pageBreak: true })];
   const S = META.standardCard;
   out.push(h2(`1  공통 제안: ${S.title}`, { before: 0 }));
   out.push(p(`**문제** ${S.problem}`, { size: BODY }));
@@ -521,7 +627,7 @@ function sec4Improve() {
       ...B.rows.map((r) => [{ t: r[0], bold: true, fill: C.gray, align: CENTER }, ...r.slice(1, 8).map((x) => ({ t: x, align: CENTER })), { t: r[8], align: CENTER, bold: true }])], { size: 15, padV: 18, padH: 40 }));
     out.push(note(B.note));
   }
-  out.push(p(`**실행 주체** ${S.owner}  **확인 지표** ${S.metric}`, { size: 18 }));
+  out.push(p(`**실행 주체** ${S.owner}  **확인 지표** ${DESK ? MD.cardMetric : S.metric}`, { size: 18 }));
 
   out.push(h2('2  전공별 직무 카드 (TOP3와 경계 기업)'));
   const cand = [...R.top3, ...R.eligible.filter((k) => !R.top3.includes(k)).slice(0, 1)];
@@ -538,6 +644,7 @@ function sec4Improve() {
     ], { size: TABLE - 1, padV: 24 }));
   });
 
+  if (!DESK) {
   out.push(h2('3  학생 사용 과제 결과'));
   const U = FUP.usage;
   if (U && U.status !== 'final' && !DRAFT) throw new Error(`사용 과제 결과가 본실시 결과(status "final")가 아니다(status=${U.status}). 미리보기(--draft)로만 쓸 수 있다.`);
@@ -547,8 +654,9 @@ function sec4Improve() {
   } else {
     out.push(tbl([W], [[{ t: miss('학생 10명 사용 과제 결과'), fill: PINK }]], { size: 17, padV: 60, padH: 120 }));
   }
+  }
 
-  out.push(h2('4  직무군별 8주 준비 안내 (통합본)'));
+  out.push(h2(`${DESK ? 3 : 4}  직무군별 8주 준비 안내 (통합본)`));
   (META.plan8Common || []).forEach((g) => {
     out.push(h3(`${g.family}  ·  ${g.companies}`));
     out.push(tbl(cw([16, 84]), g.rows.map(([a, b]) => [lab(a), b]), { size: TABLE - 1, padV: 24 }));
@@ -558,21 +666,21 @@ function sec4Improve() {
   // 5 지역정주형 취업전략: 10곳의 근무지·거리·통근·주거를 한 표로 모은다(기업 원고의 settle에서)
   const withSettle = ORDER.filter((k) => COMP[k] && COMP[k].settle && COMP[k].settle.length);
   if (withSettle.length) {
-    out.push(h2('5  지역정주형 취업전략'));
+    out.push(h2(`${DESK ? 4 : 5}  지역정주형 취업전략`));
     if (META.settleLead) out.push(p(META.settleLead, { size: BODY }));
     const cell = (k, label) => { const r = COMP[k].settle.find((x) => x[0] === label); return r ? r[1].replace(/\s*\[\d+\](\[\d+\])*/g, '') : '–'; };
     const rows = [[headc('기업'), headc('부산대에서(자동차)'), headc('통근'), headc('주거')]];
     withSettle.forEach((k) => rows.push([{ t: k, bold: true, fill: C.gray, align: CENTER }, { t: cell(k, '거리'), size: 15 }, { t: cell(k, '통근'), size: 15 }, { t: cell(k, '주거'), size: 15 }]));
     out.push(tbl(cw([13, 21, 33, 33]), rows, { size: 15, padV: 22, padH: 50 }));
     out.push(note('출처와 확인 수준은 기업별 장의 \'지역 정주 조건\' 표에 있다. 거리·시간은 경로 계산 서비스(OSRM, 교통 상황 미반영)로 구한 대략값이다.'));
-    (META.settleStrategy || []).forEach((t) => out.push(bullet(t, { size: 18 })));
+    ((DESK && MD.settleStrategy) || META.settleStrategy || []).forEach((t) => out.push(bullet(t, { size: 18 })));
   }
   return out;
 }
 
 // ───────── TOP3 ─────────
 function top3() {
-  const title = R.mode === 'final' ? '우리 팀이 선정한 「지역기업 TOP 3」' : '「지역기업 TOP 3」 (설문 반영 전)';
+  const title = (R.mode === 'final' || DESK) ? '우리 팀이 선정한 「지역기업 TOP 3」' : '「지역기업 TOP 3」 (설문 반영 전)';
   const out = [h1(title, { pageBreak: true })];
   const rows = [[headc('순위'), headc('기업'), headc('점수'), headc('선정 이유')]];
   R.top3.forEach((k, i) => {
@@ -583,7 +691,7 @@ function top3() {
     rows.push([
       { t: `${i + 1}위`, align: CENTER, bold: true, fill: C.yellow },
       { t: [`**${k}**`, INFO[k] ? INFO[k].place : ''], align: CENTER },
-      { t: [finalScore(k) !== null ? `종합 **${fmt(finalScore(k))}**` : '', `기업 ${fmt(f.scaled)}`, pf ? `선호 ${fmt(pf.pref)}` : ''].filter(Boolean), align: CENTER },
+      { t: DESK ? [`**${fmt(f.scaled)}점**`, `(${fmt(f.low)}~${fmt(f.high)})`] : [finalScore(k) !== null ? `종합 **${fmt(finalScore(k))}**` : '', `기업 ${fmt(f.scaled)}`, pf ? `선호 ${fmt(pf.pref)}` : ''].filter(Boolean), align: CENTER },
       { t: reason + surveyLine },
     ]);
   });
@@ -595,8 +703,12 @@ function top3() {
     const p3 = SV.ranking.p_top3 || {};
     out.push(p(`설문 응답을 다시 뽑아 계산한 TOP3 포함 확률: ${R.top3.map((k) => `${k} ${pct(p3[k] || 0)}`).join(', ')}. 기업 평가 비중을 60%·80%로 바꾼 결과와 보상 미확인을 3점으로 둔 결과는 부록 4에 있다.`, { size: 18 }));
   }
+  if (DESK) {
+    const nxt = R.eligible.filter((k) => !R.top3.includes(k)).slice(0, 3).map((k) => `${k} ${fmt(final(k).scaled)}점`).join(', ');
+    out.push(note(`4~6위: ${nxt}. 점수 옆 괄호는 미확인 항목을 0점·만점으로 둘 때의 범위다.`));
+  }
   out.push(h3('선정 방법'));
-  META.selectionRule.forEach((t) => out.push(bullet(t, { size: 18 })));
+  (DESK ? MD.selectionRule : META.selectionRule).forEach((t) => out.push(bullet(DESK ? deskText(t) : t, { size: 18 })));
 
   // 서명란 (양식 끝)
   out.push(gap(30));
@@ -623,7 +735,7 @@ function appendix() {
     rows.push(row);
   });
   out.push(tbl(cw([12, 19, 23, 23, 23]), rows, { size: 15, padV: 28, padH: 60 }));
-  out.push(note('†는 2026. 11. 3.에 자료 부재가 1점으로 읽히지 않도록 확인 사실 조건으로 고친 문장이다(설문 결과를 보기 전).'));
+  out.push(note(DESK ? '†는 2026. 11. 3.에 자료 부재가 1점으로 읽히지 않도록 확인 사실 조건으로 고친 문장이다.' : '†는 2026. 11. 3.에 자료 부재가 1점으로 읽히지 않도록 확인 사실 조건으로 고친 문장이다(설문 결과를 보기 전).'));
 
   out.push(h1('부록 2  기업별 세부 항목 판정', { pageBreak: true }));
   const anyB = ORDER.some((k) => hasB(k));
@@ -648,10 +760,12 @@ function appendix() {
   mrows.push([{ t: '환산점수', span: 2, fill: C.label, bold: true, align: CENTER }, ...ks.map((k) => ({ t: fmt(final(k).scaled), align: CENTER, bold: true, fill: C.yellow }))]);
   mrows.push([{ t: '정보 충족률', span: 2, fill: C.label, bold: true, align: CENTER }, ...ks.map((k) => ({ t: pct(final(k).fill), align: CENTER }))]);
   out.push(tbl(cw([10, 22, ...ks.map(() => 68 / ks.length)]), mrows, { size: 15, padV: 24, padH: 30 }));
-  if (anyB) out.push(note('†는 원문을 다시 대조했거나(채점조정), 자료 부재 규칙을 통일했거나(2026. 11. 3. 재채점), 11. 3. 재조사의 새 사실을 두 채점자가 다시 판정해(같은 날) 고친 항목이다. 근거는 연구 노트의 채점조정·재채점 파일에 있고, 모두 설문 결과를 보기 전에 정했다.'));
+  if (anyB) out.push(note(DESK ? '†는 원문을 다시 대조했거나(채점조정), 자료 부재 규칙을 통일했거나(2026. 11. 3. 재채점), 11. 3. 재조사의 새 사실을 두 채점자가 다시 판정해(같은 날) 고친 항목이다. 근거는 연구 노트의 채점조정·재채점 파일에 있다.' : '†는 원문을 다시 대조했거나(채점조정), 자료 부재 규칙을 통일했거나(2026. 11. 3. 재채점), 11. 3. 재조사의 새 사실을 두 채점자가 다시 판정해(같은 날) 고친 항목이다. 근거는 연구 노트의 채점조정·재채점 파일에 있고, 모두 설문 결과를 보기 전에 정했다.'));
 
   out.push(h1('부록 3  공개 원칙과 이용 시 주의', { before: 360 }));
-  META.disclaimer.forEach((t) => out.push(bullet(t, { size: 18 })));
+  (DESK ? MD.disclaimer : META.disclaimer).forEach((t) => out.push(bullet(t, { size: 18 })));
+
+  if (DESK) return [...out, ...appendixDesk()];
 
   // 부록 4 민감도
   out.push(h1('부록 4  순위 민감도', { pageBreak: true }));
@@ -695,6 +809,73 @@ function appendix() {
     META.literature.refs.forEach((r) => out.push(p(r, { size: 16, after: 40, indent: { left: 300, hanging: 300 } })));
     out.push(note('7% 임금 양보는 원 논문(Cable & Turban, 2003)의 표를 직접 보지 못해 Lievens & Slaughter(2016)의 요약을 재인용했다. 동남지방통계청은 2025년 동남지방데이터청으로 이름이 바뀌어 자료별 표기를 따랐다.'));
   }
+  return out;
+}
+
+// ───────── 제출본(공개자료 단독) 부록 4~6 ─────────
+// 순위 민감도: 미확인 항목 처리와 영역 배점을 바꿔 환산점수와 순위를 다시 계산한다(scores.json의 최종 판정만 사용)
+function scenarioScores(opt) {
+  // opt.fill: null(환산) | 숫자(미확인 항목 판정을 이 값으로 채움), opt.w: 영역 배점 바꿈({영역명: 배점})
+  const res = {};
+  ORDER.forEach((k) => {
+    let got = 0; let conf = 0;
+    final(k).areas.forEach((a) => {
+      const mul = opt.w ? opt.w[a.name] / a.w : 1;
+      a.items.forEach((it) => {
+        const j = it.j === null ? (opt.fill === null || opt.fill === undefined ? null : opt.fill) : it.j;
+        if (j === null) return;
+        got += it.w * mul * (j / 5);
+        conf += it.w * mul;
+      });
+    });
+    res[k] = (got / conf) * 100;
+  });
+  const order = [...ORDER].sort((a, b) => res[b] - res[a]);
+  const rank = Object.fromEntries(order.map((k, i) => [k, i + 1]));
+  return { res, rank, top3: order.slice(0, 3) };
+}
+function appendixDesk() {
+  const out = [h1('부록 4  순위 민감도', { pageBreak: true })];
+  out.push(p(MD.sensLead, { size: 18 }));
+  const names = final(ORDER[0]).areas.map((a) => a.name);
+  const eq = Object.fromEntries(names.map((n) => [n, 100 / names.length]));
+  const wOf = (o) => ({ '직무 연계': 25, '보상·근무': 25, '성장·지속성': 20, '기술·경쟁력': 15, '해외·경력': 5, 'ESG·지역': 10, ...o });
+  const SCN = [
+    ['기본(환산점수)', {}],
+    ['미확인 = 3점(보통)', { fill: 3 }],
+    ['미확인 = 0점(하한)', { fill: 0 }],
+    ['미확인 = 5점(상한)', { fill: 5 }],
+    ['직무 20 · 보상 30', { w: wOf({ '직무 연계': 20, '보상·근무': 30 }) }],
+    ['직무 30 · 보상 20', { w: wOf({ '직무 연계': 30, '보상·근무': 20 }) }],
+    ['직무 20 · 성장 25', { w: wOf({ '직무 연계': 20, '성장·지속성': 25 }) }],
+    ['6개 영역 같은 비중', { w: eq }],
+  ].map(([label, o]) => ({ label, ...scenarioScores(o) }));
+  const show = R.byFinal.slice(0, 6);
+  const rows = [[headc('바꾼 가정'), ...show.map((k) => headc(k, { size: 14 })), headc('TOP 3')]];
+  SCN.forEach((sc, i) => {
+    const same = sc.top3.join() === SCN[0].top3.join();
+    const sameSet = [...sc.top3].sort().join() === [...SCN[0].top3].sort().join();
+    rows.push([{ t: sc.label, bold: i === 0, fill: C.gray },
+      ...show.map((k) => ({ t: `${fmt(sc.res[k])} (${sc.rank[k]})`, align: CENTER, fill: sc.rank[k] <= 3 ? C.yellow : undefined })),
+      { t: same ? '같음' : (sameSet ? '세 곳 같고 순서만 다름' : sc.top3.join(' · ')), size: 14, align: CENTER, fill: sameSet ? undefined : 'FBEDEA' }]);
+  });
+  out.push(tbl(cw([19, ...show.map(() => 10.5), 18]), rows, { size: 15, padV: 24, padH: 40 }));
+  out.push(note('칸의 값은 환산점수(순위)이고 노란 칸은 그 가정에서 3위 안이다. 영역 배점을 바꿀 때는 세부 항목 배점을 같은 비율로 늘리거나 줄였다. 표에는 기본 순위 1~6위만 실었고 순위는 10곳 전체에서 매겼다.'));
+  const changed = SCN.filter((sc) => [...sc.top3].sort().join() !== [...SCN[0].top3].sort().join());
+  const reordered = SCN.filter((sc) => sc.top3.join() !== SCN[0].top3.join() && [...sc.top3].sort().join() === [...SCN[0].top3].sort().join());
+  const lines = [];
+  lines.push(`여덟 가지 가정 가운데 TOP 3의 세 기업이 그대로인 경우는 ${SCN.length - changed.length}가지다${reordered.length ? `(이 가운데 ${reordered.map((x) => `'${x.label}'`).join(', ')}에서는 세 곳 안의 순서가 바뀐다)` : ''}.`);
+  changed.forEach((sc) => lines.push(`'${sc.label}'로 두면 TOP 3가 ${sc.top3.join(' · ')}가 된다.`));
+  lines.forEach((t) => out.push(bullet(t, { size: 18 })));
+  MD.sensNotes.forEach((t) => out.push(bullet(t, { size: 18 })));
+
+  out.push(h1('부록 5  연구계획서 대비 변경', { before: 300 }));
+  out.push(tbl(cw([14, 22, 26, 20, 18]), [[headc('항목'), headc('계획'), headc('실제'), headc('이유'), headc('영향')], ...MD.changes.map((r) => r.map((x, i) => (i === 0 ? { t: x, bold: true, fill: C.gray } : x)))], { size: 15, padV: 24, padH: 50 }));
+
+  out.push(h1('부록 6  선행연구·통계 출처 (Ⅲ장)', { before: 300 }));
+  META.literature.refs.filter((r) => MD.refKeys.some((key) => r.startsWith(key))).forEach((r) => out.push(p(r, { size: 16, after: 40, indent: { left: 300, hanging: 300 } })));
+  (MD.extraRefs || []).forEach((r) => out.push(p(r, { size: 16, after: 40, indent: { left: 300, hanging: 300 } })));
+  out.push(note(MD.refNote));
   return out;
 }
 

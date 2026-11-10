@@ -9,6 +9,9 @@
 5. PDF 쪽수와 글꼴 포함 여부(pdffonts: 모든 글꼴 emb=yes)
 
 사용: python3 check_final.py 제출본.docx 제출본.pdf   (문제가 있으면 종료 코드 1)
+      python3 check_final.py 제출본.docx 제출본.pdf --desk
+        공개자료만으로 쓴 제출본(설문·인터뷰 미반영). 2·4번 대신 표지 TOP3가 scores.json 환산점수 상위 3곳과 같은지,
+        설문 결과처럼 읽히는 표현(DESK_BANNED)이 없는지 본다.
 """
 import json
 import re
@@ -24,6 +27,10 @@ RESULTS = SURVEY / 'results' / 'survey_results.json'
 
 BANNED = ['(잠정)', '잠정 TOP3', '잠정 점수', '잠정', '설문 후', '작성 예정', '입력 예정', '［', '］', '미리보기', '제출 금지',
           'SYNTHETIC', 'synthetic', '합성 자료', '합성 데이터', '( 기재 )', '(기재)', 'TODO', 'XXX', 'NaN', 'undefined', '[object']
+
+
+# 설문·인터뷰를 반영하지 않은 제출본에 있으면 안 되는 표현(하지 않은 조사를 한 것처럼 읽히는 말)
+DESK_BANNED = ['유효 응답', '응답자', '학생 선호(95%', '종합 점수 =', '설문 결과를 보기 전', '회사 답변:', '95% 신뢰구간', '간판 효과는']
 
 
 def docx_text(p):
@@ -46,13 +53,16 @@ def main():
     if len(sys.argv) < 3:
         sys.exit(__doc__)
     docx, pdf = Path(sys.argv[1]), Path(sys.argv[2])
+    desk = '--desk' in sys.argv
     problems = []
 
     code, tail = run([sys.executable, 'check_report.py'], HERE)
     if code != 0:
         problems.append('check_report.py 실패: ' + ' / '.join(tail))
 
-    if not RESULTS.exists():
+    if desk:
+        sv = None
+    elif not RESULTS.exists():
         problems.append(f'본조사 설문 결과가 없음: {RESULTS}')
         sv = None
     else:
@@ -70,6 +80,19 @@ def main():
                 ctx = re.sub(r'\s+', ' ', t[max(0, i - 30):i + 30])
                 problems.append(f'{kind}에 금지 표시 "{w}" {n}곳 (예: …{ctx}…)')
 
+    if desk:
+        for kind, t in texts.items():
+            for w in DESK_BANNED:
+                if w in t:
+                    i = t.find(w)
+                    problems.append(f'{kind}에 설문·인터뷰 결과처럼 읽히는 표현 "{w}" (예: …{re.sub(chr(92) + "s+", " ", t[max(0, i - 30):i + 30])}…)')
+        sc = json.loads((HERE / 'scores.json').read_text(encoding='utf-8'))
+        ok = [k for k in sc if sc[k]['final']['fill'] >= 0.7]
+        exp = sorted(ok, key=lambda k: (-sc[k]['final']['scaled'], -sc[k]['final']['low']))[:3]
+        head = texts['pdf'][:3000]
+        pos = [head.find(f'{i + 1}위 {k}') for i, k in enumerate(exp)]
+        if min(pos) < 0:
+            problems.append(f'표지 요약에 TOP3({", ".join(exp)})가 순위와 함께 적혀 있지 않음')
     if sv:
         top3 = sv.get('ranking', {}).get('top3') or []
         names = [x.get('company') if isinstance(x, dict) else x for x in top3]

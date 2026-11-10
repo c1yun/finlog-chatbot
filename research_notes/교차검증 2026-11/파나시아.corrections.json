@@ -1,0 +1,146 @@
+[
+ {
+  "file": "reports/build_result/companies/파나시아.json",
+  "path": "analysis[1].points[3].sub[0]",
+  "old": "채택 표결은 2026. 10. 회기로 넘어갔고, 그 결과는 확인이 필요하다 [8].",
+  "new": "채택을 다룰 임시회기 속개는 2026. 12. 4.(MEPC 85 직후)로 잡혀 있어, 2026. 11. 10. 기준 채택 여부는 정해지지 않았다 [8].",
+  "verdict": "기준일 지남",
+  "reason": "2026. 10.에 표결이 없었고 MEPC 84(2026. 5.)가 임시회기 속개를 12. 4.로 잡음. 출처 [8]은 2025. 10. 보도라 출처 추가 필요",
+  "sources": [
+   "https://www.marinelink.com/news/imo-progresses-net-zero-framework-538729",
+   "https://www.dma.dk/news/2026/may/imo’s-marine-environment-protection-committee-mepc-84-concluded-in-london",
+   "https://shipandbunker.com/news/world/596439-iswg-ghg-22-working-group-ends-with-net-zero-framework-text-expected-at-mepc-85"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/파나시아.json",
+  "path": "analysis[3].points[1].t",
+  "old": "영업본부 조선해양 기술영업은 2026. 2. 신입·경력을 모집했으나, 공고 페이지에 학력·전공·업무 내용이 없어 확인이 필요하다 [6].",
+  "new": "영업본부 조선해양 기술영업은 2026. 2. 신입·경력을 모집했다. 공고 이미지에 따르면 조선소·선주사 고객 관리와 신규 발굴, 제품 사양검토·견적 대응·계약 협의, 에이전트·파트너사 관리를 맡고, 필수 요건은 대졸(4년) 이상, 운전면허, TOEIC Speaking IM3 또는 OPIc IM2 이상이다(전공 제한은 적혀 있지 않다) [6].",
+  "verdict": "불일치",
+  "reason": "링커리어 301677 본문 이미지와 회사 공고 이미지 원본에 업무·자격요건·초봉·근무형태가 적혀 있음",
+  "sources": [
+   "https://linkareer.com/activity/301677",
+   "http://aisudy.dothome.co.kr/영업본부_26_2.jpg"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/파나시아.json",
+  "path": "jobs[1].name",
+  "old": "조선해양 기술영업(영업본부, 대상 전공 확인 필요)",
+  "new": "조선해양 기술영업(영업본부, 전공 제한 표기 없음)",
+  "verdict": "불일치",
+  "reason": "공고 이미지의 필수·우대 요건에 전공 문구가 없음(학력·면허·어학만 있음)",
+  "sources": [
+   "https://linkareer.com/activity/301677",
+   "http://aisudy.dothome.co.kr/영업본부_26_2.jpg"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/파나시아.json",
+  "path": "jobs[1].work",
+  "old": "공고 페이지에 업무 설명이 없어 확인 필요",
+  "new": "조선소·선주사 등 기존 고객 관리와 신규 고객 발굴, 제품 사양검토·견적 대응·고객사 제안·계약 협의, 계약 프로젝트 후속 대응과 영업관리, 영업 전략 수립과 시황 분석, 에이전트·파트너사 관리와 신규 발굴",
+  "verdict": "불일치",
+  "reason": "링커리어 301677 본문 이미지와 회사 공고 이미지 원본에 업무·자격요건·초봉·근무형태가 적혀 있음",
+  "sources": [
+   "https://linkareer.com/activity/301677",
+   "http://aisudy.dothome.co.kr/영업본부_26_2.jpg"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/파나시아.json",
+  "path": "jobs[1].req",
+  "old": "학력·전공·어학 요건이 공고 페이지에 없어 확인 필요",
+  "new": "필수: 대졸(4년) 이상, 운전면허 소지, TOEIC Speaking IM3 또는 OPIc IM2 이상. 우대: (경력) 해당 분야 2년 이상, 영어회화 능통, 직무 자격증. 전공 요건은 적혀 있지 않음",
+  "verdict": "불일치",
+  "reason": "링커리어 301677 본문 이미지와 회사 공고 이미지 원본에 업무·자격요건·초봉·근무형태가 적혀 있음",
+  "sources": [
+   "https://linkareer.com/activity/301677",
+   "http://aisudy.dothome.co.kr/영업본부_26_2.jpg"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/파나시아.json",
+  "path": "jobs[1].type",
+  "old": "신입·경력(정규직 여부 확인 필요)",
+  "new": "신입·경력, 정규직(수습 3개월, 수습 중 임금 100%)",
+  "verdict": "불일치",
+  "reason": "공고 이미지에 '근무형태 : 정규직 (수습기간 : 3개월, 100% 임금 지급)'",
+  "sources": [
+   "https://linkareer.com/activity/301677",
+   "http://aisudy.dothome.co.kr/영업본부_26_2.jpg"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/파나시아.json",
+  "path": "jobs[1].pay",
+  "old": "공개 정보 없음",
+  "new": "대졸 신입 초봉 연 3,600~3,700만 원(휴가비·성과금·기타 수당 제외), 경력은 면접 후 협의",
+  "verdict": "불일치",
+  "reason": "공고 이미지에 '대졸 4년 이상 신입 초봉 : 3,600~3,700만원(휴가비,성과금,기타 수당 제외) / 경력직 : 면접 후 협의'",
+  "sources": [
+   "https://linkareer.com/activity/301677",
+   "http://aisudy.dothome.co.kr/영업본부_26_2.jpg"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/파나시아.json",
+  "path": "ideas[0].problem",
+  "old": "기술영업 공고에는 업무·요건 설명이 거의 없다 [1][6].",
+  "new": "기술영업 공고는 업무 5개 항목과 요건만 적을 뿐 규제 일정과 일감의 관계는 설명하지 않는다 [1][6].",
+  "verdict": "불일치",
+  "reason": "링커리어 301677 본문 이미지와 회사 공고 이미지 원본에 업무·자격요건·초봉·근무형태가 적혀 있음",
+  "sources": [
+   "https://linkareer.com/activity/301677",
+   "http://aisudy.dothome.co.kr/영업본부_26_2.jpg"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/파나시아.json",
+  "path": "plan8.rows[0][1]",
+  "old": "요건이 빠진 공고라 인사팀 문의로 학력·전공·어학을 확인하고, 초봉은 정보보안 공고로 가늠한다 [5].",
+  "new": "2026. 2. 공고의 필수(대졸 4년·운전면허·TOEIC Speaking IM3/OPIc IM2)와 초봉(3,600~3,700만 원)을 내 이력과 대조하고, 전공 제한 여부는 인사팀에 문의한다 [6].",
+  "verdict": "불일치",
+  "reason": "링커리어 301677 본문 이미지와 회사 공고 이미지 원본에 업무·자격요건·초봉·근무형태가 적혀 있음",
+  "sources": [
+   "https://linkareer.com/activity/301677",
+   "http://aisudy.dothome.co.kr/영업본부_26_2.jpg"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/파나시아.json",
+  "path": "pending[0]",
+  "old": "인터뷰로 확인: 기술영업 신입의 학력·전공·어학 요건, 첫해 업무와 해외 출장 빈도",
+  "new": "인터뷰로 확인: 기술영업 신입의 전공 제한 여부, 첫해 업무와 해외 출장 빈도",
+  "verdict": "불일치",
+  "reason": "학력·어학 요건은 공고 이미지에 있고 전공만 적혀 있지 않음",
+  "sources": [
+   "https://linkareer.com/activity/301677",
+   "http://aisudy.dothome.co.kr/영업본부_26_2.jpg"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/파나시아.json",
+  "path": "analysis[4].points[2].sub[0]",
+  "old": "국민연금 기준 최근 12개월 입사자는 34명, 퇴사자는 38명이다 [3].",
+  "new": "국민연금 기준 2026. 8.까지 12개월 동안 입사자는 34명, 퇴사자는 38명이다 [3].",
+  "verdict": "기준일 지남",
+  "reason": "수치는 2026. 8. 기준으로 맞으나 자료가 2026. 9.까지 갱신됨(325명, 12개월 입사 36·퇴사 39). 기준 월을 밝혀 324명(2026. 8.)과 맞춤",
+  "sources": [
+   "https://www.saramin.co.kr/zf_user/company-info/view?csn=ZGlWVXVZNmZPUlNqbFA0eTVDT0x3Zz09"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/파나시아.json",
+  "path": "sources[5][1]",
+  "old": "접수 2026. 2. 10.~2026. 2. 18., 2026. 10. 20. 확인",
+  "new": "접수 2026. 2. 10.~2026. 2. 18., 본문 이미지(모집내용·자격요건·초봉·전형) 포함, 2026. 11. 10. 확인",
+  "verdict": "불일치",
+  "reason": "출처 설명에 본문 이미지가 빠져 있어 수정된 본문 근거와 맞춤",
+  "sources": [
+   "https://linkareer.com/activity/301677",
+   "http://aisudy.dothome.co.kr/영업본부_26_2.jpg"
+  ]
+ }
+]

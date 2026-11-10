@@ -1,0 +1,51 @@
+[
+ {
+  "file": "reports/build_result/companies/해성디에스.json",
+  "path": "analysis[1].points[1].t",
+  "old": "연구조직은 개발본부 아래 BGA·LF·COB 개발팀과 기술기획팀(AI·비전 소프트웨어)으로, 82명(2025. 12. 31.)에서 77명(2026. 6. 30.)이 됐다",
+  "new": "연구조직은 2025. 12. 31. 기준 개발본부 아래 BGA·LF·COB 개발팀과 기술기획팀(AI·비전 소프트웨어) 82명이었고, 2026. 6. 30. 기준으로는 BGA사업본부·LF사업본부 아래 개발 조직 77명으로 공시됐다",
+  "verdict": "기준일 지남",
+  "reason": "인원(82→77명)은 맞지만 2026 반기보고서의 연구조직은 개발본부가 아니라 BGA사업본부·LF사업본부 체제로 바뀌어 있음",
+  "sources": [
+   "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318001527",
+   "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003884"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/해성디에스.json",
+  "path": "analysis[2].points[1].sub[1]",
+  "old": "생산설비 가동률은 44.4%(2023)에서 55.3%(2026년 상반기)로 오르고 있다",
+  "new": "생산설비 가동률은 Kpcs(낱개 1,000개) 기준 44.4%(2023)에서 55.3%(2026년 상반기)로 올랐고, Kstrip(스트립 1,000장) 기준으로는 51.6%에서 51.4%로 비슷하다",
+  "verdict": "불일치",
+  "reason": "공시는 가동률을 두 기준으로 싣는데 원고 수치는 Kpcs 기준만 해당하고, Kstrip 기준은 오르지 않았음",
+  "sources": [
+   "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318001527",
+   "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003884"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/해성디에스.json",
+  "path": "swot.O[2]",
+  "old": "설비 가동률이 44.4%(2023)에서 55.3%(2026 상반기)로 올랐다",
+  "new": "설비 가동률(Kpcs 기준)이 44.4%(2023)에서 55.3%(2026 상반기)로 올랐다",
+  "verdict": "불일치",
+  "reason": "수치는 Kpcs 기준 가동률이며 Kstrip 기준은 51.6%→51.4%라 기준 표기가 필요함",
+  "sources": [
+   "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318001527",
+   "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003884"
+  ]
+ },
+ {
+  "file": "reports/build_result/companies/해성디에스.json",
+  "path": "analysis[5].points[0].t",
+  "old": "2025. 12. 기후에너지환경부 장관상을 받았다",
+  "new": "2025년 녹색경영 우수기업 기후에너지환경부 장관상(시상식 2025. 11. 27., 사업보고서 표기는 2025. 12.)을 받았다",
+  "verdict": "불일치",
+  "reason": "수상은 맞지만 시상식은 2025. 11. 27.에 열렸고 회사 발표가 12. 2.이라 '2025. 12. 수상'은 시점이 다름",
+  "sources": [
+   "https://m.samsungsem.com/kr/newsroom/news/view.do?id=9903",
+   "https://hellot.net/news/article.html?no=107816",
+   "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318001527"
+  ]
+ }
+]
