@@ -1,0 +1,14 @@
+[
+  {
+    "file": "reports/build_result/companies/BHI.json",
+    "path": "analysis[5].points[0].t",
+    "old": "다만 환경 성과 수치와 ISO 14001(환경)·ISO 45001(안전보건) 인증은 찾지 못했다 [1][6]",
+    "new": "다만 환경 성과 수치는 찾지 못했다. ISO 14001(환경)·OHSMS 18001(안전보건) 인증은 잡코리아 기업소개 문구에만 있고 홈페이지 인증 목록에는 없어, 현재 유효한지는 확인이 필요하다 [1][6]",
+    "verdict": "불일치",
+    "reason": "잡코리아 기업정보의 회사 소개글에 '환경경영시스템 ISO14001, 안전보건경영시스템 OHSMS18001' 취득 문구가 있어 '찾지 못했다'는 서술과 다름. 홈페이지 인증 목록에는 없음",
+    "sources": [
+      "https://www.jobkorea.co.kr/company/1934814",
+      "https://www.bhi.co.kr/menu4_1_3"
+    ]
+  }
+]
